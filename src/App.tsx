@@ -13,7 +13,33 @@ import Sponsor from './components/Sponsor'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 
-const CONTACT_EMAIL = 'hello@womeninproductindia.com'
+// Paste your Web3Forms access key here after getting it from web3forms.com
+const WEB3FORMS_KEY = 'YOUR_ACCESS_KEY'
+
+async function submitForm(subject: string, fd: FormData, replyTo?: string) {
+  const fields: Record<string, string> = {}
+  const seen: Record<string, string[]> = {}
+  fd.forEach((val, key) => {
+    if (!(key in seen)) seen[key] = []
+    if (String(val).trim()) seen[key].push(String(val))
+  })
+  for (const [key, vals] of Object.entries(seen)) {
+    fields[key] = vals.join(', ')
+  }
+  const res = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      access_key: WEB3FORMS_KEY,
+      subject,
+      from_name: 'GPF 2026 Website',
+      ...(replyTo ? { replyto: replyTo } : {}),
+      ...fields,
+    }),
+  })
+  const data = await res.json()
+  if (!data.success) throw new Error(data.message || 'Submission failed')
+}
 
 // Reusable form field styles
 const labelClass = 'block text-sm font-medium mb-1' + ' ' + 'text-[#9490AD]'
@@ -24,14 +50,6 @@ const selectClass =
   'w-full rounded-xl px-4 py-3 text-[#F0EEF8] focus:outline-none transition appearance-none bg-[#05040C] border border-[#1C1A32] focus:border-[#7C3AED]'
 const textareaClass =
   'w-full rounded-xl px-4 py-3 text-[#F0EEF8] placeholder-[#52506A] focus:outline-none transition resize-none bg-[#05040C] border border-[#1C1A32] focus:border-[#7C3AED]'
-
-function sendToEmail(subject: string, data: FormData) {
-  const body = [...data.entries()]
-    .filter(([, v]) => String(v).trim() !== '')
-    .map(([k, v]) => `${k}: ${v}`)
-    .join('\n')
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-}
 
 function SuccessMessage({ message = "Thank you! We'll be in touch soon." }: { message?: string }) {
   return (
@@ -50,11 +68,17 @@ function SuccessMessage({ message = "Thank you! We'll be in touch soon." }: { me
 // ─── Pass Registration Form ───────────────────────────────────────────────────
 function PassForm({ tierName }: { tierName: string }) {
   const [submitted, setSubmitted] = useState(false)
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const fd = new FormData(e.currentTarget)
-    sendToEmail(`Pass Registration – ${tierName} Pass | GPF 2026`, fd)
-    setSubmitted(true)
+    setLoading(true); setError('')
+    try {
+      const fd = new FormData(e.currentTarget)
+      await submitForm(`Pass Registration: ${tierName} Pass | GPF 2026`, fd, fd.get('Email') as string)
+      setSubmitted(true)
+    } catch { setError('Something went wrong. Please try again.') }
+    finally { setLoading(false) }
   }
 
   if (submitted) return <SuccessMessage message={`Your ${tierName} Pass registration has been received. We'll confirm your spot via email.`} />
@@ -88,12 +112,14 @@ function PassForm({ tierName }: { tierName: string }) {
           <input id="p-org" name="Organisation" type="text" placeholder="Your company or affiliation" className={inputClass} />
         </div>
       </div>
+      {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2 flex flex-col items-start gap-2">
         <button
           type="submit"
-          className="bg-brand-purple hover:bg-purple-600 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          disabled={loading}
+          className="bg-brand-purple hover:bg-purple-600 disabled:opacity-60 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
         >
-          Register for Pass
+          {loading ? 'Sending...' : 'Register for Pass'}
         </button>
         <p className="text-xs text-[#6B6880]">Our team will follow up with payment and confirmation details.</p>
       </div>
@@ -104,10 +130,17 @@ function PassForm({ tierName }: { tierName: string }) {
 // ─── Hackathon Registration Form ────────────────────────────────────────────
 function HackathonForm() {
   const [submitted, setSubmitted] = useState(false)
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    sendToEmail('Hackathon Registration | GPF 2026', new FormData(e.currentTarget))
-    setSubmitted(true)
+    setLoading(true); setError('')
+    try {
+      const fd = new FormData(e.currentTarget)
+      await submitForm('Hackathon Registration | GPF 2026', fd, fd.get('Email') as string)
+      setSubmitted(true)
+    } catch { setError('Something went wrong. Please try again.') }
+    finally { setLoading(false) }
   }
 
   if (submitted) return <SuccessMessage message="Your hackathon registration has been received. We'll confirm your spot via email." />
@@ -172,12 +205,14 @@ function HackathonForm() {
         <label className={labelClass} htmlFor="h-idea">Tell us about your idea</label>
         <textarea id="h-idea" name="Idea" rows={4} placeholder="Give us a brief overview of what you plan to build..." className={textareaClass} />
       </div>
+      {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2 flex flex-col items-start gap-2">
         <button
           type="submit"
-          className="bg-brand-amber hover:bg-amber-400 text-black px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          disabled={loading}
+          className="bg-brand-amber hover:bg-amber-400 disabled:opacity-60 text-black px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
         >
-          Submit Registration
+          {loading ? 'Sending...' : 'Submit Registration'}
         </button>
         <p className="text-xs text-[#6B6880]">Registration closes 48 hours before Day 1.</p>
       </div>
@@ -188,11 +223,18 @@ function HackathonForm() {
 // ─── Speaker Application Form ────────────────────────────────────────────────
 function SpeakerForm() {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const [photoName, setPhotoName] = useState('')
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    sendToEmail('Speaker Application | GPF 2026', new FormData(e.currentTarget))
-    setSubmitted(true)
+    setLoading(true); setError('')
+    try {
+      const fd = new FormData(e.currentTarget)
+      await submitForm('Speaker Application | GPF 2026', fd, fd.get('Email') as string)
+      setSubmitted(true)
+    } catch { setError('Something went wrong. Please try again.') }
+    finally { setLoading(false) }
   }
 
   if (submitted) return <SuccessMessage message="Your speaker application has been received. Our team will review and get back to you." />
@@ -261,12 +303,14 @@ function SpeakerForm() {
         <label className={labelClass} htmlFor="sp-abstract">Talk Abstract <span className="text-[#6B6880] font-normal">(max 250 words)</span></label>
         <textarea id="sp-abstract" name="Talk Abstract" rows={4} placeholder="Describe the core thesis, key takeaways, and audience of your talk..." className={textareaClass} />
       </div>
+      {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2">
         <button
           type="submit"
-          className="bg-brand-purple hover:bg-purple-600 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          disabled={loading}
+          className="bg-brand-purple hover:bg-purple-600 disabled:opacity-60 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
         >
-          Submit Application
+          {loading ? 'Sending...' : 'Submit Application'}
         </button>
       </div>
     </form>
@@ -276,10 +320,17 @@ function SpeakerForm() {
 // ─── Nominate Speaker Form ────────────────────────────────────────────────────
 function NominateForm() {
   const [submitted, setSubmitted] = useState(false)
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    sendToEmail('Speaker Nomination | GPF 2026', new FormData(e.currentTarget))
-    setSubmitted(true)
+    setLoading(true); setError('')
+    try {
+      const fd = new FormData(e.currentTarget)
+      await submitForm('Speaker Nomination | GPF 2026', fd, fd.get('Your Email') as string)
+      setSubmitted(true)
+    } catch { setError('Something went wrong. Please try again.') }
+    finally { setLoading(false) }
   }
 
   if (submitted) return <SuccessMessage message="Thank you for your nomination! We'll review it and reach out to the nominee." />
@@ -318,12 +369,14 @@ function NominateForm() {
           className={textareaClass}
         />
       </div>
+      {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2">
         <button
           type="submit"
-          className="bg-brand-purple hover:bg-purple-600 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          disabled={loading}
+          className="bg-brand-purple hover:bg-purple-600 disabled:opacity-60 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
         >
-          Submit Nomination
+          {loading ? 'Sending...' : 'Submit Nomination'}
         </button>
       </div>
     </form>
@@ -333,10 +386,17 @@ function NominateForm() {
 // ─── Sponsor Request Form ─────────────────────────────────────────────────────
 function SponsorForm() {
   const [submitted, setSubmitted] = useState(false)
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    sendToEmail('Sponsorship Enquiry | GPF 2026', new FormData(e.currentTarget))
-    setSubmitted(true)
+    setLoading(true); setError('')
+    try {
+      const fd = new FormData(e.currentTarget)
+      await submitForm('Sponsorship Enquiry | GPF 2026', fd, fd.get('Your Email') as string)
+      setSubmitted(true)
+    } catch { setError('Something went wrong. Please try again.') }
+    finally { setLoading(false) }
   }
 
   const interests = [
@@ -401,12 +461,14 @@ function SponsorForm() {
         />
       </div>
 
+      {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2 flex flex-col items-start gap-2">
         <button
           type="submit"
-          className="bg-brand-amber hover:bg-amber-400 text-black px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          disabled={loading}
+          className="bg-brand-amber hover:bg-amber-400 disabled:opacity-60 text-black px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
         >
-          Request Details
+          {loading ? 'Sending...' : 'Request Details'}
         </button>
         <p className="text-xs text-[#6B6880]">We will get back to you within 2 business days.</p>
       </div>
@@ -417,10 +479,17 @@ function SponsorForm() {
 // ─── Community Partner Form ───────────────────────────────────────────────────
 function CommunityForm() {
   const [submitted, setSubmitted] = useState(false)
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    sendToEmail('Community Partnership Application | GPF 2026', new FormData(e.currentTarget))
-    setSubmitted(true)
+    setLoading(true); setError('')
+    try {
+      const fd = new FormData(e.currentTarget)
+      await submitForm('Community Partnership Application | GPF 2026', fd, fd.get('Your Email') as string)
+      setSubmitted(true)
+    } catch { setError('Something went wrong. Please try again.') }
+    finally { setLoading(false) }
   }
 
   const types = [
@@ -484,13 +553,15 @@ function CommunityForm() {
         <textarea id="cp-msg" name="Message" rows={4} placeholder="Share what your community is about, your audience, and what kind of partnership you're looking for..." className={textareaClass} />
       </div>
 
+      {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2 flex flex-col items-start gap-2">
         <button
           type="submit"
-          className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          disabled={loading}
+          className="bg-[#7C3AED] hover:bg-[#6D28D9] disabled:opacity-60 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
           style={{ boxShadow: '0 0 28px rgba(124,58,237,.35)' }}
         >
-          Submit Application
+          {loading ? 'Sending...' : 'Submit Application'}
         </button>
         <p className="text-xs text-[#6B6880]">We'll get back to you within 3 business days.</p>
       </div>
