@@ -4,10 +4,10 @@ import { Menu, X } from 'lucide-react'
 const links = [
   { label: 'Why Attend', id: 'why-attend' },
   { label: 'Agenda',     id: 'agenda' },
-  { label: 'Speakers',   id: 'speakers' },
-  { label: 'Sponsor',    id: 'sponsor' },
-  { label: 'Passes',     id: 'passes' },
   { label: 'Hackathon',  id: 'hackathon' },
+  { label: 'Speakers',   id: 'speakers' },
+  { label: 'Passes',     id: 'passes' },
+  { label: 'Sponsor',    id: 'sponsor' },
   { label: 'Press',      id: 'press' },
   { label: 'WiP Community', id: 'community' },
 ]

@@ -13,7 +13,7 @@ import Sponsor from './components/Sponsor'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 
-// Paste your Google Apps Script web app URL here
+// Paste your Google Apps Script web app URL here after setup
 const SHEET_ENDPOINT = 'YOUR_APPS_SCRIPT_URL'
 
 async function submitForm(formType: string, fd: FormData) {
@@ -27,12 +27,14 @@ async function submitForm(formType: string, fd: FormData) {
   for (const [key, vals] of Object.entries(multi)) {
     payload[key] = vals.join(', ')
   }
-  const res = await fetch(SHEET_ENDPOINT, {
+  if (!SHEET_ENDPOINT || SHEET_ENDPOINT === 'YOUR_APPS_SCRIPT_URL') return
+  // Google Apps Script requires no-cors; response is opaque but data is received
+  await fetch(SHEET_ENDPOINT, {
     method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(payload),
   })
-  const data = await res.json()
-  if (!data.success) throw new Error('Submission failed')
 }
 
 // Reusable form field styles
