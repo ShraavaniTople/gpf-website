@@ -10,70 +10,77 @@ function useVis() {
   return ref
 }
 
-// Row 1 — Global + top Indian tech
+// slug = Simple Icons CDN slug (https://simpleicons.org)
+// null slug = text-only fallback
 const row1Companies = [
-  { name: 'Google',           domain: 'google.com' },
-  { name: 'Amazon',           domain: 'amazon.com' },
-  { name: 'Microsoft',        domain: 'microsoft.com' },
-  { name: 'Salesforce',       domain: 'salesforce.com' },
-  { name: 'Stripe',           domain: 'stripe.com' },
-  { name: 'Uber',             domain: 'uber.com' },
-  { name: 'Lenovo',           domain: 'lenovo.com' },
-  { name: 'Dell Technologies', domain: 'dell.com' },
-  { name: 'Best Buy',         domain: 'bestbuy.com' },
-  { name: 'Wells Fargo',      domain: 'wellsfargo.com' },
-  { name: 'Bank of America',  domain: 'bankofamerica.com' },
-  { name: 'HSBC',             domain: 'hsbc.com' },
+  { name: 'Google',          slug: 'google' },
+  { name: 'Amazon',          slug: 'amazon' },
+  { name: 'Microsoft',       slug: 'microsoft' },
+  { name: 'Salesforce',      slug: 'salesforce' },
+  { name: 'Stripe',          slug: 'stripe' },
+  { name: 'Uber',            slug: 'uber' },
+  { name: 'Lenovo',          slug: 'lenovo' },
+  { name: 'Dell',            slug: 'dell' },
+  { name: 'HSBC',            slug: 'hsbc' },
+  { name: 'Wells Fargo',     slug: 'wellsfargo' },
+  { name: 'Bank of America', slug: 'bankofamerica' },
+  { name: 'Best Buy',        slug: 'bestbuy' },
 ]
 
-// Row 2 — Indian ecosystem + fintech + analytics
 const row2Companies = [
-  { name: 'Razorpay',         domain: 'razorpay.com' },
-  { name: 'Swiggy',           domain: 'swiggy.com' },
-  { name: 'Zepto',            domain: 'zeptonow.com' },
-  { name: 'Fractal',          domain: 'fractal.ai' },
-  { name: 'Odessa',           domain: 'odessa.com' },
-  { name: 'Milestone',        domain: 'milestonesys.com' },
-  { name: 'Freshworks',       domain: 'freshworks.com' },
-  { name: 'Zoho',             domain: 'zoho.com' },
-  { name: 'PhonePe',          domain: 'phonepe.com' },
-  { name: 'Flipkart',         domain: 'flipkart.com' },
-  { name: 'Meesho',           domain: 'meesho.com' },
-  { name: 'Zomato',           domain: 'zomato.com' },
+  { name: 'Razorpay',    slug: 'razorpay' },
+  { name: 'Swiggy',      slug: 'swiggy' },
+  { name: 'Zepto',       slug: null },
+  { name: 'Fractal',     slug: null },
+  { name: 'Odessa',      slug: null },
+  { name: 'Milestone',   slug: null },
+  { name: 'Freshworks',  slug: 'freshworks' },
+  { name: 'Zoho',        slug: 'zoho' },
+  { name: 'PhonePe',     slug: 'phonepe' },
+  { name: 'Flipkart',    slug: 'flipkart' },
+  { name: 'Zomato',      slug: 'zomato' },
+  { name: 'Meesho',      slug: null },
 ]
 
-function LogoCard({ name, domain }: { name: string; domain: string }) {
+function LogoCard({ name, slug }: { name: string; slug: string | null }) {
   const [err, setErr] = useState(false)
+  const showImg = slug && !err
+
   return (
     <div
-      className="flex-shrink-0 flex items-center justify-center px-7"
+      className="flex-shrink-0 flex items-center justify-center gap-2.5 px-6"
       style={{
-        height: 72,
-        minWidth: 170,
-        background: 'rgba(240,238,248,0.03)',
-        border: '1px solid rgba(240,238,248,0.07)',
-        borderRadius: 16,
+        height: 68,
+        minWidth: showImg ? 150 : 140,
+        background: 'rgba(255,255,255,0.035)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        borderRadius: 14,
+        cursor: 'default',
         transition: 'background .2s, border-color .2s',
       }}
       onMouseEnter={e => {
-        (e.currentTarget as HTMLElement).style.background = 'rgba(124,58,237,0.08)'
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(124,58,237,0.25)'
+        ;(e.currentTarget as HTMLElement).style.background = 'rgba(124,58,237,0.1)'
+        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(124,58,237,0.28)'
       }}
       onMouseLeave={e => {
-        (e.currentTarget as HTMLElement).style.background = 'rgba(240,238,248,0.03)'
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(240,238,248,0.07)'
+        ;(e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.035)'
+        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)'
       }}
     >
-      {!err ? (
+      {showImg && (
         <img
-          src={`https://logo.clearbit.com/${domain}`}
+          src={`https://cdn.simpleicons.org/${slug}/ffffff`}
           alt={name}
           onError={() => setErr(true)}
-          style={{ height: 26, maxWidth: 110, objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.65 }}
+          style={{ width: 20, height: 20, objectFit: 'contain', opacity: 0.7, flexShrink: 0 }}
         />
-      ) : (
-        <span className="font-display font-bold text-sm" style={{ color: 'rgba(240,238,248,0.55)', letterSpacing: '-0.02em' }}>{name}</span>
       )}
+      <span
+        className="font-display font-semibold tracking-tight whitespace-nowrap"
+        style={{ fontSize: 13, color: 'rgba(240,238,248,0.65)' }}
+      >
+        {name}
+      </span>
     </div>
   )
 }
@@ -92,14 +99,14 @@ function LogoTicker() {
   useEffect(() => {
     function animate(el: HTMLDivElement | null, speed: number, dir: 1 | -1) {
       if (!el) return () => {}
-      let pos = dir === -1 ? el.scrollWidth / 2 : 0
+      let pos = dir === -1 ? el.scrollWidth / 3 : 0
       let raf: number
       let paused = false
       const tick = () => {
         if (!paused) {
           pos += speed * dir
-          if (dir === 1 && pos >= el.scrollWidth / 2) pos = 0
-          if (dir === -1 && pos <= 0) pos = el.scrollWidth / 2
+          if (dir === 1 && pos >= el.scrollWidth / 3) pos = 0
+          if (dir === -1 && pos <= 0) pos = el.scrollWidth / 3
           el.style.transform = `translateX(${-pos}px)`
         }
         raf = requestAnimationFrame(tick)
@@ -109,41 +116,32 @@ function LogoTicker() {
       const resume = () => { paused = false }
       el.addEventListener('mouseenter', pause)
       el.addEventListener('mouseleave', resume)
-      el.addEventListener('touchstart', pause, { passive: true })
-      el.addEventListener('touchend', resume)
-      return () => {
-        cancelAnimationFrame(raf)
-        el.removeEventListener('mouseenter', pause)
-        el.removeEventListener('mouseleave', resume)
-      }
+      return () => { cancelAnimationFrame(raf); el.removeEventListener('mouseenter', pause); el.removeEventListener('mouseleave', resume) }
     }
-    const c1 = animate(ref1.current, 0.42, 1)
-    const c2 = animate(ref2.current, 0.36, -1)
+    const c1 = animate(ref1.current, 0.45, 1)
+    const c2 = animate(ref2.current, 0.38, -1)
     return () => { c1(); c2() }
   }, [])
 
   return (
     <div
-      className="relative overflow-hidden py-1"
+      className="relative overflow-hidden"
       style={{
-        maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+        maskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
       }}
     >
-      {/* Row 1 — scrolls left */}
       <div className="flex mb-3">
         <div ref={ref1} className="flex gap-3" style={{ willChange: 'transform' }}>
           {[...row1Companies, ...row1Companies, ...row1Companies].map((c, i) => (
-            <LogoCard key={i} name={c.name} domain={c.domain} />
+            <LogoCard key={i} name={c.name} slug={c.slug} />
           ))}
         </div>
       </div>
-
-      {/* Row 2 — scrolls right */}
       <div className="flex">
         <div ref={ref2} className="flex gap-3" style={{ willChange: 'transform' }}>
           {[...row2Companies, ...row2Companies, ...row2Companies].map((c, i) => (
-            <LogoCard key={i} name={c.name} domain={c.domain} />
+            <LogoCard key={i} name={c.name} slug={c.slug} />
           ))}
         </div>
       </div>
@@ -170,8 +168,6 @@ export default function WhoInRoom() {
   return (
     <section id="community" className="relative py-28 px-6 overflow-hidden" style={{ background: '#080618' }}>
       <div className="bg-num" style={{ bottom: '-10%', right: '-2%' }} aria-hidden>02</div>
-
-      {/* Subtle purple glow top-left */}
       <div aria-hidden className="absolute pointer-events-none" style={{
         top: '10%', left: '-5%', width: 500, height: 400,
         background: 'radial-gradient(ellipse, rgba(124,58,237,.07) 0%, transparent 70%)',
@@ -192,7 +188,6 @@ export default function WhoInRoom() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Stats */}
           <div className="sg grid grid-cols-2 gap-px" style={{ border: '1px solid #1C1A32', borderRadius: 16, overflow: 'hidden', background: '#1C1A32' }}>
             {stats.map((s, i) => (
               <div key={i} className="p-7 flex flex-col gap-2" style={{ background: '#080618' }}>
@@ -202,24 +197,21 @@ export default function WhoInRoom() {
             ))}
           </div>
 
-          {/* Photo */}
           <div ref={photoRef} className="px-wrap rounded-2xl overflow-hidden" style={{ height: 320 }}>
             <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=900&q=80" alt="Panel discussion" style={{ height: '120%', width: '100%', objectFit: 'cover' }} />
             <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(8,6,24,.7) 0%, transparent 60%)' }} />
           </div>
         </div>
 
-        {/* Company logo ticker */}
+        {/* Ticker */}
         <div className="mt-20">
-          {/* Label */}
-          <div className="flex items-center gap-4 mb-8">
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(28,26,50,.8))' }} />
-            <p className="font-mono text-[10px] uppercase tracking-[.28em] flex-shrink-0" style={{ color: '#52506A' }}>
+          <div className="flex items-center gap-5 mb-8">
+            <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(28,26,50,1))' }} />
+            <p className="font-mono text-[10px] uppercase tracking-[.25em] flex-shrink-0" style={{ color: '#52506A' }}>
               Professionals from these companies attend GPF
             </p>
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(28,26,50,.8))' }} />
+            <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(28,26,50,1))' }} />
           </div>
-
           <LogoTicker />
         </div>
       </div>
