@@ -82,7 +82,7 @@ export default function WhoInRoom() {
 
 
       {/* Top section with padding */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-12">
         <div ref={headRef} className="sr mb-16">
           <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#7C3AED' }}>The Community</p>
           <div className="flex flex-col lg:flex-row lg:items-end gap-4">
@@ -130,7 +130,7 @@ export default function WhoInRoom() {
       </div>
 
       {/* Full-bleed marquee strip */}
-      <div className="relative z-10 pb-20">
+      <div className="relative z-10 pb-0">
         <div className="h-px mb-8 mx-6" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,.2) 30%, rgba(124,58,237,.2) 70%, transparent)' }} />
 
         <p className="font-mono text-[10px] uppercase tracking-[.28em] text-center mb-6" style={{ color: '#3D3A56' }}>

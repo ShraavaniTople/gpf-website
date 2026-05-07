@@ -17,10 +17,10 @@ const speakers = [
     photo: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=700&q=80',
   },
   {
-    name: 'More Speakers',
-    title: 'Being Announced Soon',
-    linkedin: null,
-    photo: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=700&q=80',
+    name: 'Supriya Y Rao',
+    title: 'Product Leader',
+    linkedin: 'https://www.linkedin.com/in/supriya-y-rao/',
+    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80',
   },
   {
     name: 'More Speakers',
