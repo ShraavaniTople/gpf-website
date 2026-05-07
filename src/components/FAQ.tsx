@@ -53,7 +53,7 @@ export default function FAQ() {
   const listRef = useVis()
 
   return (
-    <section id="press" className="relative py-28 px-6 overflow-hidden">
+    <section id="faq" className="relative py-28 px-6 overflow-hidden">
       <div className="bg-num" style={{ top: '-5%', left: '-2%' }} aria-hidden>08</div>
       <div className="relative z-10 max-w-3xl mx-auto">
 

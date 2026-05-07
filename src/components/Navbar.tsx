@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const links = [
-  { label: 'Why Attend', id: 'why-attend' },
-  { label: 'Agenda',     id: 'agenda' },
-  { label: 'Hackathon',  id: 'hackathon' },
-  { label: 'Speakers',   id: 'speakers' },
-  { label: 'Passes',     id: 'passes' },
-  { label: 'Sponsor',    id: 'sponsor' },
-  { label: 'Press',      id: 'press' },
+  { label: 'Why Attend',    id: 'why-attend' },
+  { label: 'Agenda',        id: 'agenda' },
+  { label: 'Hackathon',     id: 'hackathon' },
+  { label: 'Speakers',      id: 'speakers' },
+  { label: 'Passes',        id: 'passes' },
+  { label: 'Sponsor',       id: 'sponsor' },
+  { label: 'FAQ',           id: 'faq' },
   { label: 'WiP Community', id: 'community' },
 ]
 

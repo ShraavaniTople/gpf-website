@@ -12,6 +12,7 @@ import Passes from './components/Passes'
 import Sponsor from './components/Sponsor'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
+import ClosingCTA from './components/ClosingCTA'
 
 // Paste your Google Apps Script web app URL here after setup
 const SHEET_ENDPOINT = 'YOUR_APPS_SCRIPT_URL'
@@ -605,6 +606,11 @@ export default function App() {
         <Passes onGetPass={(tierName) => setPassModal({ open: true, tierName })} />
         <Sponsor onRequest={() => setSponsorModal(true)} />
         <FAQ />
+        <ClosingCTA
+          onRegister={() => setPassModal({ open: true, tierName: 'General' })}
+          onSponsor={() => setSponsorModal(true)}
+          onSpeak={() => setSpeakerModal(true)}
+        />
       </main>
       <Footer />
 
