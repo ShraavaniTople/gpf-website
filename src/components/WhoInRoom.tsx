@@ -48,36 +48,36 @@ function LogoCard({ name, slug }: { name: string; slug: string | null }) {
 
   return (
     <div
-      className="flex-shrink-0 flex items-center justify-center gap-2.5 px-6"
+      className="flex-shrink-0 flex items-center gap-2.5 px-4"
       style={{
-        height: 68,
-        minWidth: showImg ? 150 : 140,
-        background: 'rgba(255,255,255,0.035)',
-        border: '1px solid rgba(255,255,255,0.07)',
-        borderRadius: 14,
+        height: 44,
+        borderRadius: 999,
+        background: 'rgba(240,238,248,0.05)',
+        border: '1px solid rgba(240,238,248,0.09)',
         cursor: 'default',
         transition: 'background .2s, border-color .2s',
+        whiteSpace: 'nowrap',
       }}
       onMouseEnter={e => {
-        ;(e.currentTarget as HTMLElement).style.background = 'rgba(124,58,237,0.1)'
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(124,58,237,0.28)'
+        ;(e.currentTarget as HTMLElement).style.background = 'rgba(124,58,237,0.12)'
+        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(124,58,237,0.35)'
       }}
       onMouseLeave={e => {
-        ;(e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.035)'
-        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.07)'
+        ;(e.currentTarget as HTMLElement).style.background = 'rgba(240,238,248,0.05)'
+        ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(240,238,248,0.09)'
       }}
     >
       {showImg && (
         <img
           src={`https://cdn.simpleicons.org/${slug}/ffffff`}
-          alt={name}
+          alt=""
           onError={() => setErr(true)}
-          style={{ width: 20, height: 20, objectFit: 'contain', opacity: 0.7, flexShrink: 0 }}
+          style={{ width: 16, height: 16, objectFit: 'contain', opacity: 0.6, flexShrink: 0 }}
         />
       )}
       <span
-        className="font-display font-semibold tracking-tight whitespace-nowrap"
-        style={{ fontSize: 13, color: 'rgba(240,238,248,0.65)' }}
+        className="font-display font-semibold tracking-tight"
+        style={{ fontSize: 13, color: 'rgba(240,238,248,0.6)' }}
       >
         {name}
       </span>
@@ -188,7 +188,7 @@ export default function WhoInRoom() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="sg grid grid-cols-2 gap-px" style={{ border: '1px solid #1C1A32', borderRadius: 16, overflow: 'hidden', background: '#1C1A32' }}>
+          <div className="grid grid-cols-2 gap-px" style={{ border: '1px solid #1C1A32', borderRadius: 16, overflow: 'hidden', background: '#1C1A32' }}>
             {stats.map((s, i) => (
               <div key={i} className="p-7 flex flex-col gap-2" style={{ background: '#080618' }}>
                 <span className="font-display font-extrabold grad" style={{ fontSize: 'clamp(32px,4vw,48px)', letterSpacing: '-0.04em' }}>{s.n}</span>
@@ -205,13 +205,9 @@ export default function WhoInRoom() {
 
         {/* Ticker */}
         <div className="mt-20">
-          <div className="flex items-center gap-5 mb-8">
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, rgba(28,26,50,1))' }} />
-            <p className="font-mono text-[10px] uppercase tracking-[.25em] flex-shrink-0" style={{ color: '#52506A' }}>
-              Professionals from these companies attend GPF
-            </p>
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, rgba(28,26,50,1))' }} />
-          </div>
+          <p className="font-mono text-[10px] uppercase tracking-[.25em] mb-6 text-center" style={{ color: '#3D3A56' }}>
+            Attendees come from teams at
+          </p>
           <LogoTicker />
         </div>
       </div>
