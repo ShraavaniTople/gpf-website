@@ -1,8 +1,7 @@
 # GPF 2026 Website
 
-The official website for The Great Product Fest 2026, a Women in Product India initiative. Built with React, TypeScript, Vite, and Tailwind CSS.
+The official website for The Great Product Festival 2026, a Women in Product India initiative. Built with React, TypeScript, Vite, and Tailwind CSS.
 
----
 
 ## Tech Stack
 
@@ -12,7 +11,6 @@ The official website for The Great Product Fest 2026, a Women in Product India i
 - Lucide React (icons)
 - Hosted on GitHub Pages
 
----
 
 ## Design Reference
 
@@ -44,7 +42,6 @@ background: linear-gradient(120deg, #A78BFA 0%, #F59E0B 80%);
 -webkit-text-fill-color: transparent;
 ```
 
----
 
 ### Typography
 
@@ -58,7 +55,6 @@ Hero headline: `clamp(56px, 8.5vw, 128px)`, letter-spacing `-0.045em`
 
 Section headline: `clamp(40px, 6vw, 80px)`, letter-spacing `-0.04em`
 
----
 
 ### Buttons
 
@@ -70,7 +66,6 @@ Section headline: `clamp(40px, 6vw, 80px)`, letter-spacing `-0.04em`
 
 All buttons use `border-radius: 9999px`, Space Grotesk bold, `padding: 14px 32px`.
 
----
 
 ### Cards
 
@@ -95,7 +90,6 @@ All buttons use `border-radius: 9999px`, Space Grotesk bold, `padding: 14px 32px
 - Max width 672px, max height 90vh, 16px radius
 - Backdrop: black 70% opacity with blur
 
----
 
 ### Animations
 
@@ -111,7 +105,6 @@ All buttons use `border-radius: 9999px`, Space Grotesk bold, `padding: 14px 32px
 | `.zoom` | Image scales to 1.07 on hover |
 | `#cg` | 650px purple radial glow that follows the cursor |
 
----
 
 ### Forms
 
@@ -123,7 +116,6 @@ Label              text-sm, font-medium, color #9490AD
 
 All forms capture data via `FormData` on submit and open a pre-filled email to `hello@womeninproductindia.com`.
 
----
 
 ### Dividers
 
@@ -134,7 +126,6 @@ All forms capture data via `FormData` on submit and open a pre-filled email to `
 }
 ```
 
----
 
 ### Section IDs
 
@@ -149,7 +140,6 @@ All forms capture data via `FormData` on submit and open a pre-filled email to `
 | Sponsor | `#sponsor` |
 | FAQ / Press | `#press` |
 
----
 
 ### Modals and CTAs
 
@@ -163,7 +153,6 @@ All forms capture data via `FormData` on submit and open a pre-filled email to `
 | Become a Community Partner | Community partner modal |
 | Get Passes (navbar, hero) | Scrolls to passes section |
 
----
 
 ## Local Development
 

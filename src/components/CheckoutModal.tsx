@@ -105,7 +105,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       amount: finalPrice * 100,   // paise
       currency: 'INR',
       name: 'GPF 2026',
-      description: `${tierName} Pass — The Great Product Festival`,
+      description: `${tierName} Pass | The Great Product Festival`,
       prefill: {
         name: `${details.firstName} ${details.lastName}`,
         email: details.email,
@@ -267,7 +267,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
             style={{ background: 'rgba(52,211,153,.07)', border: '1px solid rgba(52,211,153,.2)' }}>
             <Tag size={13} style={{ color: '#34D399', flexShrink: 0 }} />
             <span className="flex-1 font-mono text-sm font-medium" style={{ color: '#34D399' }}>
-              {applied.code} — {applied.label}
+              {applied.code}: {applied.label}
             </span>
             <button onClick={removeCode} className="transition-opacity hover:opacity-70">
               <X size={13} style={{ color: '#34D399' }} />

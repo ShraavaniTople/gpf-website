@@ -104,7 +104,7 @@ export default function WhoInRoom() {
               <span className="grad">ambitious product minds.</span>
             </p>
             <p className="text-base leading-relaxed mb-8" style={{ color: '#6B7280', maxWidth: 400 }}>
-              Whether you're building 0 to 1, scaling a team, or shaping strategy — GPF 2026 is where your people are.
+              Whether you're building 0 to 1, scaling a team, or shaping strategy, GPF 2026 is where your people are.
             </p>
             <div className="flex flex-wrap gap-2">
               {audience.map((a, i) => (

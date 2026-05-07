@@ -47,7 +47,7 @@ export default function ClosingCTA({ onRegister, onSponsor, onSpeak }: Props) {
 
         {/* Subtext */}
         <p className="text-base md:text-lg leading-relaxed mb-14 max-w-xl mx-auto" style={{ color: '#6B7280' }}>
-          500+ product leaders. 20+ world-class speakers. 2 days of learning, connecting, and building. GPF 2026 — don't miss it.
+          500+ product leaders. 20+ world-class speakers. 2 days of learning, connecting, and building. GPF 2026. Don't miss it.
         </p>
 
         {/* CTAs */}
