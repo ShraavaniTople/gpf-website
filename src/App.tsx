@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Modal from './components/Modal'
+import CheckoutModal from './components/CheckoutModal'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
@@ -615,13 +616,18 @@ export default function App() {
       <Footer />
 
       {/* Modals */}
-      <Modal
-        isOpen={passModal.open}
-        onClose={() => setPassModal({ open: false, tierName: '' })}
-        title={`Get Your ${passModal.tierName} Pass`}
-      >
-        <PassForm tierName={passModal.tierName} />
-      </Modal>
+      {passModal.open && (
+        <Modal
+          isOpen={passModal.open}
+          onClose={() => setPassModal({ open: false, tierName: '' })}
+          title={`Get Your ${passModal.tierName} Pass`}
+        >
+          <CheckoutModal
+            tierName={passModal.tierName}
+            onClose={() => setPassModal({ open: false, tierName: '' })}
+          />
+        </Modal>
+      )}
 
       <Modal
         isOpen={hackathonModal}
