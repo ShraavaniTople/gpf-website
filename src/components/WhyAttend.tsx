@@ -19,57 +19,24 @@ const features: Feature[] = [
     bullets: ['Content addressing the unique nuances of building for the next billion users.', 'An inclusive environment that welcomes all genders, career levels, and industries.'] },
 ]
 
-function useVis(delay = 0) {
+// Order so grid reads: 01,04 / 02,05 / 03,06 across the two columns
+const gridOrder = [features[0], features[3], features[1], features[4], features[2], features[5]]
+
+function useVis() {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const el = ref.current; if (!el) return
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setTimeout(() => el.classList.add('vis'), delay); obs.disconnect() } }, { threshold: 0.08 })
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('vis'); obs.disconnect() } }, { threshold: 0.05 })
     obs.observe(el); return () => obs.disconnect()
-  }, [delay])
+  }, [])
   return ref
-}
-
-function FeatureCell({ f, delay, borderLeft }: { f: Feature; delay: number; borderLeft?: boolean }) {
-  const Icon = f.icon
-  const ref = useVis(delay)
-  return (
-    <div
-      ref={ref}
-      className="sr feat-row border-t border-b py-6 cursor-default"
-      style={{
-        borderColor: '#1C1A32',
-        transitionDelay: `${delay}ms`,
-        borderLeft: borderLeft ? '1px solid #1C1A32' : undefined,
-        paddingLeft: borderLeft ? '3rem' : undefined,
-        marginBottom: '-1px',
-      }}
-    >
-      <div className="flex items-start gap-5">
-        <div className="flex-shrink-0 flex items-center gap-3 w-16">
-          <span className="font-mono text-xs font-medium" style={{ color: '#52506A' }}>{f.num}</span>
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-            style={{ background: 'rgba(124,58,237,.08)', border: '1px solid rgba(124,58,237,.15)' }}>
-            <Icon size={14} style={{ color: '#A78BFA' }} />
-          </div>
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="font-display font-bold text-base mb-2" style={{ color: '#F0EEF8', letterSpacing: '-0.01em' }}>{f.title}</h3>
-          <ul className="space-y-1.5">
-            {f.bullets.map((b, i) => (
-              <li key={i} className="text-sm leading-relaxed" style={{ color: '#6B7280' }}>{b}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  )
 }
 
 export default function WhyAttend() {
   const headerRef = useVis()
+  const gridRef = useVis()
   const bannerRef = useRef<HTMLDivElement>(null)
 
-  // Parallax on banner
   useEffect(() => {
     const el = bannerRef.current; if (!el) return
     const fn = () => {
@@ -82,19 +49,11 @@ export default function WhyAttend() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  const pairs = [
-    [features[0], features[3]],
-    [features[1], features[4]],
-    [features[2], features[5]],
-  ]
-
   return (
     <section id="why-attend" className="relative py-28 px-6 overflow-hidden">
-      {/* Section bg number */}
       <div className="bg-num" style={{ top: '-5%', left: '-2%' }} aria-hidden>01</div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Header */}
         <div ref={headerRef} className="sr mb-20">
           <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#7C3AED' }}>The Conference</p>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
@@ -108,7 +67,6 @@ export default function WhyAttend() {
           </div>
         </div>
 
-        {/* Parallax photo banner */}
         <div ref={bannerRef} className="px-wrap rounded-2xl mb-20 relative overflow-hidden" style={{ height: 260 }}>
           <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1400&q=80" alt="Stage" style={{ height: '120%', width: '100%', objectFit: 'cover' }} />
           <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.9) 0%, rgba(5,4,12,.2) 50%, rgba(5,4,12,.6) 100%)' }} />
@@ -122,15 +80,64 @@ export default function WhyAttend() {
           </div>
         </div>
 
-        {/* Feature grid — paired rows so left+right are always same height */}
-        <div>
-          {pairs.map(([l, r], i) => (
-            <div key={l.num} className="grid grid-cols-1 lg:grid-cols-2">
-              <FeatureCell f={l} delay={i * 80} />
-              <FeatureCell f={r} delay={i * 80 + 40} borderLeft />
-            </div>
-          ))}
+        {/* Single flat grid — 2 cols on desktop, auto rows share height naturally */}
+        <div
+          ref={gridRef}
+          className="sr"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(1, 1fr)',
+          }}
+        >
+          <style>{`
+            @media (min-width: 1024px) {
+              .feature-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            }
+          `}</style>
+          <div
+            className="feature-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(1, 1fr)',
+              borderTop: '1px solid #1C1A32',
+            }}
+          >
+            {gridOrder.map((f, i) => {
+              const Icon = f.icon
+              const isRightCol = i % 2 === 1
+              return (
+                <div
+                  key={f.num}
+                  className="feat-row py-6 cursor-default"
+                  style={{
+                    borderBottom: '1px solid #1C1A32',
+                    borderLeft: isRightCol ? '1px solid #1C1A32' : undefined,
+                    paddingLeft: isRightCol ? '3rem' : undefined,
+                  }}
+                >
+                  <div className="flex items-start gap-5">
+                    <div className="flex-shrink-0 flex items-center gap-3 w-16">
+                      <span className="font-mono text-xs font-medium" style={{ color: '#52506A' }}>{f.num}</span>
+                      <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                        style={{ background: 'rgba(124,58,237,.08)', border: '1px solid rgba(124,58,237,.15)' }}>
+                        <Icon size={14} style={{ color: '#A78BFA' }} />
+                      </div>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-display font-bold text-base mb-2" style={{ color: '#F0EEF8', letterSpacing: '-0.01em' }}>{f.title}</h3>
+                      <ul className="space-y-1.5">
+                        {f.bullets.map((b, bi) => (
+                          <li key={bi} className="text-sm leading-relaxed" style={{ color: '#6B7280' }}>{b}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
+
       </div>
     </section>
   )
