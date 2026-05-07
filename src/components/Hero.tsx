@@ -91,7 +91,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               {[
                 { text: 'The Great', cls: '',     delay: '0.1s' },
                 { text: 'Product',   cls: '',     delay: '0.22s' },
-                { text: 'Fest.',     cls: 'grad', delay: '0.34s' },
+                { text: 'Festival',  cls: 'grad', delay: '0.34s' },
               ].map(({ text, cls, delay }) => (
                 <span key={text} className="block" style={{ overflow: 'hidden' }}>
                   <span className={`block ${cls}`} style={{ color: cls ? undefined : '#F0EEF8', opacity: 0, transform: 'translateY(105%)', animation: `heroLine .9s cubic-bezier(0.16,1,0.3,1) ${delay} forwards` }}>

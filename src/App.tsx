@@ -594,8 +594,8 @@ export default function App() {
         <hr className="div-glow" />
         <WhoInRoom />
         <hr className="div-glow" />
-        <Hackathon onRegister={() => setHackathonModal(true)} />
         <Agenda />
+        <Hackathon onRegister={() => setHackathonModal(true)} />
         <Speakers
           onApply={() => setSpeakerModal(true)}
           onNominate={() => setNominateModal(true)}

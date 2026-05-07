@@ -110,9 +110,9 @@ export default function WhyAttend() {
         </div>
 
         {/* Feature rows — 2 cols */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-12">
-          <div>{left.map((f, i) => <FeatureRow key={f.num} f={f} delay={i * 80} />)}</div>
-          <div className="lg:border-l" style={{ borderColor: '#1C1A32' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-12 lg:items-start">
+          <div className="border-t" style={{ borderColor: '#1C1A32' }}>{left.map((f, i) => <FeatureRow key={f.num} f={f} delay={i * 80} />)}</div>
+          <div className="lg:border-l lg:border-t" style={{ borderColor: '#1C1A32' }}>
             <div className="lg:pl-12">
               {right.map((f, i) => <FeatureRow key={f.num} f={f} delay={i * 80} />)}
             </div>

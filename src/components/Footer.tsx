@@ -37,7 +37,7 @@ export default function Footer() {
               <span className="font-display font-extrabold text-2xl" style={{ color: '#F0EEF8', letterSpacing: '-0.03em' }}>GPF</span>
               <span className="font-mono text-sm font-medium" style={{ color: '#F59E0B' }}>2026</span>
             </div>
-            <p className="font-display font-bold text-lg leading-snug mb-2" style={{ color: '#F0EEF8' }}>The Great Product Fest</p>
+            <p className="font-display font-bold text-lg leading-snug mb-2" style={{ color: '#F0EEF8' }}>The Great Product Festival</p>
             <p className="text-xs mb-1" style={{ color: '#52506A' }}>A Women in Product India Initiative</p>
             <p className="text-xs leading-relaxed mt-4 max-w-xs" style={{ color: '#52506A' }}>
               India's most inclusive product management conference. All genders. All levels. All industries.
@@ -96,7 +96,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{ borderTop: '1px solid #1C1A32' }}>
           <p className="font-mono text-xs" style={{ color: '#52506A' }}>
-            &copy; 2026 The Great Product Fest &nbsp;&middot;&nbsp; Women in Product India
+            &copy; 2026 The Great Product Festival &nbsp;&middot;&nbsp; Women in Product India
           </p>
           <p className="font-mono text-xs" style={{ color: '#52506A' }}>
             Bangalore &nbsp;&middot;&nbsp; Q3 2026
