@@ -9,10 +9,11 @@ const socials = [
 const navLinks = [
   { label: 'Why Attend', id: 'why-attend' },
   { label: 'Agenda',     id: 'agenda' },
+  { label: 'Hackathon',  id: 'hackathon' },
   { label: 'Speakers',   id: 'speakers' },
   { label: 'Passes',     id: 'passes' },
-  { label: 'Hackathon',  id: 'hackathon' },
   { label: 'Sponsor',    id: 'sponsor' },
+  { label: 'FAQ',        id: 'faq' },
 ]
 
 function go(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }

@@ -9,7 +9,10 @@ const links = [
   { label: 'Passes',        id: 'passes' },
   { label: 'Sponsor',       id: 'sponsor' },
   { label: 'FAQ',           id: 'faq' },
-  { label: 'WiP Community', id: 'community' },
+]
+
+const externalLinks = [
+  { label: 'WiP Community', href: 'https://womeninproductindia.com' },
 ]
 
 function go(id: string) {
@@ -89,6 +92,14 @@ export default function Navbar() {
                   onMouseLeave={e => (e.currentTarget.style.color = '#6B7280')}
                 >{l.label}</button>
               ))}
+              {externalLinks.map(l => (
+                <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
+                  className="text-xs font-medium tracking-wide transition-colors duration-200"
+                  style={{ color: '#6B7280', fontFamily: 'Inter', textDecoration: 'none' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#F0EEF8')}
+                  onMouseLeave={e => (e.currentTarget.style.color = '#6B7280')}
+                >{l.label}</a>
+              ))}
             </div>
 
             <div className="flex items-center gap-3">
@@ -115,6 +126,13 @@ export default function Navbar() {
               <button key={l.id} onClick={() => { go(l.id); setOpen(false) }}
                 className="text-left font-display font-bold text-3xl text-white transition-colors duration-200"
               >{l.label}</button>
+            ))}
+            {externalLinks.map(l => (
+              <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
+                className="text-left font-display font-bold text-3xl text-white transition-colors duration-200"
+                style={{ textDecoration: 'none' }}
+                onClick={() => setOpen(false)}
+              >{l.label}</a>
             ))}
             <button onClick={() => { go('passes'); setOpen(false) }} className="btn-purple mt-4 w-full text-center" style={{ padding: '14px 28px' }}>
               Get Passes
