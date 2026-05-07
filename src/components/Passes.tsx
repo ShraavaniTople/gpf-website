@@ -112,20 +112,26 @@ export default function Passes({ onGetPass }: Props) {
 
                 {/* Price */}
                 <div className="mb-6">
-                  <div className="flex items-baseline gap-3 flex-wrap">
-                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(34px,4vw,48px)', color: '#F0EEF8', letterSpacing: '-0.04em' }}>
-                      &#8377;{tier.price}
-                    </span>
-                    <span className="font-display font-semibold text-lg line-through" style={{ color: '#52506A' }}>
+                  {/* Regular price struck through */}
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-mono text-[10px] uppercase tracking-widest" style={{ color: '#52506A' }}>Regular</span>
+                    <span className="font-display font-semibold text-base line-through" style={{ color: '#52506A' }}>
                       &#8377;{tier.regularPrice}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 mt-1.5 flex-wrap">
-                    <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full" style={{ background: 'rgba(245,158,11,.12)', color: '#F59E0B', border: '1px solid rgba(245,158,11,.25)' }}>
+                  {/* Early bird price big */}
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(36px,4vw,52px)', color: '#F0EEF8', letterSpacing: '-0.04em' }}>
+                      &#8377;{tier.price}
+                    </span>
+                    <span
+                      className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full self-center"
+                      style={{ background: 'rgba(245,158,11,.15)', color: '#F59E0B', border: '1px solid rgba(245,158,11,.3)', whiteSpace: 'nowrap' }}
+                    >
                       Early Bird
                     </span>
-                    <p className="font-mono text-[11px]" style={{ color: '#52506A' }}>per person</p>
                   </div>
+                  <p className="font-mono text-[11px] mt-1" style={{ color: '#52506A' }}>per person</p>
                 </div>
 
                 <p className="text-xs leading-relaxed mb-6" style={{ color: '#6B7280' }}>{tier.desc}</p>
