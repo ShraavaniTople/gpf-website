@@ -6,6 +6,7 @@ const tiers = [
     name: 'General',
     label: 'Admission',
     price: '5,499',
+    regularPrice: '7,499',
     popular: false,
     desc: 'Everything you need to experience GPF 2026.',
     features: [
@@ -19,6 +20,7 @@ const tiers = [
     name: 'Premium',
     label: 'Pass',
     price: '9,999',
+    regularPrice: '11,999',
     popular: true,
     desc: 'The complete GPF experience.',
     features: [
@@ -32,6 +34,7 @@ const tiers = [
     name: 'VIP',
     label: 'Pass',
     price: '15,999',
+    regularPrice: '17,999',
     popular: false,
     desc: 'For leaders who want the inner circle.',
     features: [
@@ -109,10 +112,20 @@ export default function Passes({ onGetPass }: Props) {
 
                 {/* Price */}
                 <div className="mb-6">
-                  <span className="font-display font-extrabold" style={{ fontSize: 'clamp(34px,4vw,48px)', color: '#F0EEF8', letterSpacing: '-0.04em' }}>
-                    &#8377;{tier.price}
-                  </span>
-                  <p className="font-mono text-[11px] mt-1" style={{ color: '#52506A' }}>per person</p>
+                  <div className="flex items-baseline gap-3 flex-wrap">
+                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(34px,4vw,48px)', color: '#F0EEF8', letterSpacing: '-0.04em' }}>
+                      &#8377;{tier.price}
+                    </span>
+                    <span className="font-display font-semibold text-lg line-through" style={{ color: '#52506A' }}>
+                      &#8377;{tier.regularPrice}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+                    <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full" style={{ background: 'rgba(245,158,11,.12)', color: '#F59E0B', border: '1px solid rgba(245,158,11,.25)' }}>
+                      Early Bird
+                    </span>
+                    <p className="font-mono text-[11px]" style={{ color: '#52506A' }}>per person</p>
+                  </div>
                 </div>
 
                 <p className="text-xs leading-relaxed mb-6" style={{ color: '#6B7280' }}>{tier.desc}</p>
