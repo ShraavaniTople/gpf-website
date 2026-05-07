@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-interface Speaker { name: string; title: string; linkedin: string | null; photo: string }
+interface Speaker { name: string; title: string; linkedin: string | null; photo: string; objectPos: string }
 interface Props { onApply: () => void; onNominate: () => void }
 
 const speakers = [
@@ -8,25 +8,29 @@ const speakers = [
     name: 'Swati Awasthi',
     title: 'Founder, Women in Product India',
     linkedin: 'https://www.linkedin.com/in/swatiawasthi/',
-    photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=700&q=80',
+    photo: '/speaker-swati.png',
+    objectPos: '50% 20%',
   },
   {
     name: 'Amrit Raj',
     title: 'Co-Founder, Women in Product India',
     linkedin: 'https://www.linkedin.com/in/amritraj/',
-    photo: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=700&q=80',
+    photo: '/speaker-amrit.png',
+    objectPos: '50% 15%',
   },
   {
     name: 'Supriya Y Rao',
     title: 'Product Leader',
     linkedin: 'https://www.linkedin.com/in/supriya-y-rao/',
-    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80',
+    photo: '/speaker-supriya.png',
+    objectPos: '50% 10%',
   },
   {
     name: 'More Speakers',
     title: 'Being Announced Soon',
     linkedin: null,
     photo: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=700&q=80',
+    objectPos: '50% 50%',
   },
 ]
 
@@ -69,6 +73,7 @@ export default function Speakers({ onApply, onNominate }: Props) {
             const inner = (
               <div className={`spk-card relative overflow-hidden rounded-2xl h-full w-full ${isTba ? 'opacity-50' : 'cursor-pointer'}`} style={{ aspectRatio: '3/4' }}>
                 <img src={s.photo} alt={s.name} className="w-full h-full object-cover transition-transform duration-[900ms]"
+                  style={{ objectPosition: s.objectPos }}
                   onMouseEnter={e => { if (!isTba) e.currentTarget.style.transform = 'scale(1.06)' }}
                   onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
                 <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,4,12,.95) 0%, rgba(5,4,12,.1) 50%, transparent 100%)' }} />
