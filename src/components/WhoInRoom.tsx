@@ -80,11 +80,6 @@ export default function WhoInRoom() {
     <section id="community" className="relative overflow-hidden" style={{ background: '#080618' }}>
       <div className="bg-num" style={{ bottom: '-10%', right: '-2%' }} aria-hidden>02</div>
 
-      <div aria-hidden className="absolute pointer-events-none" style={{
-        top: '10%', left: '-5%', width: 600, height: 500,
-        background: 'radial-gradient(ellipse, rgba(124,58,237,.08) 0%, transparent 70%)',
-        filter: 'blur(60px)',
-      }} />
 
       {/* Top section with padding */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-16">
@@ -135,8 +130,7 @@ export default function WhoInRoom() {
       </div>
 
       {/* Full-bleed marquee strip */}
-      <div className="relative z-10 pb-24">
-        {/* Thin top border line */}
+      <div className="relative z-10 pb-20">
         <div className="h-px mb-8 mx-6" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,.2) 30%, rgba(124,58,237,.2) 70%, transparent)' }} />
 
         <p className="font-mono text-[10px] uppercase tracking-[.28em] text-center mb-6" style={{ color: '#3D3A56' }}>
@@ -147,8 +141,6 @@ export default function WhoInRoom() {
           <MarqueeRow items={row1} />
           <MarqueeRow items={row2} reverse />
         </div>
-
-        <div className="h-px mt-8 mx-6" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,.2) 30%, rgba(124,58,237,.2) 70%, transparent)' }} />
       </div>
 
       <style>{`
