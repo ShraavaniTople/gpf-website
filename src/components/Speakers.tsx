@@ -1,4 +1,7 @@
 import { useEffect, useRef } from 'react'
+import swatiPhoto from '../assets/speaker-swati.png'
+import amritPhoto from '../assets/speaker-amrit.png'
+import supriyaPhoto from '../assets/speaker-supriya.png'
 
 interface Speaker { name: string; title: string; linkedin: string | null; photo: string; objectPos: string }
 interface Props { onApply: () => void; onNominate: () => void }
@@ -8,21 +11,21 @@ const speakers = [
     name: 'Swati Awasthi',
     title: 'Founder, Women in Product India',
     linkedin: 'https://www.linkedin.com/in/swatiawasthi/',
-    photo: '/speaker-swati.png',
+    photo: swatiPhoto,
     objectPos: '50% 20%',
   },
   {
     name: 'Amrit Raj',
     title: 'Co-Founder, Women in Product India',
     linkedin: 'https://www.linkedin.com/in/amritraj/',
-    photo: '/speaker-amrit.png',
+    photo: amritPhoto,
     objectPos: '50% 15%',
   },
   {
     name: 'Supriya Y Rao',
     title: 'Product Leader',
     linkedin: 'https://www.linkedin.com/in/supriya-y-rao/',
-    photo: '/speaker-supriya.png',
+    photo: supriyaPhoto,
     objectPos: '50% 10%',
   },
   {
