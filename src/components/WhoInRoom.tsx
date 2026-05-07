@@ -13,11 +13,15 @@ function useVis() {
 const row1 = ['Google', 'Amazon', 'Microsoft', 'Salesforce', 'Stripe', 'Uber', 'Lenovo', 'Dell Technologies', 'HSBC', 'Wells Fargo', 'Bank of America', 'Best Buy']
 const row2 = ['Razorpay', 'Swiggy', 'Zepto', 'Fractal', 'Odessa', 'Milestone', 'Freshworks', 'Zoho', 'PhonePe', 'Flipkart', 'Zomato', 'Meesho']
 
-const stats = [
-  { n: '60%', label: 'Product Managers and Leaders' },
-  { n: '20%', label: 'Founders and Entrepreneurs' },
-  { n: '12%', label: 'Engineers and Designers' },
-  { n: '8%',  label: 'Investors and VCs' },
+const audience = [
+  'Product Managers',
+  'Founders',
+  'Product Leaders',
+  'Designers',
+  'Engineers',
+  'Investors & VCs',
+  'Growth & Marketing',
+  'Startup Builders',
 ]
 
 function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boolean }) {
@@ -57,6 +61,7 @@ function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boo
 export default function WhoInRoom() {
   const headRef = useVis()
   const statsRef = useVis()
+  // statsRef reused for left content block
   const photoRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -95,19 +100,34 @@ export default function WhoInRoom() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Stats */}
-          <div ref={statsRef} className="sr grid grid-cols-2 gap-px" style={{ border: '1px solid #1C1A32', borderRadius: 16, overflow: 'hidden', background: '#1C1A32' }}>
-            {stats.map((s, i) => (
-              <div key={i} className="p-7 flex flex-col gap-2" style={{ background: '#080618' }}>
-                <span className="font-display font-extrabold grad" style={{ fontSize: 'clamp(32px,4vw,48px)', letterSpacing: '-0.04em' }}>{s.n}</span>
-                <span className="text-sm leading-snug" style={{ color: '#6B7280' }}>{s.label}</span>
-              </div>
-            ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left — statement + pills */}
+          <div ref={statsRef} className="sr">
+            <p className="font-display font-extrabold leading-tight mb-6"
+              style={{ fontSize: 'clamp(22px,2.8vw,34px)', color: '#F0EEF8', letterSpacing: '-0.03em' }}>
+              A room built for India's most{' '}
+              <span className="grad">ambitious product minds.</span>
+            </p>
+            <p className="text-base leading-relaxed mb-8" style={{ color: '#6B7280', maxWidth: 400 }}>
+              Whether you're building 0 to 1, scaling a team, or shaping strategy — GPF 2026 is where your people are.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {audience.map((a, i) => (
+                <span key={i} className="px-4 py-2 font-display font-semibold text-sm rounded-full"
+                  style={{
+                    background: i % 2 === 0 ? 'rgba(124,58,237,0.1)' : 'rgba(240,238,248,0.04)',
+                    border: `1px solid ${i % 2 === 0 ? 'rgba(124,58,237,0.25)' : 'rgba(240,238,248,0.08)'}`,
+                    color: i % 2 === 0 ? '#A78BFA' : 'rgba(240,238,248,0.55)',
+                    letterSpacing: '-0.01em',
+                  }}>
+                  {a}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Photo */}
-          <div ref={photoRef} className="px-wrap rounded-2xl overflow-hidden" style={{ height: 320 }}>
+          <div ref={photoRef} className="px-wrap rounded-2xl overflow-hidden" style={{ height: 360 }}>
             <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=900&q=80" alt="Panel discussion" style={{ height: '120%', width: '100%', objectFit: 'cover' }} />
             <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(8,6,24,.7) 0%, transparent 60%)' }} />
           </div>
