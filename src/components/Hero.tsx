@@ -5,9 +5,9 @@ interface HeroProps { onSponsor: () => void; onCommunity: () => void }
 
 // Photos for the mosaic (right side)
 const mosaicPhotos = {
-  main:   'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&q=85',
-  bl:     heroSwatiStage,
-  br:     'https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=600&q=85',
+  main:   heroSwatiStage,
+  bl:     'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=85',
+  br:     'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=85',
 }
 
 // Photos for the bottom film strip
@@ -133,7 +133,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 data-spd="-0.06"
                 src={mosaicPhotos.main}
                 alt="Conference crowd"
-                style={{ width: '100%', height: '112%', objectFit: 'cover', transition: 'transform .1s linear' }}
+                style={{ width: '100%', height: '112%', objectFit: 'cover', objectPosition: '50% 30%', transition: 'transform .1s linear' }}
               />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, transparent 50%, rgba(5,4,12,.35) 100%)' }} />
             </div>
@@ -145,7 +145,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 data-spd="0.05"
                 src={mosaicPhotos.bl}
                 alt="Networking"
-                style={{ width: '100%', height: '112%', objectFit: 'cover', objectPosition: '50% 20%', transition: 'transform .1s linear' }}
+                style={{ width: '100%', height: '112%', objectFit: 'cover', transition: 'transform .1s linear' }}
               />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,4,12,.5) 0%, transparent 60%)' }} />
             </div>
