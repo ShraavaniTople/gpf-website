@@ -29,11 +29,21 @@ function useVis(delay = 0) {
   return ref
 }
 
-function FeatureRow({ f, delay }: { f: Feature; delay: number }) {
+function FeatureCell({ f, delay, borderLeft }: { f: Feature; delay: number; borderLeft?: boolean }) {
   const Icon = f.icon
   const ref = useVis(delay)
   return (
-    <div ref={ref} className="sr feat-row border-b py-6 cursor-default" style={{ borderColor: '#1C1A32', transitionDelay: `${delay}ms` }}>
+    <div
+      ref={ref}
+      className="sr feat-row border-t border-b py-6 cursor-default"
+      style={{
+        borderColor: '#1C1A32',
+        transitionDelay: `${delay}ms`,
+        borderLeft: borderLeft ? '1px solid #1C1A32' : undefined,
+        paddingLeft: borderLeft ? '3rem' : undefined,
+        marginBottom: '-1px',
+      }}
+    >
       <div className="flex items-start gap-5">
         <div className="flex-shrink-0 flex items-center gap-3 w-16">
           <span className="font-mono text-xs font-medium" style={{ color: '#52506A' }}>{f.num}</span>
@@ -72,8 +82,11 @@ export default function WhyAttend() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  const left = features.slice(0, 3)
-  const right = features.slice(3)
+  const pairs = [
+    [features[0], features[3]],
+    [features[1], features[4]],
+    [features[2], features[5]],
+  ]
 
   return (
     <section id="why-attend" className="relative py-28 px-6 overflow-hidden">
@@ -109,14 +122,14 @@ export default function WhyAttend() {
           </div>
         </div>
 
-        {/* Feature rows — 2 cols */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-12 lg:items-start">
-          <div className="border-t" style={{ borderColor: '#1C1A32' }}>{left.map((f, i) => <FeatureRow key={f.num} f={f} delay={i * 80} />)}</div>
-          <div className="lg:border-l lg:border-t" style={{ borderColor: '#1C1A32' }}>
-            <div className="lg:pl-12">
-              {right.map((f, i) => <FeatureRow key={f.num} f={f} delay={i * 80} />)}
+        {/* Feature grid — paired rows so left+right are always same height */}
+        <div>
+          {pairs.map(([l, r], i) => (
+            <div key={l.num} className="grid grid-cols-1 lg:grid-cols-2">
+              <FeatureCell f={l} delay={i * 80} />
+              <FeatureCell f={r} delay={i * 80 + 40} borderLeft />
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
