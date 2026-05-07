@@ -13,32 +13,26 @@ import Sponsor from './components/Sponsor'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 
-// Paste your Web3Forms access key here after getting it from web3forms.com
-const WEB3FORMS_KEY = 'YOUR_ACCESS_KEY'
+// Paste your Google Apps Script web app URL here
+const SHEET_ENDPOINT = 'YOUR_APPS_SCRIPT_URL'
 
-async function submitForm(subject: string, fd: FormData, replyTo?: string) {
-  const fields: Record<string, string> = {}
-  const seen: Record<string, string[]> = {}
+async function submitForm(formType: string, fd: FormData) {
+  const payload: Record<string, string> = { form_type: formType }
+  const multi: Record<string, string[]> = {}
   fd.forEach((val, key) => {
-    if (!(key in seen)) seen[key] = []
-    if (String(val).trim()) seen[key].push(String(val))
+    if (!String(val).trim()) return
+    if (!multi[key]) multi[key] = []
+    multi[key].push(String(val))
   })
-  for (const [key, vals] of Object.entries(seen)) {
-    fields[key] = vals.join(', ')
+  for (const [key, vals] of Object.entries(multi)) {
+    payload[key] = vals.join(', ')
   }
-  const res = await fetch('https://api.web3forms.com/submit', {
+  const res = await fetch(SHEET_ENDPOINT, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({
-      access_key: WEB3FORMS_KEY,
-      subject,
-      from_name: 'GPF 2026 Website',
-      ...(replyTo ? { replyto: replyTo } : {}),
-      ...fields,
-    }),
+    body: JSON.stringify(payload),
   })
   const data = await res.json()
-  if (!data.success) throw new Error(data.message || 'Submission failed')
+  if (!data.success) throw new Error('Submission failed')
 }
 
 // Reusable form field styles
@@ -75,7 +69,7 @@ function PassForm({ tierName }: { tierName: string }) {
     setLoading(true); setError('')
     try {
       const fd = new FormData(e.currentTarget)
-      await submitForm(`Pass Registration: ${tierName} Pass | GPF 2026`, fd, fd.get('Email') as string)
+      await submitForm(`Pass Registration: ${tierName} Pass`, fd)
       setSubmitted(true)
     } catch { setError('Something went wrong. Please try again.') }
     finally { setLoading(false) }
@@ -137,7 +131,7 @@ function HackathonForm() {
     setLoading(true); setError('')
     try {
       const fd = new FormData(e.currentTarget)
-      await submitForm('Hackathon Registration | GPF 2026', fd, fd.get('Email') as string)
+      await submitForm('Hackathon Registration', fd)
       setSubmitted(true)
     } catch { setError('Something went wrong. Please try again.') }
     finally { setLoading(false) }
@@ -231,7 +225,7 @@ function SpeakerForm() {
     setLoading(true); setError('')
     try {
       const fd = new FormData(e.currentTarget)
-      await submitForm('Speaker Application | GPF 2026', fd, fd.get('Email') as string)
+      await submitForm('Speaker Application', fd)
       setSubmitted(true)
     } catch { setError('Something went wrong. Please try again.') }
     finally { setLoading(false) }
@@ -327,7 +321,7 @@ function NominateForm() {
     setLoading(true); setError('')
     try {
       const fd = new FormData(e.currentTarget)
-      await submitForm('Speaker Nomination | GPF 2026', fd, fd.get('Your Email') as string)
+      await submitForm('Speaker Nomination', fd)
       setSubmitted(true)
     } catch { setError('Something went wrong. Please try again.') }
     finally { setLoading(false) }
@@ -393,7 +387,7 @@ function SponsorForm() {
     setLoading(true); setError('')
     try {
       const fd = new FormData(e.currentTarget)
-      await submitForm('Sponsorship Enquiry | GPF 2026', fd, fd.get('Your Email') as string)
+      await submitForm('Sponsorship Enquiry', fd)
       setSubmitted(true)
     } catch { setError('Something went wrong. Please try again.') }
     finally { setLoading(false) }
@@ -486,7 +480,7 @@ function CommunityForm() {
     setLoading(true); setError('')
     try {
       const fd = new FormData(e.currentTarget)
-      await submitForm('Community Partnership Application | GPF 2026', fd, fd.get('Your Email') as string)
+      await submitForm('Community Partnership', fd)
       setSubmitted(true)
     } catch { setError('Something went wrong. Please try again.') }
     finally { setLoading(false) }
