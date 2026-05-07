@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import heroSwatiStage from '../assets/hero-swati-stage.png'
+import heroSwatiStage from '../assets/hero-swati-stage.jpg'
 
 interface HeroProps { onSponsor: () => void; onCommunity: () => void }
 
