@@ -56,8 +56,8 @@ export default function Speakers({ onApply, onNominate }: Props) {
             <h2 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(40px,6vw,80px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
               Speakers
             </h2>
-            <p className="text-base max-w-xs leading-relaxed lg:text-right" style={{ color: '#6B7280' }}>
-              Elevate Your Voice<br />Share your expertise with a high-intent audience of product leaders and practitioners.
+            <p className="text-base leading-relaxed lg:text-right" style={{ color: '#6B7280', maxWidth: 380 }}>
+              Elevate your voice. Share your expertise<br />with India's top product leaders and practitioners.
             </p>
           </div>
         </div>
