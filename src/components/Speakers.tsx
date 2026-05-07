@@ -23,7 +23,7 @@ const speakers = [
   },
   {
     name: 'Supriya Rao',
-    title: 'Product Leader',
+    title: 'MD, ClearRoute',
     linkedin: 'https://www.linkedin.com/in/supriya-y-rao/',
     photo: supriyaPhoto,
     objectPos: '50% 10%',
