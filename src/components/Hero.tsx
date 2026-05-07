@@ -71,7 +71,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
       }} />
 
       {/* ── Main two-column layout ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28 pb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-36 pb-8">
         <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-6 min-h-[calc(100vh-220px)]">
 
           {/* LEFT — text (55%) */}
