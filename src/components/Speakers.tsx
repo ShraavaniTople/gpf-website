@@ -22,7 +22,7 @@ const speakers = [
     objectPos: '50% 15%',
   },
   {
-    name: 'Supriya Y Rao',
+    name: 'Supriya Rao',
     title: 'Product Leader',
     linkedin: 'https://www.linkedin.com/in/supriya-y-rao/',
     photo: supriyaPhoto,
