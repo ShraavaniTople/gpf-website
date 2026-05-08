@@ -130,14 +130,14 @@ export default function WhoInRoom() {
       </div>
 
       {/* Full-bleed marquee strip */}
-      <div className="relative z-10 pb-0">
+      <div className="relative z-10 pb-16">
         <div className="h-px mb-8 mx-6" style={{ background: 'linear-gradient(to right, transparent, rgba(124,58,237,.2) 30%, rgba(124,58,237,.2) 70%, transparent)' }} />
 
-        <p className="font-mono text-[10px] uppercase tracking-[.28em] text-center mb-6" style={{ color: '#3D3A56' }}>
+        <p className="font-mono text-[10px] uppercase tracking-[.28em] text-center mb-8" style={{ color: '#3D3A56' }}>
           Attendees come from teams at
         </p>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           <MarqueeRow items={row1} />
           <MarqueeRow items={row2} reverse />
         </div>
