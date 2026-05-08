@@ -12,14 +12,14 @@ const mosaicPhotos = {
 
 // Photos for the bottom film strip
 const filmPhotos = [
-  { src: '/photos/group.jpg', alt: 'Women in Product India community group' },
-  { src: '/photos/speaker1.jpg', alt: 'Speaker at Women in Product India event' },
-  { src: '/photos/audience1.jpg', alt: 'Attendees at product conference' },
-  { src: '/photos/audience2.jpg', alt: 'Audience at product event' },
-  { src: '/photos/speaker2.jpg', alt: 'Speaker on stage' },
-  { src: '/photos/audience3.jpg', alt: 'Event audience' },
-  { src: '/photos/speaker3.jpg', alt: 'Speaker presenting at Canvas venue' },
-  { src: '/photos/awards.jpg', alt: 'Award ceremony' },
+  { src: './photos/group.jpg', alt: 'Women in Product India community group' },
+  { src: './photos/speaker1.jpg', alt: 'Speaker at Women in Product India event' },
+  { src: './photos/audience1.jpg', alt: 'Attendees at product conference' },
+  { src: './photos/audience2.jpg', alt: 'Audience at product event' },
+  { src: './photos/speaker2.jpg', alt: 'Speaker on stage' },
+  { src: './photos/audience3.jpg', alt: 'Event audience' },
+  { src: './photos/speaker3.jpg', alt: 'Speaker presenting at Canvas venue' },
+  { src: './photos/awards.jpg', alt: 'Award ceremony' },
 ]
 
 function go(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }
