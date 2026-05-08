@@ -12,12 +12,14 @@ const mosaicPhotos = {
 
 // Photos for the bottom film strip
 const filmPhotos = [
-  { src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=700&q=80', alt: 'Speaker on stage' },
-  { src: 'https://images.unsplash.com/photo-1576085898323-218337e3e43c?auto=format&fit=crop&w=700&q=80', alt: 'Workshop' },
-  { src: 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=700&q=80', alt: 'Panel discussion' },
-  { src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=80', alt: 'Team collaboration' },
-  { src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=700&q=80', alt: 'Conference crowd' },
-  { src: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=700&q=80', alt: 'Networking' },
+  { src: '/photos/group.jpg', alt: 'Women in Product India community group' },
+  { src: '/photos/speaker1.jpg', alt: 'Speaker at Women in Product India event' },
+  { src: '/photos/audience1.jpg', alt: 'Attendees at product conference' },
+  { src: '/photos/audience2.jpg', alt: 'Audience at product event' },
+  { src: '/photos/speaker2.jpg', alt: 'Speaker on stage' },
+  { src: '/photos/audience3.jpg', alt: 'Event audience' },
+  { src: '/photos/speaker3.jpg', alt: 'Speaker presenting at Canvas venue' },
+  { src: '/photos/awards.jpg', alt: 'Award ceremony' },
 ]
 
 function go(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }
