@@ -7,7 +7,7 @@ interface HeroProps { onSponsor: () => void; onCommunity: () => void }
 const mosaicPhotos = {
   main:   heroSwatiStage,
   bl:     'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=85',
-  br:     'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=85',
+  br:     './photos/hotseat.jpg',
 }
 
 // Photos for the bottom film strip
