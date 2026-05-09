@@ -15,27 +15,102 @@ import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import ClosingCTA from './components/ClosingCTA'
 
-// Paste your Google Apps Script web app URL here after setup
-const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycby5QDW9KrcGt7Rb5mqLLsCyviHbmbUG_hYivkePrpKNyy-yD00Xn-IT3IAAH96OrqBAyg/exec'
+// Google Forms endpoints
+const FORMS: Record<string, { action: string; fields: Record<string, string> }> = {
+  pass: {
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLSfxOrVEFJx1LRZfl6ZErkPa7ibzUpGvjhaCKCvTNys6XVdiNQ/formResponse',
+    fields: {
+      'First Name': 'entry.1521050117',
+      'Last Name': 'entry.1404844400',
+      'Email': 'entry.1747921729',
+      'Phone': 'entry.1627017490',
+      'Organisation': 'entry.1572704370',
+      'Pass Type': 'entry.1827719032',
+    },
+  },
+  hackathon: {
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLScXpZqorPihAqmgvsRVZuvlYO3UN5unoq_b457WO0Nc8VBqQg/formResponse',
+    fields: {
+      'First Name': 'entry.720795200',
+      'Last Name': 'entry.1640917164',
+      'Email': 'entry.140053087',
+      'Phone': 'entry.908323434',
+      'LinkedIn Profile': 'entry.1096221992',
+      'Team Name': 'entry.83618507',
+      'Team Size': 'entry.1732739717',
+      'Your Role': 'entry.1081008863',
+      'Problem Statement Interest': 'entry.20758291',
+      'Idea': 'entry.1304277687',
+    },
+  },
+  nominate: {
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLSfrM_bik8JtftHHG20V3y4On_HQiqoBu20VAc5F3OHz8HVWAA/formResponse',
+    fields: {
+      'Your Name': 'entry.339905340',
+      'Your Email': 'entry.1820619215',
+      'Speaker Name': 'entry.1282725437',
+      'Speaker Email': 'entry.271938526',
+      'Speaker LinkedIn': 'entry.201134265',
+      'Nomination Reason': 'entry.713528807',
+    },
+  },
+  sponsor: {
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLSegl7N-J3GdAS6FXdKtNFiip1eNuyBHecweNRSl8lzUzv84YA/formResponse',
+    fields: {
+      'Company Name': 'entry.130803940',
+      'Your Name': 'entry.1731737182',
+      'Your Email': 'entry.247102259',
+      'Your Role': 'entry.1769964588',
+      'Interest': 'entry.1110299030',
+      'Message': 'entry.1670297234',
+    },
+  },
+  community: {
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLSfvkTuBlrwPX2ZKphmMaA_EpUt-C7F4cJQCTqzEXgbh8gzCRQ/formResponse',
+    fields: {
+      'Organisation': 'entry.413775976',
+      'Your Name': 'entry.2089835798',
+      'Your Email': 'entry.1042024691',
+      'Community Size': 'entry.2085026524',
+      'Website': 'entry.955312793',
+      'Partnership Type': 'entry.215416756',
+      'Message': 'entry.1387141779',
+    },
+  },
+  speaker: {
+    // Speaker Application - entry IDs to be added once form is public
+    action: '',
+    fields: {},
+  },
+}
+
+const FORM_TYPE_MAP: Record<string, string> = {
+  'Pass Registration: General Pass': 'pass',
+  'Pass Registration: Premium Pass': 'pass',
+  'Pass Registration: VIP Pass': 'pass',
+  'Hackathon Registration': 'hackathon',
+  'Speaker Application': 'speaker',
+  'Speaker Nomination': 'nominate',
+  'Sponsorship Enquiry': 'sponsor',
+  'Community Partnership': 'community',
+}
 
 async function submitForm(formType: string, fd: FormData) {
-  const payload: Record<string, string> = { form_type: formType }
-  const multi: Record<string, string[]> = {}
-  fd.forEach((val, key) => {
-    if (!String(val).trim()) return
-    if (!multi[key]) multi[key] = []
-    multi[key].push(String(val))
+  const key = FORM_TYPE_MAP[formType] || ''
+  const form = FORMS[key]
+  if (!form || !form.action) return
+
+  const data = new URLSearchParams()
+  fd.forEach((val, name) => {
+    const entryId = form.fields[name]
+    if (entryId && String(val).trim()) data.append(entryId, String(val))
   })
-  for (const [key, vals] of Object.entries(multi)) {
-    payload[key] = vals.join(', ')
-  }
-  if (!SHEET_ENDPOINT || SHEET_ENDPOINT === 'YOUR_APPS_SCRIPT_URL') return
-  // Google Apps Script requires no-cors; response is opaque but data is received
-  await fetch(SHEET_ENDPOINT, {
+
+  await fetch(form.action, {
     method: 'POST',
     mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: data.toString(),
   })
 }
 
