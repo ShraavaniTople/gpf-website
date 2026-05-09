@@ -51,7 +51,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
         style={{ animation: 'slideUp 0.25s ease', background: '#0D0B1F', border: '1px solid rgba(124,58,237,.3)' }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-6 sticky top-0 z-10"
+        <div className="flex items-center justify-between px-4 sm:px-8 py-6 sticky top-0 z-10"
           style={{ borderBottom: '1px solid #1C1A32', background: '#0D0B1F' }}>
           <h2 id="modal-title" className="font-display font-bold text-xl" style={{ color: '#F0EEF8', letterSpacing: '-0.02em' }}>
             {title}
@@ -70,7 +70,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
         </div>
 
         {/* Body */}
-        <div className="px-8 py-8">{children}</div>
+        <div className="px-4 sm:px-8 py-8">{children}</div>
       </div>
 
       <style>{`

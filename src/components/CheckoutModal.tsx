@@ -184,7 +184,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         </div>
 
         {/* Form */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={lbl}>First Name *</label>
             <input value={details.firstName} onChange={e => setDetails({ ...details, firstName: e.target.value })}
@@ -195,7 +195,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
             <input value={details.lastName} onChange={e => setDetails({ ...details, lastName: e.target.value })}
               type="text" placeholder="Sharma" className={inp} />
           </div>
-          <div className="col-span-2">
+          <div className="col-span-1 sm:col-span-2">
             <label className={lbl}>Email *</label>
             <input value={details.email} onChange={e => setDetails({ ...details, email: e.target.value })}
               type="email" placeholder="priya@example.com" className={inp} />

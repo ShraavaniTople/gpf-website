@@ -68,7 +68,7 @@ export default function FAQ() {
           {faqs.map((faq, i) => (
             <div key={i} style={{ borderBottom: '1px solid #1C1A32' }}>
               <button
-                className="w-full flex items-center justify-between gap-6 py-6 text-left"
+                className="w-full flex items-center justify-between gap-3 sm:gap-6 py-6 text-left"
                 onClick={() => setOpen(open === i ? null : i)}
               >
                 <span

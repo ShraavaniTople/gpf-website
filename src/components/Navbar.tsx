@@ -22,7 +22,7 @@ function go(id: string) {
 function AnnouncementBar({ onDismiss }: { onDismiss: () => void }) {
   return (
     <div
-      className="relative w-full flex items-center justify-center px-10 py-2.5 text-center"
+      className="relative w-full flex items-center justify-center px-8 sm:px-10 py-2.5 text-center"
       style={{ background: 'linear-gradient(90deg, rgba(124,58,237,.18) 0%, rgba(245,158,11,.12) 50%, rgba(124,58,237,.18) 100%)', borderBottom: '1px solid rgba(245,158,11,.15)' }}
     >
       {/* Scrolling text on mobile, static on desktop */}

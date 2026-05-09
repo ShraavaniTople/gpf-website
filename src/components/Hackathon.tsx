@@ -86,7 +86,7 @@ export default function Hackathon({ onRegister }: Props) {
               ))}
             </div>
 
-            <div ref={photoRef} className="rounded-2xl overflow-hidden" style={{ height: 200, position: 'relative' }}>
+            <div ref={photoRef} className="rounded-2xl overflow-hidden" style={{ height: 'clamp(120px, 25vw, 200px)', position: 'relative' }}>
               <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80" alt="Team working" style={{ height: '120%', width: '100%', objectFit: 'cover', display: 'block' }} />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(13,11,31,.6) 0%, transparent 60%)' }} />
             </div>

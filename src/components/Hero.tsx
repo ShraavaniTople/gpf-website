@@ -191,7 +191,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
       </div>
 
       {/* ── Film strip ── */}
-      <div className="relative z-10 w-full pb-10">
+      <div className="relative z-10 w-full pb-10 overflow-hidden">
         <div className="relative">
           <div aria-hidden className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
             style={{ background: 'linear-gradient(to right, #05040C, transparent)' }} />
@@ -204,7 +204,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           >
             {[...filmPhotos, ...filmPhotos].map((p, i) => (
               <div key={i} className="zoom flex-shrink-0 overflow-hidden rounded-xl"
-                style={{ width: 260, height: 160, minWidth: 260, background: '#1C1A32' }}>
+                style={{ width: 'clamp(160px, 38vw, 260px)', height: 'clamp(100px, 24vw, 160px)', background: '#1C1A32' }}>
                 <img
                   src={p.src}
                   alt={p.alt}

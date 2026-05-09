@@ -67,7 +67,7 @@ export default function WhyAttend() {
           </div>
         </div>
 
-        <div ref={bannerRef} className="px-wrap rounded-2xl mb-20 relative overflow-hidden" style={{ height: 260 }}>
+        <div ref={bannerRef} className="px-wrap rounded-2xl mb-20 relative overflow-hidden" style={{ height: 'clamp(140px, 30vw, 260px)' }}>
           <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1400&q=80" alt="Stage" style={{ height: '120%', width: '100%', objectFit: 'cover' }} />
           <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.9) 0%, rgba(5,4,12,.2) 50%, rgba(5,4,12,.6) 100%)' }} />
           <div className="absolute bottom-8 left-8">
