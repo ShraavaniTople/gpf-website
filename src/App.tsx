@@ -15,6 +15,8 @@ import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import ClosingCTA from './components/ClosingCTA'
 
+const WEB3FORMS_KEY = '05343d66-4685-49cf-ba57-e57dbf8a2bf1'
+
 // Google Forms endpoints
 const FORMS: Record<string, { action: string; fields: Record<string, string> }> = {
   pass: {
@@ -104,42 +106,21 @@ const FORM_TYPE_MAP: Record<string, string> = {
 }
 
 async function submitForm(formType: string, fd: FormData) {
-  const key = FORM_TYPE_MAP[formType] || ''
-  const form = FORMS[key]
-  if (!form || !form.action) return
-
-  // Use a hidden iframe + form to bypass CORS/CSRF restrictions on Google Forms
-  const iframeName = 'gform-hidden-' + Date.now()
-  const iframe = document.createElement('iframe')
-  iframe.name = iframeName
-  iframe.style.display = 'none'
-  document.body.appendChild(iframe)
-
-  const formEl = document.createElement('form')
-  formEl.method = 'POST'
-  formEl.action = form.action
-  formEl.target = iframeName
-  formEl.style.display = 'none'
-
-  fd.forEach((val, name) => {
-    const entryId = form.fields[name]
-    if (entryId && String(val).trim()) {
-      const input = document.createElement('input')
-      input.type = 'hidden'
-      input.name = entryId
-      input.value = String(val)
-      formEl.appendChild(input)
-    }
+  const payload: Record<string, string> = {
+    access_key: WEB3FORMS_KEY,
+    subject: `GPF 2026 - ${formType}`,
+    from_name: 'GPF 2026 Website',
+  }
+  fd.forEach((val, key) => {
+    if (String(val).trim()) payload[key] = String(val)
   })
-
-  document.body.appendChild(formEl)
-  formEl.submit()
-
-  // Cleanup after submission
-  setTimeout(() => {
-    document.body.removeChild(formEl)
-    document.body.removeChild(iframe)
-  }, 3000)
+  const res = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  const data = await res.json()
+  if (!data.success) throw new Error(data.message || 'Submission failed')
 }
 
 // Reusable form field styles
