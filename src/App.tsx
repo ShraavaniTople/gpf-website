@@ -108,18 +108,38 @@ async function submitForm(formType: string, fd: FormData) {
   const form = FORMS[key]
   if (!form || !form.action) return
 
-  const data = new URLSearchParams()
+  // Use a hidden iframe + form to bypass CORS/CSRF restrictions on Google Forms
+  const iframeName = 'gform-hidden-' + Date.now()
+  const iframe = document.createElement('iframe')
+  iframe.name = iframeName
+  iframe.style.display = 'none'
+  document.body.appendChild(iframe)
+
+  const formEl = document.createElement('form')
+  formEl.method = 'POST'
+  formEl.action = form.action
+  formEl.target = iframeName
+  formEl.style.display = 'none'
+
   fd.forEach((val, name) => {
     const entryId = form.fields[name]
-    if (entryId && String(val).trim()) data.append(entryId, String(val))
+    if (entryId && String(val).trim()) {
+      const input = document.createElement('input')
+      input.type = 'hidden'
+      input.name = entryId
+      input.value = String(val)
+      formEl.appendChild(input)
+    }
   })
 
-  await fetch(form.action, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: data.toString(),
-  })
+  document.body.appendChild(formEl)
+  formEl.submit()
+
+  // Cleanup after submission
+  setTimeout(() => {
+    document.body.removeChild(formEl)
+    document.body.removeChild(iframe)
+  }, 3000)
 }
 
 // Reusable form field styles
