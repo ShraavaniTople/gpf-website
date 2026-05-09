@@ -135,7 +135,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 data-spd="-0.06"
                 src={mosaicPhotos.main}
                 alt="Conference crowd"
-                style={{ width: '100%', height: '112%', objectFit: 'cover', objectPosition: '50% 30%', transition: 'transform .1s linear' }}
+                style={{ width: '100%', height: '112%', objectFit: 'cover', objectPosition: '50% 55%', transition: 'transform .1s linear' }}
               />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, transparent 50%, rgba(5,4,12,.35) 100%)' }} />
             </div>
