@@ -78,9 +78,17 @@ const FORMS: Record<string, { action: string; fields: Record<string, string> }> 
     },
   },
   speaker: {
-    // Speaker Application - entry IDs to be added once form is public
-    action: '',
-    fields: {},
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLScHDE8_WoWC9HoFKLyAfzaayNAfvqQLy5RjBwlPGMS2ay7nBg/formResponse',
+    fields: {
+      'Full Name': 'entry.722851407',
+      'Email': 'entry.961513084',
+      'Role and Company': 'entry.1824833147',
+      'LinkedIn': 'entry.909122513',
+      'Twitter': 'entry.762628107',
+      'Session Format': 'entry.1262746475',
+      'Bio': 'entry.1899813914',
+      'Talk Abstract': 'entry.1073630510',
+    },
   },
 }
 
@@ -298,7 +306,7 @@ function SpeakerForm() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [photoName, setPhotoName] = useState('')
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true); setError('')
@@ -334,24 +342,6 @@ function SpeakerForm() {
         <div>
           <label className={labelClass} htmlFor="sp-twitter">Twitter / X URL</label>
           <input id="sp-twitter" name="Twitter" type="url" placeholder="https://x.com/..." className={inputClass} />
-        </div>
-        <div>
-          <label className={labelClass}>Photo</label>
-          <label
-            htmlFor="sp-photo"
-            className="w-full bg-brand-bg border border-brand-border rounded-xl px-4 py-3 text-[#6B6880] hover:border-brand-purple cursor-pointer transition flex items-center gap-2 text-sm"
-          >
-            <span className="text-brand-purple-light">&#8593;</span>
-            {photoName || 'Upload a headshot'}
-          </label>
-          <input
-            id="sp-photo"
-            name="Photo"
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={(e) => setPhotoName(e.target.files?.[0]?.name || '')}
-          />
         </div>
         <div>
           <label className={labelClass} htmlFor="sp-title">Proposed Session Title</label>
