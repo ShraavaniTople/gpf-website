@@ -16,7 +16,7 @@ import Footer from './components/Footer'
 import ClosingCTA from './components/ClosingCTA'
 
 // Paste your Google Apps Script web app URL here after setup
-const SHEET_ENDPOINT = 'YOUR_APPS_SCRIPT_URL'
+const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycby5QDW9KrcGt7Rb5mqLLsCyviHbmbUG_hYivkePrpKNyy-yD00Xn-IT3IAAH96OrqBAyg/exec'
 
 async function submitForm(formType: string, fd: FormData) {
   const payload: Record<string, string> = { form_type: formType }
