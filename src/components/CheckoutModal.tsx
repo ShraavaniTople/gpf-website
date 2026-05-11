@@ -17,12 +17,8 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
   },
 }
 
-// ─── Discount codes (move to backend once on Vercel) ─────────────────────────
-const DISCOUNT_CODES: Record<string, { label: string; pct: number }> = {
-  WIP25:     { label: 'WiP India Member', pct: 25 },
-  EARLYBIRD: { label: 'Early Bird Extra',  pct: 10 },
-  GPF2026:   { label: 'Community Friend',  pct: 15 },
-}
+// ─── Discount codes ───────────────────────────────────────────────────────────
+const DISCOUNT_CODES: Record<string, { label: string; pct: number }> = {}
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
 function loadRazorpay(): Promise<boolean> {
