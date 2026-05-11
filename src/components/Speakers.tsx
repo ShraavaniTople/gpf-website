@@ -102,7 +102,7 @@ export default function Speakers({ onApply, onNominate }: Props) {
         {/* CTAs */}
         <div ref={ctaRef} className="sr flex flex-wrap gap-4 justify-center">
           <button onClick={onApply} className="btn-purple text-sm">Apply to Speak</button>
-          <button onClick={onNominate} className="btn-ghost text-sm">Nominate to Speak</button>
+          <button onClick={onNominate} className="btn-purple text-sm">Nominate to Speak</button>
         </div>
       </div>
     </section>

@@ -58,7 +58,7 @@ export default function ClosingCTA({ onRegister, onSponsor, onSpeak }: Props) {
           <button onClick={onSponsor} className="btn-amber">
             Become a Sponsor
           </button>
-          <button onClick={onSpeak} className="btn-ghost">
+          <button onClick={onSpeak} className="btn-purple">
             Apply to Speak
           </button>
         </div>
