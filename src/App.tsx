@@ -199,7 +199,7 @@ function PassForm({ tierName }: { tierName: string }) {
         <button
           type="submit"
           disabled={loading}
-          className="bg-brand-purple hover:bg-purple-600 disabled:opacity-60 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          className="btn-purple disabled:opacity-60 w-full md:w-auto"
         >
           {loading ? 'Sending...' : 'Register for Pass'}
         </button>
@@ -292,7 +292,7 @@ function HackathonForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-brand-amber hover:bg-amber-400 disabled:opacity-60 text-black px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          className="btn-amber disabled:opacity-60 w-full md:w-auto"
         >
           {loading ? 'Sending...' : 'Submit Registration'}
         </button>
@@ -372,7 +372,7 @@ function SpeakerForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-brand-purple hover:bg-purple-600 disabled:opacity-60 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          className="btn-purple disabled:opacity-60 w-full md:w-auto"
         >
           {loading ? 'Sending...' : 'Submit Application'}
         </button>
@@ -438,7 +438,7 @@ function NominateForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-brand-purple hover:bg-purple-600 disabled:opacity-60 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          className="btn-purple disabled:opacity-60 w-full md:w-auto"
         >
           {loading ? 'Sending...' : 'Submit Nomination'}
         </button>
@@ -530,7 +530,7 @@ function SponsorForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-brand-amber hover:bg-amber-400 disabled:opacity-60 text-black px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
+          className="btn-amber disabled:opacity-60 w-full md:w-auto"
         >
           {loading ? 'Sending...' : 'Request Details'}
         </button>
@@ -622,8 +622,7 @@ function CommunityForm() {
         <button
           type="submit"
           disabled={loading}
-          className="bg-[#7C3AED] hover:bg-[#6D28D9] disabled:opacity-60 text-white px-8 py-3.5 rounded-full font-bold font-display text-sm transition-all duration-200 w-full md:w-auto"
-          style={{ boxShadow: '0 0 28px rgba(124,58,237,.35)' }}
+          className="btn-purple disabled:opacity-60 w-full md:w-auto"
         >
           {loading ? 'Sending...' : 'Submit Application'}
         </button>
