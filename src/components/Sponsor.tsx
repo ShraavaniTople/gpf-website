@@ -62,7 +62,7 @@ export default function Sponsor({ onRequest }: Props) {
               ))}
             </ul>
 
-            <button onClick={onRequest} className="btn-amber text-sm">Request Sponsorship Details</button>
+            <button onClick={onRequest} className="btn-purple text-sm">Request Sponsorship Details</button>
             <p className="text-xs mt-3" style={{ color: '#52506A', fontFamily: 'JetBrains Mono, monospace' }}>We will get back to you within 2 business days.</p>
           </div>
 

@@ -69,7 +69,7 @@ export default function Hackathon({ onRegister }: Props) {
               </div>
             ))}
             <div className="pt-8">
-              <button onClick={onRegister} className="btn-amber text-sm">Register for the Hackathon</button>
+              <button onClick={onRegister} className="btn-purple text-sm">Register for the Hackathon</button>
               <p className="text-xs mt-3" style={{ color: '#52506A', fontFamily: 'JetBrains Mono, monospace' }}>Registration closes 48 hours before Day 1.</p>
             </div>
           </div>
