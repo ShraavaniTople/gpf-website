@@ -41,7 +41,7 @@ const inp = 'w-full rounded-xl px-4 py-3 text-[#F0EEF8] placeholder-[#52506A] fo
 const lbl = 'block text-sm font-medium mb-1 text-[#9490AD]'
 
 // ─── Razorpay key — replace with live key before going live ──────────────────
-const RZP_KEY = 'RAZORPAY_KEY_ID'
+const RZP_KEY = 'rzp_test_SnzqKBrVXHVchA'
 
 interface Props {
   tierName: string
