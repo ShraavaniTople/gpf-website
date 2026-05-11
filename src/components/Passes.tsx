@@ -153,7 +153,7 @@ export default function Passes({ onGetPass }: Props) {
 
                 <button
                   onClick={() => onGetPass(tier.name)}
-                  className={tier.popular ? 'btn-purple' : 'btn-ghost'}
+                  className="btn-purple"
                   style={{ textAlign: 'center', fontSize: 14 }}
                 >
                   Get This Pass
