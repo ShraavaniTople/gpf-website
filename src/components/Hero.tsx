@@ -111,7 +111,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               </p>
               <div className="flex flex-wrap gap-4 items-center mb-5">
                 <button onClick={() => go('passes')} className="btn-purple text-sm">Get Passes</button>
-                <button onClick={onCommunity} className="btn-ghost text-sm">Become a Community Partner</button>
+                <button onClick={onCommunity} className="btn-purple text-sm">Become a Community Partner</button>
               </div>
               <p className="text-sm" style={{ color: '#52506A' }}>
                 Priority sponsor slots are open &nbsp;
