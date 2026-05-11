@@ -5,15 +5,15 @@ const days = [
     label: 'Day 1',
     title: 'Product and Growth',
     tracks: [
-      { name: 'Product Mastery', sessions: ['Modern product thinking', 'Rapid prototyping and building product MVPs', 'Shipping faster and smarter'] },
-      { name: 'Growth, Distribution and Personal Brand', sessions: ['Digital marketing and content strategy', 'Cracking distribution in a digital-first world', 'PM to creator to operator'] },
+      { name: 'AI Product Mastery', sessions: ['Modern product thinking', 'Rapid prototyping and building product MVPs', 'Shipping faster and smarter'] },
+      { name: 'Growth, Distribution and Branding', sessions: ['Digital marketing and content strategy', 'Cracking distribution in a digital-first world', 'PM to creator to operator'] },
     ],
   },
   {
     label: 'Day 2',
     title: 'Startups and Leadership',
     tracks: [
-      { name: 'Startups and Builders', sessions: ['Modern startup playbooks', 'GTM for modern products', 'Founder stories and breakdowns'] },
+      { name: 'Startups and AI Builders', sessions: ['Modern startup playbooks', 'GTM for modern products', 'Founder stories and breakdowns'] },
       { name: 'Leadership, Careers and the Future of Work', sessions: ['Automation vs augmentation for PMs', 'Leadership in high-growth teams', 'Hiring and skills of the future'] },
     ],
   },
