@@ -292,7 +292,7 @@ function HackathonForm() {
         <button
           type="submit"
           disabled={loading}
-          className="btn-amber disabled:opacity-60 w-full md:w-auto"
+          className="btn-purple disabled:opacity-60 w-full md:w-auto"
         >
           {loading ? 'Sending...' : 'Submit Registration'}
         </button>
@@ -530,7 +530,7 @@ function SponsorForm() {
         <button
           type="submit"
           disabled={loading}
-          className="btn-amber disabled:opacity-60 w-full md:w-auto"
+          className="btn-purple disabled:opacity-60 w-full md:w-auto"
         >
           {loading ? 'Sending...' : 'Request Details'}
         </button>
