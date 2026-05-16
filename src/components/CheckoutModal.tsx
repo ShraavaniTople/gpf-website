@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Check, Tag, X, ArrowLeft, Shield } from 'lucide-react'
+import { Check, Tag, X, ArrowLeft, Shield, Download, Mail } from 'lucide-react'
 
 // ─── Tier data ────────────────────────────────────────────────────────────────
 const TIERS: Record<string, { price: number; features: string[] }> = {
@@ -20,6 +20,11 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
 // ─── Discount codes ───────────────────────────────────────────────────────────
 const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {}
 
+// ─── EmailJS config — fill in after EmailJS setup ────────────────────────────
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'
+
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
 function loadRazorpay(): Promise<boolean> {
   return new Promise(resolve => {
@@ -32,11 +37,55 @@ function loadRazorpay(): Promise<boolean> {
   })
 }
 
+// ─── Load EmailJS script ──────────────────────────────────────────────────────
+function loadEmailJS(): Promise<boolean> {
+  return new Promise(resolve => {
+    if ((window as any).emailjs) { resolve(true); return }
+    const s = document.createElement('script')
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'
+    s.onload = () => {
+      ;(window as any).emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
+      resolve(true)
+    }
+    s.onerror = () => resolve(false)
+    document.body.appendChild(s)
+  })
+}
+
+// ─── Send confirmation email to buyer ────────────────────────────────────────
+async function sendConfirmationEmail(params: {
+  name: string; email: string; company: string
+  tierName: string; amount: string; paymentId: string; passNumber: string
+}) {
+  if (EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID') return
+  try {
+    await loadEmailJS()
+    await (window as any).emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_email:   params.email,
+      to_name:    params.name,
+      company:    params.company || '—',
+      pass_type:  params.tierName + ' Pass',
+      amount:     params.amount,
+      payment_id: params.paymentId,
+      pass_number: params.passNumber,
+      event_name: 'The Great Product Festival',
+      event_date: 'Q3 2026',
+      event_city: 'Bangalore',
+    })
+  } catch { /* email failure is silent — pass is shown on screen */ }
+}
+
+// ─── Generate pass number ─────────────────────────────────────────────────────
+function genPassNumber(paymentId: string, tier: string) {
+  const prefix = tier === 'VIP' ? 'V' : tier === 'Premium' ? 'P' : 'G'
+  const suffix = paymentId.slice(-6).toUpperCase()
+  return `GPF26-${prefix}-${suffix}`
+}
+
 // ─── Shared input styles ──────────────────────────────────────────────────────
 const inp = 'w-full rounded-xl px-4 py-3 text-[#F0EEF8] placeholder-[#52506A] focus:outline-none transition bg-[#05040C] border border-[#1C1A32] focus:border-[#7C3AED]'
 const lbl = 'block text-sm font-medium mb-1 text-[#9490AD]'
 
-// ─── Razorpay key — replace with live key before going live ──────────────────
 const RZP_KEY = 'rzp_live_Spz4J8PmOU9mZl'
 
 interface Props {
@@ -44,24 +93,135 @@ interface Props {
   onClose: () => void
 }
 
+// ─── Digital Pass Card ────────────────────────────────────────────────────────
+function DigitalPass({ name, company, tierName, amount, paymentId, passNumber }: {
+  name: string; company: string; tierName: string
+  amount: string; paymentId: string; passNumber: string
+}) {
+  const tierColor = tierName === 'VIP' ? '#F59E0B' : tierName === 'Premium' ? '#A78BFA' : '#7C3AED'
+  const tierBg    = tierName === 'VIP' ? 'rgba(245,158,11,.15)' : tierName === 'Premium' ? 'rgba(167,139,250,.15)' : 'rgba(124,58,237,.15)'
+
+  return (
+    <div id="gpf-pass" style={{
+      background: 'linear-gradient(135deg, #0D0B1F 0%, #080618 100%)',
+      border: `1px solid ${tierColor}40`,
+      borderRadius: 20,
+      overflow: 'hidden',
+      boxShadow: `0 0 60px ${tierColor}20`,
+      position: 'relative',
+    }}>
+      {/* Top shimmer line */}
+      <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${tierColor}, transparent)` }} />
+
+      {/* Background decorative circles */}
+      <div aria-hidden style={{
+        position: 'absolute', top: -60, right: -60,
+        width: 200, height: 200, borderRadius: '50%',
+        background: `radial-gradient(circle, ${tierColor}12 0%, transparent 70%)`,
+        pointerEvents: 'none',
+      }} />
+      <div aria-hidden style={{
+        position: 'absolute', bottom: -40, left: -40,
+        width: 160, height: 160, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(124,58,237,.08) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Header */}
+      <div style={{ padding: '24px 28px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <img src="/wip-logo.png" alt="Women in Product India" style={{ width: 44, height: 44, borderRadius: '50%' }} />
+          <div>
+            <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: 13, color: '#F0EEF8', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+              THE GREAT PRODUCT FESTIVAL
+            </p>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginTop: 2 }}>
+              GPF 2026 · BANGALORE
+            </p>
+          </div>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(52,211,153,.12)', border: '1px solid rgba(52,211,153,.25)', borderRadius: 999, padding: '5px 12px' }}>
+          <Check size={11} color="#34D399" />
+          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#34D399', letterSpacing: '0.1em' }}>CONFIRMED</span>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, #1C1A32, transparent)', margin: '0 28px' }} />
+
+      {/* Main content */}
+      <div style={{ padding: '24px 28px' }}>
+        <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.15em', marginBottom: 6 }}>ATTENDEE</p>
+        <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: 24, color: '#F0EEF8', letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+          {name}
+        </p>
+        {company && (
+          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, color: '#6B7280', marginTop: 4 }}>{company}</p>
+        )}
+
+        {/* Pass type + event info */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginTop: 24, flexWrap: 'wrap', gap: 16 }}>
+          <div>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.15em', marginBottom: 8 }}>PASS TYPE</p>
+            <div style={{ background: tierBg, border: `1px solid ${tierColor}40`, borderRadius: 10, padding: '8px 16px', display: 'inline-block' }}>
+              <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, fontSize: 16, color: tierColor, letterSpacing: '-0.01em' }}>
+                {tierName} Pass
+              </p>
+            </div>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.15em', marginBottom: 8 }}>EVENT DETAILS</p>
+            <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, color: '#9490AD', lineHeight: 1.7 }}>
+              Q3 2026, Bangalore<br />
+              2 Days · 4 Tracks<br />
+              500+ Attendees
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Perforated divider */}
+      <div style={{ position: 'relative', margin: '0 20px', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#05040C', flexShrink: 0, marginLeft: -32 }} />
+        <div style={{ flex: 1, borderTop: '2px dashed #1C1A32' }} />
+        <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#05040C', flexShrink: 0, marginRight: -32 }} />
+      </div>
+
+      {/* Footer — payment info */}
+      <div style={{ padding: '20px 28px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+        <div>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>PASS NUMBER</p>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, color: '#A78BFA', fontWeight: 500 }}>{passNumber}</p>
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>AMOUNT PAID</p>
+          <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, fontSize: 18, color: '#F0EEF8' }}>₹{amount}</p>
+        </div>
+      </div>
+
+      {paymentId && (
+        <div style={{ padding: '0 28px 20px' }}>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.08em' }}>
+            Payment ID: {paymentId}
+          </p>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function CheckoutModal({ tierName, onClose }: Props) {
   const tier = TIERS[tierName] || TIERS.General
 
-  // Step state
   const [step, setStep] = useState<'details' | 'review'>('details')
-
-  // Details
   const [details, setDetails] = useState({ firstName: '', lastName: '', email: '', phone: '', company: '' })
-
-  // Discount
   const [codeInput, setCodeInput] = useState('')
   const [applied, setApplied] = useState<{ code: string; label: string; pct?: number; fixed?: number } | null>(null)
   const [codeErr, setCodeErr] = useState('')
-
-  // Pay
   const [paying, setPaying] = useState(false)
   const [success, setSuccess] = useState(false)
   const [paymentId, setPaymentId] = useState('')
+  const [emailSent, setEmailSent] = useState(false)
 
   const discount = applied
     ? applied.fixed !== undefined
@@ -75,20 +235,11 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   function applyCode() {
     const key = codeInput.trim().toUpperCase()
     const found = DISCOUNT_CODES[key]
-    if (found) {
-      setApplied({ code: key, ...found })
-      setCodeErr('')
-    } else {
-      setCodeErr('Invalid code. Please check and try again.')
-      setApplied(null)
-    }
+    if (found) { setApplied({ code: key, ...found }); setCodeErr('') }
+    else { setCodeErr('Invalid code. Please check and try again.'); setApplied(null) }
   }
 
-  function removeCode() {
-    setApplied(null)
-    setCodeInput('')
-    setCodeErr('')
-  }
+  function removeCode() { setApplied(null); setCodeInput(''); setCodeErr('') }
 
   async function handlePay() {
     setPaying(true)
@@ -100,33 +251,32 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
     }
 
     const options = {
-      // Replace RZP_KEY with your live key before going live
       key: RZP_KEY,
-      amount: finalPrice * 100,   // paise
+      amount: finalPrice * 100,
       currency: 'INR',
       name: 'GPF 2026',
       description: `${tierName} Pass | The Great Product Festival`,
-      prefill: {
-        name: `${details.firstName} ${details.lastName}`,
-        email: details.email,
-        contact: details.phone,
-      },
-      notes: {
-        pass_type: `${tierName} Pass`,
-        company: details.company || '',
-        discount_code: applied?.code || '',
-        original_price: tier.price,
-        final_price: finalPrice,
-      },
+      prefill: { name: `${details.firstName} ${details.lastName}`, email: details.email, contact: details.phone },
+      notes: { pass_type: `${tierName} Pass`, company: details.company || '', discount_code: applied?.code || '', final_price: finalPrice },
       theme: { color: '#7C3AED' },
-      handler: (response: { razorpay_payment_id: string }) => {
-        setPaymentId(response.razorpay_payment_id)
+      handler: async (response: { razorpay_payment_id: string }) => {
+        const pid = response.razorpay_payment_id
+        const pn  = genPassNumber(pid, tierName)
+        setPaymentId(pid)
         setSuccess(true)
         setPaying(false)
+        const sent = await sendConfirmationEmail({
+          name: `${details.firstName} ${details.lastName}`,
+          email: details.email,
+          company: details.company,
+          tierName,
+          amount: finalPrice.toLocaleString('en-IN'),
+          paymentId: pid,
+          passNumber: pn,
+        })
+        if (sent !== undefined) setEmailSent(true)
       },
-      modal: {
-        ondismiss: () => setPaying(false),
-      },
+      modal: { ondismiss: () => setPaying(false) },
     }
 
     const rzp = new (window as any).Razorpay(options)
@@ -139,27 +289,59 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
 
   // ── Success screen ──────────────────────────────────────────────────────────
   if (success) {
+    const pn = genPassNumber(paymentId, tierName)
+    const fullName = `${details.firstName} ${details.lastName}`
+
     return (
-      <div className="text-center py-8 px-4">
-        <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"
-          style={{ background: 'rgba(124,58,237,.15)', border: '1px solid rgba(124,58,237,.3)' }}>
-          <Check size={28} style={{ color: '#A78BFA' }} />
-        </div>
-        <h3 className="font-display font-bold text-2xl mb-3" style={{ color: '#F0EEF8' }}>
-          Payment Successful!
-        </h3>
-        <p className="text-sm mb-1" style={{ color: '#9490AD' }}>
-          Your <span style={{ color: '#F0EEF8' }}>{tierName} Pass</span> is confirmed.
-        </p>
-        <p className="text-sm mb-1" style={{ color: '#6B7280' }}>
-          Confirmation sent to <span style={{ color: '#F0EEF8' }}>{details.email}</span>
-        </p>
-        {paymentId && (
-          <p className="font-mono text-xs mt-3" style={{ color: '#52506A' }}>
-            Payment ID: {paymentId}
+      <div className="space-y-5">
+        {/* Congrats header */}
+        <div className="text-center pb-2">
+          <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4"
+            style={{ background: 'rgba(52,211,153,.12)', border: '1px solid rgba(52,211,153,.25)' }}>
+            <Check size={24} color="#34D399" />
+          </div>
+          <h3 className="font-display font-bold text-2xl mb-1" style={{ color: '#F0EEF8' }}>
+            You're In! 🎉
+          </h3>
+          <p className="text-sm" style={{ color: '#6B7280' }}>
+            Your pass has been confirmed. See you in Bangalore!
           </p>
-        )}
-        <button onClick={onClose} className="btn-purple mt-8 px-10">Done</button>
+        </div>
+
+        {/* Digital Pass */}
+        <DigitalPass
+          name={fullName}
+          company={details.company}
+          tierName={tierName}
+          amount={finalPrice.toLocaleString('en-IN')}
+          paymentId={paymentId}
+          passNumber={pn}
+        />
+
+        {/* Email notice */}
+        <div className="flex items-start gap-3 rounded-xl px-4 py-3"
+          style={{ background: 'rgba(124,58,237,.07)', border: '1px solid rgba(124,58,237,.15)' }}>
+          <Mail size={15} style={{ color: '#A78BFA', flexShrink: 0, marginTop: 2 }} />
+          <p className="text-xs leading-relaxed" style={{ color: '#9490AD' }}>
+            A confirmation email has been sent to <span style={{ color: '#F0EEF8' }}>{details.email}</span>.
+            If you don't see it, check your spam folder or contact{' '}
+            <a href="mailto:hello@womeninproductindia.com" style={{ color: '#A78BFA' }}>hello@womeninproductindia.com</a>
+          </p>
+        </div>
+
+        {/* Actions */}
+        <div className="flex gap-3">
+          <button
+            onClick={() => window.print()}
+            className="btn-ghost flex items-center justify-center gap-2 flex-1"
+            style={{ padding: '12px', fontSize: 13 }}
+          >
+            <Download size={14} /> Save / Print Pass
+          </button>
+          <button onClick={onClose} className="btn-purple flex-1" style={{ padding: '12px', fontSize: 13 }}>
+            Done
+          </button>
+        </div>
       </div>
     )
   }
@@ -168,7 +350,6 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   if (step === 'details') {
     return (
       <div className="space-y-5">
-        {/* Tier summary pill */}
         <div className="flex items-center justify-between p-4 rounded-2xl"
           style={{ background: 'rgba(124,58,237,.07)', border: '1px solid rgba(124,58,237,.18)' }}>
           <div>
@@ -183,7 +364,6 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
           </div>
         </div>
 
-        {/* Form */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={lbl}>First Name *</label>
@@ -228,29 +408,23 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   // ── Step 2: Review & Pay ────────────────────────────────────────────────────
   return (
     <div className="space-y-5">
-      {/* Back */}
       <button onClick={() => setStep('details')} className="flex items-center gap-1.5 text-sm transition-colors hover:text-white" style={{ color: '#6B7280' }}>
         <ArrowLeft size={14} /> Back
       </button>
 
-      {/* Order summary card */}
       <div className="rounded-2xl p-5 space-y-3" style={{ background: '#080618', border: '1px solid #1C1A32' }}>
         <p className="font-mono text-[10px] uppercase tracking-widest mb-3" style={{ color: '#52506A' }}>Order Summary</p>
-
         <div className="flex justify-between text-sm">
           <span style={{ color: '#9490AD' }}>{tierName} Pass (Early Bird)</span>
           <span style={{ color: '#F0EEF8' }}>&#8377;{tier.price.toLocaleString('en-IN')}</span>
         </div>
-
         {applied && (
           <div className="flex justify-between text-sm">
             <span style={{ color: '#34D399' }}>{applied.label} ({applied.pct}% off)</span>
             <span style={{ color: '#34D399' }}>- &#8377;{discount.toLocaleString('en-IN')}</span>
           </div>
         )}
-
         <div className="h-px" style={{ background: '#1C1A32' }} />
-
         <div className="flex justify-between items-baseline">
           <span className="font-display font-bold text-sm" style={{ color: '#F0EEF8' }}>Total</span>
           <span className="font-display font-extrabold text-2xl" style={{ color: '#F0EEF8' }}>
@@ -259,7 +433,6 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         </div>
       </div>
 
-      {/* Discount code */}
       <div>
         <p className="text-sm font-medium mb-2" style={{ color: '#9490AD' }}>Have a discount code?</p>
         {applied ? (
@@ -291,7 +464,6 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         {codeErr && <p className="text-xs mt-1.5" style={{ color: '#F87171' }}>{codeErr}</p>}
       </div>
 
-      {/* Attendee preview */}
       <div className="rounded-xl px-4 py-3" style={{ background: '#080618', border: '1px solid #1C1A32' }}>
         <p className="font-mono text-[10px] uppercase tracking-widest mb-2" style={{ color: '#52506A' }}>Registering as</p>
         <p className="text-sm font-semibold" style={{ color: '#F0EEF8' }}>
@@ -301,7 +473,6 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         <p className="text-sm" style={{ color: '#6B7280' }}>{details.email} · {details.phone}</p>
       </div>
 
-      {/* Pay button */}
       <button
         onClick={handlePay}
         disabled={paying}
@@ -311,7 +482,6 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         {paying ? 'Opening Razorpay...' : <>Pay &#8377;{finalPrice.toLocaleString('en-IN')}</>}
       </button>
 
-      {/* Trust line */}
       <div className="flex items-center justify-center gap-2">
         <Shield size={12} style={{ color: '#52506A' }} />
         <p className="text-xs" style={{ color: '#52506A' }}>
