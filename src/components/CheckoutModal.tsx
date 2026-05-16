@@ -18,7 +18,9 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
 }
 
 // ─── Discount codes ───────────────────────────────────────────────────────────
-const DISCOUNT_CODES: Record<string, { label: string; pct: number }> = {}
+const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {
+  TEST2: { label: 'Test Code', fixed: 2 },
+}
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
 function loadRazorpay(): Promise<boolean> {
@@ -55,7 +57,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
 
   // Discount
   const [codeInput, setCodeInput] = useState('')
-  const [applied, setApplied] = useState<{ code: string; label: string; pct: number } | null>(null)
+  const [applied, setApplied] = useState<{ code: string; label: string; pct?: number; fixed?: number } | null>(null)
   const [codeErr, setCodeErr] = useState('')
 
   // Pay
@@ -63,7 +65,11 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   const [success, setSuccess] = useState(false)
   const [paymentId, setPaymentId] = useState('')
 
-  const discount = applied ? Math.round(tier.price * applied.pct / 100) : 0
+  const discount = applied
+    ? applied.fixed !== undefined
+      ? tier.price - applied.fixed
+      : Math.round(tier.price * (applied.pct || 0) / 100)
+    : 0
   const finalPrice = tier.price - discount
 
   const canProceed = details.firstName.trim() && details.lastName.trim() && details.email.trim() && details.phone.trim()
