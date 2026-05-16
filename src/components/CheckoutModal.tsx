@@ -18,9 +18,7 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
 }
 
 // ─── Discount codes ───────────────────────────────────────────────────────────
-const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {
-  TEST2: { label: 'Test Code', fixed: 2 },
-}
+const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {}
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
 function loadRazorpay(): Promise<boolean> {
