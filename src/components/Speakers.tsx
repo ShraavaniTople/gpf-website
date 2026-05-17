@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import swatiPhoto from '../assets/speaker-swati.png'
 import amritPhoto from '../assets/speaker-amrit.png'
-import supriyaPhoto from '../assets/speaker-supriya.png'
+const supriyaPhoto = '/speaker-supriya-new.png'
 
 interface Speaker { name: string; title: string; linkedin: string | null; photo: string; objectPos: string }
 interface Props { onApply: () => void; onNominate: () => void }
@@ -26,7 +26,7 @@ const speakers = [
     title: 'MD, ClearRoute',
     linkedin: 'https://www.linkedin.com/in/supriya-y-rao/',
     photo: supriyaPhoto,
-    objectPos: '50% 10%',
+    objectPos: '50% 20%',
   },
   {
     name: 'Roopa Jayaraman',
