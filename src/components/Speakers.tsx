@@ -29,6 +29,13 @@ const speakers = [
     objectPos: '50% 10%',
   },
   {
+    name: 'Roopa Jayaraman',
+    title: 'Chief Product & Technology Officer, Odessa',
+    linkedin: 'https://www.linkedin.com/in/roopajayaraman/',
+    photo: '/speaker-roopa.png',
+    objectPos: '50% 15%',
+  },
+  {
     name: 'More Speakers',
     title: 'Being Announced Soon',
     linkedin: null,
@@ -70,7 +77,7 @@ export default function Speakers({ onApply, onNominate }: Props) {
         </div>
 
         {/* Speaker grid — 4 portrait cards */}
-        <div ref={gridRef} className="sg grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div ref={gridRef} className="sg grid grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
           {(speakers as Speaker[]).map((s, i) => {
             const isTba = s.name === 'More Speakers'
             const inner = (
