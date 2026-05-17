@@ -74,14 +74,14 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
       }} />
 
       {/* ── Main two-column layout ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28 md:pt-36 pb-8">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-6 min-h-[calc(100vh-220px)]">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-24 md:pt-36 pb-8">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-6 lg:min-h-[calc(100vh-220px)]">
 
           {/* LEFT — text (55%) */}
           <div className="lg:w-[55%] flex flex-col justify-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2.5 mb-10 w-fit"
-              style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 999, padding: '8px 18px', background: 'rgba(245,158,11,.04)' }}>
+            <div className="inline-flex items-center gap-2.5 mb-5 w-fit"
+              style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 999, padding: '7px 16px', background: 'rgba(245,158,11,.04)' }}>
               <span className="pd w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#F59E0B' }} aria-hidden />
               <span className="font-mono text-xs font-medium tracking-widest uppercase" style={{ color: '#F59E0B' }}>
                 Bangalore &nbsp;·&nbsp; Q3 2026
@@ -89,7 +89,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             </div>
 
             {/* Title */}
-            <h1 className="font-display font-extrabold leading-none mb-8"
+            <h1 className="font-display font-extrabold leading-none mb-5"
               style={{ fontSize: 'clamp(44px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
               {[
                 { text: 'The Great', cls: '',     delay: '0.1s' },
@@ -104,12 +104,26 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               ))}
             </h1>
 
+            {/* MOBILE — hero photo, right after title */}
+            <div className="block lg:hidden w-full rounded-2xl overflow-hidden relative mb-5"
+              style={{ height: 220, boxShadow: '0 16px 50px rgba(0,0,0,0.5)' }}>
+              <img src={mosaicPhotos.main} alt="GPF 2026 speaker on stage"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 25%' }} />
+              <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,4,12,.5) 0%, transparent 70%)' }} />
+              <div className="absolute bottom-3 left-3">
+                <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full"
+                  style={{ background: 'rgba(245,158,11,.2)', border: '1px solid rgba(245,158,11,.35)', color: '#F59E0B' }}>
+                  A WiP India Initiative
+                </span>
+              </div>
+            </div>
+
             {/* Tagline + CTAs */}
             <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
-              <p className="text-base md:text-xl mb-10 leading-relaxed" style={{ color: '#9490AD' }}>
+              <p className="text-base md:text-xl mb-6 leading-relaxed" style={{ color: '#9490AD' }}>
                 India's Home for Product Builders &amp; Leaders
               </p>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3 items-start sm:items-center mb-5">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 items-start sm:items-center mb-4">
                 <button onClick={() => go('passes')} className="btn-purple text-sm w-full sm:w-auto">Get Passes</button>
                 <button onClick={onCommunity} className="btn-purple text-sm w-full sm:w-auto">Become a Community Partner</button>
               </div>
@@ -119,20 +133,6 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                   Become a Sponsor &rarr;
                 </button>
               </p>
-            </div>
-          </div>
-
-          {/* MOBILE — single hero photo */}
-          <div className="block lg:hidden w-full rounded-2xl overflow-hidden relative"
-            style={{ height: 260, boxShadow: '0 16px 50px rgba(0,0,0,0.5)' }}>
-            <img src={mosaicPhotos.main} alt="GPF 2026 speaker on stage"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%' }} />
-            <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,4,12,.6) 0%, transparent 60%)' }} />
-            <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2">
-              <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full"
-                style={{ background: 'rgba(245,158,11,.15)', border: '1px solid rgba(245,158,11,.3)', color: '#F59E0B' }}>
-                A Women in Product India Initiative
-              </span>
             </div>
           </div>
 
