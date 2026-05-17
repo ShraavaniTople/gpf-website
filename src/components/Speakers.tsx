@@ -36,6 +36,13 @@ const speakers = [
     objectPos: '50% 15%',
   },
   {
+    name: 'Abhishek',
+    title: 'KPMG',
+    linkedin: null,
+    photo: '/speaker-abhishek.png',
+    objectPos: '50% 15%',
+  },
+  {
     name: 'Sheetal Kale',
     title: 'Managing Director, Head of DataArt India',
     linkedin: 'https://www.linkedin.com/in/sheetalskale/',
@@ -43,11 +50,11 @@ const speakers = [
     objectPos: '50% 15%',
   },
   {
-    name: 'More Speakers',
-    title: 'Being Announced Soon',
-    linkedin: null,
-    photo: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=700&q=80',
-    objectPos: '50% 50%',
+    name: 'Benu Aggarwal',
+    title: 'Founder & President, Milestone',
+    linkedin: 'https://www.linkedin.com/in/benua/',
+    photo: '/speaker-benua.png',
+    objectPos: '50% 15%',
   },
 ]
 
@@ -84,9 +91,9 @@ export default function Speakers({ onApply, onNominate }: Props) {
         </div>
 
         {/* Speaker grid — 4 portrait cards */}
-        <div ref={gridRef} className="sg grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+        <div ref={gridRef} className="sg grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
           {(speakers as Speaker[]).map((s, i) => {
-            const isTba = s.name === 'More Speakers'
+            const isTba = false
             const inner = (
               <div className={`spk-card relative overflow-hidden rounded-2xl h-full w-full ${isTba ? 'opacity-50' : 'cursor-pointer'}`} style={{ aspectRatio: '3/4' }}>
                 <img src={s.photo} alt={s.name} className="w-full h-full object-cover transition-transform duration-[900ms]"
