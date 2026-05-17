@@ -36,7 +36,7 @@ const speakers = [
     objectPos: '50% 15%',
   },
   {
-    name: 'Abhishek Kishore Gupta',
+    name: 'Abhishek Gupta',
     title: 'Partner & National Sector Leader, KPMG',
     linkedin: 'https://www.linkedin.com/in/akgin/',
     photo: '/speaker-abhishek.png',
