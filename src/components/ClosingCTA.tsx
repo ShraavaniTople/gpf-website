@@ -51,7 +51,7 @@ export default function ClosingCTA({ onRegister, onSponsor, onSpeak }: Props) {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 mb-16">
           <button onClick={onRegister} className="btn-purple">
             Register Now
           </button>

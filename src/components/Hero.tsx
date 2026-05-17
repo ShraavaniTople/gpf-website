@@ -74,7 +74,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
       }} />
 
       {/* ── Main two-column layout ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-36 pb-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28 md:pt-36 pb-8">
         <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-6 min-h-[calc(100vh-220px)]">
 
           {/* LEFT — text (55%) */}
@@ -84,7 +84,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 999, padding: '8px 18px', background: 'rgba(245,158,11,.04)' }}>
               <span className="pd w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#F59E0B' }} aria-hidden />
               <span className="font-mono text-xs font-medium tracking-widest uppercase" style={{ color: '#F59E0B' }}>
-                Bangalore &nbsp;·&nbsp; Q3 2026 &nbsp;·&nbsp; Women in Product India
+                Bangalore &nbsp;·&nbsp; Q3 2026
               </span>
             </div>
 
@@ -106,12 +106,12 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
             {/* Tagline + CTAs */}
             <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
-              <p className="text-lg md:text-xl mb-10 leading-relaxed whitespace-nowrap" style={{ color: '#9490AD' }}>
+              <p className="text-base md:text-xl mb-10 leading-relaxed" style={{ color: '#9490AD' }}>
                 India's Home for Product Builders &amp; Leaders
               </p>
-              <div className="flex flex-wrap gap-4 items-center mb-5">
-                <button onClick={() => go('passes')} className="btn-purple text-sm">Get Passes</button>
-                <button onClick={onCommunity} className="btn-purple text-sm">Become a Community Partner</button>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 items-start sm:items-center mb-5">
+                <button onClick={() => go('passes')} className="btn-purple text-sm w-full sm:w-auto">Get Passes</button>
+                <button onClick={onCommunity} className="btn-purple text-sm w-full sm:w-auto">Become a Community Partner</button>
               </div>
               <p className="text-sm" style={{ color: '#52506A' }}>
                 Priority sponsor slots are open &nbsp;

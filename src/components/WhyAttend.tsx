@@ -111,8 +111,6 @@ export default function WhyAttend() {
                   className="feat-row py-6 cursor-default"
                   style={{
                     borderBottom: '1px solid #1C1A32',
-                    borderLeft: isRightCol ? '1px solid #1C1A32' : undefined,
-                    paddingLeft: isRightCol ? '3rem' : undefined,
                   }}
                 >
                   <div className="flex items-start gap-5">

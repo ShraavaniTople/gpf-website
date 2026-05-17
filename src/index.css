@@ -243,3 +243,13 @@
               box-shadow .4s;
 }
 .pass-card:hover { transform: translateY(-5px); }
+
+/* ─── Mobile fixes ────────────────────────────────────── */
+@media (max-width: 640px) {
+  .btn-purple, .btn-amber, .btn-ghost {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .bg-num { display: none; }
+}
