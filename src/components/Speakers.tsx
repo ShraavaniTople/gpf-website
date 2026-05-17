@@ -23,7 +23,7 @@ const speakers = [
   },
   {
     name: 'Supriya Rao',
-    title: 'MD, ClearRoute',
+    title: 'Managing Director, ClearRoute',
     linkedin: 'https://www.linkedin.com/in/supriya-y-rao/',
     photo: supriyaPhoto,
     objectPos: '50% 20%',
@@ -36,9 +36,9 @@ const speakers = [
     objectPos: '50% 15%',
   },
   {
-    name: 'Abhishek',
-    title: 'KPMG',
-    linkedin: null,
+    name: 'Abhishek Kishore Gupta',
+    title: 'Partner & National Sector Leader, KPMG',
+    linkedin: 'https://www.linkedin.com/in/akgin/',
     photo: '/speaker-abhishek.png',
     objectPos: '50% 15%',
   },
@@ -100,12 +100,12 @@ export default function Speakers({ onApply, onNominate }: Props) {
                   style={{ objectPosition: s.objectPos }}
                   onMouseEnter={e => { if (!isTba) e.currentTarget.style.transform = 'scale(1.06)' }}
                   onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
-                <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,4,12,.95) 0%, rgba(5,4,12,.1) 50%, transparent 100%)' }} />
-                <div className="ov absolute bottom-0 left-0 right-0 p-5 z-10">
-                  <p className="font-display font-bold leading-tight text-base" style={{ color: '#F0EEF8' }}>{s.name}</p>
-                  <p className="text-xs mt-1.5 font-medium" style={{ color: isTba ? '#52506A' : '#F59E0B' }}>{s.title}</p>
+                <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,4,12,1) 0%, rgba(5,4,12,.7) 35%, rgba(5,4,12,.1) 60%, transparent 100%)' }} />
+                <div className="ov absolute bottom-0 left-0 right-0 px-4 py-4 z-10">
+                  <p className="font-display font-bold leading-tight text-sm" style={{ color: '#F0EEF8' }}>{s.name}</p>
+                  <p className="text-[11px] mt-1 font-medium leading-snug" style={{ color: isTba ? '#52506A' : '#F59E0B' }}>{s.title}</p>
                   {s.linkedin && (
-                    <p className="text-[10px] mt-2 font-mono" style={{ color: '#7C3AED' }}>View LinkedIn</p>
+                    <p className="text-[10px] mt-1.5 font-mono" style={{ color: '#7C3AED' }}>View LinkedIn</p>
                   )}
                 </div>
               </div>
