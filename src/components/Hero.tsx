@@ -106,8 +106,8 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
             {/* Tagline + CTAs */}
             <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
-              <p className="text-lg md:text-xl mb-10 max-w-md leading-relaxed" style={{ color: '#9490AD' }}>
-                The Home of India's Product Builders &amp; Leaders
+              <p className="text-lg md:text-xl mb-10 leading-relaxed whitespace-nowrap" style={{ color: '#9490AD' }}>
+                India's Home for Product Builders &amp; Leaders
               </p>
               <div className="flex flex-wrap gap-4 items-center mb-5">
                 <button onClick={() => go('passes')} className="btn-purple text-sm">Get Passes</button>
