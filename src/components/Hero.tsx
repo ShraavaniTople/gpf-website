@@ -65,6 +65,12 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
   return (
     <section className="relative min-h-screen overflow-hidden" style={{ background: '#05040C' }}>
+      {/* Mobile background image */}
+      <div className="block lg:hidden absolute inset-0 z-0" style={{ opacity: 0.18 }}>
+        <img src={heroSwatiStage} alt="" aria-hidden
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.6) 0%, rgba(5,4,12,.95) 70%)' }} />
+      </div>
       {/* Background glows */}
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(ellipse 60% 70% at 15% 55%, rgba(124,58,237,.15) 0%, transparent 100%)'
@@ -92,7 +98,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
             {/* Title */}
             <h1 className="font-display font-extrabold leading-none mb-5"
-              style={{ fontSize: 'clamp(44px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
+              style={{ fontSize: 'clamp(52px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
               {[
                 { text: 'The Great', cls: '',     delay: '0.1s' },
                 { text: 'Product',   cls: '',     delay: '0.22s' },
@@ -105,20 +111,6 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 </span>
               ))}
             </h1>
-
-            {/* MOBILE — hero photo, right after title */}
-            <div className="block lg:hidden w-full rounded-2xl overflow-hidden relative mb-5"
-              style={{ height: 220, boxShadow: '0 16px 50px rgba(0,0,0,0.5)' }}>
-              <img src={mosaicPhotos.main} alt="GPF 2026 speaker on stage"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 25%' }} />
-              <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,4,12,.5) 0%, transparent 70%)' }} />
-              <div className="absolute bottom-3 left-3">
-                <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full"
-                  style={{ background: 'rgba(245,158,11,.2)', border: '1px solid rgba(245,158,11,.35)', color: '#F59E0B' }}>
-                  A WiP India Initiative
-                </span>
-              </div>
-            </div>
 
             {/* Tagline + CTAs */}
             <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
