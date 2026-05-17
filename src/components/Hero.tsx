@@ -84,7 +84,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 999, padding: '7px 16px', background: 'rgba(245,158,11,.04)' }}>
               <span className="pd w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#F59E0B' }} aria-hidden />
               <span className="font-mono text-xs font-medium tracking-widest uppercase" style={{ color: '#F59E0B' }}>
-                Bangalore &nbsp;·&nbsp; Q3 2026
+                Bangalore &nbsp;·&nbsp; Q3 2026 &nbsp;·&nbsp; Women in Product India
               </span>
             </div>
 
