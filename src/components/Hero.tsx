@@ -90,7 +90,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
             {/* Title */}
             <h1 className="font-display font-extrabold leading-none mb-8"
-              style={{ fontSize: 'clamp(56px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
+              style={{ fontSize: 'clamp(44px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
               {[
                 { text: 'The Great', cls: '',     delay: '0.1s' },
                 { text: 'Product',   cls: '',     delay: '0.22s' },
@@ -119,6 +119,20 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                   Become a Sponsor &rarr;
                 </button>
               </p>
+            </div>
+          </div>
+
+          {/* MOBILE — single hero photo */}
+          <div className="block lg:hidden w-full rounded-2xl overflow-hidden relative"
+            style={{ height: 260, boxShadow: '0 16px 50px rgba(0,0,0,0.5)' }}>
+            <img src={mosaicPhotos.main} alt="GPF 2026 speaker on stage"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 30%' }} />
+            <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,4,12,.6) 0%, transparent 60%)' }} />
+            <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2">
+              <span className="font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full"
+                style={{ background: 'rgba(245,158,11,.15)', border: '1px solid rgba(245,158,11,.3)', color: '#F59E0B' }}>
+                A Women in Product India Initiative
+              </span>
             </div>
           </div>
 
@@ -204,7 +218,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           >
             {[...filmPhotos, ...filmPhotos].map((p, i) => (
               <div key={i} className="zoom flex-shrink-0 overflow-hidden rounded-xl"
-                style={{ width: 'clamp(160px, 38vw, 260px)', height: 'clamp(100px, 24vw, 160px)', background: '#1C1A32' }}>
+                style={{ width: 'clamp(140px, 42vw, 260px)', height: 'clamp(90px, 28vw, 160px)', background: '#1C1A32' }}>
                 <img
                   src={p.src}
                   alt={p.alt}
