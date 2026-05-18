@@ -79,18 +79,10 @@ export default function Navbar() {
         >
           <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0">
-              {/* Full logo on desktop, cropped to just the G icon on mobile */}
               <img
                 src="/gpf-logo.png"
                 alt="The Great Product Festival"
-                className="hidden sm:block"
-                style={{ height: 56, width: 'auto', maxWidth: 220 }}
-              />
-              <img
-                src="/gpf-logo.png"
-                alt="The Great Product Festival"
-                className="block sm:hidden"
-                style={{ height: 44, width: 44, objectFit: 'cover', objectPosition: 'left center' }}
+                style={{ height: 48, width: 'auto', maxWidth: '160px' }}
               />
             </button>
 
@@ -129,7 +121,7 @@ export default function Navbar() {
       {open && (
         <div className="fixed inset-0 z-[100] flex flex-col" style={{ background: '#05040C' }}>
           <div className="flex items-center justify-between px-6 h-16 border-b" style={{ borderColor: '#1C1A32' }}>
-            <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 40, width: 'auto' }} />
+            <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 44, width: 'auto', maxWidth: '160px' }} />
             <button onClick={() => setOpen(false)} style={{ color: '#9490AD' }}><X size={22} /></button>
           </div>
           <div className="flex flex-col flex-1 justify-center px-8 gap-6">
