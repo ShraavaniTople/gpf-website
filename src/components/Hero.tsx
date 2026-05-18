@@ -87,10 +87,11 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           <div className="lg:w-[55%] flex flex-col justify-center">
             {/* Badge */}
             <div className="inline-flex items-center gap-2.5 mb-5 w-fit"
-              style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 999, padding: '7px 16px', background: 'rgba(245,158,11,.04)' }}>
+              style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.04)' }}>
               <span className="pd w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#F59E0B' }} aria-hidden />
-              <span className="font-mono font-medium uppercase" style={{ color: '#F59E0B', fontSize: 'clamp(9px, 2.5vw, 12px)', letterSpacing: '0.15em', whiteSpace: 'nowrap' }}>
-                Bangalore &nbsp;·&nbsp; Q3 2026 &nbsp;·&nbsp; Women in Product India
+              <span className="font-mono font-medium uppercase" style={{ color: '#F59E0B', fontSize: 11, letterSpacing: '0.14em', lineHeight: 1.5 }}>
+                <span className="block sm:inline">Bangalore &nbsp;·&nbsp; Q3 2026</span>
+                <span className="block sm:inline sm:before:content-['_·_'] before:mx-1">Women in Product India</span>
               </span>
             </div>
 

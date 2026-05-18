@@ -77,13 +77,13 @@ export default function Navbar() {
           className="transition-all duration-500"
           style={scrolled ? { background: 'rgba(5,4,12,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(28,26,50,0.8)' } : {}}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[68px] flex items-center justify-between gap-4">
             {/* Logo */}
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0">
               <img
                 src="/gpf-logo.png"
                 alt="The Great Product Festival"
-                style={{ height: 40, width: 'auto', maxWidth: '180px' }}
+                style={{ height: 52, width: 'auto', maxWidth: '200px' }}
               />
             </button>
 
