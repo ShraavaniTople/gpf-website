@@ -78,12 +78,11 @@ export default function Navbar() {
           style={scrolled ? { background: 'rgba(5,4,12,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(28,26,50,0.8)' } : {}}
         >
           <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0"
-              style={{ background: 'rgba(255,255,255,0.07)', borderRadius: 10, padding: '4px 10px' }}>
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0">
               <img
                 src="/gpf-logo.png"
                 alt="The Great Product Festival"
-                style={{ height: 52, width: 'auto', filter: 'brightness(1.6) saturate(1.4) drop-shadow(0 0 12px rgba(124,58,237,.8))' }}
+                style={{ height: 44, width: 'auto' }}
               />
             </button>
 
@@ -122,7 +121,7 @@ export default function Navbar() {
       {open && (
         <div className="fixed inset-0 z-[100] flex flex-col" style={{ background: '#05040C' }}>
           <div className="flex items-center justify-between px-6 h-16 border-b" style={{ borderColor: '#1C1A32' }}>
-            <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 44, width: 'auto', filter: 'brightness(1.4) drop-shadow(0 0 10px rgba(124,58,237,.7))' }} />
+            <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 40, width: 'auto' }} />
             <button onClick={() => setOpen(false)} style={{ color: '#9490AD' }}><X size={22} /></button>
           </div>
           <div className="flex flex-col flex-1 justify-center px-8 gap-6">
