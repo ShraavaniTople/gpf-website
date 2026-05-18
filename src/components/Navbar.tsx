@@ -82,7 +82,7 @@ export default function Navbar() {
               <img
                 src="/gpf-logo.png"
                 alt="The Great Product Festival"
-                style={{ height: 38, width: 'auto', filter: 'drop-shadow(0 0 8px rgba(124,58,237,.5))' }}
+                style={{ height: 48, width: 'auto', filter: 'brightness(1.4) drop-shadow(0 0 10px rgba(124,58,237,.7)) drop-shadow(0 0 4px rgba(245,158,11,.4))' }}
               />
             </button>
 
@@ -121,7 +121,7 @@ export default function Navbar() {
       {open && (
         <div className="fixed inset-0 z-[100] flex flex-col" style={{ background: '#05040C' }}>
           <div className="flex items-center justify-between px-6 h-16 border-b" style={{ borderColor: '#1C1A32' }}>
-            <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 34, width: 'auto', filter: 'drop-shadow(0 0 6px rgba(124,58,237,.5))' }} />
+            <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 44, width: 'auto', filter: 'brightness(1.4) drop-shadow(0 0 10px rgba(124,58,237,.7))' }} />
             <button onClick={() => setOpen(false)} style={{ color: '#9490AD' }}><X size={22} /></button>
           </div>
           <div className="flex flex-col flex-1 justify-center px-8 gap-6">
