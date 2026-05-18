@@ -77,15 +77,17 @@ export default function Navbar() {
           className="transition-all duration-500"
           style={scrolled ? { background: 'rgba(5,4,12,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(28,26,50,0.8)' } : {}}
         >
-          <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+            {/* Logo */}
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0">
               <img
                 src="/gpf-logo.png"
                 alt="The Great Product Festival"
-                style={{ height: 48, width: 'auto', maxWidth: '160px' }}
+                style={{ height: 40, width: 'auto', maxWidth: '180px' }}
               />
             </button>
 
+            {/* Desktop nav links */}
             <div className="hidden xl:flex items-center gap-6">
               {links.map(l => (
                 <button key={l.id} onClick={() => go(l.id)}
@@ -105,12 +107,17 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="flex items-center gap-3">
-              <button onClick={() => go('passes')} className="btn-purple hidden sm:block" style={{ padding: '9px 22px', fontSize: '13px' }}>
+            {/* Right side: Get Passes + hamburger */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <button onClick={() => go('passes')} className="btn-purple hidden sm:block" style={{ padding: '9px 20px', fontSize: '13px' }}>
                 Get Passes
               </button>
-              <button onClick={() => setOpen(true)} className="xl:hidden w-9 h-9 flex items-center justify-center rounded-lg" style={{ color: '#9490AD', border: '1px solid #1C1A32' }}>
-                <Menu size={18} />
+              <button
+                onClick={() => setOpen(true)}
+                className="xl:hidden w-10 h-10 flex items-center justify-center rounded-lg"
+                style={{ color: '#F0EEF8', background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.3)' }}
+              >
+                <Menu size={20} />
               </button>
             </div>
           </div>
