@@ -67,7 +67,7 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 right-0 z-50">
         {/* Announcement bar */}
         {banner && (
-          <div style={{ animation: 'fadeIn .5s ease' }}>
+          <div className="hidden sm:block" style={{ animation: 'fadeIn .5s ease' }}>
             <AnnouncementBar onDismiss={() => setBanner(false)} />
           </div>
         )}
