@@ -79,10 +79,18 @@ export default function Navbar() {
         >
           <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0">
+              {/* Full logo on desktop, cropped to just the G icon on mobile */}
               <img
                 src="/gpf-logo.png"
                 alt="The Great Product Festival"
-                style={{ height: 60, width: 'auto' }}
+                className="hidden sm:block"
+                style={{ height: 56, width: 'auto', maxWidth: 220 }}
+              />
+              <img
+                src="/gpf-logo.png"
+                alt="The Great Product Festival"
+                className="block sm:hidden"
+                style={{ height: 44, width: 44, objectFit: 'cover', objectPosition: 'left center' }}
               />
             </button>
 
