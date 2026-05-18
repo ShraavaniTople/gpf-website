@@ -78,11 +78,12 @@ export default function Navbar() {
           style={scrolled ? { background: 'rgba(5,4,12,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(28,26,50,0.8)' } : {}}
         >
           <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0">
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0"
+              style={{ background: 'rgba(255,255,255,0.07)', borderRadius: 10, padding: '4px 10px' }}>
               <img
                 src="/gpf-logo.png"
                 alt="The Great Product Festival"
-                style={{ height: 48, width: 'auto', filter: 'brightness(1.4) drop-shadow(0 0 10px rgba(124,58,237,.7)) drop-shadow(0 0 4px rgba(245,158,11,.4))' }}
+                style={{ height: 52, width: 'auto', filter: 'brightness(1.6) saturate(1.4) drop-shadow(0 0 12px rgba(124,58,237,.8))' }}
               />
             </button>
 
