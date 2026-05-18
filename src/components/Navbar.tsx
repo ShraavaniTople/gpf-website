@@ -82,7 +82,7 @@ export default function Navbar() {
               <img
                 src="/gpf-logo.png"
                 alt="The Great Product Festival"
-                style={{ height: 44, width: 'auto' }}
+                style={{ height: 60, width: 'auto' }}
               />
             </button>
 
