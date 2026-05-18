@@ -78,16 +78,12 @@ export default function Navbar() {
           style={scrolled ? { background: 'rgba(5,4,12,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(28,26,50,0.8)' } : {}}
         >
           <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2.5 flex-shrink-0">
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0">
               <img
-                src="/wip-logo.png"
-                alt="Women in Product India"
-                style={{ width: 32, height: 32, borderRadius: '50%', boxShadow: '0 0 14px rgba(124,58,237,.65), 0 0 28px rgba(124,58,237,.25)', objectFit: 'cover' }}
+                src="/gpf-logo.png"
+                alt="The Great Product Festival"
+                style={{ height: 38, width: 'auto', filter: 'drop-shadow(0 0 8px rgba(124,58,237,.5))' }}
               />
-              <span className="flex items-baseline gap-1.5">
-                <span className="font-display font-extrabold text-xl text-white tracking-tight">GPF</span>
-                <span className="font-mono text-sm font-medium" style={{ color: '#F59E0B' }}>2026</span>
-              </span>
             </button>
 
             <div className="hidden xl:flex items-center gap-6">
@@ -125,10 +121,7 @@ export default function Navbar() {
       {open && (
         <div className="fixed inset-0 z-[100] flex flex-col" style={{ background: '#05040C' }}>
           <div className="flex items-center justify-between px-6 h-16 border-b" style={{ borderColor: '#1C1A32' }}>
-            <span className="flex items-center gap-2.5">
-              <img src="/wip-logo.png" alt="Women in Product India" style={{ width: 30, height: 30, borderRadius: '50%', boxShadow: '0 0 12px rgba(124,58,237,.6)', objectFit: 'cover' }} />
-              <span className="font-display font-extrabold text-xl text-white">GPF <span style={{ color: '#F59E0B' }}>2026</span></span>
-            </span>
+            <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 34, width: 'auto', filter: 'drop-shadow(0 0 6px rgba(124,58,237,.5))' }} />
             <button onClick={() => setOpen(false)} style={{ color: '#9490AD' }}><X size={22} /></button>
           </div>
           <div className="flex flex-col flex-1 justify-center px-8 gap-6">
