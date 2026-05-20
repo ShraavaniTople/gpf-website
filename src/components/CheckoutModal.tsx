@@ -130,20 +130,15 @@ function DigitalPass({ name, company, tierName, amount, paymentId, passNumber }:
 
       {/* Header */}
       <div style={{ padding: '24px 28px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        {/* GPF logo left */}
+        <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 48, width: 'auto', maxWidth: 140 }} />
+        {/* WiP logo right + confirmed badge */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 44, width: 'auto', maxWidth: 120 }} />
-          <div>
-            <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: 13, color: '#F0EEF8', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
-              THE GREAT PRODUCT FESTIVAL
-            </p>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginTop: 2 }}>
-              GPF 2026 · BANGALORE
-            </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(52,211,153,.12)', border: '1px solid rgba(52,211,153,.25)', borderRadius: 999, padding: '5px 12px' }}>
+            <Check size={11} color="#34D399" />
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#34D399', letterSpacing: '0.1em' }}>CONFIRMED</span>
           </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(52,211,153,.12)', border: '1px solid rgba(52,211,153,.25)', borderRadius: 999, padding: '5px 12px' }}>
-          <Check size={11} color="#34D399" />
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#34D399', letterSpacing: '0.1em' }}>CONFIRMED</span>
+          <img src="/wip-logo.png" alt="Women in Product India" style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover' }} />
         </div>
       </div>
 
