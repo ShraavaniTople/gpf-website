@@ -131,7 +131,7 @@ function DigitalPass({ name, company, tierName, amount, paymentId, passNumber }:
       {/* Header */}
       <div style={{ padding: '24px 28px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <img src="/wip-logo.png" alt="Women in Product India" style={{ width: 44, height: 44, borderRadius: '50%' }} />
+          <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 44, width: 'auto', maxWidth: 120 }} />
           <div>
             <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: 13, color: '#F0EEF8', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
               THE GREAT PRODUCT FESTIVAL
@@ -194,7 +194,7 @@ function DigitalPass({ name, company, tierName, amount, paymentId, passNumber }:
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
           <div style={{ background: '#fff', padding: 8, borderRadius: 10 }}>
             <QRCodeSVG
-              value={`GPF2026|${passNumber}|${paymentId}`}
+              value={passNumber}
               size={80}
               bgColor="#ffffff"
               fgColor="#1a1040"
