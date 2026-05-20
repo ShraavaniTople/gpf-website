@@ -339,6 +339,15 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
           </p>
         </div>
 
+        {/* Luma check-in notice */}
+        <div className="flex items-start gap-3 rounded-xl px-4 py-3"
+          style={{ background: 'rgba(245,158,11,.06)', border: '1px solid rgba(245,158,11,.2)' }}>
+          <span style={{ fontSize: 15, flexShrink: 0, marginTop: 1 }}>📲</span>
+          <p className="text-xs leading-relaxed" style={{ color: '#9490AD' }}>
+            You will receive a <span style={{ color: '#F0EEF8' }}>separate check-in ticket via email</span> closer to the event. Please use that QR code for entry at the venue.
+          </p>
+        </div>
+
         {/* Actions */}
         <div className="flex gap-3">
           <button
