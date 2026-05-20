@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Check, Tag, X, ArrowLeft, Shield, Download, Mail } from 'lucide-react'
+import { QRCodeSVG } from 'qrcode.react'
 
 // ─── Tier data ────────────────────────────────────────────────────────────────
 const TIERS: Record<string, { price: number; features: string[] }> = {
@@ -187,25 +188,39 @@ function DigitalPass({ name, company, tierName, amount, paymentId, passNumber }:
         <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#05040C', flexShrink: 0, marginRight: -32 }} />
       </div>
 
-      {/* Footer — payment info */}
-      <div style={{ padding: '20px 28px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-        <div>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>PASS NUMBER</p>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, color: '#A78BFA', fontWeight: 500 }}>{passNumber}</p>
+      {/* Footer — QR + payment info */}
+      <div style={{ padding: '20px 28px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
+        {/* QR code */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+          <div style={{ background: '#fff', padding: 8, borderRadius: 10 }}>
+            <QRCodeSVG
+              value={`GPF2026|${passNumber}|${paymentId}`}
+              size={80}
+              bgColor="#ffffff"
+              fgColor="#1a1040"
+              level="M"
+            />
+          </div>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, color: '#52506A', letterSpacing: '0.1em', textAlign: 'center' }}>SCAN AT ENTRY</p>
         </div>
-        <div style={{ textAlign: 'right' }}>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>AMOUNT PAID</p>
-          <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, fontSize: 18, color: '#F0EEF8' }}>₹{amount}</p>
+
+        {/* Pass details */}
+        <div style={{ flex: 1 }}>
+          <div style={{ marginBottom: 12 }}>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>PASS NUMBER</p>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, color: '#A78BFA', fontWeight: 500 }}>{passNumber}</p>
+          </div>
+          <div style={{ marginBottom: paymentId ? 10 : 0 }}>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>AMOUNT PAID</p>
+            <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, fontSize: 18, color: '#F0EEF8' }}>₹{amount}</p>
+          </div>
+          {paymentId && (
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, color: '#52506A', letterSpacing: '0.06em' }}>
+              Payment ID: {paymentId}
+            </p>
+          )}
         </div>
       </div>
-
-      {paymentId && (
-        <div style={{ padding: '0 28px 20px' }}>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.08em' }}>
-            Payment ID: {paymentId}
-          </p>
-        </div>
-      )}
     </div>
   )
 }
@@ -332,7 +347,23 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         {/* Actions */}
         <div className="flex gap-3">
           <button
-            onClick={() => window.print()}
+            onClick={() => {
+              const pass = document.getElementById('gpf-pass')
+              if (!pass) return
+              const w = window.open('', '_blank', 'width=600,height=700')
+              if (!w) return
+              w.document.write(`<!DOCTYPE html><html><head><title>GPF 2026 Pass</title>
+                <style>
+                  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+                  * { margin: 0; padding: 0; box-sizing: border-box; }
+                  body { background: #05040C; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+                  @page { size: A5 landscape; margin: 0; }
+                </style>
+              </head><body>${pass.outerHTML}</body></html>`)
+              w.document.close()
+              w.focus()
+              setTimeout(() => { w.print() }, 600)
+            }}
             className="btn-ghost flex items-center justify-center gap-2 flex-1"
             style={{ padding: '12px', fontSize: 13 }}
           >
