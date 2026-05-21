@@ -56,6 +56,13 @@ const speakers = [
     photo: '/speaker-benua.png',
     objectPos: '50% 15%',
   },
+  {
+    name: 'Pulkit Jain',
+    title: 'Co-Founder, Vedantu',
+    linkedin: 'https://www.linkedin.com/in/jainpulkit/',
+    photo: '/speaker-pulkit.png',
+    objectPos: '50% 20%',
+  },
 ]
 
 function useVis(delay = 0) {
