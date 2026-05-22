@@ -58,7 +58,7 @@ const speakers = [
   },
   {
     name: 'Pulkit Jain',
-    title: 'Co-Founder, Vedantu',
+    title: 'Co-Founder & CPO, Vedantu',
     linkedin: 'https://www.linkedin.com/in/jainpulkit/',
     photo: '/speaker-pulkit.png',
     objectPos: '50% 20%',
