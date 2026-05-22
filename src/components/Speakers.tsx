@@ -124,7 +124,7 @@ export default function Speakers({ onApply, onNominate }: Props) {
         </div>
 
         <p className="text-center text-sm italic mb-14" style={{ color: '#52506A' }}>
-          More speakers to be announced. Lineup is being finalized.
+          More exciting speakers joining the lineup soon.
         </p>
 
         {/* CTAs */}
