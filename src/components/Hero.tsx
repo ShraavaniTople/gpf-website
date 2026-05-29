@@ -225,8 +225,8 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+      {/* Scroll indicator — hidden on mobile */}
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1.5"
         style={{ opacity: 0, animation: 'heroFade 1s ease 1.5s forwards' }} aria-hidden>
         <span className="font-mono text-[10px] tracking-widest uppercase" style={{ color: '#52506A' }}>Scroll</span>
         <div style={{ width: 1, height: 28, background: 'linear-gradient(to bottom, #52506A, transparent)' }} />
