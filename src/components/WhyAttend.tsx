@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Users, Wrench, Network, Code2, MessageSquare, Globe } from 'lucide-react'
+import { Users, Wrench, Network, Code2, MessageSquare, Globe, Briefcase } from 'lucide-react'
 import type { ElementType } from 'react'
 
 interface Feature { icon: ElementType; num: string; title: string; bullets: string[] }
@@ -17,10 +17,12 @@ const features: Feature[] = [
     bullets: ["Intimate, closed-door discussions with the people shaping India's product future.", 'Exchange ideas on leadership, team culture, and scaling with industry veterans.'] },
   { icon: Globe, num: '06', title: 'Built for All of India',
     bullets: ['Content addressing the unique nuances of building for the next billion users.', 'An inclusive environment that welcomes all genders, career levels, and industries.'] },
+  { icon: Briefcase, num: '07', title: 'Hiring & Career Opportunities',
+    bullets: ['Connect with top companies actively hiring for product roles.', 'Explore career opportunities, meet recruiters, and find your next big move.'] },
 ]
 
-// Order so grid reads: 01,04 / 02,05 / 03,06 across the two columns
-const gridOrder = [features[0], features[3], features[1], features[4], features[2], features[5]]
+// Order so grid reads: 01,05 / 02,06 / 03,07 / 04 across the two columns
+const gridOrder = [features[0], features[4], features[1], features[5], features[2], features[6], features[3]]
 
 function useVis() {
   const ref = useRef<HTMLDivElement>(null)
@@ -35,19 +37,6 @@ function useVis() {
 export default function WhyAttend() {
   const headerRef = useVis()
   const gridRef = useVis()
-  const bannerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = bannerRef.current; if (!el) return
-    const fn = () => {
-      const rect = el.getBoundingClientRect()
-      const offset = (window.innerHeight / 2 - (rect.top + rect.height / 2)) * 0.2
-      const img = el.querySelector('img') as HTMLImageElement
-      if (img) img.style.transform = `translateY(${offset}px) scale(1.2)`
-    }
-    window.addEventListener('scroll', fn, { passive: true }); fn()
-    return () => window.removeEventListener('scroll', fn)
-  }, [])
 
   return (
     <section id="why-attend" className="relative py-28 px-6 overflow-hidden">
@@ -64,19 +53,6 @@ export default function WhyAttend() {
             <p className="text-base max-w-xs leading-relaxed lg:text-right" style={{ color: '#6B7280' }}>
               A genuine gathering of India's best product minds.
             </p>
-          </div>
-        </div>
-
-        <div ref={bannerRef} className="px-wrap rounded-2xl mb-20 relative overflow-hidden" style={{ height: 'clamp(140px, 30vw, 260px)' }}>
-          <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1400&q=80" alt="Stage" style={{ height: '120%', width: '100%', objectFit: 'cover' }} />
-          <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.9) 0%, rgba(5,4,12,.2) 50%, rgba(5,4,12,.6) 100%)' }} />
-          <div className="absolute bottom-8 left-8">
-            <p className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(28px,4vw,48px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>One stage.</p>
-            <p className="text-sm mt-1" style={{ color: '#9490AD' }}>India's best product minds. Together.</p>
-          </div>
-          <div className="absolute top-8 right-8 hidden md:block text-right">
-            <p className="font-mono text-xs tracking-widest uppercase" style={{ color: '#52506A' }}>Q3 2026</p>
-            <p className="font-display font-bold text-2xl mt-1" style={{ color: '#F0EEF8' }}>Bangalore</p>
           </div>
         </div>
 
