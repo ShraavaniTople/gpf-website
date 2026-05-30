@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Users, Wrench, Network, Code2, MessageSquare, Globe, Briefcase } from 'lucide-react'
+import { Users, Wrench, Network, Code2, MessageSquare, Briefcase } from 'lucide-react'
 import type { ElementType } from 'react'
 
 interface Feature { icon: ElementType; num: string; title: string; bullets: string[] }
@@ -15,14 +15,12 @@ const features: Feature[] = [
     bullets: ['Cross-functional teams building real solutions under real constraints in 24 hours.', 'Build something real. Win something meaningful. Demo on the main stage.'] },
   { icon: MessageSquare, num: '05', title: 'Founders and Leaders Roundtables',
     bullets: ["Intimate, closed-door discussions with the people shaping India's product future.", 'Exchange ideas on leadership, team culture, and scaling with industry veterans.'] },
-  { icon: Globe, num: '06', title: 'Built for All of India',
-    bullets: ['Content addressing the unique nuances of building for the next billion users.', 'An inclusive environment that welcomes all genders, career levels, and industries.'] },
-  { icon: Briefcase, num: '07', title: 'Hiring & Career Opportunities',
+  { icon: Briefcase, num: '06', title: 'Hiring & Career Opportunities',
     bullets: ['Connect with top companies actively hiring for product roles.', 'Explore career opportunities, meet recruiters, and find your next big move.'] },
 ]
 
-// Order so grid reads: 01,05 / 02,06 / 03,07 / 04 across the two columns
-const gridOrder = [features[0], features[4], features[1], features[5], features[2], features[6], features[3]]
+// Order so grid reads: 01,04 / 02,05 / 03,06 across the two columns
+const gridOrder = [features[0], features[3], features[1], features[4], features[2], features[5]]
 
 function useVis() {
   const ref = useRef<HTMLDivElement>(null)

@@ -3,18 +3,34 @@ import { useEffect, useRef } from 'react'
 const days = [
   {
     label: 'Day 1',
-    title: 'Product and Growth',
+    title: 'Building Intelligent Products',
     tracks: [
-      { name: 'AI Product Mastery', sessions: ['Modern product thinking', 'Rapid prototyping and building product MVPs', 'Shipping faster and smarter'] },
-      { name: 'Growth, Distribution and Branding', sessions: ['Digital marketing and content strategy', 'Cracking distribution in a digital-first world', 'PM to creator to operator'] },
+      { name: 'Product in the Intelligence Era', sessions: [
+        'Building products that think, learn, and act — agents, copilots, automation, and AI-native experiences.',
+        'From PM to Product Architect — navigating strategy, discovery, experimentation, and decision-making in the AI era.',
+        'Designing the future of human-AI collaboration — trust, workflows, interfaces, and responsible innovation.',
+      ] },
+      { name: 'Growth, Distribution & Digital Influence', sessions: [
+        'Winning attention in the age of infinite content — positioning, storytelling, and brand differentiation.',
+        'Modern distribution playbooks — creator ecosystems, communities, partnerships, and AI-powered growth.',
+        'Building trust at scale — turning audiences into advocates, customers, and loyal communities.',
+      ] },
     ],
   },
   {
     label: 'Day 2',
-    title: 'Startups and Leadership',
+    title: 'Building Companies & Leaders',
     tracks: [
-      { name: 'Startups and AI Builders', sessions: ['Modern startup playbooks', 'GTM for modern products', 'Founder stories and breakdowns'] },
-      { name: 'Leadership, Careers and the Future of Work', sessions: ['Automation vs augmentation for PMs', 'Leadership in high-growth teams', 'Hiring and skills of the future'] },
+      { name: 'Infinite Startups', sessions: [
+        'Building AI-native companies from idea to scale — product, GTM, talent, and execution.',
+        'Creating durable advantages in a rapidly changing world — moats, defensibility, and market timing.',
+        'Founder, operator, and investor playbooks — lessons from building, backing, and scaling breakout companies.',
+      ] },
+      { name: 'Leading the Infinite Builder', sessions: [
+        'Leading humans and AI together — the evolving role of leadership, management, and decision-making.',
+        'Building high-performance organizations — talent, culture, and execution in fast-changing environments.',
+        'Thriving in the future of work — careers, skills, adaptability, and lifelong learning.',
+      ] },
     ],
   },
 ]
@@ -93,7 +109,7 @@ export default function Agenda() {
                 <div className="h-1" style={{ background: ti === 0 ? '#7C3AED' : '#F59E0B' }} />
                 <div className="p-8">
                   <p className="font-mono text-[11px] uppercase tracking-[.18em] mb-3" style={{ color: ti === 0 ? '#A78BFA' : '#FCD34D' }}>
-                    Track {ti + 1}
+                    Track {ti + 3}
                   </p>
                   <h3 className="font-display font-bold mb-7 leading-snug" style={{ fontSize: 'clamp(16px,2vw,22px)', color: '#F0EEF8', letterSpacing: '-0.02em' }}>
                     {track.name}
