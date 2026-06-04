@@ -17,7 +17,7 @@ const speakers = [
   {
     name: 'Amrit Raj',
     title: 'Co-Founder, Women in Product India',
-    linkedin: 'https://www.linkedin.com/in/amritraj/',
+    linkedin: 'https://www.linkedin.com/in/amritraj02/',
     photo: amritPhoto,
     objectPos: '50% 15%',
   },

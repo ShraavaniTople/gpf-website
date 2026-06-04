@@ -52,6 +52,9 @@ export default function Hackathon({ onRegister }: Props) {
             Build Something Real.<br />
             <span className="grad">Win Something Meaningful.</span>
           </h2>
+          <p className="font-mono text-xs md:text-sm uppercase tracking-[.2em] mt-6" style={{ color: '#9490AD' }}>
+            Virtual Kickoff &nbsp;·&nbsp; 11 September 2026
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
