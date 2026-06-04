@@ -118,7 +118,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 <div className="flex flex-col gap-0.5">
                   <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[.3em]" style={{ color: '#A78BFA' }}>Conference Theme</p>
                   <p className="font-display font-extrabold text-lg md:text-2xl leading-tight" style={{ letterSpacing: '-0.03em', color: '#F0EEF8' }}>
-                    The Infinite <span style={{ background: 'linear-gradient(90deg, #A78BFA, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Builder</span>
+                    The Infinite <span style={{ background: 'linear-gradient(90deg, #A78BFA, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Builders</span>
                   </p>
                 </div>
                 <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />

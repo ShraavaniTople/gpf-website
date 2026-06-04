@@ -26,7 +26,7 @@ const days = [
         'Creating durable advantages in a rapidly changing world — moats, defensibility, and market timing.',
         'Founder, operator, and investor playbooks — lessons from building, backing, and scaling breakout companies.',
       ] },
-      { name: 'Leading the Infinite Builder', sessions: [
+      { name: 'Leading the Infinite Builders', sessions: [
         'Leading humans and AI together — the evolving role of leadership, management, and decision-making.',
         'Building high-performance organizations — talent, culture, and execution in fast-changing environments.',
         'Thriving in the future of work — careers, skills, adaptability, and lifelong learning.',
