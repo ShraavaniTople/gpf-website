@@ -70,7 +70,7 @@ async function sendConfirmationEmail(params: {
       payment_id: params.paymentId,
       pass_number: params.passNumber,
       event_name: 'The Great Product Festival',
-      event_date: 'Q3 2026',
+      event_date: '25-26 Sept 2026',
       event_city: 'Bangalore',
     })
   } catch { /* email failure is silent — pass is shown on screen */ }
@@ -168,7 +168,7 @@ function DigitalPass({ name, company, tierName, amount, paymentId, passNumber }:
           <div style={{ textAlign: 'right' }}>
             <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.15em', marginBottom: 8 }}>EVENT DETAILS</p>
             <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, color: '#9490AD', lineHeight: 1.7 }}>
-              Q3 2026, Bangalore<br />
+              25-26 Sept 2026, Bangalore<br />
               2 Days · 4 Tracks<br />
               500+ Attendees
             </p>
@@ -240,7 +240,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
     : 0
   const finalPrice = tier.price - discount
 
-  const canProceed = details.firstName.trim() && details.lastName.trim() && details.email.trim() && details.phone.trim()
+  const canProceed = details.firstName.trim() && details.lastName.trim() && details.email.trim() && details.phone.trim() && details.company.trim()
 
   function applyCode() {
     const key = codeInput.trim().toUpperCase()
@@ -421,9 +421,9 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
               type="tel" placeholder="+91 98765 43210" className={inp} />
           </div>
           <div>
-            <label className={lbl}>Company</label>
+            <label className={lbl}>Company *</label>
             <input value={details.company} onChange={e => setDetails({ ...details, company: e.target.value })}
-              type="text" placeholder="Your company" className={inp} />
+              type="text" required placeholder="Your company" className={inp} />
           </div>
         </div>
 

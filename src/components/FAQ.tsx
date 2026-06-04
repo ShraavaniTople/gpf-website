@@ -4,7 +4,7 @@ import { Plus, Minus } from 'lucide-react'
 const faqs = [
   {
     q: 'When and where is GPF 2026?',
-    a: 'The Great Product Festival is scheduled for Q3 2026 in Bangalore, India. Venue and exact dates will be announced to all registered pass holders well in advance.',
+    a: 'The Great Product Festival is scheduled for 25-26 September 2026 in Bangalore, India. Venue details will be announced to all registered pass holders well in advance.',
   },
   {
     q: 'Is GPF only for women in product?',

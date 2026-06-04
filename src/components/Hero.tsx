@@ -90,7 +90,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.04)' }}>
               <span className="pd w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#F59E0B' }} aria-hidden />
               <span className="font-mono font-medium uppercase" style={{ color: '#F59E0B', fontSize: 11, letterSpacing: '0.14em', lineHeight: 1.5 }}>
-                <span className="block sm:inline">Bangalore &nbsp;·&nbsp; Q3 2026</span>
+                <span className="block sm:inline">Bangalore &nbsp;·&nbsp; 25-26 Sept 2026</span>
                 <span className="block sm:inline sm:before:content-['_·_'] before:mx-1">Women in Product India</span>
               </span>
             </div>
@@ -111,8 +111,19 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               ))}
             </h1>
 
-            {/* Tagline + CTAs */}
+            {/* Theme + Tagline + CTAs */}
             <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
+              <div className="inline-flex items-center gap-4 mb-5 px-5 py-3 rounded-xl"
+                style={{ background: 'linear-gradient(135deg, rgba(124,58,237,.1) 0%, rgba(245,158,11,.05) 100%)', border: '1px solid rgba(124,58,237,.2)', backdropFilter: 'blur(8px)' }}>
+                <div className="flex flex-col gap-0.5">
+                  <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[.3em]" style={{ color: '#A78BFA' }}>Conference Theme</p>
+                  <p className="font-display font-extrabold text-lg md:text-2xl leading-tight" style={{ letterSpacing: '-0.03em', color: '#F0EEF8' }}>
+                    The Infinite <span style={{ background: 'linear-gradient(90deg, #A78BFA, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Builder</span>
+                  </p>
+                </div>
+                <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
+                <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
+              </div>
               <p className="text-base md:text-xl mb-6 leading-relaxed" style={{ color: '#9490AD' }}>
                 India's Home for Product Builders &amp; Leaders
               </p>
@@ -129,69 +140,43 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             </div>
           </div>
 
-          {/* RIGHT — photo mosaic (45%), desktop only */}
+          {/* RIGHT — original photo mosaic (45%), desktop only */}
           <div
             ref={mosaicRef}
             className="hidden lg:block lg:w-[45%] flex-shrink-0 relative"
             style={{ height: 520, opacity: 0, animation: 'heroFade 1.1s cubic-bezier(0.16,1,0.3,1) 0.25s forwards' }}
           >
-            {/* MAIN large photo — top, takes up ~60% height */}
+            {/* MAIN large photo */}
             <div className="absolute overflow-hidden rounded-2xl"
               style={{ top: 0, left: '8%', right: 0, height: '58%', boxShadow: '0 24px 80px rgba(0,0,0,0.6)' }}>
-              <img
-                data-spd="-0.06"
-                src={mosaicPhotos.main}
-                alt="Conference crowd"
-                style={{ width: '100%', height: '112%', objectFit: 'cover', objectPosition: '50% 55%', transition: 'transform .1s linear' }}
-              />
+              <img data-spd="-0.06" src={mosaicPhotos.main} alt="Conference crowd"
+                style={{ width: '100%', height: '112%', objectFit: 'cover', objectPosition: '50% 55%', transition: 'transform .1s linear' }} />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, transparent 50%, rgba(5,4,12,.35) 100%)' }} />
             </div>
 
-            {/* BOTTOM-LEFT photo */}
+            {/* BOTTOM-LEFT — audience photo */}
             <div className="absolute overflow-hidden rounded-2xl"
               style={{ bottom: 0, left: 0, width: '48%', height: '42%', boxShadow: '0 16px 50px rgba(0,0,0,0.5)' }}>
-              <img
-                data-spd="0.05"
-                src={mosaicPhotos.bl}
-                alt="Networking"
-                style={{ width: '100%', height: '112%', objectFit: 'cover', transition: 'transform .1s linear' }}
-              />
+              <img data-spd="0.05" src={mosaicPhotos.bl} alt="Networking"
+                style={{ width: '100%', height: '112%', objectFit: 'cover', transition: 'transform .1s linear' }} />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,4,12,.5) 0%, transparent 60%)' }} />
             </div>
 
-            {/* BOTTOM-RIGHT photo — slightly overlaps the main */}
+            {/* BOTTOM-RIGHT photo */}
             <div className="absolute overflow-hidden rounded-xl"
-              style={{ bottom: '4%', right: '2%', width: '42%', height: '38%',
-                boxShadow: '0 16px 50px rgba(0,0,0,0.5)',
-                border: '2px solid rgba(5,4,12,0.9)' }}>
-              <img
-                data-spd="-0.03"
-                src={mosaicPhotos.br}
-                alt="Speaker presenting"
-                style={{ width: '100%', height: '112%', objectFit: 'cover', transition: 'transform .1s linear' }}
-              />
+              style={{ bottom: '4%', right: '2%', width: '42%', height: '38%', boxShadow: '0 16px 50px rgba(0,0,0,0.5)', border: '2px solid rgba(5,4,12,0.9)' }}>
+              <img data-spd="-0.03" src={mosaicPhotos.br} alt="Speaker presenting"
+                style={{ width: '100%', height: '112%', objectFit: 'cover', transition: 'transform .1s linear' }} />
             </div>
 
             {/* Floating amber info badge */}
             <div className="fl absolute font-display font-bold text-xs leading-tight"
-              style={{
-                top: '55%', left: '2%',
-                background: '#F59E0B', color: '#000',
-                padding: '10px 14px', borderRadius: 12,
-                transform: 'rotate(-3deg)',
-                boxShadow: '0 8px 32px rgba(245,158,11,.35)',
-                maxWidth: 130,
-              }}>
+              style={{ top: '55%', left: '2%', background: '#F59E0B', color: '#000', padding: '10px 14px', borderRadius: 12, transform: 'rotate(-3deg)', boxShadow: '0 8px 32px rgba(245,158,11,.35)', maxWidth: 130 }}>
               A Women in Product India Initiative
             </div>
 
-
             {/* Purple glow behind mosaic */}
-            <div aria-hidden style={{
-              position: 'absolute', inset: 0, zIndex: -1,
-              background: 'radial-gradient(ellipse at 60% 50%, rgba(124,58,237,.18) 0%, transparent 70%)',
-              filter: 'blur(40px)',
-            }} />
+            <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: -1, background: 'radial-gradient(ellipse at 60% 50%, rgba(124,58,237,.18) 0%, transparent 70%)', filter: 'blur(40px)' }} />
           </div>
 
         </div>

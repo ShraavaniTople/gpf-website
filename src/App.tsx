@@ -187,11 +187,11 @@ function PassForm({ tierName }: { tierName: string }) {
         </div>
         <div>
           <label className={labelClass} htmlFor="p-phone">Phone</label>
-          <input id="p-phone" name="Phone" type="tel" placeholder="+91 98765 43210" className={inputClass} />
+          <input id="p-phone" name="Phone" type="tel" required placeholder="+91 98765 43210" className={inputClass} />
         </div>
         <div className="md:col-span-2">
           <label className={labelClass} htmlFor="p-org">Organisation</label>
-          <input id="p-org" name="Organisation" type="text" placeholder="Your company or affiliation" className={inputClass} />
+          <input id="p-org" name="Organisation" type="text" required placeholder="Your company or affiliation" className={inputClass} />
         </div>
       </div>
       {error && <p className="text-sm text-red-400">{error}</p>}
@@ -244,19 +244,19 @@ function HackathonForm() {
         </div>
         <div>
           <label className={labelClass} htmlFor="h-phone">Phone</label>
-          <input id="h-phone" name="Phone" type="tel" placeholder="+91 98765 43210" className={inputClass} />
+          <input id="h-phone" name="Phone" type="tel" required placeholder="+91 98765 43210" className={inputClass} />
         </div>
         <div>
           <label className={labelClass} htmlFor="h-linkedin">LinkedIn Profile</label>
-          <input id="h-linkedin" name="LinkedIn Profile" type="url" placeholder="https://linkedin.com/in/..." className={inputClass} />
+          <input id="h-linkedin" name="LinkedIn Profile" type="url" required placeholder="https://linkedin.com/in/..." className={inputClass} />
         </div>
         <div>
           <label className={labelClass} htmlFor="h-team">Team Name</label>
-          <input id="h-team" name="Team Name" type="text" placeholder="Team Velocity" className={inputClass} />
+          <input id="h-team" name="Team Name" type="text" required placeholder="Team Velocity" className={inputClass} />
         </div>
         <div>
           <label className={labelClass} htmlFor="h-size">Team Size</label>
-          <select id="h-size" name="Team Size" className={selectClass}>
+          <select id="h-size" name="Team Size" required className={selectClass}>
             <option value="2">2 members</option>
             <option value="3">3 members</option>
             <option value="4">4 members</option>
@@ -264,7 +264,7 @@ function HackathonForm() {
         </div>
         <div>
           <label className={labelClass} htmlFor="h-role">Your Role</label>
-          <select id="h-role" name="Your Role" className={selectClass}>
+          <select id="h-role" name="Your Role" required className={selectClass}>
             <option value="">Select a role</option>
             <option>Product Manager</option>
             <option>Designer</option>
@@ -274,7 +274,7 @@ function HackathonForm() {
         </div>
         <div className="md:col-span-2">
           <label className={labelClass} htmlFor="h-track">Problem Statement Interest</label>
-          <select id="h-track" name="Problem Statement Interest" className={selectClass}>
+          <select id="h-track" name="Problem Statement Interest" required className={selectClass}>
             <option value="">Select a track</option>
             <option>Tech in Product</option>
             <option>Growth and Monetisation</option>
@@ -285,7 +285,7 @@ function HackathonForm() {
       </div>
       <div>
         <label className={labelClass} htmlFor="h-idea">Tell us about your idea</label>
-        <textarea id="h-idea" name="Idea" rows={4} placeholder="Give us a brief overview of what you plan to build..." className={textareaClass} />
+        <textarea id="h-idea" name="Idea" rows={4} required placeholder="Give us a brief overview of what you plan to build..." className={textareaClass} />
       </div>
       {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2 flex flex-col items-start gap-2">
@@ -338,11 +338,11 @@ function SpeakerForm() {
         </div>
         <div>
           <label className={labelClass} htmlFor="sp-linkedin">LinkedIn URL</label>
-          <input id="sp-linkedin" name="LinkedIn" type="url" placeholder="https://linkedin.com/in/..." className={inputClass} />
+          <input id="sp-linkedin" name="LinkedIn" type="url" required placeholder="https://linkedin.com/in/..." className={inputClass} />
         </div>
         <div>
           <label className={labelClass} htmlFor="sp-twitter">Twitter / X URL</label>
-          <input id="sp-twitter" name="Twitter" type="url" placeholder="https://x.com/..." className={inputClass} />
+          <input id="sp-twitter" name="Twitter" type="url" required placeholder="https://x.com/..." className={inputClass} />
         </div>
         <div>
           <label className={labelClass} htmlFor="sp-title">Proposed Session Title</label>
@@ -350,7 +350,7 @@ function SpeakerForm() {
         </div>
         <div>
           <label className={labelClass} htmlFor="sp-format">Session Format</label>
-          <select id="sp-format" name="Session Format" className={selectClass}>
+          <select id="sp-format" name="Session Format" required className={selectClass}>
             <option value="">Select a format</option>
             <option>Keynote</option>
             <option>Panel Discussion</option>
@@ -361,11 +361,11 @@ function SpeakerForm() {
       </div>
       <div>
         <label className={labelClass} htmlFor="sp-bio">Brief Bio <span className="text-[#6B6880] font-normal">(max 250 words)</span></label>
-        <textarea id="sp-bio" name="Bio" rows={4} placeholder="Share your background and what makes you the right voice for this topic..." className={textareaClass} />
+        <textarea id="sp-bio" name="Bio" rows={4} required placeholder="Share your background and what makes you the right voice for this topic..." className={textareaClass} />
       </div>
       <div>
         <label className={labelClass} htmlFor="sp-abstract">Talk Abstract <span className="text-[#6B6880] font-normal">(max 250 words)</span></label>
-        <textarea id="sp-abstract" name="Talk Abstract" rows={4} placeholder="Describe the core thesis, key takeaways, and audience of your talk..." className={textareaClass} />
+        <textarea id="sp-abstract" name="Talk Abstract" rows={4} required placeholder="Describe the core thesis, key takeaways, and audience of your talk..." className={textareaClass} />
       </div>
       {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2">
@@ -416,11 +416,11 @@ function NominateForm() {
         </div>
         <div>
           <label className={labelClass} htmlFor="n-sp-email">Speaker's Email</label>
-          <input id="n-sp-email" name="Speaker Email" type="email" placeholder="anika@example.com" className={inputClass} />
+          <input id="n-sp-email" name="Speaker Email" type="email" required placeholder="anika@example.com" className={inputClass} />
         </div>
         <div className="md:col-span-2">
           <label className={labelClass} htmlFor="n-sp-linkedin">Speaker's LinkedIn</label>
-          <input id="n-sp-linkedin" name="Speaker LinkedIn" type="url" placeholder="https://linkedin.com/in/..." className={inputClass} />
+          <input id="n-sp-linkedin" name="Speaker LinkedIn" type="url" required placeholder="https://linkedin.com/in/..." className={inputClass} />
         </div>
       </div>
       <div>
@@ -429,6 +429,7 @@ function NominateForm() {
           id="n-why"
           name="Nomination Reason"
           rows={4}
+          required
           placeholder="Tell us what makes this person a great voice for the GPF 2026 stage..."
           className={textareaClass}
         />
@@ -493,7 +494,7 @@ function SponsorForm() {
         </div>
         <div>
           <label className={labelClass} htmlFor="s-role">Your Role</label>
-          <input id="s-role" name="Your Role" type="text" placeholder="Head of Marketing" className={inputClass} />
+          <input id="s-role" name="Your Role" type="text" required placeholder="Head of Marketing" className={inputClass} />
         </div>
       </div>
 
@@ -520,6 +521,7 @@ function SponsorForm() {
           id="s-msg"
           name="Message"
           rows={4}
+          required
           placeholder="Tell us about your goals for this partnership..."
           className={textareaClass}
         />
@@ -586,7 +588,7 @@ function CommunityForm() {
         </div>
         <div>
           <label className={labelClass} htmlFor="cp-size">Community Size</label>
-          <select id="cp-size" name="Community Size" className={selectClass}>
+          <select id="cp-size" name="Community Size" required className={selectClass}>
             <option value="">Select a range</option>
             <option>Under 500</option>
             <option>500 – 2,000</option>
@@ -596,7 +598,7 @@ function CommunityForm() {
         </div>
         <div className="md:col-span-2">
           <label className={labelClass} htmlFor="cp-website">Website / Social Link</label>
-          <input id="cp-website" name="Website" type="url" placeholder="https://your-community.com" className={inputClass} />
+          <input id="cp-website" name="Website" type="url" required placeholder="https://your-community.com" className={inputClass} />
         </div>
       </div>
 
@@ -614,7 +616,7 @@ function CommunityForm() {
 
       <div>
         <label className={labelClass} htmlFor="cp-msg">Tell us about your community and how you'd like to collaborate</label>
-        <textarea id="cp-msg" name="Message" rows={4} placeholder="Share what your community is about, your audience, and what kind of partnership you're looking for..." className={textareaClass} />
+        <textarea id="cp-msg" name="Message" rows={4} required placeholder="Share what your community is about, your audience, and what kind of partnership you're looking for..." className={textareaClass} />
       </div>
 
       {error && <p className="text-sm text-red-400">{error}</p>}

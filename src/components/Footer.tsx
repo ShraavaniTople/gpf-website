@@ -42,7 +42,7 @@ export default function Footer() {
             <p className="text-xs mb-1" style={{ color: '#52506A' }}>A Women in Product India Initiative</p>
             <p className="text-xs leading-relaxed mt-4 max-w-xs" style={{ color: '#52506A' }}>
               India's most inclusive product management conference. All genders. All levels. All industries.
-              <br />Bangalore · Q3 2026.
+              <br />Bangalore · 25-26 Sept 2026.
             </p>
           </div>
 
@@ -100,7 +100,7 @@ export default function Footer() {
             &copy; 2026 The Great Product Festival &nbsp;&middot;&nbsp; Women in Product India
           </p>
           <p className="font-mono text-xs" style={{ color: '#52506A' }}>
-            Bangalore &nbsp;&middot;&nbsp; Q3 2026
+            Bangalore &nbsp;&middot;&nbsp; 25-26 Sept 2026
           </p>
         </div>
       </div>
