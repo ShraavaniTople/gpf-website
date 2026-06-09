@@ -19,7 +19,9 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
 }
 
 // ─── Discount codes ───────────────────────────────────────────────────────────
-const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {}
+const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {
+  WIP15: { label: 'WiP India member · 15% off', pct: 15 },
+}
 
 // ─── EmailJS config — fill in after EmailJS setup ────────────────────────────
 const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'
