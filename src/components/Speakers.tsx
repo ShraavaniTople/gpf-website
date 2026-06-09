@@ -10,7 +10,7 @@ const speakers = [
   {
     name: 'Swati Awasthi',
     title: 'Founder, Women in Product India',
-    linkedin: 'https://www.linkedin.com/in/swatiawasthi/',
+    linkedin: 'https://www.linkedin.com/in/swati-awasthi/',
     photo: swatiPhoto,
     objectPos: '50% 20%',
   },
