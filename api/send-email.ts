@@ -157,8 +157,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL ?? 'GPF 2026 <hello@womeninproductindia.com>',
+      from: process.env.RESEND_FROM_EMAIL ?? 'TGPF 2026 <tickets@thegreatproductfestival.com>',
       to: [to_email],
+      reply_to: 'hello@womeninproductindia.com',
       subject: `Your ${pass_type} for The Great Product Festival is confirmed! 🎉`,
       html: buildHtml({ to_name, company, pass_type, amount, payment_id, pass_number, event_date, event_city }),
     })
