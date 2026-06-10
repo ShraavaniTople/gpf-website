@@ -23,11 +23,6 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   WIP15: { label: 'WiP India member · 15% off', pct: 15 },
 }
 
-// ─── EmailJS config — fill in after EmailJS setup ────────────────────────────
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'
-
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
 function loadRazorpay(): Promise<boolean> {
   return new Promise(resolve => {
@@ -40,40 +35,26 @@ function loadRazorpay(): Promise<boolean> {
   })
 }
 
-// ─── Load EmailJS script ──────────────────────────────────────────────────────
-function loadEmailJS(): Promise<boolean> {
-  return new Promise(resolve => {
-    if ((window as any).emailjs) { resolve(true); return }
-    const s = document.createElement('script')
-    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'
-    s.onload = () => {
-      ;(window as any).emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
-      resolve(true)
-    }
-    s.onerror = () => resolve(false)
-    document.body.appendChild(s)
-  })
-}
-
 // ─── Send confirmation email to buyer ────────────────────────────────────────
 async function sendConfirmationEmail(params: {
   name: string; email: string; company: string
   tierName: string; amount: string; paymentId: string; passNumber: string
 }) {
-  if (EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID') return
   try {
-    await loadEmailJS()
-    await (window as any).emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      to_email:   params.email,
-      to_name:    params.name,
-      company:    params.company || '—',
-      pass_type:  params.tierName + ' Pass',
-      amount:     params.amount,
-      payment_id: params.paymentId,
-      pass_number: params.passNumber,
-      event_name: 'The Great Product Festival',
-      event_date: '25-26 Sept 2026',
-      event_city: 'Bangalore',
+    await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to_email:    params.email,
+        to_name:     params.name,
+        company:     params.company || '—',
+        pass_type:   params.tierName + ' Pass',
+        amount:      params.amount,
+        payment_id:  params.paymentId,
+        pass_number: params.passNumber,
+        event_date:  '25-26 Sept 2026',
+        event_city:  'Bangalore',
+      }),
     })
   } catch { /* email failure is silent — pass is shown on screen */ }
 }
