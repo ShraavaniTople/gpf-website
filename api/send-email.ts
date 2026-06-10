@@ -144,6 +144,18 @@ function buildHtml(p: {
 </html>`
 }
 
+async function logToSheets(sheet: string, data: Record<string, string>) {
+  const url = process.env.SHEETS_WEBHOOK
+  if (!url) return
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sheet, data }),
+    })
+  } catch { /* silent */ }
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
@@ -156,13 +168,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL ?? 'TGPF 2026 <tickets@thegreatproductfestival.com>',
-      to: [to_email],
-      reply_to: 'hello@womeninproductindia.com',
-      subject: `Your ${pass_type} for The Great Product Festival is confirmed! 🎉`,
-      html: buildHtml({ to_name, company, pass_type, amount, payment_id, pass_number, event_date, event_city }),
-    })
+    await Promise.all([
+      resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL ?? 'TGPF 2026 <tickets@thegreatproductfestival.com>',
+        to: [to_email],
+        reply_to: 'hello@womeninproductindia.com',
+        subject: `Your ${pass_type} for The Great Product Festival is confirmed! 🎉`,
+        html: buildHtml({ to_name, company, pass_type, amount, payment_id, pass_number, event_date, event_city }),
+      }),
+      logToSheets('Tickets', {
+        Name: to_name,
+        Email: to_email,
+        Company: company || '—',
+        'Pass Type': pass_type,
+        'Amount (₹)': amount,
+        'Payment ID': payment_id,
+        'Pass Number': pass_number,
+        'Event Date': event_date,
+      }),
+    ])
     return res.status(200).json({ ok: true })
   } catch (err) {
     console.error('Email error:', err)

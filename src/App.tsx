@@ -111,15 +111,30 @@ async function submitForm(formType: string, fd: FormData) {
     subject: `GPF 2026 - ${formType}`,
     from_name: 'GPF 2026 Website',
   }
+  const sheetData: Record<string, string> = {}
   fd.forEach((val, key) => {
-    if (String(val).trim()) payload[key] = String(val)
+    if (String(val).trim()) {
+      payload[key] = String(val)
+      sheetData[key] = String(val)
+    }
   })
-  const res = await fetch('https://api.web3forms.com/submit', {
+
+  const web3 = fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
-  })
-  const data = await res.json()
+  }).then(r => r.json())
+
+  const sheetsUrl = import.meta.env.VITE_SHEETS_WEBHOOK
+  const sheets = sheetsUrl
+    ? fetch(sheetsUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ sheet: formType, data: sheetData }),
+      }).catch(() => {})
+    : Promise.resolve()
+
+  const [data] = await Promise.all([web3, sheets])
   if (!data.success) throw new Error(data.message || 'Submission failed')
 }
 
