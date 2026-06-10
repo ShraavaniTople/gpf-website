@@ -59,9 +59,6 @@
       "destination": "/index.html"
     }
   ],
-  "functions": {
-    "api/send-email.ts": {
-      "maxDuration": 10
-    }
-  }
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
 }
