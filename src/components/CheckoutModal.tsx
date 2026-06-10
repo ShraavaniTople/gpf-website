@@ -21,6 +21,7 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
 // ─── Discount codes ───────────────────────────────────────────────────────────
 const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {
   WIP15: { label: 'WiP India member · 15% off', pct: 15 },
+  SHRAAVANI100: { label: 'Internal test · 100% off', pct: 100 },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
@@ -236,6 +237,25 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
 
   async function handlePay() {
     setPaying(true)
+
+    if (finalPrice === 0) {
+      const pid = 'TEST_' + Date.now()
+      const pn  = genPassNumber(pid, tierName)
+      setPaymentId(pid)
+      setSuccess(true)
+      setPaying(false)
+      await sendConfirmationEmail({
+        name: `${details.firstName} ${details.lastName}`,
+        email: details.email,
+        company: details.company,
+        tierName,
+        amount: '0',
+        paymentId: pid,
+        passNumber: pn,
+      })
+      return
+    }
+
     const loaded = await loadRazorpay()
     if (!loaded) {
       alert('Could not load payment gateway. Please check your connection and try again.')
