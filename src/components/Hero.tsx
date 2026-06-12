@@ -124,10 +124,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
                 <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
               </div>
-              <p className="text-base md:text-xl mb-6 leading-relaxed" style={{ color: '#9490AD' }}>
-                India's Home for Product Builders &amp; Leaders
-              </p>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3 items-start sm:items-center mb-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 items-start sm:items-center mb-4 mt-6">
                 <button onClick={() => go('passes')} className="btn-purple text-sm w-full sm:w-auto">Get Passes</button>
                 <button onClick={onCommunity} className="btn-purple text-sm w-full sm:w-auto">Become a Community Partner</button>
               </div>
