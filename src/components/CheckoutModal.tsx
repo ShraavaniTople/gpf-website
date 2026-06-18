@@ -20,7 +20,7 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
 
 // ─── Discount codes ───────────────────────────────────────────────────────────
 const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {
-  WIP15: { label: 'WiP India member · 15% off', pct: 15 },
+  WIPINDIA15: { label: 'WiP India member · 15% off', pct: 15 },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
