@@ -266,6 +266,10 @@ function HackathonForm() {
           <input id="h-linkedin" name="LinkedIn Profile" type="url" required placeholder="https://linkedin.com/in/..." className={inputClass} />
         </div>
         <div>
+          <label className={labelClass} htmlFor="h-github">GitHub Profile</label>
+          <input id="h-github" name="GitHub Profile" type="url" required placeholder="https://github.com/..." className={inputClass} />
+        </div>
+        <div>
           <label className={labelClass} htmlFor="h-team">Team Name</label>
           <input id="h-team" name="Team Name" type="text" required placeholder="Team Velocity" className={inputClass} />
         </div>
@@ -301,6 +305,10 @@ function HackathonForm() {
       <div>
         <label className={labelClass} htmlFor="h-idea">Tell us about your idea</label>
         <textarea id="h-idea" name="Idea" rows={4} required placeholder="Give us a brief overview of what you plan to build..." className={textareaClass} />
+      </div>
+      <div>
+        <label className={labelClass} htmlFor="h-past">Past Projects <span className="text-[#6B6880] font-normal">(links or short descriptions)</span></label>
+        <textarea id="h-past" name="Past Projects" rows={3} required placeholder="Share GitHub repos, live demos, or briefly describe 1-2 projects you've shipped..." className={textareaClass} />
       </div>
       {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2 flex flex-col items-start gap-2">
