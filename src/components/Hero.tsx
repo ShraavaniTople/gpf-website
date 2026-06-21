@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import heroSwatiStage from '../assets/hero-swati-stage.jpg'
+import heroBanner from '../assets/hero-banner.png'
 
 interface HeroProps { onSponsor: () => void; onCommunity: () => void }
 
@@ -66,10 +67,10 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
   return (
     <section className="relative min-h-screen overflow-hidden" style={{ background: '#05040C' }}>
       {/* Mobile background image */}
-      <div className="block lg:hidden absolute inset-0 z-0" style={{ opacity: 0.18 }}>
-        <img src={heroSwatiStage} alt="" aria-hidden
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
-        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.6) 0%, rgba(5,4,12,.95) 70%)' }} />
+      <div className="block lg:hidden absolute inset-0 z-0" style={{ opacity: 0.35 }}>
+        <img src={heroBanner} alt="" aria-hidden
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.55) 0%, rgba(5,4,12,.92) 75%)' }} />
       </div>
       {/* Background glows */}
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
