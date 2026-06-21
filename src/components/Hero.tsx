@@ -41,9 +41,9 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
       {/* Hero banner background — all screens */}
       <div className="absolute inset-0 z-0">
         <img src={heroBanner} alt="" aria-hidden
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%' }} />
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '100% 50%' }} />
         <div aria-hidden className="lg:hidden" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.5) 0%, rgba(5,4,12,.88) 75%)' }} />
-        <div aria-hidden className="hidden lg:block" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,4,12,.95) 25%, rgba(5,4,12,.55) 55%, rgba(5,4,12,.1) 100%)' }} />
+        <div aria-hidden className="hidden lg:block" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,4,12,.95) 20%, rgba(5,4,12,.4) 45%, rgba(5,4,12,0) 60%)' }} />
       </div>
       {/* Background glows */}
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
