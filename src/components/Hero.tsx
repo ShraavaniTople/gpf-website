@@ -1,33 +1,21 @@
 import { useEffect, useRef } from 'react'
-import heroSwatiStage from '../assets/hero-swati-stage.jpg'
 import heroBanner from '../assets/hero-banner.png'
 
 interface HeroProps { onSponsor: () => void; onCommunity: () => void }
-
-// Photos for the mosaic (right side)
-const mosaicPhotos = {
-  main:   heroSwatiStage,
-  bl:     'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=85',
-  br:     './photos/hotseat.jpg',
-}
 
 // Photos for the bottom film strip
 const filmPhotos = [
   { src: './photos/group.jpg', alt: 'Women in Product India community group' },
   { src: './photos/speaker1.jpg', alt: 'Speaker at Women in Product India event' },
   { src: './photos/audience1.jpg', alt: 'Attendees at product conference' },
-  { src: './photos/audience2.jpg', alt: 'Audience at product event' },
   { src: './photos/speaker2.jpg', alt: 'Speaker on stage' },
   { src: './photos/audience3.jpg', alt: 'Event audience' },
-  { src: './photos/speaker3.jpg', alt: 'Speaker presenting at Canvas venue' },
-  { src: './photos/awards.jpg', alt: 'Award ceremony' },
 ]
 
 function go(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }
 
 export default function Hero({ onSponsor, onCommunity }: HeroProps) {
   const stripRef = useRef<HTMLDivElement>(null)
-  const mosaicRef = useRef<HTMLDivElement>(null)
 
   // Film strip auto-scroll
   useEffect(() => {
@@ -48,30 +36,14 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
     return () => { cancelAnimationFrame(frame); el.removeEventListener('mouseenter', stop) }
   }, [])
 
-  // Mosaic parallax on scroll
-  useEffect(() => {
-    const el = mosaicRef.current
-    if (!el) return
-    const fn = () => {
-      const scrollY = window.scrollY
-      const imgs = el.querySelectorAll<HTMLElement>('[data-spd]')
-      imgs.forEach(img => {
-        const spd = parseFloat(img.dataset.spd || '0')
-        img.style.transform = `translateY(${scrollY * spd}px) scale(1.12)`
-      })
-    }
-    window.addEventListener('scroll', fn, { passive: true })
-    return () => window.removeEventListener('scroll', fn)
-  }, [])
-
   return (
     <section className="relative min-h-screen overflow-hidden" style={{ background: '#05040C' }}>
       {/* Hero banner background — all screens */}
-      <div className="absolute inset-0 z-0" style={{ opacity: 0.35 }}>
+      <div className="absolute inset-0 z-0">
         <img src={heroBanner} alt="" aria-hidden
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%' }} />
-        <div aria-hidden className="lg:hidden" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.55) 0%, rgba(5,4,12,.92) 75%)' }} />
-        <div aria-hidden className="hidden lg:block" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,4,12,.95) 30%, rgba(5,4,12,.55) 70%, rgba(5,4,12,.4) 100%)' }} />
+        <div aria-hidden className="lg:hidden" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.5) 0%, rgba(5,4,12,.88) 75%)' }} />
+        <div aria-hidden className="hidden lg:block" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,4,12,.95) 25%, rgba(5,4,12,.55) 55%, rgba(5,4,12,.1) 100%)' }} />
       </div>
       {/* Background glows */}
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
@@ -137,45 +109,6 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 </button>
               </p>
             </div>
-          </div>
-
-          {/* RIGHT — original photo mosaic (45%), desktop only */}
-          <div
-            ref={mosaicRef}
-            className="hidden lg:block lg:w-[45%] flex-shrink-0 relative"
-            style={{ height: 520, opacity: 0, animation: 'heroFade 1.1s cubic-bezier(0.16,1,0.3,1) 0.25s forwards' }}
-          >
-            {/* MAIN large photo */}
-            <div className="absolute overflow-hidden rounded-2xl"
-              style={{ top: 0, left: '8%', right: 0, height: '58%', boxShadow: '0 24px 80px rgba(0,0,0,0.6)' }}>
-              <img data-spd="-0.06" src={mosaicPhotos.main} alt="Conference crowd"
-                style={{ width: '100%', height: '112%', objectFit: 'cover', objectPosition: '50% 55%', transition: 'transform .1s linear' }} />
-              <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, transparent 50%, rgba(5,4,12,.35) 100%)' }} />
-            </div>
-
-            {/* BOTTOM-LEFT — audience photo */}
-            <div className="absolute overflow-hidden rounded-2xl"
-              style={{ bottom: 0, left: 0, width: '48%', height: '42%', boxShadow: '0 16px 50px rgba(0,0,0,0.5)' }}>
-              <img data-spd="0.05" src={mosaicPhotos.bl} alt="Networking"
-                style={{ width: '100%', height: '112%', objectFit: 'cover', transition: 'transform .1s linear' }} />
-              <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,4,12,.5) 0%, transparent 60%)' }} />
-            </div>
-
-            {/* BOTTOM-RIGHT photo */}
-            <div className="absolute overflow-hidden rounded-xl"
-              style={{ bottom: '4%', right: '2%', width: '42%', height: '38%', boxShadow: '0 16px 50px rgba(0,0,0,0.5)', border: '2px solid rgba(5,4,12,0.9)' }}>
-              <img data-spd="-0.03" src={mosaicPhotos.br} alt="Speaker presenting"
-                style={{ width: '100%', height: '112%', objectFit: 'cover', transition: 'transform .1s linear' }} />
-            </div>
-
-            {/* Floating amber info badge */}
-            <div className="fl absolute font-display font-bold text-xs leading-tight"
-              style={{ top: '55%', left: '2%', background: '#F59E0B', color: '#000', padding: '10px 14px', borderRadius: 12, transform: 'rotate(-3deg)', boxShadow: '0 8px 32px rgba(245,158,11,.35)', maxWidth: 130 }}>
-              A Women in Product India Initiative
-            </div>
-
-            {/* Purple glow behind mosaic */}
-            <div aria-hidden style={{ position: 'absolute', inset: 0, zIndex: -1, background: 'radial-gradient(ellipse at 60% 50%, rgba(124,58,237,.18) 0%, transparent 70%)', filter: 'blur(40px)' }} />
           </div>
 
         </div>
