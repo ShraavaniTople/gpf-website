@@ -44,12 +44,20 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%', opacity: 0.4 }} />
         <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.45) 0%, rgba(5,4,12,.88) 75%)' }} />
       </div>
-      {/* Desktop banner — full banner visible at proper aspect ratio */}
+      {/* Desktop banner — full banner visible at proper aspect ratio, blended on all edges */}
       <div className="hidden lg:flex absolute top-0 right-0 bottom-0 z-0 items-center justify-end" style={{ width: '62%' }}>
         <div className="relative w-full" style={{ aspectRatio: '2.4 / 1', maxHeight: '85%' }}>
           <img src={heroBanner} alt="" aria-hidden
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.6) 8%, rgba(5,4,12,0) 22%)' }} />
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              display: 'block',
+              maskImage: 'radial-gradient(ellipse 95% 90% at 70% 50%, #000 35%, rgba(0,0,0,0.7) 70%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 95% 90% at 70% 50%, #000 35%, rgba(0,0,0,0.7) 70%, transparent 100%)',
+            }} />
+          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.85) 5%, rgba(5,4,12,.35) 18%, rgba(5,4,12,0) 35%)' }} />
         </div>
       </div>
       {/* Background glows */}
