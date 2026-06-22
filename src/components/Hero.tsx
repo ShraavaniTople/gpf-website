@@ -37,7 +37,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
   }, [])
 
   return (
-    <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: 'clamp(80px, 7vw, 110px)' }}>
+    <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: 'clamp(120px, 10vw, 160px)' }}>
       {/* Banner wrapper — banner image + text overlay bound to image area */}
       <div className="relative">
         <img src={heroBanner} alt="The Great Product Festival speakers"
