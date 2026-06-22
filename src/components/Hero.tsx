@@ -37,19 +37,18 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
   }, [])
 
   return (
-    <section className="relative overflow-hidden w-full" style={{ background: '#05040C', aspectRatio: '2.4 / 1' }}>
-      {/* Banner image fills section at exact natural ratio */}
+    <section className="relative overflow-hidden" style={{ background: '#05040C' }}>
+      {/* Banner image — normal flow, full width, natural ratio */}
       <img src={heroBanner} alt="" aria-hidden
-        className="absolute inset-0 z-0"
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-      {/* Dark gradient on left for text readability */}
-      <div aria-hidden className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 30%, rgba(5,4,12,.25) 55%, rgba(5,4,12,0) 75%)' }} />
-      {/* Top fade for navbar contrast */}
-      <div aria-hidden className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(5,4,12,.6) 0%, transparent 15%)' }} />
+        style={{ width: '100%', height: 'auto', display: 'block' }} />
+      {/* Dark gradient overlays */}
+      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 30%, rgba(5,4,12,.25) 55%, rgba(5,4,12,0) 75%)' }} />
+      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(5,4,12,.6) 0%, transparent 15%)' }} />
 
       {/* ── Text content overlaid on banner ── */}
-      <div className="absolute inset-0 z-10 max-w-7xl mx-auto px-6 w-full pt-24 md:pt-36 pb-12 flex items-center">
-        <div className="flex flex-col gap-4 w-full lg:w-[55%]">
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        <div className="max-w-7xl mx-auto px-6 w-full h-full pt-24 md:pt-36 pb-12 flex items-center">
+          <div className="flex flex-col gap-4 w-full lg:w-[55%] pointer-events-auto">
 
           {/* Text content */}
           <div className="w-full flex flex-col">
@@ -105,6 +104,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             </div>
           </div>
 
+          </div>
         </div>
       </div>
 
