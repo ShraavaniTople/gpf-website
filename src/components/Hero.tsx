@@ -38,12 +38,17 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
   return (
     <section className="relative min-h-screen overflow-hidden" style={{ background: '#05040C' }}>
-      {/* Hero banner background — all screens */}
-      <div className="absolute inset-0 z-0">
+      {/* Mobile banner background — faded, only on small screens */}
+      <div className="block lg:hidden absolute inset-0 z-0">
         <img src={heroBanner} alt="" aria-hidden
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '100% 50%' }} />
-        <div aria-hidden className="lg:hidden" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.5) 0%, rgba(5,4,12,.88) 75%)' }} />
-        <div aria-hidden className="hidden lg:block" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,4,12,.95) 20%, rgba(5,4,12,.4) 45%, rgba(5,4,12,0) 60%)' }} />
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%', opacity: 0.4 }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.45) 0%, rgba(5,4,12,.88) 75%)' }} />
+      </div>
+      {/* Desktop banner — positioned on right, not stretched */}
+      <div className="hidden lg:block absolute top-0 right-0 bottom-0 z-0" style={{ width: '55%' }}>
+        <img src={heroBanner} alt="" aria-hidden
+          style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'right center' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,4,12,.85) 0%, rgba(5,4,12,.1) 25%, transparent 100%)' }} />
       </div>
       {/* Background glows */}
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
