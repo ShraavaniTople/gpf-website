@@ -38,17 +38,18 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
   return (
     <section className="relative overflow-hidden" style={{ background: '#05040C' }}>
-      {/* Banner image — gives the section its natural height (same as before, full width) */}
-      <img src={heroBanner} alt="The Great Product Festival speakers"
-        style={{ width: '100%', height: 'auto', display: 'block' }} />
+      {/* Banner wrapper — banner image + text overlay bound to image area */}
+      <div className="relative" style={{ marginTop: -1 }}>
+        <img src={heroBanner} alt="The Great Product Festival speakers"
+          style={{ width: '100%', height: 'auto', display: 'block' }} />
 
-      {/* Dark gradient on left for text readability */}
-      <div aria-hidden className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 25%, rgba(5,4,12,.3) 50%, rgba(5,4,12,0) 70%)' }} />
+        {/* Dark gradient on left for text readability */}
+        <div aria-hidden className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 25%, rgba(5,4,12,.3) 50%, rgba(5,4,12,0) 70%)' }} />
 
-      {/* ── Text overlaid on banner ── */}
-      <div className="absolute inset-0 z-20 pointer-events-none">
-        <div className="max-w-7xl mx-auto px-6 w-full h-full pt-24 md:pt-36 pb-8 flex items-center">
-          <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
+        {/* ── Text overlaid on banner ── */}
+        <div className="absolute inset-0 z-20 pointer-events-none">
+          <div className="max-w-7xl mx-auto px-6 w-full h-full pt-20 md:pt-28 pb-6 flex items-center">
+            <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2.5 mb-5 w-fit"
               style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.04)' }}>
@@ -100,11 +101,12 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               </p>
             </div>
           </div>
+          </div>
         </div>
       </div>
 
       {/* ── Film strip ── */}
-      <div className="relative z-10 w-full pb-10 overflow-hidden">
+      <div className="relative z-10 w-full pt-10 pb-10 overflow-hidden">
         <div className="relative">
           <div aria-hidden className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
             style={{ background: 'linear-gradient(to right, #05040C, transparent)' }} />
