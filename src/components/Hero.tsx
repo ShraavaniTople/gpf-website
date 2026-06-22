@@ -54,10 +54,13 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               objectFit: 'cover',
               objectPosition: 'center',
               display: 'block',
-              maskImage: 'radial-gradient(ellipse 95% 90% at 70% 50%, #000 35%, rgba(0,0,0,0.7) 70%, transparent 100%)',
-              WebkitMaskImage: 'radial-gradient(ellipse 95% 90% at 70% 50%, #000 35%, rgba(0,0,0,0.7) 70%, transparent 100%)',
+              maskImage: 'linear-gradient(to right, transparent 0%, #000 18%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 18%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%)',
+              maskComposite: 'intersect',
+              WebkitMaskComposite: 'source-in',
             }} />
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.85) 5%, rgba(5,4,12,.35) 18%, rgba(5,4,12,0) 35%)' }} />
+          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.7) 10%, rgba(5,4,12,0) 25%)' }} />
+          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,0) 15%, rgba(5,4,12,0) 85%, #05040C 100%)' }} />
         </div>
       </div>
       {/* Background glows */}
