@@ -44,7 +44,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%', opacity: 0.4 }} />
         <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.45) 0%, rgba(5,4,12,.88) 75%)' }} />
       </div>
-      {/* Desktop banner — centered right, edges feathered to transparency */}
+      {/* Desktop banner — centered right, blend mode makes dark areas merge into bg */}
       <div className="hidden lg:flex absolute top-0 right-0 bottom-0 z-0 pointer-events-none items-center justify-end" style={{ width: '58%' }}>
         <div className="relative w-full" style={{ aspectRatio: '2.4 / 1' }}>
           <img src={heroBanner} alt="" aria-hidden
@@ -54,8 +54,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               objectFit: 'cover',
               objectPosition: 'center',
               display: 'block',
-              WebkitMaskImage: 'radial-gradient(ellipse 75% 85% at 70% 50%, black 25%, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.5) 75%, transparent 100%)',
-              maskImage: 'radial-gradient(ellipse 75% 85% at 70% 50%, black 25%, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.5) 75%, transparent 100%)',
+              mixBlendMode: 'lighten',
             }} />
         </div>
       </div>
