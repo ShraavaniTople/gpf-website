@@ -37,25 +37,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
   }, [])
 
   return (
-    <section className="relative min-h-screen overflow-hidden" style={{ background: '#05040C' }}>
-      {/* Mobile banner background — faded, only on small screens */}
-      <div className="block lg:hidden absolute inset-0 z-0">
-        <img src={heroBanner} alt="" aria-hidden
-          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%', opacity: 0.4 }} />
-        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.45) 0%, rgba(5,4,12,.88) 75%)' }} />
-      </div>
-      {/* Desktop — show ONLY the speakers portion of the banner, cropped from right */}
-      <div className="hidden lg:block absolute top-0 right-0 bottom-0 z-0 pointer-events-none" style={{ width: '42%' }}>
-        <img src={heroBanner} alt="" aria-hidden
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: '100% 50%',
-            display: 'block',
-          }} />
-        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.8) 8%, rgba(5,4,12,0) 22%)' }} />
-      </div>
+    <section className="relative overflow-hidden" style={{ background: '#05040C' }}>
       {/* Background glows */}
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(ellipse 60% 70% at 15% 55%, rgba(124,58,237,.15) 0%, transparent 100%)'
@@ -64,12 +46,12 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
         background: 'radial-gradient(ellipse 45% 50% at 85% 15%, rgba(245,158,11,.06) 0%, transparent 100%)'
       }} />
 
-      {/* ── Main two-column layout ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-24 md:pt-36 pb-8">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-6 lg:min-h-[calc(100vh-220px)]">
+      {/* ── Top: title + CTAs ── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-24 md:pt-36 pb-6">
+        <div className="flex flex-col gap-6">
 
-          {/* LEFT — text (55%) */}
-          <div className="lg:w-[55%] flex flex-col justify-center">
+          {/* Text content */}
+          <div className="w-full flex flex-col">
             {/* Badge */}
             <div className="inline-flex items-center gap-2.5 mb-5 w-fit"
               style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.04)' }}>
@@ -123,6 +105,13 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           </div>
 
         </div>
+      </div>
+
+      {/* ── Banner: full-width, all 4 speakers visible at natural aspect ratio ── */}
+      <div className="relative z-10 w-full overflow-hidden" style={{ opacity: 0, animation: 'heroFade 1s ease 0.8s forwards' }}>
+        <img src={heroBanner} alt="The Great Product Festival speakers"
+          style={{ width: '100%', height: 'auto', display: 'block' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.4) 0%, transparent 15%, transparent 85%, rgba(5,4,12,.5) 100%)' }} />
       </div>
 
       {/* ── Film strip ── */}
