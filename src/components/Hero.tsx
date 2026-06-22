@@ -37,9 +37,9 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
   }, [])
 
   return (
-    <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: 'clamp(90px, 8vw, 130px)' }}>
+    <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: 'clamp(80px, 7vw, 110px)' }}>
       {/* Banner wrapper — banner image + text overlay bound to image area */}
-      <div className="relative overflow-hidden">
+      <div className="relative">
         <img src={heroBanner} alt="The Great Product Festival speakers"
           style={{ width: '100%', height: 'auto', display: 'block' }} />
 
@@ -48,7 +48,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
         {/* ── Text overlaid on banner ── */}
         <div className="absolute inset-0 z-20 pointer-events-none">
-          <div className="max-w-7xl mx-auto px-6 w-full h-full py-6 flex items-center">
+          <div className="max-w-7xl mx-auto px-6 w-full h-full pt-6 pb-6 flex items-center">
             <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2.5 mb-5 w-fit"
