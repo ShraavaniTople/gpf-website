@@ -38,17 +38,17 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
   return (
     <section className="relative overflow-hidden" style={{ background: '#05040C' }}>
-      {/* Banner image — normal flow, full width, natural ratio */}
-      <img src={heroBanner} alt="" aria-hidden
-        style={{ width: '100%', height: 'auto', display: 'block' }} />
-      {/* Dark gradient overlays */}
-      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 30%, rgba(5,4,12,.25) 55%, rgba(5,4,12,0) 75%)' }} />
-      <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(5,4,12,.6) 0%, transparent 15%)' }} />
+      {/* Background glows */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
+        background: 'radial-gradient(ellipse 60% 70% at 15% 55%, rgba(124,58,237,.15) 0%, transparent 100%)'
+      }} />
+      <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
+        background: 'radial-gradient(ellipse 45% 50% at 85% 15%, rgba(245,158,11,.06) 0%, transparent 100%)'
+      }} />
 
-      {/* ── Text content overlaid on banner ── */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        <div className="max-w-7xl mx-auto px-6 w-full h-full pt-24 md:pt-36 pb-12 flex items-center">
-          <div className="flex flex-col gap-4 w-full lg:w-[55%] pointer-events-auto">
+      {/* ── Top: title + CTAs ── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-24 md:pt-36 pb-6">
+        <div className="flex flex-col gap-6">
 
           {/* Text content */}
           <div className="w-full flex flex-col">
@@ -104,8 +104,14 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             </div>
           </div>
 
-          </div>
         </div>
+      </div>
+
+      {/* ── Banner: full-width, all 4 speakers visible at natural aspect ratio ── */}
+      <div className="relative z-10 w-full overflow-hidden" style={{ opacity: 0, animation: 'heroFade 1s ease 0.8s forwards' }}>
+        <img src={heroBanner} alt="The Great Product Festival speakers"
+          style={{ width: '100%', height: 'auto', display: 'block' }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.4) 0%, transparent 15%, transparent 85%, rgba(5,4,12,.5) 100%)' }} />
       </div>
 
       {/* ── Film strip ── */}
