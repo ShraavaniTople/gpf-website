@@ -46,12 +46,12 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
         background: 'radial-gradient(ellipse 45% 50% at 85% 15%, rgba(245,158,11,.06) 0%, transparent 100%)'
       }} />
 
-      {/* ── Top: title + CTAs ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-24 md:pt-36 pb-6">
-        <div className="flex flex-col gap-6">
+      {/* ── Main: text on left, banner image on right ── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-24 md:pt-36 pb-8">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-8">
 
-          {/* Text content */}
-          <div className="w-full flex flex-col">
+          {/* Text content (left) */}
+          <div className="w-full lg:w-[50%] flex flex-col">
             {/* Badge */}
             <div className="inline-flex items-center gap-2.5 mb-5 w-fit"
               style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.04)' }}>
@@ -104,14 +104,13 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             </div>
           </div>
 
-        </div>
-      </div>
+          {/* Banner image (right) — natural aspect ratio, all 4 speakers visible */}
+          <div className="w-full lg:w-[50%] flex-shrink-0" style={{ opacity: 0, animation: 'heroFade 1s ease 0.5s forwards' }}>
+            <img src={heroBanner} alt="The Great Product Festival speakers"
+              style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 16 }} />
+          </div>
 
-      {/* ── Banner: full-width, all 4 speakers visible at natural aspect ratio ── */}
-      <div className="relative z-10 w-full overflow-hidden" style={{ opacity: 0, animation: 'heroFade 1s ease 0.8s forwards' }}>
-        <img src={heroBanner} alt="The Great Product Festival speakers"
-          style={{ width: '100%', height: 'auto', display: 'block' }} />
-        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.4) 0%, transparent 15%, transparent 85%, rgba(5,4,12,.5) 100%)' }} />
+        </div>
       </div>
 
       {/* ── Film strip ── */}
