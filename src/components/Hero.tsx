@@ -44,18 +44,19 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%', opacity: 0.4 }} />
         <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.45) 0%, rgba(5,4,12,.88) 75%)' }} />
       </div>
-      {/* Desktop banner — full banner shown at proper ratio, anchored right, soft blends */}
-      <div className="hidden lg:flex absolute top-0 right-0 bottom-0 z-0 items-center justify-end pointer-events-none" style={{ width: '60%' }}>
-        <div className="relative" style={{ width: '100%', aspectRatio: '2.4 / 1' }}>
+      {/* Desktop banner — anchored bottom-right, edges feathered with radial mask */}
+      <div className="hidden lg:block absolute top-0 right-0 bottom-0 z-0 pointer-events-none overflow-hidden" style={{ width: '62%' }}>
+        <div className="relative" style={{ position: 'absolute', right: 0, bottom: 0, width: '100%', aspectRatio: '2.4 / 1' }}>
           <img src={heroBanner} alt="" aria-hidden
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'contain',
+              objectFit: 'cover',
               objectPosition: 'right center',
               display: 'block',
+              WebkitMaskImage: 'radial-gradient(ellipse 100% 100% at 75% 60%, #000 45%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0.35) 85%, transparent 100%)',
+              maskImage: 'radial-gradient(ellipse 100% 100% at 75% 60%, #000 45%, rgba(0,0,0,0.85) 65%, rgba(0,0,0,0.35) 85%, transparent 100%)',
             }} />
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.85) 6%, rgba(5,4,12,.25) 18%, rgba(5,4,12,0) 32%)' }} />
         </div>
       </div>
       {/* Background glows */}
