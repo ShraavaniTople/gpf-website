@@ -45,7 +45,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
         <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.45) 0%, rgba(5,4,12,.88) 75%)' }} />
       </div>
       {/* Desktop banner — full banner visible at proper aspect ratio, blended on all edges */}
-      <div className="hidden lg:flex absolute top-0 right-0 bottom-0 z-0 items-center justify-end" style={{ width: '62%' }}>
+      <div className="hidden lg:flex absolute top-0 right-0 bottom-0 z-0 items-center justify-end pointer-events-none" style={{ width: '62%' }}>
         <div className="relative w-full" style={{ aspectRatio: '2.4 / 1', maxHeight: '85%' }}>
           <img src={heroBanner} alt="" aria-hidden
             style={{
@@ -54,13 +54,9 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               objectFit: 'cover',
               objectPosition: 'center',
               display: 'block',
-              maskImage: 'linear-gradient(to right, transparent 0%, #000 18%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 18%, #000 100%), linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%)',
-              maskComposite: 'intersect',
-              WebkitMaskComposite: 'source-in',
             }} />
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.7) 10%, rgba(5,4,12,0) 25%)' }} />
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,0) 15%, rgba(5,4,12,0) 85%, #05040C 100%)' }} />
+          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.85) 8%, rgba(5,4,12,.3) 20%, rgba(5,4,12,0) 35%)' }} />
+          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,.5) 12%, rgba(5,4,12,0) 32%, rgba(5,4,12,0) 68%, rgba(5,4,12,.5) 88%, #05040C 100%)' }} />
         </div>
       </div>
       {/* Background glows */}
