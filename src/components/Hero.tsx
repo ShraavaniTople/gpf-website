@@ -45,6 +45,10 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
         {/* Dark gradient on left for text readability */}
         <div aria-hidden className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 25%, rgba(5,4,12,.3) 50%, rgba(5,4,12,0) 70%)' }} />
+        {/* Top fade — blends banner top edge into dark background */}
+        <div aria-hidden className="absolute inset-x-0 top-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,.5) 50%, rgba(5,4,12,0) 100%)' }} />
+        {/* Bottom fade — blends banner bottom edge into dark background */}
+        <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to top, #05040C 0%, rgba(5,4,12,.5) 50%, rgba(5,4,12,0) 100%)' }} />
 
         {/* ── Text overlaid on banner ── */}
         <div className="absolute inset-0 z-20 pointer-events-none">
