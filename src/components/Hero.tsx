@@ -44,20 +44,17 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%', opacity: 0.4 }} />
         <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.45) 0%, rgba(5,4,12,.88) 75%)' }} />
       </div>
-      {/* Desktop banner — full banner visible at proper aspect ratio, blended on all edges */}
-      <div className="hidden lg:flex absolute top-0 right-0 bottom-0 z-0 items-center justify-end pointer-events-none" style={{ width: '62%' }}>
-        <div className="relative w-full" style={{ aspectRatio: '2.4 / 1', maxHeight: '85%' }}>
-          <img src={heroBanner} alt="" aria-hidden
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              display: 'block',
-            }} />
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.85) 8%, rgba(5,4,12,.3) 20%, rgba(5,4,12,0) 35%)' }} />
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,.5) 12%, rgba(5,4,12,0) 32%, rgba(5,4,12,0) 68%, rgba(5,4,12,.5) 88%, #05040C 100%)' }} />
-        </div>
+      {/* Desktop banner — fills right side fully, focused on speakers, soft left blend */}
+      <div className="hidden lg:block absolute top-0 right-0 bottom-0 z-0 pointer-events-none" style={{ width: '65%' }}>
+        <img src={heroBanner} alt="" aria-hidden
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: '85% 50%',
+            display: 'block',
+          }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.9) 10%, rgba(5,4,12,.35) 25%, rgba(5,4,12,0) 45%)' }} />
       </div>
       {/* Background glows */}
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
