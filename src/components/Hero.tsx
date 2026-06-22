@@ -44,19 +44,17 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%', opacity: 0.4 }} />
         <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.45) 0%, rgba(5,4,12,.88) 75%)' }} />
       </div>
-      {/* Desktop banner — centered right, blend mode makes dark areas merge into bg */}
-      <div className="hidden lg:flex absolute top-0 right-0 bottom-0 z-0 pointer-events-none items-center justify-end" style={{ width: '58%' }}>
-        <div className="relative w-full" style={{ aspectRatio: '2.4 / 1' }}>
-          <img src={heroBanner} alt="" aria-hidden
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              display: 'block',
-              mixBlendMode: 'lighten',
-            }} />
-        </div>
+      {/* Desktop — show ONLY the speakers portion of the banner, cropped from right */}
+      <div className="hidden lg:block absolute top-0 right-0 bottom-0 z-0 pointer-events-none" style={{ width: '42%' }}>
+        <img src={heroBanner} alt="" aria-hidden
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: '100% 50%',
+            display: 'block',
+          }} />
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.8) 8%, rgba(5,4,12,0) 22%)' }} />
       </div>
       {/* Background glows */}
       <div aria-hidden className="absolute inset-0 pointer-events-none" style={{
