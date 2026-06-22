@@ -44,17 +44,19 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 50%', opacity: 0.4 }} />
         <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(5,4,12,.45) 0%, rgba(5,4,12,.88) 75%)' }} />
       </div>
-      {/* Desktop banner — full image visible, edges feathered with solid gradient overlays */}
-      <div className="hidden lg:flex absolute top-0 right-0 bottom-0 z-0 pointer-events-none items-center" style={{ width: '60%' }}>
+      {/* Desktop banner — centered right, edges feathered to transparency */}
+      <div className="hidden lg:flex absolute top-0 right-0 bottom-0 z-0 pointer-events-none items-center justify-end" style={{ width: '58%' }}>
         <div className="relative w-full" style={{ aspectRatio: '2.4 / 1' }}>
           <img src={heroBanner} alt="" aria-hidden
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
-          {/* Left fade */}
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #05040C 0%, rgba(5,4,12,.95) 5%, rgba(5,4,12,.4) 15%, rgba(5,4,12,0) 28%)' }} />
-          {/* Top fade */}
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,.6) 8%, rgba(5,4,12,0) 22%)' }} />
-          {/* Bottom fade */}
-          <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #05040C 0%, rgba(5,4,12,.6) 8%, rgba(5,4,12,0) 22%)' }} />
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              display: 'block',
+              WebkitMaskImage: 'radial-gradient(ellipse 75% 85% at 70% 50%, black 25%, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.5) 75%, transparent 100%)',
+              maskImage: 'radial-gradient(ellipse 75% 85% at 70% 50%, black 25%, rgba(0,0,0,0.95) 45%, rgba(0,0,0,0.5) 75%, transparent 100%)',
+            }} />
         </div>
       </div>
       {/* Background glows */}
