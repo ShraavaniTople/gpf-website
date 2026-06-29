@@ -276,9 +276,8 @@ function HackathonForm() {
         <div>
           <label className={labelClass} htmlFor="h-size">Team Size</label>
           <select id="h-size" name="Team Size" required className={selectClass}>
+            <option value="1">1 member</option>
             <option value="2">2 members</option>
-            <option value="3">3 members</option>
-            <option value="4">4 members</option>
           </select>
         </div>
         <div>
@@ -307,8 +306,8 @@ function HackathonForm() {
         <textarea id="h-idea" name="Idea" rows={4} required placeholder="Give us a brief overview of what you plan to build..." className={textareaClass} />
       </div>
       <div>
-        <label className={labelClass} htmlFor="h-past">Past Projects <span className="text-[#6B6880] font-normal">(links or short descriptions)</span></label>
-        <textarea id="h-past" name="Past Projects" rows={3} required placeholder="Share GitHub repos, live demos, or briefly describe 1-2 projects you've shipped..." className={textareaClass} />
+        <label className={labelClass} htmlFor="h-prototype">Rough Prototype <span className="text-[#6B6880] font-normal">(link or short description)</span></label>
+        <textarea id="h-prototype" name="Rough Prototype" rows={3} required placeholder="Share a Figma file, demo link, or briefly describe the prototype you have in mind..." className={textareaClass} />
       </div>
       {error && <p className="text-sm text-red-400">{error}</p>}
       <div className="pt-2 flex flex-col items-start gap-2">

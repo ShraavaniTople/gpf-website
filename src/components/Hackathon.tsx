@@ -4,7 +4,7 @@ interface Props { onRegister: () => void }
 
 const format = [
   { n: '01', title: 'Virtual Kickoff', desc: 'The challenge opens online. Problem statements are revealed, teams are synced, and the clock starts.' },
-  { n: '02', title: 'Team Composition', desc: 'Cross-functional squads of 2 to 4 members: product, design, and engineering in one team.' },
+  { n: '02', title: 'Team Composition', desc: 'Cross-functional squads of 1 to 2 members: product, design, and engineering in one team.' },
   { n: '03', title: 'Collaborative Sprint', desc: 'A 24-hour build window with digital check-ins and mentorship from industry veterans.' },
   { n: '04', title: 'Main Stage Finals', desc: 'Shortlisted teams demo live in front of India\'s top product leaders at the conference.' },
 ]
