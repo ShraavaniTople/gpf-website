@@ -154,7 +154,12 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           to   { opacity:1; transform:translateY(0) }
         }
         @media (max-width: 1023px) {
-          .hero-banner-wrap { min-height: 620px; }
+          .hero-banner-wrap {
+            min-height: 620px;
+            display: flex;
+            align-items: center;
+          }
+          .hero-banner-wrap > img { object-position: center 60%; }
         }
       `}</style>
     </section>
