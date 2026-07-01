@@ -38,22 +38,21 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
   return (
     <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: '118px' }}>
-      {/* Banner wrapper — image covers area, text overlays on top */}
-      <div className="relative">
-        {/* Image: object-cover fills container on mobile (text defines height); natural block on desktop */}
+      {/* Banner wrapper — banner image + text overlay bound to image area */}
+      <div className="relative hero-banner-wrap">
         <img src={heroBanner} alt="The Great Product Festival speakers"
-          className="block w-full absolute inset-0 h-full object-cover lg:static lg:h-auto" />
+          style={{ width: '100%', height: 'auto', display: 'block' }} />
 
-        {/* Dark gradient for text readability */}
+        {/* Dark gradient on left for text readability */}
         <div aria-hidden className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 25%, rgba(5,4,12,.3) 50%, rgba(5,4,12,0) 70%)' }} />
         {/* Top fade — blends banner top edge into dark background */}
         <div aria-hidden className="absolute inset-x-0 top-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,.5) 50%, rgba(5,4,12,0) 100%)' }} />
         {/* Bottom fade — blends banner bottom edge into dark background */}
         <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to top, #05040C 0%, rgba(5,4,12,.5) 50%, rgba(5,4,12,0) 100%)' }} />
 
-        {/* ── Text: in-flow on mobile (defines container height), absolute overlay on desktop ── */}
-        <div className="relative z-20 lg:absolute lg:inset-0 lg:pointer-events-none">
-          <div className="max-w-7xl mx-auto px-6 w-full lg:h-full pt-8 pb-8 lg:pt-6 lg:pb-6 flex lg:items-center">
+        {/* ── Text overlaid on banner ── */}
+        <div className="absolute inset-0 z-20 pointer-events-none">
+          <div className="max-w-7xl mx-auto px-6 w-full h-full pt-6 pb-6 flex items-start lg:items-center">
             <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2.5 mb-5 w-fit"
@@ -153,6 +152,9 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
         @keyframes heroFade {
           from { opacity:0; transform:translateY(14px) }
           to   { opacity:1; transform:translateY(0) }
+        }
+        @media (max-width: 1023px) {
+          .hero-banner-wrap { min-height: 620px; }
         }
       `}</style>
     </section>
