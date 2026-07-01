@@ -38,22 +38,23 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
 
   return (
     <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: '118px' }}>
-      {/* Banner wrapper — image on top (mobile) or as bg for text overlay (desktop) */}
+      {/* Banner wrapper — image covers area, text overlays on top */}
       <div className="relative">
+        {/* Image: object-cover fills container on mobile (text defines height); natural block on desktop */}
         <img src={heroBanner} alt="The Great Product Festival speakers"
-          style={{ width: '100%', height: 'auto', display: 'block' }} />
+          className="block w-full absolute inset-0 h-full object-cover lg:static lg:h-auto" />
 
-        {/* Dark gradient on left for text readability — desktop only */}
-        <div aria-hidden className="absolute inset-0 z-10 pointer-events-none hidden lg:block" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 25%, rgba(5,4,12,.3) 50%, rgba(5,4,12,0) 70%)' }} />
+        {/* Dark gradient for text readability */}
+        <div aria-hidden className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 25%, rgba(5,4,12,.3) 50%, rgba(5,4,12,0) 70%)' }} />
         {/* Top fade — blends banner top edge into dark background */}
         <div aria-hidden className="absolute inset-x-0 top-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,.5) 50%, rgba(5,4,12,0) 100%)' }} />
         {/* Bottom fade — blends banner bottom edge into dark background */}
         <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to top, #05040C 0%, rgba(5,4,12,.5) 50%, rgba(5,4,12,0) 100%)' }} />
 
-        {/* ── Text: stacked below banner on mobile, absolute overlay on desktop ── */}
-        <div className="relative lg:absolute lg:inset-0 lg:z-20 lg:pointer-events-none">
-          <div className="max-w-7xl mx-auto px-6 w-full lg:h-full pt-8 pb-6 lg:pt-6 flex lg:items-center">
-            <div className="w-full lg:w-[50%] flex flex-col lg:pointer-events-auto">
+        {/* ── Text: in-flow on mobile (defines container height), absolute overlay on desktop ── */}
+        <div className="relative z-20 lg:absolute lg:inset-0 lg:pointer-events-none">
+          <div className="max-w-7xl mx-auto px-6 w-full lg:h-full pt-8 pb-8 lg:pt-6 lg:pb-6 flex lg:items-center">
+            <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2.5 mb-5 w-fit"
               style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.04)' }}>
