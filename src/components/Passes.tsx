@@ -171,21 +171,24 @@ export default function Passes({ onGetPass }: Props) {
         <div ref={discRef} className="sr mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
           {/* Member discount */}
           <div className="text-center rounded-2xl p-6"
-            style={{ border: '1px solid rgba(245,158,11,.12)', background: 'rgba(245,158,11,.02)' }}>
-            <p className="font-mono text-[11px] uppercase tracking-widest mb-3" style={{ color: '#F59E0B' }}>Advance and Accelerate</p>
+            style={{ border: '1px solid rgba(124,58,237,.15)', background: 'rgba(124,58,237,.03)' }}>
+            <p className="font-mono text-[11px] uppercase tracking-widest mb-3" style={{ color: '#A78BFA' }}>WiP India Members</p>
             <p className="text-sm leading-relaxed mb-4" style={{ color: '#6B7280' }}>
-              Active WiP India members get{' '}
+              All active members get{' '}
               <span style={{ color: '#F0EEF8' }}>15% off</span>
-              {' '}on all passes.
+              {' '}on all passes. Current{' '}
+              <span style={{ color: '#F0EEF8' }}>Advance &amp; Accelerate</span>
+              {' '}members attend{' '}
+              <span style={{ color: '#F0EEF8' }}>free</span>.
             </p>
             <a
               href="https://womeninproductindia.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-display font-semibold text-sm"
-              style={{ color: '#F59E0B' }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#FCD34D')}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#F59E0B')}
+              style={{ color: '#A78BFA' }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#C4B5FD')}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#A78BFA')}
             >
               Join as Member &rarr;
             </a>
