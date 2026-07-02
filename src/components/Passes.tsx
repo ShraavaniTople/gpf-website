@@ -24,8 +24,8 @@ const tiers = [
     popular: true,
     desc: 'The complete GPF experience.',
     features: [
-      'Everything in General',
-      'Workshop Sessions',
+      'Everything in **General**',
+      'Workshops Worth ₹1–2 Lakhs',
       'Hackathon Participation',
       'Priority Seating',
       '6 Months WiP India Advance Membership',
@@ -40,7 +40,7 @@ const tiers = [
     popular: false,
     desc: 'For leaders who want the inner circle.',
     features: [
-      'Everything in Premium',
+      'Everything in **Premium**',
       'Founders Roundtables',
       'VIP Networking Dinner',
       'Speaker Lounge Access',
@@ -150,7 +150,13 @@ export default function Passes({ onGetPass }: Props) {
                         style={{ background: tier.popular ? 'rgba(124,58,237,.15)' : 'rgba(28,26,50,.9)' }}>
                         <Check size={9} style={{ color: tier.popular ? '#A78BFA' : '#52506A' }} />
                       </div>
-                      <span className="text-sm" style={{ color: '#9490AD' }}>{f}</span>
+                      <span className="text-sm" style={{ color: '#9490AD' }}>
+                        {f.split(/(\*\*[^*]+\*\*)/g).map((part, j) =>
+                          part.startsWith('**') && part.endsWith('**')
+                            ? <strong key={j} style={{ color: '#F0EEF8', fontWeight: 700 }}>{part.slice(2, -2)}</strong>
+                            : part
+                        )}
+                      </span>
                     </li>
                   ))}
                 </ul>
