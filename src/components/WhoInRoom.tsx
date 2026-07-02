@@ -41,12 +41,12 @@ function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boo
               className="font-display font-bold px-5 transition-colors duration-300"
               style={{
                 fontSize: 15,
-                color: i % 3 === 0 ? 'rgba(167,139,250,0.7)' : i % 3 === 1 ? 'rgba(240,238,248,0.45)' : 'rgba(240,238,248,0.28)',
+                color: i % 3 === 0 ? 'rgba(167,139,250,0.95)' : i % 3 === 1 ? 'rgba(240,238,248,0.9)' : 'rgba(240,238,248,0.75)',
                 letterSpacing: '-0.02em',
                 cursor: 'default',
               }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'rgba(240,238,248,0.9)')}
-              onMouseLeave={e => (e.currentTarget.style.color = i % 3 === 0 ? 'rgba(167,139,250,0.7)' : i % 3 === 1 ? 'rgba(240,238,248,0.45)' : 'rgba(240,238,248,0.28)')}
+              onMouseEnter={e => (e.currentTarget.style.color = '#F0EEF8')}
+              onMouseLeave={e => (e.currentTarget.style.color = i % 3 === 0 ? 'rgba(167,139,250,0.95)' : i % 3 === 1 ? 'rgba(240,238,248,0.9)' : 'rgba(240,238,248,0.75)')}
             >
               {name}
             </span>
