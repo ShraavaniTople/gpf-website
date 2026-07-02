@@ -28,6 +28,8 @@ const tiers = [
       'Workshop Sessions',
       'Hackathon Participation',
       'Priority Seating',
+      '6 Months WiP India Advance Membership',
+      'Swag Kit',
     ],
   },
   {
@@ -42,6 +44,8 @@ const tiers = [
       'Founders Roundtables',
       'VIP Networking Dinner',
       'Speaker Lounge Access',
+      '1 Year WiP India Advance Membership',
+      'Swag Kit',
     ],
   },
 ]
@@ -163,27 +167,51 @@ export default function Passes({ onGetPass }: Props) {
           ))}
         </div>
 
-        {/* Member discount */}
-        <div ref={discRef} className="sr mt-12 max-w-lg mx-auto text-center rounded-2xl p-6"
-          style={{ border: '1px solid rgba(245,158,11,.12)', background: 'rgba(245,158,11,.02)' }}>
-          <p className="font-mono text-[11px] uppercase tracking-widest mb-3" style={{ color: '#F59E0B' }}>WiP India Members</p>
-          <p className="text-sm leading-relaxed mb-4" style={{ color: '#6B7280' }}>
-            Active members get exclusive rates.{' '}
-            <span style={{ color: '#F0EEF8' }}>Advance: 25% off</span>
-            {' '}&middot;{' '}
-            <span style={{ color: '#F0EEF8' }}>Accelerate: as per current terms</span>
-          </p>
-          <a
-            href="https://womeninproductindia.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-display font-semibold text-sm"
-            style={{ color: '#F59E0B' }}
-            onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#FCD34D')}
-            onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#F59E0B')}
-          >
-            Join as Member &rarr;
-          </a>
+        {/* Discounts row: member discount + group discount */}
+        <div ref={discRef} className="sr mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+          {/* Member discount */}
+          <div className="text-center rounded-2xl p-6"
+            style={{ border: '1px solid rgba(245,158,11,.12)', background: 'rgba(245,158,11,.02)' }}>
+            <p className="font-mono text-[11px] uppercase tracking-widest mb-3" style={{ color: '#F59E0B' }}>Advance and Accelerate</p>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: '#6B7280' }}>
+              Active WiP India members get{' '}
+              <span style={{ color: '#F0EEF8' }}>15% off</span>
+              {' '}on all passes.
+            </p>
+            <a
+              href="https://womeninproductindia.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-display font-semibold text-sm"
+              style={{ color: '#F59E0B' }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#FCD34D')}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#F59E0B')}
+            >
+              Join as Member &rarr;
+            </a>
+          </div>
+
+          {/* Group discount */}
+          <div className="text-center rounded-2xl p-6"
+            style={{ border: '1px solid rgba(124,58,237,.15)', background: 'rgba(124,58,237,.03)' }}>
+            <p className="font-mono text-[11px] uppercase tracking-widest mb-3" style={{ color: '#A78BFA' }}>Group Discount</p>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: '#6B7280' }}>
+              Book{' '}
+              <span style={{ color: '#F0EEF8' }}>3 or more passes</span>
+              {' '}together and get{' '}
+              <span style={{ color: '#F0EEF8' }}>25% off</span>
+              {' '}— valid across all three tiers.
+            </p>
+            <a
+              href="mailto:hello@womeninproductindia.com?subject=Corporate%20%2F%20Bulk%20Passes%20Enquiry"
+              className="font-display font-semibold text-sm"
+              style={{ color: '#A78BFA' }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#C4B5FD')}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = '#A78BFA')}
+            >
+              Corporate &amp; bulk enquiries &rarr;
+            </a>
+          </div>
         </div>
 
       </div>
