@@ -89,7 +89,7 @@ export default function Passes({ onGetPass }: Props) {
           </div>
         </div>
 
-        <div ref={cardsRef} className="sg grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+        <div ref={cardsRef} className="sg grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
           {tiers.map((tier) => (
             <div
               key={tier.name}
