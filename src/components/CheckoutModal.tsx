@@ -21,6 +21,10 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
 // ─── Discount codes ───────────────────────────────────────────────────────────
 const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {
   WIPINDIA15: { label: 'WiP India member · 15% off', pct: 15 },
+  PRODUCT25: { label: 'WiP India member · 25% off', pct: 25 },
+  PRODOM: { label: '25% off', pct: 25 },
+  HERKEY: { label: '25% off', pct: 25 },
+  TGPF50: { label: 'WiP India member · 50% off', pct: 50 },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
@@ -207,7 +211,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   const tier = TIERS[tierName] || TIERS.General
 
   const [step, setStep] = useState<'details' | 'review'>('details')
-  const [details, setDetails] = useState({ firstName: '', lastName: '', email: '', phone: '', company: '' })
+  const [details, setDetails] = useState({ firstName: '', lastName: '', email: '', phone: '', company: '', linkedin: '', role: '' })
   const [codeInput, setCodeInput] = useState('')
   const [applied, setApplied] = useState<{ code: string; label: string; pct?: number; fixed?: number } | null>(null)
   const [codeErr, setCodeErr] = useState('')
@@ -223,7 +227,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
     : 0
   const finalPrice = tier.price - discount
 
-  const canProceed = details.firstName.trim() && details.lastName.trim() && details.email.trim() && details.phone.trim() && details.company.trim()
+  const canProceed = details.firstName.trim() && details.lastName.trim() && details.email.trim() && details.phone.trim() && details.company.trim() && details.linkedin.trim() && details.role.trim()
 
   function applyCode() {
     const key = codeInput.trim().toUpperCase()
@@ -251,7 +255,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       name: 'GPF 2026',
       description: `${tierName} Pass | The Great Product Festival`,
       prefill: { name: `${details.firstName} ${details.lastName}`, email: details.email, contact: details.phone },
-      notes: { pass_type: `${tierName} Pass`, company: details.company || '', discount_code: applied?.code || '', final_price: finalPrice },
+      notes: { pass_type: `${tierName} Pass`, company: details.company || '', role: details.role || '', linkedin: details.linkedin || '', discount_code: applied?.code || '', final_price: finalPrice },
       theme: { color: '#7C3AED' },
       handler: async (response: { razorpay_payment_id: string }) => {
         const pid = response.razorpay_payment_id
@@ -409,6 +413,16 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
             <input value={details.company} onChange={e => setDetails({ ...details, company: e.target.value })}
               type="text" required placeholder="Your company" className={inp} />
           </div>
+          <div>
+            <label className={lbl}>Your Role *</label>
+            <input value={details.role} onChange={e => setDetails({ ...details, role: e.target.value })}
+              type="text" placeholder="Product Manager" className={inp} />
+          </div>
+          <div>
+            <label className={lbl}>LinkedIn Profile *</label>
+            <input value={details.linkedin} onChange={e => setDetails({ ...details, linkedin: e.target.value })}
+              type="url" placeholder="https://linkedin.com/in/..." className={inp} />
+          </div>
         </div>
 
         <button
@@ -488,8 +502,12 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         <p className="text-sm font-semibold" style={{ color: '#F0EEF8' }}>
           {details.firstName} {details.lastName}
           {details.company ? <span style={{ color: '#6B7280', fontWeight: 400 }}> · {details.company}</span> : null}
+          {details.role ? <span style={{ color: '#6B7280', fontWeight: 400 }}> · {details.role}</span> : null}
         </p>
         <p className="text-sm" style={{ color: '#6B7280' }}>{details.email} · {details.phone}</p>
+        {details.linkedin && (
+          <p className="text-xs mt-1 truncate" style={{ color: '#6B7280' }}>{details.linkedin}</p>
+        )}
       </div>
 
       <button
