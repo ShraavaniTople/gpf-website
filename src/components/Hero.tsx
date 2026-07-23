@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import heroBanner from '../assets/hero-banner.png'
 
 interface HeroProps { onSponsor: () => void; onCommunity: () => void }
@@ -15,26 +14,6 @@ const filmPhotos = [
 function go(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }
 
 export default function Hero({ onSponsor, onCommunity }: HeroProps) {
-  const stripRef = useRef<HTMLDivElement>(null)
-
-  // Film strip auto-scroll
-  useEffect(() => {
-    const el = stripRef.current
-    if (!el) return
-    let frame: number
-    let pos = 0
-    const tick = () => {
-      pos += 0.45
-      if (pos >= el.scrollWidth / 2) pos = 0
-      el.scrollLeft = pos
-      frame = requestAnimationFrame(tick)
-    }
-    frame = requestAnimationFrame(tick)
-    const stop = () => cancelAnimationFrame(frame)
-    el.addEventListener('mouseenter', stop)
-    el.addEventListener('touchstart', stop, { passive: true })
-    return () => { cancelAnimationFrame(frame); el.removeEventListener('mouseenter', stop) }
-  }, [])
 
   return (
     <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: '118px' }}>
@@ -99,6 +78,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               </div>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 items-start sm:items-center mb-4 mt-6">
                 <button onClick={() => go('passes')} className="btn-purple text-sm w-full sm:w-auto">Get Passes</button>
+                <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm w-full sm:w-auto">Apply for Hackathon</a>
                 <button onClick={onCommunity} className="btn-purple text-sm w-full sm:w-auto">Become a Community Partner</button>
               </div>
               <p className="text-sm" style={{ color: '#52506A' }}>
@@ -120,11 +100,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             style={{ background: 'linear-gradient(to right, #05040C, transparent)' }} />
           <div aria-hidden className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
             style={{ background: 'linear-gradient(to left, #05040C, transparent)' }} />
-          <div
-            ref={stripRef}
-            className="flex gap-3 pl-6"
-            style={{ overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none', cursor: 'grab', userSelect: 'none' }}
-          >
+          <div className="film-track">
             {[...filmPhotos, ...filmPhotos].map((p, i) => (
               <div key={i} className="zoom flex-shrink-0 overflow-hidden rounded-xl"
                 style={{ width: 'clamp(140px, 42vw, 260px)', height: 'clamp(90px, 28vw, 160px)', background: '#1C1A32' }}>
@@ -157,6 +133,18 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
           from { opacity:0; transform:translateY(14px) }
           to   { opacity:1; transform:translateY(0) }
         }
+        @keyframes filmScroll {
+          from { transform: translateX(0) }
+          to   { transform: translateX(-50%) }
+        }
+        .film-track {
+          display: flex;
+          gap: 0.75rem;
+          padding-left: 1.5rem;
+          width: max-content;
+          animation: filmScroll 45s linear infinite;
+        }
+        .film-track:hover { animation-play-state: paused; }
         @media (max-width: 1023px) {
           .hero-banner-wrap { min-height: 560px; }
         }

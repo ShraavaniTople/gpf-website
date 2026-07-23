@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Users, Wrench, Network, Code2, MessageSquare, Briefcase } from 'lucide-react'
+import { Users, Wrench, Presentation, Code2, MessageSquare, Briefcase } from 'lucide-react'
 import type { ElementType } from 'react'
 
 interface Feature { icon: ElementType; num: string; title: string; bullets: string[] }
@@ -8,9 +8,9 @@ const features: Feature[] = [
   { icon: Users, num: '01', title: 'World-class Speakers',
     bullets: ["Learn from CPOs, Founders, and Product Leaders who have scaled India's biggest platforms.", 'Gain global product insights through the lens of the Indian ecosystem.'] },
   { icon: Wrench, num: '02', title: 'Hands-on Workshops',
-    bullets: ['Intensive small-group sessions tackling growth, strategy, design thinking, and analytics challenges.', 'Leave with actionable toolkits you can deploy in your workflow the next morning.'] },
-  { icon: Network, num: '03', title: 'Curated Networking',
-    bullets: ['Industry-specific mixers with peers from Fintech, SaaS, E-commerce, and Healthtech.', 'Dedicated networking zones built for real conversation, not small talk.'] },
+    bullets: ['Intensive small-group sessions tackling growth, strategy, design thinking, and analytics challenges.', 'Product & startup demos.'] },
+  { icon: Presentation, num: '03', title: 'Curated Demo Stage',
+    bullets: ['AI startup demos, startup builder showcases, and live product demos on the main stage.', 'Hackathon demos — watch teams present real solutions built under real constraints.'] },
   { icon: Code2, num: '04', title: 'Hackathon',
     bullets: ['Cross-functional teams building real solutions under real constraints in 24 hours.', 'Build something real. Win something meaningful. Demo on the main stage.'] },
   { icon: MessageSquare, num: '05', title: 'Founders and Leaders Roundtables',
