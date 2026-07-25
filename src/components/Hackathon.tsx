@@ -6,8 +6,8 @@ const format = [
   { n: '01', title: 'Virtual Kickoff', desc: 'Registrations are now open. The challenge opens online: problem statements are revealed, teams are synced, and the clock starts.' },
   { n: '02', title: 'Team Composition', desc: 'Cross-functional squads of 1 to 2 members: product, design, and engineering in one team.' },
   { n: '03', title: 'Finalist Shortlisting', desc: 'Teams are evaluated on the strength of their idea, alignment to the problem statement, and depth of technical and product composition. Only the strongest move forward.' },
-  { n: '04', title: 'Collaborative Sprint', desc: 'A 24-hour build window with digital check-ins and mentorship from industry veterans.' },
-  { n: '05', title: 'Main Stage Finals', desc: 'Shortlisted teams demo live in front of India\'s top product leaders at the conference.' },
+  { n: '04', title: 'Build Sprint', desc: 'A 24-hour in-person build window with mentorship from industry veterans.' },
+  { n: '05', title: 'Main Stage Finals', desc: 'Finalists demo live in front of India\'s top product leaders at the conference.' },
 ]
 
 const tracks = [
