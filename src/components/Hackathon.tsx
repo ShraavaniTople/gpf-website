@@ -94,8 +94,8 @@ export default function Hackathon() {
               ))}
             </div>
 
-            <div ref={photoRef} className="rounded-2xl overflow-hidden flex-1" style={{ minHeight: '220px', position: 'relative' }}>
-              <img src="/photos/hackathon-team.png" alt="Team working at hackathon" style={{ height: '100%', width: '100%', objectFit: 'cover', display: 'block' }} />
+            <div ref={photoRef} className="rounded-2xl overflow-hidden" style={{ height: 'clamp(120px, 25vw, 200px)', position: 'relative' }}>
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80" alt="Team coding at hackathon" style={{ height: '120%', width: '100%', objectFit: 'cover', display: 'block' }} />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(13,11,31,.6) 0%, transparent 60%)' }} />
             </div>
           </div>
