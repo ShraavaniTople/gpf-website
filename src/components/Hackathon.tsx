@@ -73,7 +73,7 @@ export default function Hackathon() {
             ))}
             <div className="pt-8">
               <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm">Apply for Hackathon</a>
-              <p className="text-xs mt-3" style={{ color: '#52506A', fontFamily: 'JetBrains Mono, monospace' }}>Registration closes 48 hours before Day 1.</p>
+              <p className="text-xs mt-5" style={{ color: '#52506A', fontFamily: 'JetBrains Mono, monospace' }}>Registration closes on 25 August 2026.</p>
             </div>
           </div>
 
