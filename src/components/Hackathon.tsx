@@ -47,13 +47,13 @@ export default function Hackathon() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <div ref={headRef} className="sr mb-16">
-          <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#F59E0B' }}>Hackathon &nbsp;·&nbsp; 11 Sept 2026</p>
+          <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#F59E0B' }}>Hackathon &nbsp;·&nbsp; 23 July 2026</p>
           <h2 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(44px,7vw,96px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
             Build Something Real.<br />
             <span className="grad">Win Something Meaningful.</span>
           </h2>
           <p className="font-mono text-xs md:text-sm uppercase tracking-[.2em] mt-6" style={{ color: '#9490AD' }}>
-            Virtual Kickoff &nbsp;·&nbsp; 11 September 2026
+            Virtual Kickoff &nbsp;·&nbsp; 23 July 2026
           </p>
         </div>
 
