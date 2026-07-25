@@ -10,7 +10,7 @@ const features: Feature[] = [
   { icon: Wrench, num: '02', title: 'Hands-on Workshops',
     bullets: ['Intensive small-group sessions tackling growth, strategy, design thinking, and analytics challenges.', 'Product & startup demos.'] },
   { icon: Presentation, num: '03', title: 'Curated Demo Stage',
-    bullets: ['AI startup demos, startup builder showcases, and live product demos on the main stage.', 'Hackathon demos — watch teams present real solutions built under real constraints.'] },
+    bullets: ['AI startup demos, startup builder showcases, and live product demos on the main stage.', 'Hackathon demos: watch teams present real solutions built under real constraints.'] },
   { icon: Code2, num: '04', title: 'Hackathon',
     bullets: ['Cross-functional teams building real solutions under real constraints in 24 hours.', 'Build something real. Win something meaningful. Demo on the main stage.'] },
   { icon: MessageSquare, num: '05', title: 'Founders and Leaders Roundtables',

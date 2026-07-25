@@ -6,14 +6,14 @@ const days = [
     title: 'Building Intelligent Products',
     tracks: [
       { name: 'Product in the Intelligence Era', sessions: [
-        'Building products that think, learn, and act — agents, copilots, automation, and AI-native experiences.',
-        'From PM to Product Architect — navigating strategy, discovery, experimentation, and decision-making in the AI era.',
-        'Designing the future of human-AI collaboration — trust, workflows, interfaces, and responsible innovation.',
+        'Building products that think, learn, and act: agents, copilots, automation, and AI-native experiences.',
+        'From PM to Product Architect: navigating strategy, discovery, experimentation, and decision-making in the AI era.',
+        'Designing the future of human-AI collaboration: trust, workflows, interfaces, and responsible innovation.',
       ] },
       { name: 'Growth, Distribution & Digital Influence', sessions: [
-        'Winning attention in the age of infinite content — positioning, storytelling, and brand differentiation.',
-        'Modern distribution playbooks — creator ecosystems, communities, partnerships, and AI-powered growth.',
-        'Building trust at scale — turning audiences into advocates, customers, and loyal communities.',
+        'Winning attention in the age of infinite content: positioning, storytelling, and brand differentiation.',
+        'Modern distribution playbooks: creator ecosystems, communities, partnerships, and AI-powered growth.',
+        'Building trust at scale: turning audiences into advocates, customers, and loyal communities.',
       ] },
     ],
   },
@@ -22,14 +22,14 @@ const days = [
     title: 'Building Companies & Leaders',
     tracks: [
       { name: 'Infinite Startups', sessions: [
-        'Building AI-native companies from idea to scale — product, GTM, talent, and execution.',
-        'Creating durable advantages in a rapidly changing world — moats, defensibility, and market timing.',
-        'Founder, operator, and investor playbooks — lessons from building, backing, and scaling breakout companies.',
+        'Building AI-native companies from idea to scale: product, GTM, talent, and execution.',
+        'Creating durable advantages in a rapidly changing world: moats, defensibility, and market timing.',
+        'Founder, operator, and investor playbooks: lessons from building, backing, and scaling breakout companies.',
       ] },
       { name: 'Leading the Infinite Builders', sessions: [
-        'Leading humans and AI together — the evolving role of leadership, management, and decision-making.',
-        'Building high-performance organizations — talent, culture, and execution in fast-changing environments.',
-        'Thriving in the future of work — careers, skills, adaptability, and lifelong learning.',
+        'Leading humans and AI together: the evolving role of leadership, management, and decision-making.',
+        'Building high-performance organizations: talent, culture, and execution in fast-changing environments.',
+        'Thriving in the future of work: careers, skills, adaptability, and lifelong learning.',
       ] },
     ],
   },
