@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react'
 
 
 const format = [
-  { n: '01', title: 'Virtual Kickoff', desc: 'Registrations are now open. The challenge opens online: problem statements are revealed, teams are synced, and the clock starts.' },
-  { n: '02', title: 'Team Composition', desc: 'Cross-functional squads of 1 to 2 members: product, design, and engineering in one team.' },
+  { n: '01', title: 'Virtual Kickoff', desc: 'Registrations are now open. Register and submit your idea.' },
+  { n: '02', title: 'Team Composition', desc: 'Cross-functional squads of 1 to 2 members across product, design, and engineering.' },
   { n: '03', title: 'Finalist Shortlisting', desc: 'Teams are evaluated and shortlisted based on the strength of their idea, alignment to the problem statement, and depth of technical and product composition.' },
   { n: '04', title: 'Build Sprint', desc: 'A 24-hour in-person build window with mentorship from industry veterans.' },
   { n: '05', title: 'Main Stage Finals', desc: 'Finalists demo live in front of India\'s top product leaders at the conference.' },
@@ -83,7 +83,7 @@ export default function Hackathon() {
           </div>
 
           {/* Right: tracks card + photo */}
-          <div ref={rightRef} className="sr-r space-y-4">
+          <div ref={rightRef} className="sr-r flex flex-col gap-4">
             <div className="rounded-2xl p-8" style={{ background: '#05040C', border: '1px solid #1C1A32' }}>
               <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-6" style={{ color: '#7C3AED' }}>Problem Statements</p>
               {tracks.map((t, i) => (
@@ -94,8 +94,8 @@ export default function Hackathon() {
               ))}
             </div>
 
-            <div ref={photoRef} className="rounded-2xl overflow-hidden" style={{ height: 'clamp(120px, 25vw, 200px)', position: 'relative' }}>
-              <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80" alt="Team working" style={{ height: '120%', width: '100%', objectFit: 'cover', display: 'block' }} />
+            <div ref={photoRef} className="rounded-2xl overflow-hidden flex-1" style={{ minHeight: '220px', position: 'relative' }}>
+              <img src="/photos/hackathon-team.png" alt="Team working at hackathon" style={{ height: '100%', width: '100%', objectFit: 'cover', display: 'block' }} />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(13,11,31,.6) 0%, transparent 60%)' }} />
             </div>
           </div>
