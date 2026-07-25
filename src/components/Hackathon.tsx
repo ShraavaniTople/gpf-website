@@ -9,7 +9,11 @@ const format = [
   { n: '04', title: 'Main Stage Finals', desc: 'Shortlisted teams demo live in front of India\'s top product leaders at the conference.' },
 ]
 
-const tracks = ['Tech in Product', 'Growth and Monetisation', 'Sponsor-driven Challenge', 'Open Track']
+const tracks = [
+  'Track 1 — Customer & Employee Experience',
+  'Track 2 — Platform Agent Skills & Knowledge',
+  'Track 3 — AI-native Enterprise (Open)',
+]
 
 function useVis(delay = 0) {
   const ref = useRef<HTMLDivElement>(null)
