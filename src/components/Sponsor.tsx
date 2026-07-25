@@ -68,7 +68,7 @@ export default function Sponsor({ onRequest }: Props) {
 
           <div ref={rightRef} className="sr-r hidden lg:block">
             <div ref={photoRef} className="rounded-2xl overflow-hidden" style={{ height: 540, position: 'relative' }}>
-              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&q=80" alt="Conference" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=900&q=80" alt="Conference audience" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,6,24,.9) 0%, rgba(8,6,24,.2) 55%, transparent 100%)' }} />
               <div style={{ position: 'absolute', bottom: 32, left: 32, right: 32 }}>
                 <p className="font-mono text-[11px] uppercase tracking-widest mb-2" style={{ color: '#F59E0B' }}>GPF 2026</p>
