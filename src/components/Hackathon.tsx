@@ -10,9 +10,9 @@ const format = [
 ]
 
 const tracks = [
-  'Track 1 — Customer & Employee Experience',
-  'Track 2 — Platform Agent Skills & Knowledge',
-  'Track 3 — AI-native Enterprise (Open)',
+  'Track 1: Customer & Employee Experience',
+  'Track 2: Platform Agent Skills & Knowledge',
+  'Track 3: AI-native Enterprise (Open)',
 ]
 
 function useVis(delay = 0) {
