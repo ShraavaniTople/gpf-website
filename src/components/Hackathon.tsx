@@ -11,7 +11,7 @@ const format = [
 ]
 
 const tracks = [
-  'Track 1: Customer & Employee Experience',
+  'Track 1: Customer Experience and Employee Onboarding Agents',
   'Track 2: Platform Agent Skills & Knowledge',
   'Track 3: AI-native Enterprise (Open)',
 ]
