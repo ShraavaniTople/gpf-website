@@ -54,12 +54,23 @@ export default function Hackathon() {
         <div ref={headRef} className="sr mb-16">
           <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#F59E0B' }}>Hackathon &nbsp;·&nbsp; 23 July 2026</p>
           <h2 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(44px,7vw,96px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
-            Build Something Real.<br />
-            <span className="grad">Win Something Meaningful.</span>
+            The Great Agent<br />
+            <span className="grad">Hackathon.</span>
           </h2>
           <p className="font-mono text-xs md:text-sm uppercase tracking-[.2em] mt-6" style={{ color: '#9490AD' }}>
             Virtual Kickoff &nbsp;·&nbsp; 23 July 2026
           </p>
+          <div className="flex items-center gap-8 mt-8 flex-wrap">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#52506A' }}>Partner</p>
+              <img src="/logos/freshworks.png" alt="Freshworks" style={{ height: 36, width: 'auto', objectFit: 'contain' }} />
+            </div>
+            <div style={{ width: 1, height: 36, background: '#1C1A32', flexShrink: 0 }} />
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#52506A' }}>Credits Partner</p>
+              <img src="/logos/elevenlabs.png" alt="ElevenLabs" style={{ height: 36, width: 'auto', objectFit: 'contain' }} />
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
