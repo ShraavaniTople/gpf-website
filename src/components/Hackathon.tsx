@@ -52,14 +52,11 @@ export default function Hackathon() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <div ref={headRef} className="sr mb-16">
-          <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#F59E0B' }}>Hackathon &nbsp;·&nbsp; 23 July 2026</p>
+          <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#F59E0B' }}>Hackathon</p>
           <h2 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(44px,7vw,96px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
             The Great Agent<br />
             <span className="grad">Hackathon.</span>
           </h2>
-          <p className="font-mono text-xs md:text-sm uppercase tracking-[.2em] mt-6" style={{ color: '#9490AD' }}>
-            Virtual Kickoff &nbsp;·&nbsp; 23 July 2026
-          </p>
           <div className="flex items-center gap-10 mt-8 flex-wrap">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#52506A' }}>Partner</p>
@@ -106,7 +103,7 @@ export default function Hackathon() {
             </div>
 
             <div ref={photoRef} className="rounded-2xl overflow-hidden" style={{ height: 'clamp(120px, 25vw, 200px)', position: 'relative' }}>
-              <img src="/photos/hackathon-people.png" alt="Hackathon team" style={{ height: '120%', width: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+              <img src="/photos/hackathon-people.png" alt="Hackathon team" style={{ height: '120%', width: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }} />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(13,11,31,.6) 0%, transparent 60%)' }} />
             </div>
           </div>
