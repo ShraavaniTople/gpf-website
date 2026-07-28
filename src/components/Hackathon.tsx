@@ -61,17 +61,19 @@ export default function Hackathon() {
             </h2>
           </div>
           {/* Right: partner logos */}
-          <div className="flex items-end gap-10 flex-shrink-0 flex-wrap">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#52506A' }}>Powered by</p>
-              <img src="/logos/freshworks-full.png" alt="Freshworks" style={{ height: 40, width: 'auto', objectFit: 'contain' }} />
+          <div className="flex items-start gap-10 flex-shrink-0 flex-wrap">
+            <div className="flex flex-col gap-3">
+              <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Powered by</p>
+              <div className="flex items-center" style={{ height: 36 }}>
+                <img src="/logos/freshworks-full.png" alt="Freshworks" style={{ height: 36, width: 'auto', objectFit: 'contain' }} />
+              </div>
             </div>
-            <div style={{ width: 1, height: 48, background: '#1C1A32', flexShrink: 0 }} />
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#52506A' }}>Supported by</p>
-              <div className="flex items-center gap-6">
-                <img src="/logos/elevenlabs-crop.png" alt="ElevenLabs" style={{ height: 28, width: 'auto', objectFit: 'contain' }} />
-                <img src="/logos/dodopayments.png" alt="Dodo Payments" style={{ height: 28, width: 'auto', objectFit: 'contain' }} />
+            <div style={{ width: 1, height: 60, background: '#1C1A32', flexShrink: 0, marginTop: 4 }} />
+            <div className="flex flex-col gap-3">
+              <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
+              <div className="flex items-center gap-6" style={{ height: 36 }}>
+                <img src="/logos/elevenlabs-crop.png" alt="ElevenLabs" style={{ height: 36, width: 'auto', objectFit: 'contain' }} />
+                <img src="/logos/dodopayments.png" alt="Dodo Payments" style={{ height: 36, width: 'auto', objectFit: 'contain' }} />
               </div>
             </div>
           </div>
