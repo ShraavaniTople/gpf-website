@@ -60,15 +60,15 @@ export default function Hackathon() {
           <p className="font-mono text-xs md:text-sm uppercase tracking-[.2em] mt-6" style={{ color: '#9490AD' }}>
             Virtual Kickoff &nbsp;·&nbsp; 23 July 2026
           </p>
-          <div className="flex items-center gap-8 mt-8 flex-wrap">
+          <div className="flex items-center gap-10 mt-8 flex-wrap">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#52506A' }}>Partner</p>
-              <img src="/logos/freshworks.png" alt="Freshworks" style={{ height: 36, width: 'auto', objectFit: 'contain' }} />
+              <img src="/logos/freshworks-crop.png" alt="Freshworks" style={{ height: 56, width: 'auto', objectFit: 'contain' }} />
             </div>
-            <div style={{ width: 1, height: 36, background: '#1C1A32', flexShrink: 0 }} />
+            <div style={{ width: 1, height: 56, background: '#1C1A32', flexShrink: 0 }} />
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#52506A' }}>Credits Partner</p>
-              <img src="/logos/elevenlabs.png" alt="ElevenLabs" style={{ height: 36, width: 'auto', objectFit: 'contain' }} />
+              <img src="/logos/elevenlabs-crop.png" alt="ElevenLabs" style={{ height: 56, width: 'auto', objectFit: 'contain' }} />
             </div>
           </div>
         </div>
