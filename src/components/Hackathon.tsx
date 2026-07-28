@@ -51,21 +51,25 @@ export default function Hackathon() {
       <div className="bg-num" style={{ top: '-5%', right: '-2%' }} aria-hidden>03</div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div ref={headRef} className="sr mb-16">
-          <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#F59E0B' }}>Hackathon</p>
-          <h2 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(44px,7vw,96px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
-            The Great Agent<br />
-            <span className="grad">Hackathon.</span>
-          </h2>
-          <div className="flex items-center gap-10 mt-8 flex-wrap">
+        <div ref={headRef} className="sr mb-16 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+          {/* Left: title */}
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#F59E0B' }}>Hackathon</p>
+            <h2 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(44px,7vw,96px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
+              The Great Agent<br />
+              <span className="grad">Hackathon.</span>
+            </h2>
+          </div>
+          {/* Right: partner logos */}
+          <div className="flex items-end gap-10 flex-shrink-0">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#52506A' }}>Partner</p>
-              <img src="/logos/freshworks-crop.png" alt="Freshworks" style={{ height: 56, width: 'auto', objectFit: 'contain' }} />
+              <img src="/logos/freshworks-crop.png" alt="Freshworks" style={{ height: 72, width: 'auto', objectFit: 'contain' }} />
             </div>
-            <div style={{ width: 1, height: 56, background: '#1C1A32', flexShrink: 0 }} />
+            <div style={{ width: 1, height: 72, background: '#1C1A32', flexShrink: 0 }} />
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#52506A' }}>Credits Partner</p>
-              <img src="/logos/elevenlabs-crop.png" alt="ElevenLabs" style={{ height: 56, width: 'auto', objectFit: 'contain' }} />
+              <img src="/logos/elevenlabs-crop.png" alt="ElevenLabs" style={{ height: 72, width: 'auto', objectFit: 'contain' }} />
             </div>
           </div>
         </div>
