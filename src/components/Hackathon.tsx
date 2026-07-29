@@ -98,6 +98,13 @@ export default function Hackathon() {
               </div>
             ))}
             <div className="pt-8">
+              <div className="mb-7 rounded-xl p-5" style={{ background: 'rgba(245,158,11,.06)', border: '1px solid rgba(245,158,11,.18)' }}>
+                <p className="font-mono text-[10px] uppercase tracking-[.22em] mb-2" style={{ color: '#F59E0B' }}>Prize Pool</p>
+                <p className="font-display font-extrabold leading-none mb-1.5" style={{ fontSize: 'clamp(34px,4.5vw,48px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
+                  ₹3 Lakh<span style={{ color: '#F59E0B' }}>+</span>
+                </p>
+                <p className="text-sm" style={{ color: '#6B7280' }}>in cash and credits</p>
+              </div>
               <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm">Apply for Hackathon</a>
               <p className="text-xs mt-5" style={{ color: '#52506A', fontFamily: 'JetBrains Mono, monospace' }}>Registration closes on 25 August 2026.</p>
             </div>
