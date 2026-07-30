@@ -31,6 +31,7 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   FSH25:      { label: 'Founder Startup House community · 25% off', pct: 25 },
   HIDEVS25:   { label: 'HiDevs AI House community · 25% off', pct: 25 },
   FFDG25:     { label: 'FFDG Mumbai community · 25% off', pct: 25 },
+  AIC25:      { label: 'AIC community · 25% off', pct: 25 },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
