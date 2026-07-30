@@ -25,6 +25,12 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   PRODOM: { label: '25% off', pct: 25 },
   HERKEY: { label: '25% off', pct: 25 },
   TGPF50: { label: 'WiP India member · 50% off', pct: 50 },
+  // Community partner codes — 25% off
+  FOFMUM25:   { label: 'FOF Mumbai community · 25% off', pct: 25 },
+  GDGCLOUD25: { label: 'GDG Cloud Mumbai community · 25% off', pct: 25 },
+  FSH25:      { label: 'Founder Startup House community · 25% off', pct: 25 },
+  HIDEVS25:   { label: 'HiDevs AI House community · 25% off', pct: 25 },
+  FFDG25:     { label: 'FFDG Mumbai community · 25% off', pct: 25 },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
