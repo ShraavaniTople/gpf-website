@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const links = [
@@ -15,23 +16,18 @@ const externalLinks = [
   { label: 'WiP Community', href: 'https://womeninproductindia.com' },
 ]
 
-function go(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-}
-
-function AnnouncementBar({ onDismiss }: { onDismiss: () => void }) {
+function AnnouncementBar({ onDismiss, onGoPasses }: { onDismiss: () => void; onGoPasses: () => void }) {
   return (
     <div
       className="relative w-full flex items-center justify-center px-8 sm:px-10 py-2.5 text-center"
       style={{ background: 'linear-gradient(90deg, rgba(124,58,237,.18) 0%, rgba(245,158,11,.12) 50%, rgba(124,58,237,.18) 100%)', borderBottom: '1px solid rgba(245,158,11,.15)' }}
     >
-      {/* Scrolling text on mobile, static on desktop */}
       <div className="flex items-center gap-2.5 overflow-hidden">
         <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 animate-pulse" style={{ background: '#F59E0B' }} aria-hidden />
         <p className="font-mono text-[11px] uppercase tracking-[.18em] whitespace-nowrap overflow-hidden text-ellipsis" style={{ color: '#F0EEF8' }}>
           Early Bird Pricing is Live &nbsp;&middot;&nbsp; Limited Passes Available &nbsp;&middot;&nbsp;
           <button
-            onClick={() => go('passes')}
+            onClick={onGoPasses}
             className="underline underline-offset-2 transition-opacity hover:opacity-70"
             style={{ color: '#F59E0B' }}
           >
@@ -55,6 +51,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [banner, setBanner] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40)
@@ -62,13 +59,20 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
+  function go(id: string) {
+    navigate(`/${id}`)
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    }, 50)
+  }
+
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-50">
         {/* Announcement bar */}
         {banner && (
           <div className="hidden sm:block" style={{ animation: 'fadeIn .5s ease' }}>
-            <AnnouncementBar onDismiss={() => setBanner(false)} />
+            <AnnouncementBar onDismiss={() => setBanner(false)} onGoPasses={() => go('passes')} />
           </div>
         )}
 
@@ -79,7 +83,7 @@ export default function Navbar() {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[68px] flex items-center justify-between gap-4">
             {/* Logo */}
-            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center flex-shrink-0">
+            <button onClick={() => navigate('/')} className="flex items-center flex-shrink-0">
               <img
                 src="/gpf-logo.png"
                 alt="The Great Product Festival"

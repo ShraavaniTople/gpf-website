@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { Instagram, Linkedin, Globe } from 'lucide-react'
 
 const socials = [
@@ -16,9 +17,6 @@ const navLinks = [
   { label: 'FAQ',        id: 'faq' },
 ]
 
-function go(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }
-
-// Custom X (Twitter) icon
 function XIcon({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -28,6 +26,8 @@ function XIcon({ size = 16 }: { size?: number }) {
 }
 
 export default function Footer() {
+  const navigate = useNavigate()
+
   return (
     <footer style={{ background: '#080618', borderTop: '1px solid #1C1A32' }}>
       <div className="max-w-7xl mx-auto px-6 py-16">
@@ -52,10 +52,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {navLinks.map(l => (
                 <li key={l.id}>
-                  <button onClick={() => go(l.id)} className="text-sm transition-colors duration-200"
+                  <button
+                    onClick={() => navigate(`/${l.id}`)}
+                    className="text-sm transition-colors duration-200"
                     style={{ color: '#6B7280', fontFamily: 'Inter' }}
                     onMouseEnter={e => (e.currentTarget.style.color = '#F0EEF8')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#6B7280')}>
+                    onMouseLeave={e => (e.currentTarget.style.color = '#6B7280')}
+                  >
                     {l.label}
                   </button>
                 </li>
@@ -82,7 +85,6 @@ export default function Footer() {
                   <s.icon size={15} />
                 </a>
               ))}
-              {/* X/Twitter */}
               <a href="https://x.com/wipindia" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"
                 className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200"
                 style={{ background: '#1C1A32', color: '#6B7280', border: '1px solid rgba(28,26,50,0.8)' }}
