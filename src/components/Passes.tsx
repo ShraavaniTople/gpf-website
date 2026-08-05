@@ -41,7 +41,6 @@ const tiers = [
     desc: 'For leaders who want the inner circle.',
     features: [
       'Everything in **Premium**',
-      'Workshops Worth ₹1–2 Lakhs',
       'Founders Roundtables',
       'VIP Networking Dinner',
       'Speaker Lounge Access',

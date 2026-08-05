@@ -111,7 +111,7 @@ export default function App() {
       <Route path="/speakers" element={<SpeakersPage />} />
       <Route path="/sponsor" element={<SponsorPage />} />
       <Route path="/faq" element={<FAQPage />} />
-      <Route path="*" element={<HomePage />} />
+<Route path="*" element={<HomePage />} />
     </Routes>
   )
 }

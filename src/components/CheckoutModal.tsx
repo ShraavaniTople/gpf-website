@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Check, Tag, X, ArrowLeft, Shield, Download, Mail } from 'lucide-react'
+import { Check, Tag, X, ArrowLeft, Shield, Download, Mail, Copy, ExternalLink } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 
 // ─── Tier data ────────────────────────────────────────────────────────────────
@@ -32,6 +32,7 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   HIDEVS25:   { label: 'HiDevs AI House community · 25% off', pct: 25 },
   FFDG25:     { label: 'FFDG Mumbai community · 25% off', pct: 25 },
   AIC25:      { label: 'AIC community · 25% off', pct: 25 },
+  CN25:       { label: 'Coding Ninjas community · 25% off', pct: 25 },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
@@ -88,127 +89,208 @@ interface Props {
   onClose: () => void
 }
 
-// ─── Digital Pass Card ────────────────────────────────────────────────────────
-function DigitalPass({ name, company, tierName, amount, paymentId, passNumber }: {
+// ─── Physical Ticket Card ────────────────────────────────────────────────────
+function PhysicalTicket({ name, company, tierName, amount, paymentId, passNumber }: {
   name: string; company: string; tierName: string
   amount: string; paymentId: string; passNumber: string
 }) {
-  const tierColor = tierName === 'VIP' ? '#F59E0B' : tierName === 'Premium' ? '#A78BFA' : '#7C3AED'
-  const tierBg    = tierName === 'VIP' ? 'rgba(245,158,11,.15)' : tierName === 'Premium' ? 'rgba(167,139,250,.15)' : 'rgba(124,58,237,.15)'
+  const tierColor  = tierName === 'VIP' ? '#B45309' : '#7C3AED'
+  const accentBg   = tierName === 'VIP' ? '#FEF3C7' : '#EDE9FE'
+  const badgeColor = tierName === 'VIP' ? '#92400E' : '#5B21B6'
 
   return (
-    <div id="gpf-pass" style={{
-      background: 'linear-gradient(135deg, #0D0B1F 0%, #080618 100%)',
-      border: `1px solid ${tierColor}40`,
-      borderRadius: 20,
+    <div id="gpf-pass" style={{ borderRadius: 16, background: '#05040C', padding: 3, boxShadow: `0 8px 40px ${tierColor}25` }}>
+    <div style={{
+      background: '#FFFDF9',
+      border: `3px solid ${tierColor}`,
+      borderRadius: 14,
+      display: 'flex',
       overflow: 'hidden',
-      boxShadow: `0 0 60px ${tierColor}20`,
       position: 'relative',
+      fontFamily: 'Space Grotesk, system-ui, sans-serif',
     }}>
-      {/* Top shimmer line */}
-      <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${tierColor}, transparent)` }} />
 
-      {/* Background decorative circles */}
-      <div aria-hidden style={{
-        position: 'absolute', top: -60, right: -60,
-        width: 200, height: 200, borderRadius: '50%',
-        background: `radial-gradient(circle, ${tierColor}12 0%, transparent 70%)`,
-        pointerEvents: 'none',
-      }} />
-      <div aria-hidden style={{
-        position: 'absolute', bottom: -40, left: -40,
-        width: 160, height: 160, borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(124,58,237,.08) 0%, transparent 70%)',
-        pointerEvents: 'none',
-      }} />
+      {/* ── Main ticket body ── */}
+      <div style={{ flex: 1, padding: '20px 24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 220 }}>
 
-      {/* Header */}
-      <div style={{ padding: '24px 28px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* GPF logo left */}
-        <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 48, width: 'auto', maxWidth: 140 }} />
-        {/* WiP logo right + confirmed badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(52,211,153,.12)', border: '1px solid rgba(52,211,153,.25)', borderRadius: 999, padding: '5px 12px' }}>
-            <Check size={11} color="#34D399" />
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#34D399', letterSpacing: '0.1em' }}>CONFIRMED</span>
-          </div>
-          <img src="/wip-logo.png" alt="Women in Product India" style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover' }} />
-        </div>
-      </div>
-
-      {/* Divider */}
-      <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, #1C1A32, transparent)', margin: '0 28px' }} />
-
-      {/* Main content */}
-      <div style={{ padding: '24px 28px' }}>
-        <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.15em', marginBottom: 6 }}>ATTENDEE</p>
-        <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: 24, color: '#F0EEF8', letterSpacing: '-0.03em', lineHeight: 1.1 }}>
-          {name}
-        </p>
-        {company && (
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, color: '#6B7280', marginTop: 4 }}>{company}</p>
-        )}
-
-        {/* Pass type + event info */}
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginTop: 24, flexWrap: 'wrap', gap: 16 }}>
-          <div>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.15em', marginBottom: 8 }}>PASS TYPE</p>
-            <div style={{ background: tierBg, border: `1px solid ${tierColor}40`, borderRadius: 10, padding: '8px 16px', display: 'inline-block' }}>
-              <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, fontSize: 16, color: tierColor, letterSpacing: '-0.01em' }}>
-                {tierName} Pass
-              </p>
-            </div>
-          </div>
-          <div style={{ textAlign: 'right' }}>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.15em', marginBottom: 8 }}>EVENT DETAILS</p>
-            <p style={{ fontFamily: 'Inter, sans-serif', fontSize: 13, color: '#9490AD', lineHeight: 1.7 }}>
-              25-26 Sept 2026, Bangalore<br />
-              2 Days · 4 Tracks<br />
-              500+ Attendees
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Perforated divider */}
-      <div style={{ position: 'relative', margin: '0 20px', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#05040C', flexShrink: 0, marginLeft: -32 }} />
-        <div style={{ flex: 1, borderTop: '2px dashed #1C1A32' }} />
-        <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#05040C', flexShrink: 0, marginRight: -32 }} />
-      </div>
-
-      {/* Footer — QR + payment info */}
-      <div style={{ padding: '20px 28px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
-        {/* QR code */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-          <div style={{ background: '#fff', padding: 8, borderRadius: 10 }}>
-            <QRCodeSVG
-              value={passNumber}
-              size={80}
-              bgColor="#ffffff"
-              fgColor="#1a1040"
-              level="M"
-            />
-          </div>
-          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, color: '#52506A', letterSpacing: '0.1em', textAlign: 'center' }}>SCAN AT ENTRY</p>
-        </div>
-
-        {/* Pass details */}
-        <div style={{ flex: 1 }}>
+        {/* Top row: GPF logo only */}
+        <div>
           <div style={{ marginBottom: 12 }}>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>PASS NUMBER</p>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, color: '#A78BFA', fontWeight: 500 }}>{passNumber}</p>
+            <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 34, width: 'auto', maxWidth: 120 }} />
           </div>
-          <div style={{ marginBottom: paymentId ? 10 : 0 }}>
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>AMOUNT PAID</p>
-            <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, fontSize: 18, color: '#F0EEF8' }}>₹{amount}</p>
-          </div>
-          {paymentId && (
-            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, color: '#52506A', letterSpacing: '0.06em' }}>
-              Payment ID: {paymentId}
-            </p>
-          )}
+          <div style={{ height: 1, background: `${tierColor}15`, marginBottom: 14 }} />
         </div>
+
+        {/* Middle: greeting + name + badge */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 0 }}>
+          <p style={{
+            fontFamily: 'JetBrains Mono, monospace',
+            fontWeight: 700,
+            fontSize: 13,
+            color: tierColor,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            margin: '0 0 6px',
+          }}>
+            Namaste, Builder.
+          </p>
+          <p style={{
+            fontWeight: 800,
+            fontSize: 30,
+            color: '#1a0a40',
+            letterSpacing: '-0.03em',
+            lineHeight: 1.05,
+            margin: '0 0 10px',
+          }}>
+            {name}
+          </p>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            background: `${tierColor}14`,
+            color: badgeColor,
+            border: `1px solid ${tierColor}35`,
+            borderRadius: 5,
+            padding: '4px 10px',
+            fontSize: 10,
+            fontWeight: 700,
+            fontFamily: 'JetBrains Mono, monospace',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            alignSelf: 'flex-start',
+          }}>
+            {tierName} Pass
+          </div>
+        </div>
+
+        {/* Bottom: location + date */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 600, color: '#6B7280', letterSpacing: '0.07em', textTransform: 'uppercase', paddingTop: 14 }}>
+          <span>Bangalore, India</span>
+          <span style={{ color: tierColor, fontWeight: 900, fontSize: 13 }}>|</span>
+          <span>25–26 Sept 2026</span>
+        </div>
+      </div>
+
+      {/* ── Perforated divider ── */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: 2 }}>
+        <div style={{ width: 0, flex: 1, borderLeft: `2px dashed ${tierColor}35` }} />
+      </div>
+
+      {/* ── Right stub ── */}
+      <div style={{
+        width: 110,
+        background: accentBg,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '16px 8px',
+        flexShrink: 0,
+        gap: 0,
+      }}>
+        {/* WiP India logo — no label */}
+        <img src="/wip-logo.png" alt="WiP India" style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tierColor}25` }} />
+
+        {/* QR code */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+          <div style={{ background: '#fff', padding: 5, borderRadius: 8, border: `1px solid ${tierColor}15` }}>
+            <QRCodeSVG value="https://www.thegreatproductfestival.com" size={64} bgColor="#ffffff" fgColor="#1a1040" level="M" />
+          </div>
+          <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 7, color: badgeColor, letterSpacing: '0.06em', textAlign: 'center', margin: 0 }}>SCAN AT ENTRY</p>
+        </div>
+
+        {/* Rotated label */}
+        <span style={{
+          fontFamily: 'JetBrains Mono, monospace',
+          fontWeight: 700,
+          fontSize: 9,
+          color: `${tierColor}80`,
+          letterSpacing: '0.22em',
+          writingMode: 'vertical-rl' as const,
+          textOrientation: 'mixed' as const,
+          transform: 'rotate(180deg)',
+          textTransform: 'uppercase',
+        }}>
+          TGPF 2026
+        </span>
+      </div>
+    </div>
+    </div>
+  )
+}
+
+// ─── Social Share Block ───────────────────────────────────────────────────────
+function SocialShare({ tierName }: { tierName: string }) {
+  const [copied, setCopied] = useState(false)
+
+  const caption = `🎟️ Just grabbed my ${tierName} Pass for The Great Product Festival 2026!
+
+India's biggest product conference is coming to Bengaluru — 2 days, 4 tracks, workshops, keynotes & 500+ product builders, founders & PMs under one roof.
+
+📅 25–26 September 2026 | Bengaluru, India
+🌐 thegreatproductfestival.com
+
+Organised by @womeninproductindia 🙌
+
+#TGPF2026 #GPF2026 #ProductManagement #ProductFestival #WiPIndia`
+
+  const tweetText = encodeURIComponent(
+    `🎟️ Just got my ${tierName} Pass for @wipindia's The Great Product Festival 2026!\n\n25–26 Sept | Bengaluru | 500+ product builders\n\n#TGPF2026 #GPF2026`
+  )
+  const twitterUrl  = `https://twitter.com/intent/tweet?text=${tweetText}&url=https%3A%2F%2Fwww.thegreatproductfestival.com`
+  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.thegreatproductfestival.com`
+
+  function copy() {
+    navigator.clipboard.writeText(caption).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2500)
+    })
+  }
+
+  return (
+    <div className="rounded-xl p-4 space-y-3" style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.18)' }}>
+      <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: '#A78BFA' }}>Share on Socials 🎉</p>
+
+      {/* Caption box */}
+      <div className="rounded-lg p-3 text-xs leading-relaxed whitespace-pre-line" style={{ background: 'rgba(0,0,0,.25)', color: '#9490AD', fontFamily: 'inherit' }}>
+        {caption}
+      </div>
+
+      {/* Handles hint */}
+      <p className="text-[10px]" style={{ color: '#52506A' }}>
+        Tag us — IG: <span style={{ color: '#A78BFA' }}>@womeninproductindia</span> · X: <span style={{ color: '#A78BFA' }}>@wipindia</span> · LI: <span style={{ color: '#A78BFA' }}>wip-india</span>
+      </p>
+
+      {/* Buttons */}
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={copy}
+          className="btn-ghost flex items-center gap-1.5"
+          style={{ padding: '8px 14px', fontSize: 12 }}
+        >
+          <Copy size={12} /> {copied ? 'Copied!' : 'Copy Caption'}
+        </button>
+        <a
+          href={twitterUrl} target="_blank" rel="noopener noreferrer"
+          className="btn-ghost flex items-center gap-1.5"
+          style={{ padding: '8px 14px', fontSize: 12, textDecoration: 'none' }}
+        >
+          <ExternalLink size={12} /> Post on X
+        </a>
+        <a
+          href={linkedInUrl} target="_blank" rel="noopener noreferrer"
+          className="btn-ghost flex items-center gap-1.5"
+          style={{ padding: '8px 14px', fontSize: 12, textDecoration: 'none' }}
+        >
+          <ExternalLink size={12} /> Share on LinkedIn
+        </a>
+        <a
+          href="https://instagram.com/womeninproductindia" target="_blank" rel="noopener noreferrer"
+          className="btn-ghost flex items-center gap-1.5"
+          style={{ padding: '8px 14px', fontSize: 12, textDecoration: 'none' }}
+        >
+          <ExternalLink size={12} /> Instagram
+        </a>
       </div>
     </div>
   )
@@ -313,8 +395,8 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
           </p>
         </div>
 
-        {/* Digital Pass */}
-        <DigitalPass
+        {/* Physical Ticket */}
+        <PhysicalTicket
           name={fullName}
           company={details.company}
           tierName={tierName}
@@ -322,6 +404,23 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
           paymentId={paymentId}
           passNumber={pn}
         />
+
+        {/* Payment details row */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="rounded-xl px-4 py-3" style={{ background: '#080618', border: '1px solid #1C1A32' }}>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>PASS NUMBER</p>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 12, color: '#A78BFA', fontWeight: 500 }}>{pn}</p>
+          </div>
+          <div className="rounded-xl px-4 py-3" style={{ background: '#080618', border: '1px solid #1C1A32' }}>
+            <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 10, color: '#52506A', letterSpacing: '0.12em', marginBottom: 4 }}>AMOUNT PAID</p>
+            <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, fontSize: 16, color: '#F0EEF8' }}>₹{finalPrice.toLocaleString('en-IN')}</p>
+          </div>
+        </div>
+        {paymentId && (
+          <p className="text-center" style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 9, color: '#52506A', letterSpacing: '0.06em' }}>
+            Payment ID: {paymentId}
+          </p>
+        )}
 
         {/* Email notice */}
         <div className="flex items-start gap-3 rounded-xl px-4 py-3"
@@ -343,20 +442,23 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
           </p>
         </div>
 
+        {/* Social sharing */}
+        <SocialShare tierName={tierName} />
+
         {/* Actions */}
         <div className="flex gap-3">
           <button
             onClick={() => {
               const pass = document.getElementById('gpf-pass')
               if (!pass) return
-              const w = window.open('', '_blank', 'width=600,height=700')
+              const w = window.open('', '_blank', 'width=680,height=380')
               if (!w) return
-              w.document.write(`<!DOCTYPE html><html><head><title>GPF 2026 Pass</title>
+              w.document.write(`<!DOCTYPE html><html><head><title>GPF 2026 Pass — ${fullName}</title>
                 <style>
-                  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+                  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
                   * { margin: 0; padding: 0; box-sizing: border-box; }
-                  body { background: #05040C; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
-                  @page { size: A5 landscape; margin: 0; }
+                  body { background: #F3F4F6; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 40px; }
+                  @page { size: A5 landscape; margin: 16px; }
                 </style>
               </head><body>${pass.outerHTML}</body></html>`)
               w.document.close()

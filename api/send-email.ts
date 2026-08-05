@@ -4,106 +4,113 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const TIER_COLOR: Record<string, string> = {
-  VIP: '#F59E0B',
-  Premium: '#A78BFA',
+  VIP: '#B45309',
+  Premium: '#7C3AED',
   General: '#7C3AED',
 }
+const TIER_ACCENT_BG: Record<string, string> = {
+  VIP: '#FEF3C7',
+  Premium: '#EDE9FE',
+  General: '#EDE9FE',
+}
+const TIER_BADGE: Record<string, string> = {
+  VIP: '#92400E',
+  Premium: '#5B21B6',
+  General: '#5B21B6',
+}
 
-function buildHtml(p: {
+// ── Email 1: Payment confirmation ──────────────────────────────────────────────
+function buildConfirmationHtml(p: {
   to_name: string; company: string; pass_type: string
   amount: string; payment_id: string; pass_number: string
   event_date: string; event_city: string
 }) {
-  const tier = p.pass_type.replace(' Pass', '')
+  const tier  = p.pass_type.replace(' Pass', '')
   const color = TIER_COLOR[tier] || '#7C3AED'
 
   return `<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Your GPF 2026 Pass is Confirmed</title>
-</head>
-<body style="margin:0;padding:0;background:#05040C;font-family:'Helvetica Neue',Arial,sans-serif;">
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#05040C;padding:40px 16px;">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>GPF 2026 — Payment Confirmed</title></head>
+<body style="margin:0;padding:0;background:#F3F4F6;font-family:'Helvetica Neue',Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F3F4F6;padding:40px 16px;">
   <tr><td align="center">
     <table width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%;">
 
       <!-- Logo row -->
       <tr>
-        <td align="center" style="padding-bottom:32px;">
-          <img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="44" style="display:block;"/>
+        <td style="padding-bottom:24px;">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td><img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="40" style="display:block;"/></td>
+              <td align="right"><img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="Women in Product India" width="36" height="36" style="display:block;border-radius:50%;"/></td>
+            </tr>
+          </table>
         </td>
       </tr>
 
       <!-- Card -->
       <tr>
-        <td style="background:linear-gradient(135deg,#0D0B1F 0%,#080618 100%);border:1px solid ${color}40;border-radius:20px;overflow:hidden;">
+        <td style="background:#FFFFFF;border:1px solid #E5E7EB;border-radius:16px;overflow:hidden;">
 
-          <!-- Top color bar -->
+          <!-- Accent bar -->
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr><td height="3" style="background:linear-gradient(90deg,transparent,${color},transparent);"></td></tr>
+            <tr><td height="4" style="background:${color};border-radius:16px 16px 0 0;"></td></tr>
           </table>
 
           <!-- Header -->
           <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:28px 32px 20px;">
             <tr>
               <td>
-                <table cellpadding="0" cellspacing="0" border="0" style="background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);border-radius:999px;padding:6px 14px;">
-                  <tr>
-                    <td style="font-family:monospace;font-size:11px;color:#34D399;letter-spacing:0.1em;">✓ CONFIRMED</td>
-                  </tr>
-                </table>
-                <p style="margin:12px 0 4px;font-size:22px;font-weight:800;color:#F0EEF8;letter-spacing:-0.03em;">You're in, ${p.to_name.split(' ')[0]}!</p>
-                <p style="margin:0;font-size:14px;color:#6B7280;">Your pass for The Great Product Festival is confirmed.</p>
+                <p style="margin:0 0 4px;font-size:22px;font-weight:800;color:#1a0a40;letter-spacing:-0.03em;">Payment Confirmed ✓</p>
+                <p style="margin:0;font-size:14px;color:#6B7280;">Hi ${p.to_name.split(' ')[0]}, your pass for The Great Product Festival is confirmed. See you in Bangalore!</p>
               </td>
             </tr>
           </table>
 
           <!-- Divider -->
           <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:0 32px;">
-            <tr><td height="1" style="background:#1C1A32;"></td></tr>
+            <tr><td height="1" style="background:#F3F4F6;"></td></tr>
           </table>
 
-          <!-- Pass details -->
+          <!-- Details grid -->
           <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:24px 32px;">
             <tr>
               <td width="50%" valign="top" style="padding-bottom:20px;">
-                <p style="margin:0 0 6px;font-family:monospace;font-size:10px;color:#52506A;letter-spacing:0.15em;text-transform:uppercase;">Attendee</p>
-                <p style="margin:0;font-size:15px;font-weight:700;color:#F0EEF8;">${p.to_name}</p>
+                <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Attendee</p>
+                <p style="margin:0;font-size:15px;font-weight:700;color:#1a0a40;">${p.to_name}</p>
                 ${p.company && p.company !== '—' ? `<p style="margin:2px 0 0;font-size:13px;color:#6B7280;">${p.company}</p>` : ''}
               </td>
               <td width="50%" valign="top" align="right" style="padding-bottom:20px;">
-                <p style="margin:0 0 6px;font-family:monospace;font-size:10px;color:#52506A;letter-spacing:0.15em;text-transform:uppercase;">Pass Type</p>
-                <table cellpadding="0" cellspacing="0" border="0" style="margin-left:auto;background:${color}22;border:1px solid ${color}40;border-radius:10px;padding:6px 14px;">
-                  <tr><td style="font-size:14px;font-weight:700;color:${color};">${p.pass_type}</td></tr>
+                <p style="margin:0 0 6px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Pass Type</p>
+                <table cellpadding="0" cellspacing="0" border="0" style="margin-left:auto;background:${color};border-radius:6px;padding:5px 14px;">
+                  <tr><td style="font-family:monospace;font-size:11px;font-weight:700;color:#FFFFFF;letter-spacing:0.1em;">${p.pass_type.toUpperCase()}</td></tr>
                 </table>
               </td>
             </tr>
             <tr>
               <td valign="top" style="padding-bottom:20px;">
-                <p style="margin:0 0 6px;font-family:monospace;font-size:10px;color:#52506A;letter-spacing:0.15em;text-transform:uppercase;">Event</p>
-                <p style="margin:0;font-size:14px;color:#9490AD;line-height:1.6;">${p.event_date}<br/>${p.event_city} · 2 Days · 4 Tracks · 500+ Attendees</p>
+                <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Event</p>
+                <p style="margin:0;font-size:14px;color:#4B5563;line-height:1.6;">${p.event_date}<br/>${p.event_city} · 2 Days · 4 Tracks · 500+ Attendees</p>
               </td>
               <td valign="top" align="right" style="padding-bottom:20px;">
-                <p style="margin:0 0 6px;font-family:monospace;font-size:10px;color:#52506A;letter-spacing:0.15em;text-transform:uppercase;">Amount Paid</p>
-                <p style="margin:0;font-size:22px;font-weight:800;color:#F0EEF8;">₹${p.amount}</p>
+                <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Amount Paid</p>
+                <p style="margin:0;font-size:24px;font-weight:800;color:#1a0a40;">₹${p.amount}</p>
               </td>
             </tr>
           </table>
 
-          <!-- Perforated divider -->
+          <!-- Dashed divider -->
           <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:0 32px;">
-            <tr><td height="1" style="border-top:2px dashed #1C1A32;"></td></tr>
+            <tr><td height="1" style="border-top:2px dashed #E5E7EB;"></td></tr>
           </table>
 
           <!-- Pass number + payment ID -->
           <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:20px 32px 28px;">
             <tr>
               <td>
-                <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#52506A;letter-spacing:0.15em;text-transform:uppercase;">Pass Number</p>
-                <p style="margin:0 0 12px;font-family:monospace;font-size:14px;color:#A78BFA;font-weight:500;">${p.pass_number}</p>
-                <p style="margin:0;font-family:monospace;font-size:10px;color:#52506A;">Payment ID: ${p.payment_id}</p>
+                <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Pass Number</p>
+                <p style="margin:0 0 10px;font-family:monospace;font-size:13px;color:${color};font-weight:600;">${p.pass_number}</p>
+                <p style="margin:0;font-family:monospace;font-size:10px;color:#9CA3AF;">Payment ID: ${p.payment_id}</p>
               </td>
             </tr>
           </table>
@@ -113,11 +120,11 @@ function buildHtml(p: {
 
       <!-- Check-in notice -->
       <tr>
-        <td style="padding:20px 0 0;">
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:14px;padding:16px 20px;">
+        <td style="padding:16px 0 0;">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:16px 20px;">
             <tr>
-              <td style="font-size:13px;color:#9490AD;line-height:1.6;">
-                📲 <strong style="color:#F0EEF8;">A separate check-in ticket will be sent closer to the event.</strong>
+              <td style="font-size:13px;color:#92400E;line-height:1.6;">
+                📲 <strong>A separate check-in ticket will be sent closer to the event.</strong>
                 Please use that QR code for entry at the venue.
               </td>
             </tr>
@@ -127,13 +134,103 @@ function buildHtml(p: {
 
       <!-- Footer -->
       <tr>
-        <td style="padding:28px 0 0;text-align:center;">
-          <p style="margin:0 0 6px;font-size:12px;color:#52506A;">Questions? Email us at
-            <a href="mailto:hello@womeninproductindia.com" style="color:#A78BFA;text-decoration:none;">hello@womeninproductindia.com</a>
-          </p>
-          <p style="margin:0;font-size:11px;color:#3A3851;">
-            Passes are non-refundable but transferable up to 14 days before the event.
-          </p>
+        <td style="padding:24px 0 0;text-align:center;">
+          <p style="margin:0 0 6px;font-size:12px;color:#9CA3AF;">Questions? <a href="mailto:hello@womeninproductindia.com" style="color:${color};text-decoration:none;">hello@womeninproductindia.com</a></p>
+          <p style="margin:0;font-size:11px;color:#D1D5DB;">Passes are non-refundable but transferable up to 14 days before the event.</p>
+        </td>
+      </tr>
+
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>`
+}
+
+// ── Email 2: Visual ticket ──────────────────────────────────────────────────────
+function buildTicketHtml(p: {
+  to_name: string; company: string; pass_type: string; pass_number: string
+}) {
+  const tier    = p.pass_type.replace(' Pass', '')
+  const color   = TIER_COLOR[tier]   || '#7C3AED'
+  const accentBg = TIER_ACCENT_BG[tier] || '#EDE9FE'
+  const badge   = TIER_BADGE[tier]   || '#5B21B6'
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Your GPF 2026 Ticket</title></head>
+<body style="margin:0;padding:0;background:#F3F4F6;font-family:'Helvetica Neue',Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F3F4F6;padding:40px 16px;">
+  <tr><td align="center">
+    <table width="580" cellpadding="0" cellspacing="0" border="0" style="max-width:580px;width:100%;">
+
+      <!-- Heading -->
+      <tr>
+        <td align="center" style="padding-bottom:20px;">
+          <p style="margin:0;font-size:13px;color:#6B7280;">Here's your ticket for The Great Product Festival 🎟️</p>
+        </td>
+      </tr>
+
+      <!-- Ticket shell -->
+      <tr>
+        <td style="background:#FFFDF9;border:3px solid ${color};border-radius:16px;overflow:hidden;">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <!-- Main section -->
+              <td valign="top" style="padding:22px 26px 20px;width:75%;">
+
+                <!-- Logos -->
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:18px;">
+                  <tr>
+                    <td><img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="36" style="display:block;"/></td>
+                    <td align="right"><img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="Women in Product India" width="32" height="32" style="display:block;border-radius:50%;"/></td>
+                  </tr>
+                </table>
+
+                <!-- Greeting -->
+                <p style="margin:0 0 8px;font-size:18px;font-weight:900;color:${color};letter-spacing:-0.01em;text-transform:uppercase;">Namaste, Builder.</p>
+
+                <!-- Name -->
+                <p style="margin:0 0 10px;font-size:26px;font-weight:800;color:#1a0a40;letter-spacing:-0.03em;line-height:1.1;">${p.to_name}</p>
+
+                ${p.company && p.company !== '—'
+                  ? `<p style="margin:0 0 10px;font-size:12px;color:#6B7280;font-weight:500;">${p.company}</p>`
+                  : ''}
+
+                <!-- Pass badge -->
+                <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+                  <tr>
+                    <td style="background:${badge};border-radius:6px;padding:5px 14px;">
+                      <span style="font-family:monospace;font-size:10px;font-weight:700;color:#FFFFFF;letter-spacing:0.12em;text-transform:uppercase;">${p.pass_type.toUpperCase()}</span>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Location + date -->
+                <p style="margin:0;font-size:11px;font-weight:700;color:#4B5563;letter-spacing:0.06em;text-transform:uppercase;">
+                  BANGALORE, INDIA &nbsp;<span style="color:${color};">|</span>&nbsp; 25–26 SEPT 2026
+                </p>
+
+              </td>
+
+              <!-- Stub divider (visual only — email border workaround) -->
+              <td width="2" style="background:${color}30;" valign="top">&nbsp;</td>
+
+              <!-- Right stub -->
+              <td valign="top" style="background:${accentBg};padding:16px 14px;text-align:center;width:25%;">
+                <p style="margin:0 0 8px;font-family:monospace;font-size:9px;color:${badge};letter-spacing:0.1em;text-transform:uppercase;">Pass No.</p>
+                <p style="margin:0 0 16px;font-family:monospace;font-size:10px;color:${color};font-weight:600;word-break:break-all;">${p.pass_number}</p>
+                <p style="margin:0;font-family:monospace;font-size:10px;font-weight:900;color:${color};letter-spacing:0.25em;text-transform:uppercase;">TGPF<br/>2026</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- Footer note -->
+      <tr>
+        <td align="center" style="padding:20px 0 0;">
+          <p style="margin:0;font-size:12px;color:#9CA3AF;">Save this email — bring this ticket (digital or printed) to the event.</p>
         </td>
       </tr>
 
@@ -167,14 +264,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
 
+  const fromAddress = process.env.RESEND_FROM_EMAIL ?? 'GPF 2026 <tickets@thegreatproductfestival.com>'
+
   try {
     await Promise.all([
+      // Email 1 — payment confirmation
       resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL ?? 'TGPF 2026 <tickets@thegreatproductfestival.com>',
+        from: fromAddress,
         to: [to_email],
         reply_to: 'hello@womeninproductindia.com',
-        subject: `Your ${pass_type} for The Great Product Festival is confirmed! 🎉`,
-        html: buildHtml({ to_name, company, pass_type, amount, payment_id, pass_number, event_date, event_city }),
+        subject: `Payment confirmed — your ${pass_type} for GPF 2026 🎉`,
+        html: buildConfirmationHtml({ to_name, company, pass_type, amount, payment_id, pass_number, event_date, event_city }),
+      }),
+      // Email 2 — visual ticket
+      resend.emails.send({
+        from: fromAddress,
+        to: [to_email],
+        reply_to: 'hello@womeninproductindia.com',
+        subject: `Your GPF 2026 Ticket — ${to_name} 🎟️`,
+        html: buildTicketHtml({ to_name, company, pass_type, pass_number }),
       }),
       logToSheets('Tickets', {
         Name: to_name,
