@@ -52,7 +52,6 @@ function HomePage() {
       <main>
         <Hero onSponsor={() => setSponsorModal(true)} onCommunity={() => setCommunityModal(true)} />
         <Marquee />
-        <SponsorsShowcase />
         <WhyAttend />
         <hr className="div-glow" />
         <WhoInRoom />
@@ -61,8 +60,9 @@ function HomePage() {
         <Hackathon />
         <Speakers onApply={() => setSpeakerModal(true)} onNominate={() => setNominateModal(true)} />
         <Passes onGetPass={(tierName) => setPassModal({ open: true, tierName })} />
-        <CommunityPartners />
         <Sponsor onRequest={() => setSponsorModal(true)} />
+        <SponsorsShowcase />
+        <CommunityPartners />
         <FAQ />
         <ClosingCTA
           onRegister={() => setPassModal({ open: true, tierName: 'General' })}
