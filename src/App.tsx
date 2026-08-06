@@ -60,8 +60,8 @@ function HomePage() {
         <Hackathon />
         <Speakers onApply={() => setSpeakerModal(true)} onNominate={() => setNominateModal(true)} />
         <Passes onGetPass={(tierName) => setPassModal({ open: true, tierName })} />
-        <Sponsor onRequest={() => setSponsorModal(true)} />
         <SponsorsShowcase />
+        <Sponsor onRequest={() => setSponsorModal(true)} />
         <CommunityPartners />
         <FAQ />
         <ClosingCTA
