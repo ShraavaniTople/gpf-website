@@ -45,6 +45,24 @@ export default function SponsorsShowcase() {
           {/* Divider */}
           <div style={{ width: 40, height: 1, background: '#1C1A32' }} />
 
+          {/* Co-presented by — Toast */}
+          <div className="flex flex-col items-center gap-4 w-full">
+            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-presented by</p>
+            <div
+              className="flex items-center justify-center rounded-2xl px-12 py-6"
+              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 320 }}
+            >
+              <img
+                src="/logos/toast.svg"
+                alt="Toast"
+                style={{ height: 44, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+              />
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div style={{ width: 40, height: 1, background: '#1C1A32' }} />
+
           {/* Supported by — ElevenLabs + Dodo Payments */}
           <div className="flex flex-col items-center gap-4 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
@@ -56,12 +74,12 @@ export default function SponsorsShowcase() {
                 <div
                   key={alt}
                   className="flex items-center justify-center rounded-2xl px-10 py-5"
-                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', minWidth: 180, flex: '1 1 180px', maxWidth: 240 }}
+                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', minWidth: 200, flex: '1 1 200px', maxWidth: 280 }}
                 >
                   <img
                     src={src}
                     alt={alt}
-                    style={{ height: 36, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
+                    style={{ height: 44, width: 'auto', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
                   />
                 </div>
               ))}
