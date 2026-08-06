@@ -110,11 +110,11 @@ const speakers: Speaker[] = [
     objectPos: '50% 15%',
   },
   {
-    name: 'Malthi SS',
-    title: 'CEO & Founder, SparkProd',
-    linkedin: 'https://www.linkedin.com/in/malthis',
-    photo: '/speaker-malthi.png',
-    objectPos: '50% 15%',
+    name: 'Shivalik Sen',
+    title: 'Head of Data Products, Rapido',
+    linkedin: 'https://www.linkedin.com/in/shivaliksen/',
+    photo: '/speaker-shivalik.png',
+    objectPos: '50% 10%',
   },
 ]
 
