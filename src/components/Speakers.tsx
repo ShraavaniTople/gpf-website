@@ -5,20 +5,6 @@ interface Props { onApply: () => void; onNominate: () => void }
 
 const speakers: Speaker[] = [
   {
-    name: 'Swati Awasthi',
-    title: 'Founder, Women in Product India',
-    linkedin: 'https://www.linkedin.com/in/swati-awasthi/',
-    photo: '/speaker-swati.png',
-    objectPos: '50% 20%',
-  },
-  {
-    name: 'Amrit Raj',
-    title: 'Co-Founder, Women in Product India',
-    linkedin: 'https://www.linkedin.com/in/amritraj02/',
-    photo: '/speaker-amrit.png',
-    objectPos: '50% 15%',
-  },
-  {
     name: 'Sangeeta Bavi',
     title: 'Head of Digital Natives, Startups & Growth, Anthropic India',
     linkedin: 'https://www.linkedin.com/in/sangeetabavi/',
@@ -37,6 +23,20 @@ const speakers: Speaker[] = [
     title: 'Senior Director, Product Management, Freshworks',
     linkedin: 'https://www.linkedin.com/in/khuntiaminakshi/',
     photo: '/speaker-minakshi.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Swati Awasthi',
+    title: 'Founder, Women in Product India',
+    linkedin: 'https://www.linkedin.com/in/swati-awasthi/',
+    photo: '/speaker-swati.png',
+    objectPos: '50% 20%',
+  },
+  {
+    name: 'Anuj Rathi',
+    title: 'Founder, Profound.me',
+    linkedin: 'https://www.linkedin.com/in/anujrathi1',
+    photo: '/speaker-anuj.png',
     objectPos: '50% 15%',
   },
   {
@@ -82,10 +82,10 @@ const speakers: Speaker[] = [
     objectPos: '50% 20%',
   },
   {
-    name: 'Anuj Rathi',
-    title: 'Founder, Profound.me',
-    linkedin: 'https://www.linkedin.com/in/anujrathi1',
-    photo: '/speaker-anuj.png',
+    name: 'Amrit Raj',
+    title: 'Co-Founder, Women in Product India',
+    linkedin: 'https://www.linkedin.com/in/amritraj02/',
+    photo: '/speaker-amrit.png',
     objectPos: '50% 15%',
   },
   {
