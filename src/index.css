@@ -66,6 +66,14 @@
 .sg.vis > *:nth-child(6){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .44s forwards}
 .sg.vis > *:nth-child(7){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .52s forwards}
 .sg.vis > *:nth-child(8){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .60s forwards}
+.sg.vis > *:nth-child(9){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .68s forwards}
+.sg.vis > *:nth-child(10){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .76s forwards}
+.sg.vis > *:nth-child(11){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .84s forwards}
+.sg.vis > *:nth-child(12){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .92s forwards}
+.sg.vis > *:nth-child(13){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.00s forwards}
+.sg.vis > *:nth-child(14){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.08s forwards}
+.sg.vis > *:nth-child(15){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.16s forwards}
+.sg.vis > *:nth-child(16){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.24s forwards}
 @keyframes sup { to { opacity:1; transform:none } }
 
 /* ─── Parallax img ────────────────────────────────────── */
