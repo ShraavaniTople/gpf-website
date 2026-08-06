@@ -48,7 +48,7 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-presented by</p>
             <div
               className="flex items-center justify-center rounded-2xl px-10 py-4"
-              style={{ background: '#FFFFFF', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
+              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
             >
               <img
                 src="/logos/toast.svg"

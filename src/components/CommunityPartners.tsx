@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
 const partners = [
-  { name: 'AIC',                   slug: 'aic' },
   { name: 'AnitaB.org',            slug: 'anita-b' },
   { name: 'Coding Ninjas',         slug: 'coding-ninjas' },
   { name: 'FFDG Mumbai',           slug: 'ffdg-mumbai' },
