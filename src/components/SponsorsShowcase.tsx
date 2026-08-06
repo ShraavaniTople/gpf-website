@@ -37,7 +37,7 @@ export default function SponsorsShowcase() {
               <img
                 src="/logos/freshworks-full.png"
                 alt="Freshworks"
-                style={{ maxHeight: 52, maxWidth: 200, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+                style={{ height: 44, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.9 }}
               />
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
             <div className="flex flex-wrap items-center justify-center gap-4 w-full">
               {[
-                { src: '/logos/elevenlabs.png', alt: 'ElevenLabs' },
+                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs' },
                 { src: '/logos/dodopayments.png', alt: 'Dodo Payments' },
               ].map(({ src, alt }) => (
                 <div
@@ -61,7 +61,7 @@ export default function SponsorsShowcase() {
                   <img
                     src={src}
                     alt={alt}
-                    style={{ maxHeight: 40, maxWidth: 160, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
+                    style={{ height: 36, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
                   />
                 </div>
               ))}

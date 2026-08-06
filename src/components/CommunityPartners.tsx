@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 
 const partners = [
-  { name: 'FOF Mumbai',            slug: 'fof-mumbai' },
-  { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai' },
-  { name: 'Founder Startup House', slug: 'founder-startup-house' },
-  { name: 'HiDevs',                slug: 'hidevs' },
-  { name: 'FFDG Mumbai',           slug: 'ffdg-mumbai' },
   { name: 'AIC',                   slug: 'aic' },
+  { name: 'AnitaB.org',            slug: 'anita-b' },
   { name: 'Coding Ninjas',         slug: 'coding-ninjas' },
+  { name: 'FFDG Mumbai',           slug: 'ffdg-mumbai' },
+  { name: 'FOF Mumbai',            slug: 'fof-mumbai' },
+  { name: 'Founder Startup House', slug: 'founder-startup-house' },
+  { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai' },
+  { name: 'HerKey',                slug: 'herkey' },
 ]
 
 function useVis(delay = 0) {
@@ -24,22 +25,29 @@ function useVis(delay = 0) {
 }
 
 function PartnerLogo({ name, slug }: { name: string; slug: string }) {
-  const [imgOk, setImgOk] = useState(true)
+  const [tried, setTried] = useState<'png' | 'svg' | 'failed'>('png')
+
+  const src = tried === 'png' ? `/community/${slug}.png` : `/community/${slug}.svg`
+
+  function handleError() {
+    if (tried === 'png') setTried('svg')
+    else setTried('failed')
+  }
 
   return (
     <div
       className="flex items-center justify-center rounded-2xl"
-      style={{ background: '#0E0C22', border: '1px solid #1C1A32', padding: '20px 28px', minHeight: 88 }}
+      style={{ background: '#0E0C22', border: '1px solid #1C1A32', padding: '20px 24px', minHeight: 88 }}
     >
-      {imgOk ? (
+      {tried !== 'failed' ? (
         <img
-          src={`/community/${slug}.png`}
+          src={src}
           alt={name}
-          onError={() => setImgOk(false)}
-          style={{ maxHeight: 48, maxWidth: 140, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.8 }}
+          onError={handleError}
+          style={{ height: 40, width: 'auto', maxWidth: 150, objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
         />
       ) : (
-        <span className="font-display font-bold text-sm text-center" style={{ color: '#52506A', letterSpacing: '-0.02em' }}>
+        <span className="font-display font-semibold text-sm text-center" style={{ color: '#6B7280', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
           {name}
         </span>
       )}

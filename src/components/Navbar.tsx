@@ -63,8 +63,12 @@ export default function Navbar() {
   function go(id: string) {
     navigate(`/${id}`)
     setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    }, 50)
+      const el = document.getElementById(id)
+      if (!el) return
+      const navHeight = 90 // fixed navbar + buffer
+      const top = el.getBoundingClientRect().top + window.scrollY - navHeight
+      window.scrollTo({ top, behavior: 'smooth' })
+    }, 80)
   }
 
   return (
