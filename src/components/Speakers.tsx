@@ -1,31 +1,63 @@
 import { useEffect, useRef } from 'react'
-import swatiPhoto from '../assets/speaker-swati.png'
-import amritPhoto from '../assets/speaker-amrit.png'
-const supriyaPhoto = '/speaker-supriya-new.png'
 
 interface Speaker { name: string; title: string; linkedin: string | null; photo: string; objectPos: string }
 interface Props { onApply: () => void; onNominate: () => void }
 
-const speakers = [
+const speakers: Speaker[] = [
   {
     name: 'Swati Awasthi',
     title: 'Founder, Women in Product India',
     linkedin: 'https://www.linkedin.com/in/swati-awasthi/',
-    photo: swatiPhoto,
+    photo: '/speaker-swati.png',
     objectPos: '50% 20%',
   },
   {
     name: 'Amrit Raj',
     title: 'Co-Founder, Women in Product India',
     linkedin: 'https://www.linkedin.com/in/amritraj02/',
-    photo: amritPhoto,
+    photo: '/speaker-amrit.png',
     objectPos: '50% 15%',
   },
   {
-    name: 'Supriya Rao',
-    title: 'Managing Director, ClearRoute',
-    linkedin: 'https://www.linkedin.com/in/supriya-y-rao/',
-    photo: supriyaPhoto,
+    name: 'Sangeeta Bavi',
+    title: 'Head of Digital Natives, Startups & Growth, Anthropic India',
+    linkedin: 'https://www.linkedin.com/in/sangeetabavi/',
+    photo: '/speaker-sangeeta.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Murali Swaminathan',
+    title: 'CTO, Freshworks',
+    linkedin: 'https://www.linkedin.com/in/muraliswaminathan',
+    photo: '/speaker-murali.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Minakshi Khuntia',
+    title: 'Senior Director, Product Management, Freshworks',
+    linkedin: 'https://www.linkedin.com/in/khuntiaminakshi/',
+    photo: '/speaker-minakshi.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Tulasi Menon',
+    title: 'Head of Product AI Strategy, JSM, Atlassian',
+    linkedin: 'https://www.linkedin.com/in/tulasi-menon-08b5aa26/',
+    photo: '/speaker-tulasi.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Neha Bagaria',
+    title: 'Founder & CEO, HerKey',
+    linkedin: 'https://www.linkedin.com/in/nehabagariaherkey',
+    photo: '/speaker-neha.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Pulkit Jain',
+    title: 'Co-Founder & CPO, Vedantu',
+    linkedin: 'https://www.linkedin.com/in/jainpulkit/',
+    photo: '/speaker-pulkit.png',
     objectPos: '50% 20%',
   },
   {
@@ -43,6 +75,34 @@ const speakers = [
     objectPos: '50% 15%',
   },
   {
+    name: 'Supriya Rao',
+    title: 'Managing Director, ClearRoute',
+    linkedin: 'https://www.linkedin.com/in/supriya-y-rao/',
+    photo: '/speaker-supriya-new.png',
+    objectPos: '50% 20%',
+  },
+  {
+    name: 'Anuj Rathi',
+    title: 'Founder, Profound.me',
+    linkedin: 'https://www.linkedin.com/in/anujrathi1',
+    photo: '/speaker-anuj.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Dipika Jaikishan',
+    title: 'VP Special Projects, Pronto',
+    linkedin: 'https://www.linkedin.com/in/dipika-jaikishan-b16b439/',
+    photo: '/speaker-dipika.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Ritika Chugh',
+    title: 'Head of Product, Milestone',
+    linkedin: 'https://www.linkedin.com/in/ritikachugh/',
+    photo: '/speaker-ritika.png',
+    objectPos: '50% 15%',
+  },
+  {
     name: 'Sheetal Kale',
     title: 'Managing Director, Head of DataArt India',
     linkedin: 'https://www.linkedin.com/in/sheetalskale/',
@@ -50,18 +110,11 @@ const speakers = [
     objectPos: '50% 15%',
   },
   {
-    name: 'Benu Aggarwal',
-    title: 'Founder & President, Milestone',
-    linkedin: 'https://www.linkedin.com/in/benua/',
-    photo: '/speaker-benua.png',
+    name: 'Malthi SS',
+    title: 'CEO & Founder, SparkProd',
+    linkedin: 'https://www.linkedin.com/in/malthis',
+    photo: '/speaker-malthi.png',
     objectPos: '50% 15%',
-  },
-  {
-    name: 'Pulkit Jain',
-    title: 'Co-Founder & CPO, Vedantu',
-    linkedin: 'https://www.linkedin.com/in/jainpulkit/',
-    photo: '/speaker-pulkit.png',
-    objectPos: '50% 20%',
   },
 ]
 
@@ -99,7 +152,7 @@ export default function Speakers({ onApply, onNominate }: Props) {
 
         {/* Speaker grid — 4 portrait cards */}
         <div ref={gridRef} className="sg grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
-          {(speakers as Speaker[]).map((s, i) => {
+          {speakers.map((s, i) => {
             const isTba = false
             const inner = (
               <div className={`spk-card relative overflow-hidden rounded-2xl h-full w-full ${isTba ? 'opacity-50' : 'cursor-pointer'}`} style={{ aspectRatio: '3/4' }}>
