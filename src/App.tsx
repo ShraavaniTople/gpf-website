@@ -12,6 +12,7 @@ import Agenda from './components/Agenda'
 import Speakers from './components/Speakers'
 import Passes from './components/Passes'
 import Sponsor from './components/Sponsor'
+import SponsorsShowcase from './components/SponsorsShowcase'
 import CommunityPartners from './components/CommunityPartners'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
@@ -51,6 +52,7 @@ function HomePage() {
       <main>
         <Hero onSponsor={() => setSponsorModal(true)} onCommunity={() => setCommunityModal(true)} />
         <Marquee />
+        <SponsorsShowcase />
         <WhyAttend />
         <hr className="div-glow" />
         <WhoInRoom />

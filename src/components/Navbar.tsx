@@ -8,7 +8,7 @@ const links = [
   { label: 'Hackathon',     id: 'hackathon' },
   { label: 'Speakers',      id: 'speakers' },
   { label: 'Passes',        id: 'passes' },
-  { label: 'Sponsor',       id: 'sponsor' },
+  { label: 'Sponsors',      id: 'sponsors-showcase' },
   { label: 'Partners',      id: 'community-partners' },
   { label: 'FAQ',           id: 'faq' },
 ]
