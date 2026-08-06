@@ -54,31 +54,13 @@ export default function WhyAttend() {
           </div>
         </div>
 
-        {/* Single flat grid — 2 cols on desktop, auto rows share height naturally */}
         <div
           ref={gridRef}
-          className="sr"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(1, 1fr)',
-          }}
+          className="sr grid grid-cols-1 lg:grid-cols-2"
+          style={{ borderTop: '1px solid #1C1A32' }}
         >
-          <style>{`
-            @media (min-width: 1024px) {
-              .feature-grid { grid-template-columns: repeat(2, 1fr) !important; }
-            }
-          `}</style>
-          <div
-            className="feature-grid"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(1, 1fr)',
-              borderTop: '1px solid #1C1A32',
-            }}
-          >
             {gridOrder.map((f, i) => {
               const Icon = f.icon
-              const isRightCol = i % 2 === 1
               return (
                 <div
                   key={f.num}
@@ -107,7 +89,6 @@ export default function WhyAttend() {
                 </div>
               )
             })}
-          </div>
         </div>
 
       </div>

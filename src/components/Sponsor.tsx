@@ -38,7 +38,7 @@ export default function Sponsor({ onRequest }: Props) {
 
   return (
     <section id="sponsor" className="relative py-28 px-6 overflow-hidden" style={{ background: '#080618' }}>
-      <div className="bg-num" style={{ top: '-5%', right: '-2%' }} aria-hidden>07</div>
+      <div className="bg-num" style={{ top: '-5%', right: '-2%' }} aria-hidden>06</div>
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div ref={leftRef} className="sr-l">

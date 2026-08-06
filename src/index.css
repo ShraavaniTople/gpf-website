@@ -262,4 +262,9 @@
     justify-content: center;
   }
   .bg-num { display: none; }
+  /* Speaker card: always show overlay on touch (no hover) */
+  .spk-card .ov { transform: none !important; }
 }
+
+/* ─── px-wrap needs relative positioning for overlay ─── */
+.px-wrap { position: relative; overflow: hidden; }
