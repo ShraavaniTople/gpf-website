@@ -9,6 +9,7 @@ const partners = [
   { name: 'Founder Startup House', slug: 'founder-startup-house' },
   { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai' },
   { name: 'HerKey',                slug: 'herkey' },
+  { name: 'Women in Tech India',   slug: 'women-in-tech-india' },
 ]
 
 function useVis(delay = 0) {
@@ -44,7 +45,7 @@ function PartnerLogo({ name, slug }: { name: string; slug: string }) {
           src={src}
           alt={name}
           onError={handleError}
-          style={{ height: 40, width: 'auto', maxWidth: 150, objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
+          style={{ height: 40, width: 'auto', maxWidth: 160, objectFit: 'contain', opacity: 0.9 }}
         />
       ) : (
         <span className="font-display font-semibold text-sm text-center" style={{ color: '#6B7280', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
