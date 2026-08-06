@@ -12,6 +12,7 @@ import Agenda from './components/Agenda'
 import Speakers from './components/Speakers'
 import Passes from './components/Passes'
 import Sponsor from './components/Sponsor'
+import CommunityPartners from './components/CommunityPartners'
 import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import ClosingCTA from './components/ClosingCTA'
@@ -58,6 +59,7 @@ function HomePage() {
         <Hackathon />
         <Speakers onApply={() => setSpeakerModal(true)} onNominate={() => setNominateModal(true)} />
         <Passes onGetPass={(tierName) => setPassModal({ open: true, tierName })} />
+        <CommunityPartners />
         <Sponsor onRequest={() => setSponsorModal(true)} />
         <FAQ />
         <ClosingCTA
