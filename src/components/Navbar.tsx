@@ -9,6 +9,7 @@ const links = [
   { label: 'Speakers',      id: 'speakers' },
   { label: 'Passes',        id: 'passes' },
   { label: 'Sponsor',       id: 'sponsor' },
+  { label: 'Partners',      id: 'community-partners' },
   { label: 'FAQ',           id: 'faq' },
 ]
 
