@@ -32,12 +32,12 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Presented by</p>
             <div
               className="flex items-center justify-center rounded-2xl px-12 py-6"
-              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 320 }}
+              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
             >
               <img
                 src="/logos/freshworks-full.png"
                 alt="Freshworks"
-                style={{ height: 44, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+                style={{ height: 48, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
               />
             </div>
           </div>
@@ -50,12 +50,12 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-presented by</p>
             <div
               className="flex items-center justify-center rounded-2xl px-12 py-6"
-              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 320 }}
+              style={{ background: '#FFFFFF', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
             >
               <img
                 src="/logos/toast.svg"
                 alt="Toast"
-                style={{ height: 44, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+                style={{ height: 48, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
               />
             </div>
           </div>
@@ -68,18 +68,18 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
             <div className="flex flex-wrap items-center justify-center gap-4 w-full">
               {[
-                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs' },
-                { src: '/logos/dodopayments.png', alt: 'Dodo Payments' },
-              ].map(({ src, alt }) => (
+                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs', dark: true },
+                { src: '/logos/dodopayments.png', alt: 'Dodo Payments', dark: true },
+              ].map(({ src, alt, dark }) => (
                 <div
                   key={alt}
                   className="flex items-center justify-center rounded-2xl px-10 py-5"
-                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', minWidth: 200, flex: '1 1 200px', maxWidth: 280 }}
+                  style={{ background: dark ? '#0E0C22' : '#FFFFFF', border: '1px solid #1C1A32', minWidth: 200, flex: '1 1 200px', maxWidth: 280 }}
                 >
                   <img
                     src={src}
                     alt={alt}
-                    style={{ height: 44, width: 'auto', maxWidth: '100%', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }}
+                    style={{ height: 44, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
                   />
                 </div>
               ))}
