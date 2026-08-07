@@ -8,7 +8,7 @@ const partners = [
   { name: 'Founder Startup House', slug: 'founder-startup-house' },
   { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai',  h: 64 },
   { name: 'HerKey',                slug: 'herkey' },
-  { name: 'Women in Tech India',   slug: 'women-in-tech-india' },
+  { name: 'Women in Tech India',   slug: 'women-in-tech-india', h: 72 },
 ]
 
 function useVis(delay = 0) {
