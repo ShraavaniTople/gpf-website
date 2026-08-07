@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 const partners = [
   { name: 'AnitaB.org',            slug: 'anita-b' },
-  { name: 'Coding Ninjas',         slug: 'coding-ninjas',     h: 52 },
+  { name: 'Coding Ninjas',         slug: 'coding-ninjas',     h: 80 },
   { name: 'FFDG Mumbai',           slug: 'ffdg-mumbai' },
   { name: 'FOF Mumbai',            slug: 'fof-mumbai' },
   { name: 'Founder Startup House', slug: 'founder-startup-house' },
@@ -44,7 +44,7 @@ function PartnerLogo({ name, slug, h = 40 }: { name: string; slug: string; h?: n
           src={src}
           alt={name}
           onError={handleError}
-          style={{ height: h, width: 'auto', maxWidth: 180, objectFit: 'contain', opacity: 0.9 }}
+          style={{ height: h, width: 'auto', maxWidth: 220, objectFit: 'contain', opacity: 0.9 }}
         />
       ) : (
         <span className="font-display font-semibold text-sm text-center" style={{ color: '#6B7280', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
