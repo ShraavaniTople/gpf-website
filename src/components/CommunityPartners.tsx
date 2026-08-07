@@ -4,7 +4,7 @@ const partners = [
   { name: 'AnitaB.org',            slug: 'anita-b' },
   { name: 'Coding Ninjas',         slug: 'coding-ninjas',     h: 80 },
   { name: 'FFDG Mumbai',           slug: 'ffdg-mumbai' },
-  { name: 'FOF Mumbai',            slug: 'fof-mumbai' },
+  { name: 'FOF Mumbai',            slug: 'fof-mumbai',        h: 64 },
   { name: 'Founder Startup House', slug: 'founder-startup-house' },
   { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai',  h: 64 },
   { name: 'HerKey',                slug: 'herkey' },
