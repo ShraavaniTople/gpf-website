@@ -34,19 +34,22 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
         <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to top, #05040C 0%, rgba(5,4,12,.5) 50%, rgba(5,4,12,0) 100%)' }} />
 
         {/* ── Text overlaid on banner ── */}
-        <div className="absolute inset-0 z-20 pointer-events-none">
-          <div className="max-w-7xl mx-auto px-6 w-full h-full pt-6 pb-6 flex items-start lg:items-center">
-            <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2.5 mb-5 w-fit"
-              style={{ border: '1px solid rgba(245,158,11,.2)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.04)' }}>
+        <div className="absolute inset-0 z-20 pointer-events-none flex flex-col">
+          {/* Badge — top-anchored so it's always visible below the navbar */}
+          <div className="max-w-7xl mx-auto w-full px-6 pt-6 flex-shrink-0">
+            <div className="inline-flex items-center gap-2.5 w-fit pointer-events-auto"
+              style={{ border: '1px solid rgba(245,158,11,.4)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.10)' }}>
               <span className="pd w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#F59E0B' }} aria-hidden />
               <span className="font-mono font-medium uppercase" style={{ color: '#F59E0B', fontSize: 11, letterSpacing: '0.14em', lineHeight: 1.5 }}>
                 <span className="block sm:inline">Bangalore &nbsp;·&nbsp; 25-26 Sept 2026</span>
-                <span className="block sm:inline sm:before:content-['_·_'] before:mx-1">Women in Product India</span>
+                <span className="block sm:inline">&nbsp;&nbsp;·&nbsp;&nbsp;Women in Product India</span>
               </span>
             </div>
+          </div>
 
+          {/* Title + CTAs — fills remaining height and centers vertically */}
+          <div className="flex-1 max-w-7xl mx-auto px-6 w-full pb-6 flex items-center">
+            <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
             {/* Title */}
             <h1 className="font-display font-extrabold leading-none mb-5"
               style={{ fontSize: 'clamp(52px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
@@ -76,10 +79,10 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
                 <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
               </div>
-              <div className="flex flex-wrap gap-3 items-center mt-6 mb-4">
-                <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap">Get Passes</button>
-                <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm whitespace-nowrap">Apply for Hackathon</a>
-                <button onClick={onCommunity} className="btn-purple text-sm whitespace-nowrap">Become a Community Partner</button>
+              <div className="flex flex-wrap lg:flex-nowrap gap-2 items-center mt-6 mb-4">
+                <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes</button>
+                <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Apply for Hackathon</a>
+                <button onClick={onCommunity} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Become a Community Partner</button>
               </div>
               <p className="text-sm" style={{ color: '#52506A' }}>
                 Priority sponsor slots are open &nbsp;
