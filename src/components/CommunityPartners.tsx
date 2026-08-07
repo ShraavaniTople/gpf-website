@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 
 const partners = [
   { name: 'AnitaB.org',            slug: 'anita-b' },
-  { name: 'Coding Ninjas',         slug: 'coding-ninjas' },
+  { name: 'Coding Ninjas',         slug: 'coding-ninjas',     h: 52 },
   { name: 'FFDG Mumbai',           slug: 'ffdg-mumbai' },
   { name: 'FOF Mumbai',            slug: 'fof-mumbai' },
   { name: 'Founder Startup House', slug: 'founder-startup-house' },
-  { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai' },
+  { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai',  h: 64 },
   { name: 'HerKey',                slug: 'herkey' },
   { name: 'Women in Tech India',   slug: 'women-in-tech-india' },
 ]
@@ -24,7 +24,7 @@ function useVis(delay = 0) {
   return ref
 }
 
-function PartnerLogo({ name, slug }: { name: string; slug: string }) {
+function PartnerLogo({ name, slug, h = 40 }: { name: string; slug: string; h?: number }) {
   const [tried, setTried] = useState<'png' | 'svg' | 'failed'>('png')
 
   const src = tried === 'png' ? `/community/${slug}.png` : `/community/${slug}.svg`
@@ -44,7 +44,7 @@ function PartnerLogo({ name, slug }: { name: string; slug: string }) {
           src={src}
           alt={name}
           onError={handleError}
-          style={{ height: 40, width: 'auto', maxWidth: 160, objectFit: 'contain', opacity: 0.9 }}
+          style={{ height: h, width: 'auto', maxWidth: 180, objectFit: 'contain', opacity: 0.9 }}
         />
       ) : (
         <span className="font-display font-semibold text-sm text-center" style={{ color: '#6B7280', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
