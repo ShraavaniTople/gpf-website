@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: 'Do I need a pass to join the Hackathon?',
-    a: 'Yes. The Hackathon finale and mentorship sessions happen on site, so a valid conference pass is required. Team registration details will be shared with pass holders via email.',
+    a: 'Shortlisted hackathon finalists receive complimentary conference passes. For all other participants, the Hackathon finale and mentorship sessions happen on site, so a valid conference pass is required. Team registration details will be shared via email.',
   },
   {
     q: 'How do WiP India member discounts work?',

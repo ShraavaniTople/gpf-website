@@ -9,7 +9,7 @@ const features: Feature[] = [
     bullets: ["Learn from CPOs, Founders, and Product Leaders who have scaled India's biggest platforms.", 'Gain global product insights through the lens of the Indian ecosystem.'] },
   { icon: Wrench, num: '02', title: 'Hands-on Workshops',
     bullets: ['Intensive small-group sessions tackling growth, strategy, design thinking, and analytics challenges.', 'Product & startup demos.'] },
-  { icon: Presentation, num: '03', title: 'Curated Demo Stage',
+  { icon: Presentation, num: '03', title: 'Product Demo Stage',
     bullets: ['AI startup demos, startup builder showcases, and live product demos on the main stage.', 'Hackathon demos: watch teams present real solutions built under real constraints.'] },
   { icon: Code2, num: '04', title: 'Hackathon',
     bullets: ['Cross-functional teams building real solutions under real constraints in 24 hours.', 'Build something real. Win something meaningful. Demo on the main stage.'] },
