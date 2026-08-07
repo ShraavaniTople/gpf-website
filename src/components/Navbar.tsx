@@ -84,7 +84,9 @@ export default function Navbar() {
         {/* Nav */}
         <nav
           className="transition-all duration-500"
-          style={scrolled ? { background: 'rgba(5,4,12,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(28,26,50,0.8)' } : {}}
+          style={scrolled
+            ? { background: 'rgba(5,4,12,0.92)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(28,26,50,0.8)' }
+            : { background: 'rgba(5,4,12,0.75)', backdropFilter: 'blur(12px)' }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[68px] flex items-center justify-between gap-4">
             {/* Logo */}

@@ -76,17 +76,16 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
                 <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
               </div>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3 items-start sm:items-center mb-4 mt-6">
+              <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center mt-6 mb-3">
                 <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap">Get Passes</button>
                 <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm whitespace-nowrap">Apply for Hackathon</a>
-                <button onClick={onCommunity} className="btn-ghost text-sm whitespace-nowrap">Become a Community Partner</button>
               </div>
-              <p className="text-sm" style={{ color: '#52506A' }}>
-                Priority sponsor slots are open &nbsp;
-                <button onClick={onSponsor} className="font-semibold hover:opacity-75 transition-opacity" style={{ color: '#F59E0B' }}>
+              <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center mb-4">
+                <button onClick={onCommunity} className="btn-ghost text-sm whitespace-nowrap">Become a Community Partner</button>
+                <button onClick={onSponsor} className="text-sm font-semibold hover:opacity-75 transition-opacity whitespace-nowrap" style={{ color: '#F59E0B' }}>
                   Become a Sponsor &rarr;
                 </button>
-              </p>
+              </div>
             </div>
           </div>
           </div>
