@@ -25,6 +25,7 @@ import AgendaPage from './pages/AgendaPage'
 import SpeakersPage from './pages/SpeakersPage'
 import SponsorPage from './pages/SponsorPage'
 import FAQPage from './pages/FAQPage'
+import AdminSendPassesPage from './pages/AdminSendPassesPage'
 
 // ─── Home page ────────────────────────────────────────────────────────────────
 function HomePage() {
@@ -115,7 +116,8 @@ export default function App() {
       <Route path="/speakers" element={<SpeakersPage />} />
       <Route path="/sponsor" element={<SponsorPage />} />
       <Route path="/faq" element={<FAQPage />} />
-<Route path="*" element={<HomePage />} />
+      <Route path="/admin/send-passes" element={<AdminSendPassesPage />} />
+      <Route path="*" element={<HomePage />} />
     </Routes>
   )
 }
