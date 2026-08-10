@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const WEB3FORMS_KEY = '05343d66-4685-49cf-ba57-e57dbf8a2bf1'
+
 const members = [
   { firstName: 'Swathi',        lastName: 'Chirravuri',   company: 'Stealth Startup', role: 'AI Product Manager',               email: 'swathi.chirravuri@gmail.com' },
   { firstName: 'Aditi',         lastName: 'Rajesh',       company: 'Hashfame',        role: 'Product Manager',                  email: 'Aditirajesh1234@gmail.com' },
@@ -19,6 +21,29 @@ function genPassNumber(email: string) {
   // deterministic suffix from email so it's reproducible
   const hash = [...email].reduce((acc, c) => (acc * 31 + c.charCodeAt(0)) & 0xFFFFFF, 0)
   return `GPF26-G-${hash.toString(16).toUpperCase().padStart(6, '0')}`
+}
+
+async function recordInWeb3Forms(m: typeof members[0], passNumber: string) {
+  const name = `${m.firstName} ${m.lastName}`
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key:   WEB3FORMS_KEY,
+        subject:      `[GPF Pass Issued] General (Complimentary) — ${name}`,
+        from_name:    'GPF 2026 Admin',
+        name,
+        email:        m.email,
+        'Pass Number': passNumber,
+        'Pass Type':  'General Pass (Complimentary)',
+        'Role':       m.role,
+        'Company':    m.company,
+        'Event Date': '25–26 Sept 2026',
+        'Venue':      'Bangalore, India',
+      }),
+    })
+  } catch { /* silent — email still goes out */ }
 }
 
 async function sendPass(m: typeof members[0]): Promise<boolean> {
@@ -41,6 +66,10 @@ async function sendPass(m: typeof members[0]): Promise<boolean> {
       }),
     })
     const data = await res.json()
+    if (data.ok) {
+      // fire-and-forget — record in Web3Forms dashboard
+      recordInWeb3Forms(m, passNumber)
+    }
     return data.ok === true
   } catch {
     return false
