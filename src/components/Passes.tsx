@@ -26,7 +26,6 @@ const tiers = [
     features: [
       'Everything in **General**',
       'Workshops Worth ₹1–2 Lakhs',
-      'Hackathon Participation',
       'Priority Seating',
       '6 Months WiP India Advance Membership',
       'Swag Kit',

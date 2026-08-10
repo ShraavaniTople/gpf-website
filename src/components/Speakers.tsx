@@ -99,7 +99,7 @@ const speakers: Speaker[] = [
     name: 'Ritika Chugh',
     title: 'Head of Product, Milestone',
     linkedin: 'https://www.linkedin.com/in/ritikachugh/',
-    photo: '/speaker-ritika.png',
+    photo: '/speaker-ritika-new.png',
     objectPos: '50% 15%',
   },
   {
@@ -115,6 +115,20 @@ const speakers: Speaker[] = [
     linkedin: 'https://www.linkedin.com/in/shivaliksen/',
     photo: '/speaker-shivalik.png',
     objectPos: '50% 10%',
+  },
+  {
+    name: 'Sreedhar Gade',
+    title: 'Vice President, Engineering, Freshworks',
+    linkedin: 'https://www.linkedin.com/in/sreedhar-gade/',
+    photo: '/speaker-sreedhar.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Rajat Harlalka',
+    title: 'Group Product Manager, Coinbase',
+    linkedin: 'https://www.linkedin.com/in/rajatharlalka/',
+    photo: '/speaker-rajat.png',
+    objectPos: '50% 15%',
   },
 ]
 
