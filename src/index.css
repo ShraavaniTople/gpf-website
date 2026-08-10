@@ -74,6 +74,10 @@
 .sg.vis > *:nth-child(14){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.08s forwards}
 .sg.vis > *:nth-child(15){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.16s forwards}
 .sg.vis > *:nth-child(16){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.24s forwards}
+.sg.vis > *:nth-child(17){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.32s forwards}
+.sg.vis > *:nth-child(18){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.40s forwards}
+.sg.vis > *:nth-child(19){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.48s forwards}
+.sg.vis > *:nth-child(20){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.56s forwards}
 @keyframes sup { to { opacity:1; transform:none } }
 
 /* ─── Parallax img ────────────────────────────────────── */
