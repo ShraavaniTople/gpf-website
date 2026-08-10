@@ -130,6 +130,13 @@ const speakers: Speaker[] = [
     photo: '/speaker-rajat.png',
     objectPos: '50% 15%',
   },
+  {
+    name: 'Deeksha Anand',
+    title: 'Senior PMM, Google Play',
+    linkedin: 'https://www.linkedin.com/in/deekshaanand/',
+    photo: '/speaker-deeksha.png',
+    objectPos: '50% 15%',
+  },
 ]
 
 function useVis(delay = 0) {
