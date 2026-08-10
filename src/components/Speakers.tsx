@@ -125,7 +125,7 @@ const speakers: Speaker[] = [
   },
   {
     name: 'Rajat Harlalka',
-    title: 'Group Product Manager, Coinbase',
+    title: 'Director of Product, Toast',
     linkedin: 'https://www.linkedin.com/in/rajatharlalka/',
     photo: '/speaker-rajat.png',
     objectPos: '50% 15%',
