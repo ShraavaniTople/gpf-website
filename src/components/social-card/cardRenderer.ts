@@ -3,7 +3,7 @@
  * Three designs: Hero, Editorial, Festival
  * Output: 1080×1080 (square) or 1080×1350 (portrait)
  */
-import { EVENT, type DesignId, type Role } from './config'
+import { EVENT, type DesignId, type Role, type RoleId } from './config'
 
 export interface RenderOptions {
   canvas: HTMLCanvasElement
@@ -20,6 +20,65 @@ const W = 1080
 const PAD = 68
 
 function H(portrait?: boolean) { return portrait ? 1350 : 1080 }
+
+// ── Role theme ────────────────────────────────────────────────────────────────
+interface T {
+  r: number; g: number; b: number  // accent RGB
+  hex: string                       // accent hex
+  light: string                     // lighter shade hex
+  bar: [string, string, string]     // bottom bar gradient stops
+  watermark: string                 // large bg decorative text
+}
+
+function ac(r: number, g: number, b: number, a: number) {
+  return `rgba(${r},${g},${b},${a})`
+}
+
+function getTheme(id: RoleId): T {
+  const map: Record<RoleId, T> = {
+    attendee: {
+      r: 124, g: 58,  b: 237, hex: '#7C3AED', light: '#A78BFA',
+      bar: ['#7C3AED', '#A78BFA', '#F59E0B'], watermark: '2026',
+    },
+    speaker: {
+      r: 161, g: 98,  b: 7,   hex: '#A16207', light: '#FCD34D',
+      bar: ['#B45309', '#F59E0B', '#FEF3C7'], watermark: 'STAGE',
+    },
+    mentor: {
+      r: 14,  g: 116, b: 144, hex: '#0E7490', light: '#67E8F9',
+      bar: ['#0E7490', '#22D3EE', '#A5F3FC'], watermark: 'GUIDE',
+    },
+    volunteer: {
+      r: 4,   g: 120, b: 87,  hex: '#047857', light: '#6EE7B7',
+      bar: ['#047857', '#10B981', '#D1FAE5'], watermark: 'SERVE',
+    },
+    organizer: {
+      r: 194, g: 65,  b: 12,  hex: '#C2410C', light: '#FDBA74',
+      bar: ['#C2410C', '#F97316', '#FEF08A'], watermark: 'BUILD',
+    },
+    sponsor: {
+      r: 29,  g: 78,  b: 216, hex: '#1D4ED8', light: '#93C5FD',
+      bar: ['#1D4ED8', '#60A5FA', '#BFDBFE'], watermark: '2026',
+    },
+    exhibitor: {
+      r: 67,  g: 56,  b: 202, hex: '#4338CA', light: '#A5B4FC',
+      bar: ['#4338CA', '#818CF8', '#E0E7FF'], watermark: '2026',
+    },
+    partner: {
+      r: 190, g: 24,  b: 93,  hex: '#BE185D', light: '#F9A8D4',
+      bar: ['#BE185D', '#EC4899', '#FCE7F3'], watermark: '2026',
+    },
+    'community-partner': {
+      r: 6,   g: 95,  b: 70,  hex: '#065F46', light: '#6EE7B7',
+      bar: ['#065F46', '#059669', '#D1FAE5'], watermark: 'COMM',
+    },
+    media: {
+      r: 153, g: 27,  b: 27,  hex: '#991B1B', light: '#FCA5A5',
+      bar: ['#991B1B', '#EF4444', '#FEE2E2'], watermark: 'PRESS',
+    },
+  }
+  return map[id]
+}
 
 // ── Text helpers ──────────────────────────────────────────────────────────────
 function font(
@@ -43,7 +102,6 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, maxW: number): st
   return lines
 }
 
-/** Auto-size font to fit both width and max lines */
 function fitName(
   ctx: CanvasRenderingContext2D,
   text: string,
@@ -91,10 +149,10 @@ async function drawWipLogo(ctx: CanvasRenderingContext2D, rightX: number, y: num
   } catch { /* silent */ }
 }
 
-/** Rounded-rectangle photo (used in Hero) */
 async function drawRoundedPhoto(
   ctx: CanvasRenderingContext2D, src: string,
   x: number, y: number, w: number, h: number, r: number,
+  tr: number, tg: number, tb: number,
 ) {
   try {
     const img = await loadImg(src)
@@ -102,20 +160,18 @@ async function drawRoundedPhoto(
     roundRect(ctx, x, y, w, h, r); ctx.clip()
     ctx.drawImage(img, x, y, w, h)
     ctx.restore()
-    // glowing border
     ctx.save()
-    ctx.shadowColor = 'rgba(124,58,237,0.55)'
-    ctx.shadowBlur = 24
-    ctx.strokeStyle = 'rgba(167,139,250,0.75)'; ctx.lineWidth = 3
+    ctx.shadowColor = ac(tr, tg, tb, 0.55); ctx.shadowBlur = 24
+    ctx.strokeStyle = ac(tr, tg, tb, 0.75); ctx.lineWidth = 3
     roundRect(ctx, x, y, w, h, r); ctx.stroke()
     ctx.restore()
   } catch { /* no photo */ }
 }
 
-/** Circle photo (used in Festival) */
 async function drawCirclePhoto(
   ctx: CanvasRenderingContext2D, src: string,
   cx: number, cy: number, r: number,
+  tr: number, tg: number, tb: number,
 ) {
   try {
     const img = await loadImg(src)
@@ -124,10 +180,9 @@ async function drawCirclePhoto(
     ctx.drawImage(img, cx - r, cy - r, r * 2, r * 2)
     ctx.restore()
     ctx.save()
-    ctx.shadowColor = 'rgba(124,58,237,0.55)'
-    ctx.shadowBlur = 20
+    ctx.shadowColor = ac(tr, tg, tb, 0.55); ctx.shadowBlur = 20
     ctx.beginPath(); ctx.arc(cx, cy, r + 2, 0, Math.PI * 2)
-    ctx.strokeStyle = 'rgba(167,139,250,0.75)'; ctx.lineWidth = 4; ctx.stroke()
+    ctx.strokeStyle = ac(tr, tg, tb, 0.75); ctx.lineWidth = 4; ctx.stroke()
     ctx.restore()
   } catch { /* no photo */ }
 }
@@ -138,9 +193,9 @@ async function drawOrgLogo(
 ) {
   try {
     const img = await loadImg(src)
-    const r = img.width / img.height
-    const w = r >= 1 ? maxSize : maxSize * r
-    const h = r >= 1 ? maxSize / r : maxSize
+    const ratio = img.width / img.height
+    const w = ratio >= 1 ? maxSize : maxSize * ratio
+    const h = ratio >= 1 ? maxSize / ratio : maxSize
     ctx.drawImage(img, cx - w / 2, cy - h / 2, w, h)
   } catch { /* silent */ }
 }
@@ -158,49 +213,43 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
 
 // ─────────────────────────────────────────────────────────────────────────────
 // HERO
-// Layout (top→bottom):
-//   [52]       Logo row (GPF left 72px, WiP right 60px)
-//   [168]      Role badge (pill, 52px tall, bottom=220)
-//   [268-580]  Name block (baseline starts at 350 minimum)
-//   [after]    Title (optional)
-//   [fixed]    Divider at H*0.74, Date/City below
-//   [footer]   Hashtag + URL + bottom bar
 // ─────────────────────────────────────────────────────────────────────────────
 async function renderHero(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   const height = H(opts.portrait)
   const hasPhoto = !!opts.photo
   const isPersonal = opts.role.hasPhoto
+  const t = getTheme(opts.role.id)
+  const { r, g, b } = t
 
   // ── Background ──────────────────────────────────────────────────────────────
   const bg = ctx.createLinearGradient(0, 0, W, height)
   bg.addColorStop(0, '#0C0A1E'); bg.addColorStop(1, '#05040C')
   ctx.fillStyle = bg; ctx.fillRect(0, 0, W, height)
 
-  // Purple top-right orb
+  // Role-coloured top-right orb
   const o1 = ctx.createRadialGradient(W * 0.9, height * 0.08, 0, W * 0.9, height * 0.08, W * 0.72)
-  o1.addColorStop(0, 'rgba(124,58,237,0.42)'); o1.addColorStop(1, 'rgba(124,58,237,0)')
+  o1.addColorStop(0, ac(r, g, b, 0.42)); o1.addColorStop(1, ac(r, g, b, 0))
   ctx.fillStyle = o1; ctx.fillRect(0, 0, W, height)
 
-  // Amber bottom-left orb
+  // Amber bottom-left orb (event branding, fixed)
   const o2 = ctx.createRadialGradient(W * 0.06, height * 0.92, 0, W * 0.06, height * 0.92, W * 0.52)
   o2.addColorStop(0, 'rgba(245,158,11,0.2)'); o2.addColorStop(1, 'rgba(245,158,11,0)')
   ctx.fillStyle = o2; ctx.fillRect(0, 0, W, height)
 
-  // Grid
-  ctx.strokeStyle = 'rgba(124,58,237,0.06)'; ctx.lineWidth = 1
+  // Grid tinted by role
+  ctx.strokeStyle = ac(r, g, b, 0.07); ctx.lineWidth = 1
   for (let x = 0; x <= W; x += 90) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke() }
   for (let y = 0; y <= height; y += 90) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke() }
 
-  // Decorative large "2026" in background
-  ctx.font = font(320, 700)
-  ctx.fillStyle = 'rgba(124,58,237,0.04)'
+  // Role-specific watermark text
+  ctx.font = font(t.watermark.length > 4 ? 200 : 320, 700)
+  ctx.fillStyle = ac(r, g, b, 0.05)
   ctx.textAlign = 'center'
-  ctx.fillText('2026', W / 2, height * 0.72)
+  ctx.fillText(t.watermark, W / 2, height * 0.72)
   ctx.textAlign = 'left'
 
-  // ── Photo frame (personal roles only — rounded square, right side) ───────────
-  // Org logos float directly on the card background without a frame
-  const FW = opts.portrait ? 420 : 460   // bigger square frame
+  // ── Photo / logo zone (right side) ───────────────────────────────────────────
+  const FW = opts.portrait ? 420 : 460
   const FH = FW
   const FR = 32
   const FX = W - PAD - FW
@@ -208,126 +257,109 @@ async function renderHero(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   const FCX = FX + FW / 2
   const FCY = FY + FH / 2
 
-  // Soft glow behind the whole right zone
   const gp = ctx.createRadialGradient(FCX, FCY, 0, FCX, FCY, FW * 0.85)
-  gp.addColorStop(0, 'rgba(124,58,237,0.16)'); gp.addColorStop(1, 'rgba(124,58,237,0)')
+  gp.addColorStop(0, ac(r, g, b, 0.16)); gp.addColorStop(1, ac(r, g, b, 0))
   ctx.fillStyle = gp; ctx.fillRect(0, 0, W, height)
 
   if (hasPhoto && isPersonal) {
-    // ── Personal photo clipped to rounded square ──────────────────────────────
-    await drawRoundedPhoto(ctx, opts.photo!, FX, FY, FW, FH, FR)
+    await drawRoundedPhoto(ctx, opts.photo!, FX, FY, FW, FH, FR, r, g, b)
 
   } else if (hasPhoto && !isPersonal) {
-    // ── Org logo inside a clean dark container ────────────────────────────────
     ctx.fillStyle = 'rgba(5,4,12,0.55)'
     roundRect(ctx, FX, FY, FW, FH, FR); ctx.fill()
-    ctx.strokeStyle = 'rgba(124,58,237,0.35)'; ctx.lineWidth = 2
+    ctx.strokeStyle = ac(r, g, b, 0.35); ctx.lineWidth = 2
     roundRect(ctx, FX, FY, FW, FH, FR); ctx.stroke()
     await drawOrgLogo(ctx, opts.photo!, FCX, FCY, FW * 0.72)
 
   } else if (isPersonal) {
-    // ── Photo placeholder: dashed rounded-square ──────────────────────────────
+    // Photo placeholder
     const fg = ctx.createLinearGradient(FX, FY, FX, FY + FH)
-    fg.addColorStop(0, 'rgba(124,58,237,0.09)'); fg.addColorStop(1, 'rgba(124,58,237,0.03)')
+    fg.addColorStop(0, ac(r, g, b, 0.09)); fg.addColorStop(1, ac(r, g, b, 0.03))
     ctx.fillStyle = fg; roundRect(ctx, FX, FY, FW, FH, FR); ctx.fill()
     ctx.save()
-    ctx.shadowColor = 'rgba(124,58,237,0.35)'; ctx.shadowBlur = 14
+    ctx.shadowColor = ac(r, g, b, 0.35); ctx.shadowBlur = 14
     ctx.setLineDash([20, 11])
-    ctx.strokeStyle = 'rgba(167,139,250,0.6)'; ctx.lineWidth = 2.5
+    ctx.strokeStyle = t.light + 'AA'; ctx.lineWidth = 2.5
     roundRect(ctx, FX, FY, FW, FH, FR); ctx.stroke()
     ctx.restore()
     for (const [dx, dy] of [[FX+FR,FY+FR],[FX+FW-FR,FY+FR],[FX+FR,FY+FH-FR],[FX+FW-FR,FY+FH-FR]]) {
       ctx.beginPath(); ctx.arc(dx as number, dy as number, 5, 0, Math.PI*2)
-      ctx.fillStyle = 'rgba(167,139,250,0.45)'; ctx.fill()
+      ctx.fillStyle = t.light + '77'; ctx.fill()
     }
-    ctx.fillStyle = 'rgba(124,58,237,0.22)'
+    ctx.fillStyle = ac(r, g, b, 0.22)
     ctx.beginPath(); ctx.arc(FCX, FCY - FH*0.14, FW*0.16, 0, Math.PI*2); ctx.fill()
     ctx.beginPath(); ctx.arc(FCX, FCY + FH*0.36, FW*0.30, Math.PI, 0); ctx.fill()
-    ctx.font = font(22, 400, 'JetBrains Mono'); ctx.fillStyle = 'rgba(167,139,250,0.5)'
+    ctx.font = font(22, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '80'
     ctx.textAlign = 'center'; ctx.fillText('+ ADD PHOTO', FCX, FY+FH-30); ctx.textAlign = 'left'
 
   } else {
-    // ── Logo placeholder: dashed rounded-square (org roles, no logo yet) ─────
+    // Logo placeholder
     const fg = ctx.createLinearGradient(FX, FY, FX, FY+FH)
-    fg.addColorStop(0, 'rgba(124,58,237,0.08)'); fg.addColorStop(1, 'rgba(124,58,237,0.02)')
+    fg.addColorStop(0, ac(r, g, b, 0.08)); fg.addColorStop(1, ac(r, g, b, 0.02))
     ctx.fillStyle = fg; roundRect(ctx, FX, FY, FW, FH, FR); ctx.fill()
     ctx.save()
-    ctx.shadowColor = 'rgba(124,58,237,0.28)'; ctx.shadowBlur = 12
+    ctx.shadowColor = ac(r, g, b, 0.28); ctx.shadowBlur = 12
     ctx.setLineDash([20, 11])
-    ctx.strokeStyle = 'rgba(167,139,250,0.5)'; ctx.lineWidth = 2.5
+    ctx.strokeStyle = t.light + '88'; ctx.lineWidth = 2.5
     roundRect(ctx, FX, FY, FW, FH, FR); ctx.stroke()
     ctx.restore()
     for (const [dx, dy] of [[FX+FR,FY+FR],[FX+FW-FR,FY+FR],[FX+FR,FY+FH-FR],[FX+FW-FR,FY+FH-FR]]) {
       ctx.beginPath(); ctx.arc(dx as number, dy as number, 5, 0, Math.PI*2)
-      ctx.fillStyle = 'rgba(167,139,250,0.4)'; ctx.fill()
+      ctx.fillStyle = t.light + '66'; ctx.fill()
     }
-    // Logo icon (rectangle inside rectangle)
     const iw = FW*0.46, ih = FH*0.28, ix = FCX-iw/2, iy = FCY-ih/2-20
     roundRect(ctx, ix, iy, iw, ih, 10)
-    ctx.fillStyle = 'rgba(124,58,237,0.18)'; ctx.fill()
-    ctx.strokeStyle = 'rgba(124,58,237,0.35)'; ctx.lineWidth = 2; ctx.stroke()
-    ctx.font = font(22, 400, 'JetBrains Mono'); ctx.fillStyle = 'rgba(167,139,250,0.5)'
+    ctx.fillStyle = ac(r, g, b, 0.18); ctx.fill()
+    ctx.strokeStyle = ac(r, g, b, 0.35); ctx.lineWidth = 2; ctx.stroke()
+    ctx.font = font(22, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '80'
     ctx.textAlign = 'center'; ctx.fillText('+ ADD LOGO', FCX, FY+FH-30); ctx.textAlign = 'left'
   }
 
-  // Text column width — reserve the full right frame zone
   const textMaxW = FX - PAD - 44
 
-  // ── Header strip + Logo row ───────────────────────────────────────────────────
+  // ── Header ────────────────────────────────────────────────────────────────────
   const hdGrad = ctx.createLinearGradient(0, 0, 0, 148)
   hdGrad.addColorStop(0, 'rgba(5,4,12,0.78)'); hdGrad.addColorStop(1, 'rgba(5,4,12,0)')
   ctx.fillStyle = hdGrad; ctx.fillRect(0, 0, W, 148)
 
-  const LOGO_H = 72
-  const WIP_H  = 60
-  const LOGO_Y = 48
+  const LOGO_H = 72, WIP_H = 60, LOGO_Y = 48
   await drawGpfLogo(ctx, PAD, LOGO_Y, LOGO_H)
   await drawWipLogo(ctx, W - PAD, LOGO_Y + (LOGO_H - WIP_H) / 2, WIP_H)
 
   // ── Role badge ────────────────────────────────────────────────────────────────
-  // Placed after logo row with clear gap
-  const BADGE_TOP = LOGO_Y + LOGO_H + 44   // 48 + 72 + 44 = 164
-  const BADGE_H   = 52
-  const BADGE_BTM = BADGE_TOP + BADGE_H // = 230
-  const badgeTxt  = opts.role.label.toUpperCase()
+  const BADGE_TOP = LOGO_Y + LOGO_H + 44
+  const BADGE_H = 52
+  const BADGE_BTM = BADGE_TOP + BADGE_H
+  const badgeTxt = opts.role.label.toUpperCase()
 
   ctx.font = font(22, 400, 'JetBrains Mono')
   const badgeW = ctx.measureText(badgeTxt).width + 52
-  ctx.fillStyle = 'rgba(124,58,237,0.2)'; roundRect(ctx, PAD, BADGE_TOP, badgeW, BADGE_H, 26); ctx.fill()
-  ctx.strokeStyle = 'rgba(167,139,250,0.55)'; ctx.lineWidth = 1.5; roundRect(ctx, PAD, BADGE_TOP, badgeW, BADGE_H, 26); ctx.stroke()
-  ctx.fillStyle = '#A78BFA'; ctx.fillText(badgeTxt, PAD + 26, BADGE_TOP + 33)
+  ctx.fillStyle = ac(r, g, b, 0.2); roundRect(ctx, PAD, BADGE_TOP, badgeW, BADGE_H, 26); ctx.fill()
+  ctx.strokeStyle = t.light + '99'; ctx.lineWidth = 1.5; roundRect(ctx, PAD, BADGE_TOP, badgeW, BADGE_H, 26); ctx.stroke()
+  ctx.fillStyle = t.light; ctx.fillText(badgeTxt, PAD + 26, BADGE_TOP + 33)
 
   // ── Name ──────────────────────────────────────────────────────────────────────
-  // Name baseline: badge_bottom + cap_height + 36px gap
-  // At 144px font: capH=104, min = 230+104+36 = 370 → use 390 for breathing room
   const NAME_BASELINE_MIN = 390
-
-  const displayName = (opts.name.trim() || (isPersonal ? 'Your Name' : 'Your Organisation'))
+  const displayName = opts.name.trim() || (isPersonal ? 'Your Name' : 'Your Organisation')
   const { lines: nameLines, size: nameFontSize } = fitName(ctx, displayName, textMaxW, 144, 3)
   const lineH = nameFontSize * 1.12
-
-  // Verify no overlap: if cap_top < BADGE_BTM, push baseline down
   const capHeight = nameFontSize * 0.72
   const nameBaseline = Math.max(NAME_BASELINE_MIN, BADGE_BTM + capHeight + 30)
 
-  ctx.font = font(nameFontSize, 700)
-  ctx.fillStyle = '#F0EEF8'
+  ctx.font = font(nameFontSize, 700); ctx.fillStyle = '#F0EEF8'
   nameLines.forEach((line, i) => ctx.fillText(line, PAD, nameBaseline + i * lineH))
   let cursor = nameBaseline + nameLines.length * lineH
 
-  // ── Title (optional) ──────────────────────────────────────────────────────────
   if (opts.title.trim()) {
     cursor += 28
-    ctx.font = font(30, 400, 'Inter')
-    ctx.fillStyle = '#6B7280'
-    ctx.fillText(opts.title.trim(), PAD, cursor)
-    cursor += 30
+    ctx.font = font(30, 400, 'Inter'); ctx.fillStyle = '#6B7280'
+    ctx.fillText(opts.title.trim(), PAD, cursor); cursor += 30
   }
 
-  // ── Divider + event block (fixed to lower quarter) ────────────────────────────
-  const DIVIDER_Y = Math.round(height * 0.74) // 799 for 1080, 999 for 1350
+  // ── Divider + event block ─────────────────────────────────────────────────────
+  const DIVIDER_Y = Math.round(height * 0.74)
   const divGrad = ctx.createLinearGradient(PAD, 0, PAD + 260, 0)
-  divGrad.addColorStop(0, '#7C3AED'); divGrad.addColorStop(1, 'rgba(124,58,237,0)')
+  divGrad.addColorStop(0, t.hex); divGrad.addColorStop(1, ac(r, g, b, 0))
   ctx.fillStyle = divGrad; ctx.fillRect(PAD, DIVIDER_Y, 260, 3)
 
   ctx.font = font(34, 700); ctx.fillStyle = '#F59E0B'
@@ -338,44 +370,42 @@ async function renderHero(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   // ── Footer ────────────────────────────────────────────────────────────────────
   ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = '#3A3856'
   ctx.fillText(EVENT.hashtag, PAD, height - 34)
-  ctx.textAlign = 'right'; ctx.fillStyle = '#3A3856'
-  ctx.fillText(EVENT.url, W - PAD, height - 34)
-  ctx.textAlign = 'left'
+  ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, height - 34); ctx.textAlign = 'left'
 
   const bar = ctx.createLinearGradient(0, 0, W, 0)
-  bar.addColorStop(0, '#7C3AED'); bar.addColorStop(0.5, '#A78BFA'); bar.addColorStop(1, '#F59E0B')
+  bar.addColorStop(0, t.bar[0]); bar.addColorStop(0.5, t.bar[1]); bar.addColorStop(1, t.bar[2])
   ctx.fillStyle = bar; ctx.fillRect(0, height - 6, W, 6)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // EDITORIAL
-// Layout: left accent strip | logo row | role label | name (big) | event box | footer
-// Photo/logo: top-right column (if present)
 // ─────────────────────────────────────────────────────────────────────────────
 async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   const height = H(opts.portrait)
   const hasPhoto = !!opts.photo
   const isPersonal = opts.role.hasPhoto
-  const TX = PAD + 20  // text x (offset from left strip)
+  const TX = PAD + 20
+  const t = getTheme(opts.role.id)
+  const { r, g, b } = t
 
   // ── Background ──────────────────────────────────────────────────────────────
   ctx.fillStyle = '#07051A'; ctx.fillRect(0, 0, W, height)
 
-  // subtle dot texture
-  ctx.fillStyle = 'rgba(167,139,250,0.022)'
+  // Dot texture tinted by role
+  ctx.fillStyle = ac(r, g, b, 0.028)
   for (let x = 40; x < W; x += 30) for (let y = 30; y < height; y += 30) {
     ctx.beginPath(); ctx.arc(x, y, 1.2, 0, Math.PI * 2); ctx.fill()
   }
 
-  // left color strip
+  // Left color strip: role accent → role light
   const strip = ctx.createLinearGradient(0, 0, 0, height)
-  strip.addColorStop(0, '#7C3AED'); strip.addColorStop(1, '#F59E0B')
+  strip.addColorStop(0, t.hex); strip.addColorStop(1, t.light)
   ctx.fillStyle = strip; ctx.fillRect(0, 0, 8, height)
 
   // ── Photo / logo (top-right) ─────────────────────────────────────────────────
   const IMG_SIZE = opts.portrait ? 310 : 270
   const imgX = W - PAD - IMG_SIZE
-  const imgY = 48 + 72 + 16  // below logo row (72px GPF logo + 16px gap)
+  const imgY = 48 + 72 + 16
 
   if (hasPhoto) {
     if (isPersonal) {
@@ -384,49 +414,43 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
       const img = await loadImg(opts.photo!).catch(() => null)
       if (img) ctx.drawImage(img, imgX, imgY, IMG_SIZE, IMG_SIZE)
       ctx.restore()
-      ctx.strokeStyle = 'rgba(124,58,237,0.55)'; ctx.lineWidth = 2.5
+      ctx.strokeStyle = ac(r, g, b, 0.55); ctx.lineWidth = 2.5
       roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.stroke()
     } else {
-      // light container + logo centred
-      ctx.fillStyle = 'rgba(124,58,237,0.05)'
+      ctx.fillStyle = ac(r, g, b, 0.05)
       roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.fill()
-      ctx.strokeStyle = 'rgba(124,58,237,0.2)'; ctx.lineWidth = 1.5
+      ctx.strokeStyle = ac(r, g, b, 0.2); ctx.lineWidth = 1.5
       roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.stroke()
       await drawOrgLogo(ctx, opts.photo!, imgX + IMG_SIZE / 2, imgY + IMG_SIZE / 2, IMG_SIZE * 0.72)
     }
   } else {
-    // placeholder frame
     ctx.save()
     ctx.setLineDash([14, 8])
-    ctx.strokeStyle = 'rgba(124,58,237,0.35)'; ctx.lineWidth = 2.5
+    ctx.strokeStyle = ac(r, g, b, 0.35); ctx.lineWidth = 2.5
     roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.stroke()
     ctx.restore()
-    ctx.fillStyle = 'rgba(124,58,237,0.04)'
+    ctx.fillStyle = ac(r, g, b, 0.04)
     roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.fill()
     const pcx = imgX + IMG_SIZE / 2, pcy = imgY + IMG_SIZE / 2
-    ctx.fillStyle = 'rgba(124,58,237,0.2)'
+    ctx.fillStyle = ac(r, g, b, 0.2)
     if (isPersonal) {
-      // person silhouette
-      ctx.beginPath(); ctx.arc(pcx, pcy - IMG_SIZE * 0.16, IMG_SIZE * 0.17, 0, Math.PI * 2); ctx.fill()
-      ctx.beginPath(); ctx.arc(pcx, pcy + IMG_SIZE * 0.42, IMG_SIZE * 0.33, Math.PI, 0); ctx.fill()
+      ctx.beginPath(); ctx.arc(pcx, pcy - IMG_SIZE*0.16, IMG_SIZE*0.17, 0, Math.PI*2); ctx.fill()
+      ctx.beginPath(); ctx.arc(pcx, pcy + IMG_SIZE*0.42, IMG_SIZE*0.33, Math.PI, 0); ctx.fill()
     } else {
-      // logo-rectangle icon
-      const iw = IMG_SIZE * 0.56, ih = IMG_SIZE * 0.34
-      const ix = pcx - iw / 2, iy = pcy - ih / 2 - 12
+      const iw = IMG_SIZE*0.56, ih = IMG_SIZE*0.34, ix = pcx-iw/2, iy = pcy-ih/2-12
       roundRect(ctx, ix, iy, iw, ih, 8)
-      ctx.fillStyle = 'rgba(124,58,237,0.18)'; ctx.fill()
-      ctx.strokeStyle = 'rgba(124,58,237,0.35)'; ctx.lineWidth = 2; ctx.stroke()
+      ctx.fillStyle = ac(r, g, b, 0.18); ctx.fill()
+      ctx.strokeStyle = ac(r, g, b, 0.35); ctx.lineWidth = 2; ctx.stroke()
     }
-    ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = 'rgba(167,139,250,0.45)'
+    ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '77'
     ctx.textAlign = 'center'
     ctx.fillText(isPersonal ? 'YOUR PHOTO' : 'YOUR LOGO', pcx, imgY + IMG_SIZE + 40)
     ctx.textAlign = 'left'
   }
 
-  // Text column width — always reserve right column
   const textMaxW = imgX - TX - 40
 
-  // ── Header strip + Logo row ───────────────────────────────────────────────────
+  // ── Header ────────────────────────────────────────────────────────────────────
   const hdGradE = ctx.createLinearGradient(0, 0, 0, 148)
   hdGradE.addColorStop(0, 'rgba(7,5,26,0.85)'); hdGradE.addColorStop(1, 'rgba(7,5,26,0)')
   ctx.fillStyle = hdGradE; ctx.fillRect(0, 0, W, 148)
@@ -435,12 +459,12 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
   await drawWipLogo(ctx, W - PAD, 54, 60)
 
   // ── Role label ───────────────────────────────────────────────────────────────
-  const ROLE_Y = 48 + 72 + 44  // 164
-  ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = '#7C3AED'
+  const ROLE_Y = 48 + 72 + 44
+  ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = t.hex
   ctx.fillText(`— ${opts.role.label.toUpperCase()}`, TX, ROLE_Y)
 
   // ── Name ──────────────────────────────────────────────────────────────────────
-  const NAME_BASELINE_MIN = ROLE_Y + 24 + 116 * 0.72 + 24  // role~164 → min ≈ 296
+  const NAME_BASELINE_MIN = ROLE_Y + 24 + 116 * 0.72 + 24
   const displayName = opts.name.trim() || (isPersonal ? 'Your Name' : 'Your Organisation')
   const { lines: nameLines, size: nameFontSize } = fitName(ctx, displayName, textMaxW, 116, 3)
   const lineH = nameFontSize * 1.1
@@ -449,11 +473,11 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
 
   nameLines.forEach((line, i) => {
     if (i === nameLines.length - 1) {
-      // last line: colour the last word purple
+      // last word in accent light colour
       const words = line.split(' '); let x = TX
       words.forEach((word, wi) => {
         ctx.font = font(nameFontSize, 700)
-        ctx.fillStyle = wi === words.length - 1 ? '#A78BFA' : '#F0EEF8'
+        ctx.fillStyle = wi === words.length - 1 ? t.light : '#F0EEF8'
         ctx.fillText(word, x, nameBaseline + i * lineH)
         x += ctx.measureText(word + ' ').width
       })
@@ -464,12 +488,10 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
   })
   let cursor = nameBaseline + nameLines.length * lineH
 
-  // ── Title ─────────────────────────────────────────────────────────────────────
   if (opts.title.trim()) {
     cursor += 24
     ctx.font = font(28, 400, 'Inter'); ctx.fillStyle = '#52506A'
-    ctx.fillText(opts.title.trim(), TX, cursor)
-    cursor += 30
+    ctx.fillText(opts.title.trim(), TX, cursor); cursor += 30
   }
 
   // ── Event info box ────────────────────────────────────────────────────────────
@@ -477,12 +499,12 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
   const BOX_W = Math.min(textMaxW, 480)
   const BOX_H = 128
 
-  ctx.fillStyle = 'rgba(124,58,237,0.07)'
+  ctx.fillStyle = ac(r, g, b, 0.07)
   roundRect(ctx, TX, BOX_Y, BOX_W, BOX_H, 14); ctx.fill()
-  ctx.strokeStyle = 'rgba(124,58,237,0.2)'; ctx.lineWidth = 1.5
+  ctx.strokeStyle = ac(r, g, b, 0.2); ctx.lineWidth = 1.5
   roundRect(ctx, TX, BOX_Y, BOX_W, BOX_H, 14); ctx.stroke()
 
-  ctx.font = font(16, 400, 'JetBrains Mono'); ctx.fillStyle = '#7C3AED'
+  ctx.font = font(16, 400, 'JetBrains Mono'); ctx.fillStyle = t.hex
   ctx.fillText('WHEN & WHERE', TX + 20, BOX_Y + 30)
   ctx.font = font(32, 700); ctx.fillStyle = '#F59E0B'
   ctx.fillText(EVENT.dates, TX + 20, BOX_Y + 72)
@@ -494,35 +516,38 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
   ctx.fillText(EVENT.hashtag, TX, height - 36)
   ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, height - 36); ctx.textAlign = 'left'
 
-  // accent dot at bottom of left strip
-  ctx.fillStyle = '#F59E0B'; ctx.fillRect(0, height - 6, 8, 6)
+  // Bottom accent dot on strip uses role bar end colour
+  ctx.fillStyle = t.bar[1]; ctx.fillRect(0, height - 6, 8, 6)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // FESTIVAL
-// Fully centered; concentric rings; photo upper-center; name + role lower-center
 // ─────────────────────────────────────────────────────────────────────────────
 async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   const height = H(opts.portrait)
   const hasPhoto = !!opts.photo
   const isPersonal = opts.role.hasPhoto
   const cx = W / 2
+  const t = getTheme(opts.role.id)
+  const { r, g, b } = t
 
   // ── Background ──────────────────────────────────────────────────────────────
   ctx.fillStyle = '#05040C'; ctx.fillRect(0, 0, W, height)
 
+  // Role-coloured central orb
   const g1 = ctx.createRadialGradient(cx, height * 0.4, 0, cx, height * 0.4, W * 0.9)
-  g1.addColorStop(0, 'rgba(124,58,237,0.28)'); g1.addColorStop(0.65, 'rgba(124,58,237,0.06)'); g1.addColorStop(1, 'rgba(124,58,237,0)')
+  g1.addColorStop(0, ac(r, g, b, 0.28)); g1.addColorStop(0.65, ac(r, g, b, 0.06)); g1.addColorStop(1, ac(r, g, b, 0))
   ctx.fillStyle = g1; ctx.fillRect(0, 0, W, height)
 
+  // Amber bottom orb (event branding)
   const g2 = ctx.createRadialGradient(cx, height * 0.88, 0, cx, height * 0.88, W * 0.5)
   g2.addColorStop(0, 'rgba(245,158,11,0.2)'); g2.addColorStop(1, 'rgba(245,158,11,0)')
   ctx.fillStyle = g2; ctx.fillRect(0, 0, W, height)
 
-  // Concentric rings
-  ctx.strokeStyle = 'rgba(124,58,237,0.1)'; ctx.lineWidth = 1.5
-  for (const r of [140, 260, 390, 530]) {
-    ctx.beginPath(); ctx.arc(cx, height * 0.4, r, 0, Math.PI * 2); ctx.stroke()
+  // Role-coloured concentric rings
+  ctx.strokeStyle = ac(r, g, b, 0.12); ctx.lineWidth = 1.5
+  for (const rr of [140, 260, 390, 530]) {
+    ctx.beginPath(); ctx.arc(cx, height * 0.4, rr, 0, Math.PI * 2); ctx.stroke()
   }
 
   // ── Logos ─────────────────────────────────────────────────────────────────────
@@ -533,11 +558,10 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   await drawGpfLogo(ctx, PAD, 48, 72)
   await drawWipLogo(ctx, W - PAD, 54, 60)
 
-  // ── Photo / logo (centered, upper portion) ────────────────────────────────────
+  // ── Photo / logo zone ─────────────────────────────────────────────────────────
   const PHOTO_R = opts.portrait ? 200 : 178
   const PHOTO_CY = height * 0.37
 
-  // Org: landscape box dimensions (centered on PHOTO_CY)
   const ORG_BW = opts.portrait ? 580 : 520
   const ORG_BH = opts.portrait ? 300 : 270
   const ORG_BR = 20
@@ -547,73 +571,65 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   let TEXT_START: number
 
   if (!isPersonal) {
-    // ── Org logo: landscape box centered in the ring area ─────────────────────
     if (hasPhoto) {
       const gp = ctx.createRadialGradient(cx, PHOTO_CY, 0, cx, PHOTO_CY, 420)
-      gp.addColorStop(0, 'rgba(124,58,237,0.25)'); gp.addColorStop(1, 'rgba(124,58,237,0)')
+      gp.addColorStop(0, ac(r, g, b, 0.25)); gp.addColorStop(1, ac(r, g, b, 0))
       ctx.fillStyle = gp; ctx.fillRect(0, 0, W, height)
 
       ctx.fillStyle = 'rgba(5,4,12,0.55)'
       roundRect(ctx, ORG_BX, ORG_BY, ORG_BW, ORG_BH, ORG_BR); ctx.fill()
       ctx.save()
-      ctx.shadowColor = 'rgba(124,58,237,0.35)'; ctx.shadowBlur = 18
-      ctx.strokeStyle = 'rgba(124,58,237,0.45)'; ctx.lineWidth = 2
+      ctx.shadowColor = ac(r, g, b, 0.35); ctx.shadowBlur = 18
+      ctx.strokeStyle = ac(r, g, b, 0.45); ctx.lineWidth = 2
       roundRect(ctx, ORG_BX, ORG_BY, ORG_BW, ORG_BH, ORG_BR); ctx.stroke()
       ctx.restore()
       await drawOrgLogo(ctx, opts.photo!, cx, PHOTO_CY, Math.min(ORG_BW * 0.72, ORG_BH * 0.68))
     } else {
-      // Dashed placeholder
-      ctx.fillStyle = 'rgba(124,58,237,0.05)'
+      ctx.fillStyle = ac(r, g, b, 0.05)
       roundRect(ctx, ORG_BX, ORG_BY, ORG_BW, ORG_BH, ORG_BR); ctx.fill()
       ctx.save()
       ctx.setLineDash([16, 9])
-      ctx.strokeStyle = 'rgba(167,139,250,0.42)'; ctx.lineWidth = 2
+      ctx.strokeStyle = t.light + '70'; ctx.lineWidth = 2
       roundRect(ctx, ORG_BX, ORG_BY, ORG_BW, ORG_BH, ORG_BR); ctx.stroke()
       ctx.restore()
-      const iw = ORG_BW * 0.34, ih = ORG_BH * 0.38
-      const ix = cx - iw / 2, iy = PHOTO_CY - ih / 2 - 16
+      const iw = ORG_BW*0.34, ih = ORG_BH*0.38, ix = cx-iw/2, iy = PHOTO_CY-ih/2-16
       roundRect(ctx, ix, iy, iw, ih, 8)
-      ctx.fillStyle = 'rgba(124,58,237,0.14)'; ctx.fill()
-      ctx.strokeStyle = 'rgba(124,58,237,0.3)'; ctx.lineWidth = 1.5; ctx.stroke()
-      ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = 'rgba(167,139,250,0.48)'
+      ctx.fillStyle = ac(r, g, b, 0.14); ctx.fill()
+      ctx.strokeStyle = ac(r, g, b, 0.3); ctx.lineWidth = 1.5; ctx.stroke()
+      ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '7A'
       ctx.textAlign = 'center'; ctx.fillText('+ ADD LOGO', cx, ORG_BY + ORG_BH - 24)
     }
     TEXT_START = PHOTO_CY + ORG_BH / 2 + 56
 
   } else {
-    // ── Personal photo / placeholder: circle ──────────────────────────────────
     if (hasPhoto) {
-      const gp = ctx.createRadialGradient(cx, PHOTO_CY, PHOTO_R * 0.4, cx, PHOTO_CY, PHOTO_R * 1.6)
-      gp.addColorStop(0, 'rgba(124,58,237,0.38)'); gp.addColorStop(1, 'rgba(124,58,237,0)')
+      const gp = ctx.createRadialGradient(cx, PHOTO_CY, PHOTO_R*0.4, cx, PHOTO_CY, PHOTO_R*1.6)
+      gp.addColorStop(0, ac(r, g, b, 0.38)); gp.addColorStop(1, ac(r, g, b, 0))
       ctx.fillStyle = gp; ctx.fillRect(0, 0, W, height)
-      await drawCirclePhoto(ctx, opts.photo!, cx, PHOTO_CY, PHOTO_R)
+      await drawCirclePhoto(ctx, opts.photo!, cx, PHOTO_CY, PHOTO_R, r, g, b)
     } else {
-      // Dashed circle placeholder so the upper zone isn't empty
-      ctx.fillStyle = 'rgba(124,58,237,0.06)'
-      ctx.beginPath(); ctx.arc(cx, PHOTO_CY, PHOTO_R, 0, Math.PI * 2); ctx.fill()
+      ctx.fillStyle = ac(r, g, b, 0.06)
+      ctx.beginPath(); ctx.arc(cx, PHOTO_CY, PHOTO_R, 0, Math.PI*2); ctx.fill()
       ctx.save()
       ctx.setLineDash([18, 10])
-      ctx.strokeStyle = 'rgba(167,139,250,0.45)'; ctx.lineWidth = 2.5
-      ctx.beginPath(); ctx.arc(cx, PHOTO_CY, PHOTO_R, 0, Math.PI * 2); ctx.stroke()
+      ctx.strokeStyle = t.light + '77'; ctx.lineWidth = 2.5
+      ctx.beginPath(); ctx.arc(cx, PHOTO_CY, PHOTO_R, 0, Math.PI*2); ctx.stroke()
       ctx.restore()
-      // person silhouette
-      ctx.fillStyle = 'rgba(124,58,237,0.22)'
-      ctx.beginPath(); ctx.arc(cx, PHOTO_CY - PHOTO_R * 0.2, PHOTO_R * 0.32, 0, Math.PI * 2); ctx.fill()
-      ctx.beginPath(); ctx.arc(cx, PHOTO_CY + PHOTO_R * 0.62, PHOTO_R * 0.52, Math.PI, 0); ctx.fill()
-      ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = 'rgba(167,139,250,0.5)'
+      ctx.fillStyle = ac(r, g, b, 0.22)
+      ctx.beginPath(); ctx.arc(cx, PHOTO_CY - PHOTO_R*0.2, PHOTO_R*0.32, 0, Math.PI*2); ctx.fill()
+      ctx.beginPath(); ctx.arc(cx, PHOTO_CY + PHOTO_R*0.62, PHOTO_R*0.52, Math.PI, 0); ctx.fill()
+      ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '80'
       ctx.textAlign = 'center'; ctx.fillText('+ ADD PHOTO', cx, PHOTO_CY + PHOTO_R + 34)
     }
-    TEXT_START = height * 0.62  // same position whether photo present or placeholder
+    TEXT_START = height * 0.62
   }
 
-  // ── Text block (centered, lower portion) ─────────────────────────────────────
+  // ── Text block ────────────────────────────────────────────────────────────────
   ctx.textAlign = 'center'
 
-  // Event name label — drawn above name, anchored at TEXT_START
   ctx.font = font(18, 400, 'JetBrains Mono'); ctx.fillStyle = '#52506A'
   ctx.fillText(EVENT.name.toUpperCase(), cx, TEXT_START)
 
-  // Name — cap top sits 12px below the event label baseline (no overlap)
   const displayName = opts.name.trim() || (isPersonal ? 'Your Name' : 'Your Organisation')
   const { lines: nameLines, size: nameFontSize } = fitName(ctx, displayName, W - PAD * 2.5, 90, 2)
   const lineH = nameFontSize * 1.12
@@ -624,26 +640,23 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   nameLines.forEach((line, i) => ctx.fillText(line, cx, nameY + i * lineH))
   let cursor = nameY + nameLines.length * lineH
 
-  // Title
   if (opts.title.trim()) {
     cursor += 20
     ctx.font = font(26, 400, 'Inter'); ctx.fillStyle = '#6B7280'
-    ctx.fillText(opts.title.trim(), cx, cursor)
-    cursor += 28
+    ctx.fillText(opts.title.trim(), cx, cursor); cursor += 28
   }
 
-  // Role chip
+  // Role chip in role accent colour
   cursor += 20
   ctx.font = font(21, 400, 'JetBrains Mono')
   const chipTxt = opts.role.label.toUpperCase()
   const chipW = ctx.measureText(chipTxt).width + 56
   const chipX = cx - chipW / 2
-  ctx.fillStyle = 'rgba(124,58,237,0.2)'; roundRect(ctx, chipX, cursor, chipW, 48, 24); ctx.fill()
-  ctx.strokeStyle = 'rgba(167,139,250,0.55)'; ctx.lineWidth = 1.5; roundRect(ctx, chipX, cursor, chipW, 48, 24); ctx.stroke()
-  ctx.fillStyle = '#A78BFA'; ctx.fillText(chipTxt, cx, cursor + 31)
+  ctx.fillStyle = ac(r, g, b, 0.2); roundRect(ctx, chipX, cursor, chipW, 48, 24); ctx.fill()
+  ctx.strokeStyle = t.light + '99'; ctx.lineWidth = 1.5; roundRect(ctx, chipX, cursor, chipW, 48, 24); ctx.stroke()
+  ctx.fillStyle = t.light; ctx.fillText(chipTxt, cx, cursor + 31)
   cursor += 48
 
-  // Event date row
   cursor += 20
   ctx.font = font(30, 600); ctx.fillStyle = '#F59E0B'
   ctx.fillText(EVENT.dates, cx, cursor)
@@ -651,9 +664,9 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   ctx.font = font(23, 400, 'Inter'); ctx.fillStyle = '#6B7280'
   ctx.fillText(EVENT.city, cx, cursor)
 
-  // ── Divider + footer ──────────────────────────────────────────────────────────
+  // ── Footer divider + hashtag ──────────────────────────────────────────────────
   const dg = ctx.createLinearGradient(PAD, 0, W - PAD, 0)
-  dg.addColorStop(0, 'rgba(124,58,237,0)'); dg.addColorStop(0.5, 'rgba(167,139,250,0.5)'); dg.addColorStop(1, 'rgba(124,58,237,0)')
+  dg.addColorStop(0, ac(r, g, b, 0)); dg.addColorStop(0.5, t.light + '80'); dg.addColorStop(1, ac(r, g, b, 0))
   ctx.fillStyle = dg; ctx.fillRect(PAD, height - 88, W - PAD * 2, 2)
 
   ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = '#3A3856'
