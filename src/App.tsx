@@ -26,6 +26,8 @@ import SpeakersPage from './pages/SpeakersPage'
 import SponsorPage from './pages/SponsorPage'
 import FAQPage from './pages/FAQPage'
 import AdminSendPassesPage from './pages/AdminSendPassesPage'
+import SharePage from './pages/SharePage'
+import SocialCardCTA from './components/SocialCardCTA'
 
 // ─── Home page ────────────────────────────────────────────────────────────────
 function HomePage() {
@@ -65,6 +67,7 @@ function HomePage() {
         <Sponsor onRequest={() => setSponsorModal(true)} />
         <CommunityPartners />
         <FAQ />
+        <SocialCardCTA />
         <ClosingCTA
           onRegister={() => setPassModal({ open: true, tierName: 'General' })}
           onSponsor={() => setSponsorModal(true)}
@@ -117,6 +120,7 @@ export default function App() {
       <Route path="/sponsor" element={<SponsorPage />} />
       <Route path="/faq" element={<FAQPage />} />
       <Route path="/admin/send-passes" element={<AdminSendPassesPage />} />
+      <Route path="/share" element={<SharePage />} />
       <Route path="*" element={<HomePage />} />
     </Routes>
   )
