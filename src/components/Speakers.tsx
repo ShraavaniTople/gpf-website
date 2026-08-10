@@ -137,6 +137,13 @@ const speakers: Speaker[] = [
     photo: '/speaker-deeksha.png',
     objectPos: '50% 15%',
   },
+  {
+    name: 'Bhavik Kaul',
+    title: 'CPO, SuperMoney',
+    linkedin: 'https://www.linkedin.com/in/kaulbhavik/',
+    photo: '/speaker-bhavik.png',
+    objectPos: '50% 15%',
+  },
 ]
 
 function useVis(delay = 0) {
