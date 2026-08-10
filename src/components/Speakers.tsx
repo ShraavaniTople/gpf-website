@@ -119,7 +119,7 @@ const speakers: Speaker[] = [
   {
     name: 'Sreedhar Gade',
     title: 'Vice President, Engineering, Freshworks',
-    linkedin: 'https://www.linkedin.com/in/sreedhar-gade/',
+    linkedin: 'https://www.linkedin.com/in/sreegade/',
     photo: '/speaker-sreedhar.png',
     objectPos: '50% 15%',
   },
