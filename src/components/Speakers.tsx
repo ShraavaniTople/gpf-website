@@ -111,7 +111,7 @@ const speakers: Speaker[] = [
   },
   {
     name: 'Shivalik Sen',
-    title: 'Head of Data Products, Rapido',
+    title: 'Associate Director of Product, Rapido',
     linkedin: 'https://www.linkedin.com/in/shivaliksen/',
     photo: '/speaker-shivalik.png',
     objectPos: '50% 10%',
