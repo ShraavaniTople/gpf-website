@@ -596,9 +596,18 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
               onKeyDown={e => e.key === 'Enter' && applyCode()}
               placeholder="ENTER CODE"
               className={inp + ' flex-1 font-mono tracking-widest uppercase'}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="characters"
+              spellCheck={false}
+              data-lpignore="true"
+              data-form-type="other"
+              style={{ border: '1px solid rgba(124,58,237,.4)' }}
             />
-            <button onClick={applyCode} className="btn-ghost"
-              style={{ padding: '10px 18px', fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0 }}>
+            <button
+              onClick={applyCode}
+              style={{ padding: '10px 20px', fontSize: 13, whiteSpace: 'nowrap', flexShrink: 0, background: '#7C3AED', color: '#fff', borderRadius: 9999, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700 }}
+            >
               Apply
             </button>
           </div>
