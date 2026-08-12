@@ -42,7 +42,6 @@ const tiers = [
       'Everything in **Premium**',
       'Founders Roundtables',
       'VIP Networking Dinner',
-      'Speaker Lounge Access',
       '1 Year WiP India Advance Membership',
       'Swag Kit',
     ],
