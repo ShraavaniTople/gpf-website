@@ -14,7 +14,7 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
   },
   VIP: {
     price: 15999,
-    features: ['Everything in Premium', 'Founders Roundtables', 'VIP Networking Dinner', 'Speaker Lounge Access'],
+    features: ['Everything in Premium', 'Founders Roundtables', 'VIP Networking Dinner'],
   },
 }
 
