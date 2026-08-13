@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const partners = [
+  { name: 'AI House',               slug: 'ai-house',          h: 48 },
   { name: 'AnitaB.org',            slug: 'anita-b' },
   { name: 'Coding Ninjas',         slug: 'coding-ninjas',     h: 80 },
   { name: 'FFDG Mumbai',           slug: 'ffdg-mumbai' },
