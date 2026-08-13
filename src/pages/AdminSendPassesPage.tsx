@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const WEB3FORMS_KEY = '05343d66-4685-49cf-ba57-e57dbf8a2bf1'
 
-const members = [
+const generalMembers = [
   { firstName: 'Swathi',        lastName: 'Chirravuri',   company: 'Stealth Startup', role: 'AI Product Manager',               email: 'swathi.chirravuri@gmail.com' },
   { firstName: 'Aditi',         lastName: 'Rajesh',       company: 'Hashfame',        role: 'Product Manager',                  email: 'Aditirajesh1234@gmail.com' },
   { firstName: 'Priyadarshini', lastName: 'M',            company: 'SES Satellite',   role: 'Product Manager',                  email: 'priya1687@gmail.com' },
@@ -17,38 +17,51 @@ const members = [
   { firstName: 'Anchal',        lastName: 'Garg',         company: 'Arintra',         role: 'Senior AI Product Manager',        email: 'anchalgarg1995@gmail.com' },
 ]
 
-function genPassNumber(email: string) {
-  // deterministic suffix from email so it's reproducible
+const premiumMembers = [
+  // WiP India community members — Accelerate tier
+  { firstName: 'Madhushree',      lastName: '',            company: 'Mastercard',               role: '',                                    email: 'findmadhu.roy@gmail.com',       paymentId: 'XCOMPWIP001', sentOn: '2026-08-12' },
+  { firstName: 'Sheethal Ann',    lastName: 'George',      company: 'Adobe',                    role: '',                                    email: 'sheethalg@gmail.com',           paymentId: 'XCOMPWIP002', sentOn: '2026-08-12' },
+  { firstName: 'Lavanya',         lastName: 'Karunakaran', company: 'Light And Wonder iGaming', role: 'Deputy Director, Product Management', email: 'lavanya.karunakaran@gmail.com', paymentId: 'XCOMPWIP003', sentOn: '2026-08-12' },
+  { firstName: 'Sai Keerthana',   lastName: 'Srinivasan',  company: 'Docusign',                 role: 'Lead Product Designer',               email: 'ssai.keerthana@gmail.com',      paymentId: 'XCOMPWIP004', sentOn: '2026-08-12' },
+  // WiP India community members — Advance tier
+  { firstName: 'Swati',           lastName: 'Sharma',      company: 'Ellucian India',           role: 'Senior Product Manager',              email: 'swati.sharma8621@gmail.com',    paymentId: 'XCOMPWIP005', sentOn: '2026-08-12' },
+]
+
+function genGeneralPassNumber(email: string) {
   const hash = [...email].reduce((acc, c) => (acc * 31 + c.charCodeAt(0)) & 0xFFFFFF, 0)
   return `GPF26-G-${hash.toString(16).toUpperCase().padStart(6, '0')}`
 }
 
-async function recordInWeb3Forms(m: typeof members[0], passNumber: string) {
+function genPremiumPassNumber(paymentId: string) {
+  return `GPF26-P-${paymentId.slice(-6).toUpperCase()}`
+}
+
+async function recordInWeb3Forms(m: typeof generalMembers[0], passNumber: string) {
   const name = `${m.firstName} ${m.lastName}`
   try {
     await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        access_key:   WEB3FORMS_KEY,
-        subject:      `[GPF Pass Issued] General (Complimentary) — ${name}`,
-        from_name:    'GPF 2026 Admin',
+        access_key:    WEB3FORMS_KEY,
+        subject:       `[GPF Pass Issued] General (Complimentary) — ${name}`,
+        from_name:     'GPF 2026 Admin',
         name,
-        email:        m.email,
+        email:         m.email,
         'Pass Number': passNumber,
-        'Pass Type':  'General Pass (Complimentary)',
-        'Role':       m.role,
-        'Company':    m.company,
-        'Event Date': '25–26 Sept 2026',
-        'Venue':      'Bangalore, India',
+        'Pass Type':   'General Pass (Complimentary)',
+        'Role':        m.role,
+        'Company':     m.company,
+        'Event Date':  '25–26 Sept 2026',
+        'Venue':       'Bangalore, India',
       }),
     })
-  } catch { /* silent — email still goes out */ }
+  } catch { /* silent */ }
 }
 
-async function sendPass(m: typeof members[0]): Promise<boolean> {
+async function sendGeneralPass(m: typeof generalMembers[0]): Promise<boolean> {
   const name       = `${m.firstName} ${m.lastName}`
-  const passNumber = genPassNumber(m.email)
+  const passNumber = genGeneralPassNumber(m.email)
   try {
     const res = await fetch('/api/send-email', {
       method: 'POST',
@@ -66,10 +79,33 @@ async function sendPass(m: typeof members[0]): Promise<boolean> {
       }),
     })
     const data = await res.json()
-    if (data.ok) {
-      // fire-and-forget — record in Web3Forms dashboard
-      recordInWeb3Forms(m, passNumber)
-    }
+    if (data.ok) recordInWeb3Forms(m, passNumber)
+    return data.ok === true
+  } catch {
+    return false
+  }
+}
+
+async function sendPremiumPass(m: typeof premiumMembers[0]): Promise<boolean> {
+  const name       = `${m.firstName} ${m.lastName}`.trim()
+  const passNumber = genPremiumPassNumber(m.paymentId)
+  try {
+    const res = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to_email:    m.email,
+        to_name:     name,
+        company:     m.company,
+        pass_type:   'Premium Pass',
+        amount:      'Complimentary',
+        payment_id:  m.paymentId,
+        pass_number: passNumber,
+        event_date:  '25–26 Sept 2026',
+        event_city:  'Bangalore',
+      }),
+    })
+    const data = await res.json()
     return data.ok === true
   } catch {
     return false
@@ -85,34 +121,75 @@ const badge = (s: Status) => {
   return { label: 'Pending', bg: 'rgba(28,26,50,.9)', color: '#52506A' }
 }
 
+function MemberRow({ idx, name, role, company, email, passNumber, status, onSend, running }: {
+  idx: number; name: string; role: string; company: string; email: string
+  passNumber: string; status: Status; onSend: () => void; running: boolean
+}) {
+  const b = badge(status)
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 16,
+      padding: '14px 20px',
+      background: idx % 2 === 0 ? '#080618' : '#05040C',
+    }}>
+      <span className="font-mono text-xs flex-shrink-0" style={{ color: '#52506A', width: 20 }}>
+        {String(idx + 1).padStart(2, '0')}
+      </span>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <p className="font-display font-semibold text-sm" style={{ color: '#F0EEF8' }}>{name}</p>
+        {role ? <p className="text-xs" style={{ color: '#52506A' }}>{role} · {company}</p> : <p className="text-xs" style={{ color: '#52506A' }}>{company}</p>}
+        <p className="font-mono text-[10px] mt-0.5" style={{ color: '#6B7280' }}>{email}</p>
+        <p className="font-mono text-[10px] mt-0.5" style={{ color: '#52506A' }}>{passNumber}</p>
+      </div>
+      <span className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full flex-shrink-0"
+        style={{ background: b.bg, color: b.color }}>
+        {b.label}
+      </span>
+      <button onClick={onSend}
+        disabled={running || status === 'sending' || status === 'sent'}
+        className="font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg flex-shrink-0"
+        style={{
+          border: '1px solid rgba(124,58,237,.3)', color: '#A78BFA', background: 'rgba(124,58,237,.08)',
+          opacity: (running || status === 'sending' || status === 'sent') ? 0.4 : 1,
+          cursor: (running || status === 'sending' || status === 'sent') ? 'not-allowed' : 'pointer',
+        }}>
+        Send
+      </button>
+    </div>
+  )
+}
+
 export default function AdminSendPassesPage() {
-  const [statuses, setStatuses] = useState<Status[]>(members.map(() => 'idle'))
-  const [running,  setRunning]  = useState(false)
+  const [genStatuses,  setGenStatuses]  = useState<Status[]>(generalMembers.map(() => 'idle'))
+  const [premStatuses, setPremStatuses] = useState<Status[]>(premiumMembers.map(() => 'sent'))
+  const [running, setRunning] = useState(false)
 
-  function setStatus(i: number, s: Status) {
-    setStatuses(prev => { const next = [...prev]; next[i] = s; return next })
-  }
+  const genSent  = genStatuses.filter(s => s === 'sent').length
+  const premSent = premStatuses.filter(s => s === 'sent').length
 
-  async function handleOne(i: number) {
-    setStatus(i, 'sending')
-    const ok = await sendPass(members[i])
-    setStatus(i, ok ? 'sent' : 'error')
-  }
-
-  async function handleAll() {
+  async function handleGenAll() {
     setRunning(true)
-    for (let i = 0; i < members.length; i++) {
-      if (statuses[i] === 'sent') continue
-      setStatus(i, 'sending')
-      const ok = await sendPass(members[i])
-      setStatus(i, ok ? 'sent' : 'error')
+    for (let i = 0; i < generalMembers.length; i++) {
+      if (genStatuses[i] === 'sent') continue
+      setGenStatuses(prev => { const n = [...prev]; n[i] = 'sending'; return n })
+      const ok = await sendGeneralPass(generalMembers[i])
+      setGenStatuses(prev => { const n = [...prev]; n[i] = ok ? 'sent' : 'error'; return n })
       await new Promise(r => setTimeout(r, 1000))
     }
     setRunning(false)
   }
 
-  const sent  = statuses.filter(s => s === 'sent').length
-  const total = members.length
+  async function handleGenOne(i: number) {
+    setGenStatuses(prev => { const n = [...prev]; n[i] = 'sending'; return n })
+    const ok = await sendGeneralPass(generalMembers[i])
+    setGenStatuses(prev => { const n = [...prev]; n[i] = ok ? 'sent' : 'error'; return n })
+  }
+
+  async function handlePremOne(i: number) {
+    setPremStatuses(prev => { const n = [...prev]; n[i] = 'sending'; return n })
+    const ok = await sendPremiumPass(premiumMembers[i])
+    setPremStatuses(prev => { const n = [...prev]; n[i] = ok ? 'sent' : 'error'; return n })
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: '#05040C', padding: '60px 24px' }}>
@@ -122,82 +199,61 @@ export default function AdminSendPassesPage() {
           Admin · Internal Tool
         </p>
         <h1 className="font-display font-extrabold mb-2" style={{ fontSize: 32, color: '#F0EEF8', letterSpacing: '-0.03em' }}>
-          Send General Passes
+          Complimentary Passes
         </h1>
-        <p className="text-sm mb-6" style={{ color: '#6B7280' }}>
-          Sends the same two emails paid attendees receive — payment confirmation + visual ticket — via Resend.
-          &nbsp;<span style={{ color: '#F59E0B' }}>{sent}/{total} sent</span>
+        <p className="text-sm mb-10" style={{ color: '#6B7280' }}>
+          Sends the same emails paid attendees receive — confirmation + visual ticket — via Resend.
         </p>
 
-        {/* What gets sent */}
-        <div className="rounded-2xl p-5 mb-8" style={{ background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.2)' }}>
-          <p className="font-mono text-[10px] uppercase tracking-widest mb-3" style={{ color: '#A78BFA' }}>Each member receives</p>
-          <ol className="space-y-1.5 text-sm" style={{ color: '#9490AD' }}>
-            <li><span style={{ color: '#F0EEF8' }}>Email 1 —</span> Payment confirmation with pass details, pass number &amp; event info</li>
-            <li><span style={{ color: '#F0EEF8' }}>Email 2 —</span> Visual ticket (same design as paid passes, marked Complimentary)</li>
-          </ol>
-          <p className="text-xs mt-3" style={{ color: '#52506A' }}>Sent from tickets@thegreatproductfestival.com · Reply-to: hello@womeninproductindia.com</p>
+        {/* ── General Passes ── */}
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="font-display font-bold text-lg" style={{ color: '#F0EEF8' }}>General Pass (Complimentary)</h2>
+            <p className="text-xs mt-0.5" style={{ color: '#6B7280' }}>{genSent}/{generalMembers.length} sent</p>
+          </div>
+          <button onClick={handleGenAll} disabled={running || genSent === generalMembers.length}
+            className="btn-purple"
+            style={{ padding: '10px 24px', fontSize: 13, opacity: (running || genSent === generalMembers.length) ? 0.5 : 1 }}>
+            {genSent === generalMembers.length ? 'All Sent ✓' : `Send All ${generalMembers.length}`}
+          </button>
+        </div>
+        <div className="mb-10" style={{ border: '1px solid #1C1A32', borderRadius: 16, overflow: 'hidden' }}>
+          {generalMembers.map((m, i) => (
+            <div key={i} style={{ borderBottom: i < generalMembers.length - 1 ? '1px solid #1C1A32' : 'none' }}>
+              <MemberRow
+                idx={i}
+                name={`${m.firstName} ${m.lastName}`}
+                role={m.role} company={m.company} email={m.email}
+                passNumber={genGeneralPassNumber(m.email)}
+                status={genStatuses[i]}
+                onSend={() => handleGenOne(i)}
+                running={running}
+              />
+            </div>
+          ))}
         </div>
 
-        <button
-          onClick={handleAll}
-          disabled={running || sent === total}
-          className="btn-purple mb-8"
-          style={{ padding: '12px 32px', fontSize: 14, opacity: (running || sent === total) ? 0.5 : 1 }}
-        >
-          {running ? 'Sending…' : sent === total ? 'All Sent ✓' : `Send All ${total} Passes`}
-        </button>
-
-        <div style={{ border: '1px solid #1C1A32', borderRadius: 16, overflow: 'hidden' }}>
-          {members.map((m, i) => {
-            const b = badge(statuses[i])
-            return (
-              <div
-                key={i}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 16,
-                  padding: '14px 20px',
-                  borderBottom: i < members.length - 1 ? '1px solid #1C1A32' : 'none',
-                  background: i % 2 === 0 ? '#080618' : '#05040C',
-                }}
-              >
-                <span className="font-mono text-xs flex-shrink-0" style={{ color: '#52506A', width: 20 }}>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <p className="font-display font-semibold text-sm" style={{ color: '#F0EEF8' }}>
-                    {m.firstName} {m.lastName}
-                  </p>
-                  <p className="text-xs" style={{ color: '#52506A' }}>{m.role} · {m.company}</p>
-                  <p className="font-mono text-[10px] mt-0.5" style={{ color: '#6B7280' }}>{m.email}</p>
-                  <p className="font-mono text-[10px] mt-0.5" style={{ color: '#52506A' }}>{genPassNumber(m.email)}</p>
-                </div>
-
-                <span
-                  className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full flex-shrink-0"
-                  style={{ background: b.bg, color: b.color }}
-                >
-                  {b.label}
-                </span>
-
-                <button
-                  onClick={() => handleOne(i)}
-                  disabled={running || statuses[i] === 'sending' || statuses[i] === 'sent'}
-                  className="font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-lg flex-shrink-0"
-                  style={{
-                    border: '1px solid rgba(124,58,237,.3)',
-                    color: '#A78BFA',
-                    background: 'rgba(124,58,237,.08)',
-                    opacity: (running || statuses[i] === 'sending' || statuses[i] === 'sent') ? 0.4 : 1,
-                    cursor: (running || statuses[i] === 'sending' || statuses[i] === 'sent') ? 'not-allowed' : 'pointer',
-                  }}
-                >
-                  Send
-                </button>
-              </div>
-            )
-          })}
+        {/* ── Premium Passes ── */}
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="font-display font-bold text-lg" style={{ color: '#F0EEF8' }}>Premium Pass (Complimentary)</h2>
+            <p className="text-xs mt-0.5" style={{ color: '#6B7280' }}>{premSent}/{premiumMembers.length} sent · WiP India community members</p>
+          </div>
+        </div>
+        <div className="mb-10" style={{ border: '1px solid #1C1A32', borderRadius: 16, overflow: 'hidden' }}>
+          {premiumMembers.map((m, i) => (
+            <div key={i} style={{ borderBottom: i < premiumMembers.length - 1 ? '1px solid #1C1A32' : 'none' }}>
+              <MemberRow
+                idx={i}
+                name={`${m.firstName} ${m.lastName}`.trim()}
+                role={m.role} company={m.company} email={m.email}
+                passNumber={genPremiumPassNumber(m.paymentId)}
+                status={premStatuses[i]}
+                onSend={() => handlePremOne(i)}
+                running={running}
+              />
+            </div>
+          ))}
         </div>
 
         <p className="text-xs mt-6 text-center" style={{ color: '#52506A' }}>
