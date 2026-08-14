@@ -1,8 +1,17 @@
+import { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import SocialCardGenerator from '../components/social-card/SocialCardGenerator'
 
 export default function SharePage() {
+  useEffect(() => {
+    const meta = document.createElement('meta')
+    meta.name = 'robots'
+    meta.content = 'noindex, nofollow'
+    document.head.appendChild(meta)
+    return () => { document.head.removeChild(meta) }
+  }, [])
+
   return (
     <>
       <Navbar />

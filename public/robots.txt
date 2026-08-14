@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /share
 
 Sitemap: https://www.thegreatproductfestival.com/sitemap.xml
