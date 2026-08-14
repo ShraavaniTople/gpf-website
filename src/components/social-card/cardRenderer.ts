@@ -44,37 +44,13 @@ function getTheme(id: RoleId): T {
       r: 161, g: 98,  b: 7,   hex: '#A16207', light: '#FCD34D',
       bar: ['#B45309', '#F59E0B', '#FEF3C7'], watermark: 'STAGE',
     },
-    mentor: {
-      r: 14,  g: 116, b: 144, hex: '#0E7490', light: '#67E8F9',
-      bar: ['#0E7490', '#22D3EE', '#A5F3FC'], watermark: 'GUIDE',
-    },
-    volunteer: {
-      r: 4,   g: 120, b: 87,  hex: '#047857', light: '#6EE7B7',
-      bar: ['#047857', '#10B981', '#D1FAE5'], watermark: 'SERVE',
-    },
-    organizer: {
-      r: 194, g: 65,  b: 12,  hex: '#C2410C', light: '#FDBA74',
-      bar: ['#C2410C', '#F97316', '#FEF08A'], watermark: 'BUILD',
-    },
     sponsor: {
       r: 29,  g: 78,  b: 216, hex: '#1D4ED8', light: '#93C5FD',
       bar: ['#1D4ED8', '#60A5FA', '#BFDBFE'], watermark: '2026',
     },
-    exhibitor: {
-      r: 67,  g: 56,  b: 202, hex: '#4338CA', light: '#A5B4FC',
-      bar: ['#4338CA', '#818CF8', '#E0E7FF'], watermark: '2026',
-    },
-    partner: {
-      r: 190, g: 24,  b: 93,  hex: '#BE185D', light: '#F9A8D4',
-      bar: ['#BE185D', '#EC4899', '#FCE7F3'], watermark: '2026',
-    },
     'community-partner': {
       r: 6,   g: 95,  b: 70,  hex: '#065F46', light: '#6EE7B7',
       bar: ['#065F46', '#059669', '#D1FAE5'], watermark: 'COMM',
-    },
-    media: {
-      r: 153, g: 27,  b: 27,  hex: '#991B1B', light: '#FCA5A5',
-      bar: ['#991B1B', '#EF4444', '#FEE2E2'], watermark: 'PRESS',
     },
   }
   return map[id]

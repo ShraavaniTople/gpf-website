@@ -70,6 +70,7 @@ export default function SocialCardGenerator() {
   const [cropArea,    setCropArea]    = useState<Area | null>(null)
 
   const role = ROLES.find(r => r.id === roleId)!
+  const activeDesign = role.lockedDesign ?? design
 
   // ── re-render canvas whenever inputs change ────────────────────────────────
   const redraw = useCallback(async () => {
@@ -78,7 +79,7 @@ export default function SocialCardGenerator() {
     try {
       await renderCard({
         canvas:     canvasRef.current,
-        design,
+        design:     activeDesign,
         role,
         name:       name.trim() || (role.hasPhoto ? 'Your Name' : 'Your Organisation'),
         title:      title.trim(),
@@ -89,7 +90,7 @@ export default function SocialCardGenerator() {
     } finally {
       setRendering(false)
     }
-  }, [design, role, name, title, croppedPhoto, captionIdx, portrait])
+  }, [activeDesign, role, name, title, croppedPhoto, captionIdx, portrait])
 
   useEffect(() => { redraw() }, [redraw])
 
@@ -126,7 +127,7 @@ export default function SocialCardGenerator() {
     if (!canvasRef.current) return
     await redraw()
     const link = document.createElement('a')
-    link.download = `tgpf2026-${roleId}-${design}.png`
+    link.download = `tgpf2026-${roleId}-${activeDesign}.png`
     link.href = canvasRef.current.toDataURL('image/png')
     link.click()
   }
@@ -234,30 +235,32 @@ export default function SocialCardGenerator() {
             </div>
           </Field>
 
-          {/* Card design */}
-          <Field label="Card Design">
-            <div style={{ display: 'flex', gap: 10 }}>
-              {DESIGNS.map(d => (
-                <button
-                  key={d.id}
-                  onClick={() => setDesign(d.id)}
-                  style={{
-                    flex: 1, padding: '10px 8px', borderRadius: 12, cursor: 'pointer',
-                    border: design === d.id ? '1.5px solid #7C3AED' : '1.5px solid #2A2748',
-                    background: design === d.id ? 'rgba(124,58,237,0.15)' : 'rgba(28,26,50,.6)',
-                    color: design === d.id ? '#A78BFA' : '#52506A',
-                    fontSize: 13, fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600,
-                    transition: 'all .15s', textAlign: 'center',
-                  }}
-                >
-                  <div>{d.label}</div>
-                  <div style={{ fontSize: 10, fontFamily: 'Inter', fontWeight: 400, marginTop: 2, color: design === d.id ? '#7C3AED' : '#3D3B55' }}>
-                    {d.desc}
-                  </div>
-                </button>
-              ))}
-            </div>
-          </Field>
+          {/* Card design — hidden when role locks a design */}
+          {!role.lockedDesign && (
+            <Field label="Card Design">
+              <div style={{ display: 'flex', gap: 10 }}>
+                {DESIGNS.map(d => (
+                  <button
+                    key={d.id}
+                    onClick={() => setDesign(d.id)}
+                    style={{
+                      flex: 1, padding: '10px 8px', borderRadius: 12, cursor: 'pointer',
+                      border: design === d.id ? '1.5px solid #7C3AED' : '1.5px solid #2A2748',
+                      background: design === d.id ? 'rgba(124,58,237,0.15)' : 'rgba(28,26,50,.6)',
+                      color: design === d.id ? '#A78BFA' : '#52506A',
+                      fontSize: 13, fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600,
+                      transition: 'all .15s', textAlign: 'center',
+                    }}
+                  >
+                    <div>{d.label}</div>
+                    <div style={{ fontSize: 10, fontFamily: 'Inter', fontWeight: 400, marginTop: 2, color: design === d.id ? '#7C3AED' : '#3D3B55' }}>
+                      {d.desc}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </Field>
+          )}
 
           {/* Name */}
           <Field label={isPersonal ? 'Your Name' : 'Organisation Name'}>
@@ -270,13 +273,17 @@ export default function SocialCardGenerator() {
           </Field>
 
           {/* Title */}
-          <Field label={isPersonal ? 'Job Title / Tagline (optional)' : 'Tagline (optional)'}>
+          <Field label={isPersonal ? `Job Title / Tagline${role.titleRequired ? ' *' : ' (optional)'}` : 'Tagline (optional)'}>
             <input
-              style={inputStyle}
+              style={{ ...inputStyle, borderColor: role.titleRequired && !title.trim() ? 'rgba(248,113,113,.5)' : undefined }}
               placeholder={isPersonal ? 'e.g. Product Lead at Razorpay' : 'e.g. India\'s fastest growing startup'}
               value={title}
               onChange={e => setTitle(e.target.value)}
+              required={role.titleRequired}
             />
+            {role.titleRequired && !title.trim() && (
+              <p style={{ fontSize: 11, color: '#F87171', marginTop: 4, fontFamily: 'Inter' }}>Required for speaker cards</p>
+            )}
           </Field>
 
           {/* Photo / Logo upload */}
