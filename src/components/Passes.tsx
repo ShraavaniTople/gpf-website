@@ -6,7 +6,6 @@ const tiers = [
     name: 'General',
     label: 'Admission',
     price: '5,499',
-    regularPrice: '7,499',
     popular: false,
     desc: 'Everything you need to experience GPF 2026.',
     features: [
@@ -20,7 +19,6 @@ const tiers = [
     name: 'Premium',
     label: 'Pass',
     price: '9,999',
-    regularPrice: '11,999',
     popular: true,
     desc: 'The complete GPF experience.',
     features: [
@@ -35,7 +33,6 @@ const tiers = [
     name: 'VIP',
     label: 'Pass',
     price: '15,999',
-    regularPrice: '17,999',
     popular: false,
     desc: 'For leaders who want the inner circle.',
     features: [
@@ -82,7 +79,7 @@ export default function Passes({ onGetPass }: Props) {
               Get Your Pass
             </h2>
             <p className="text-sm max-w-xs sm:text-right leading-relaxed" style={{ color: '#6B7280' }}>
-              Early access pricing. Passes are limited.
+              Passes are limited.
             </p>
           </div>
         </div>
@@ -114,23 +111,9 @@ export default function Passes({ onGetPass }: Props) {
 
                 {/* Price */}
                 <div className="mb-6">
-                  {/* Regular price struck through */}
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-mono text-[10px] uppercase tracking-widest" style={{ color: '#52506A' }}>Regular</span>
-                    <span className="font-display font-semibold text-base line-through" style={{ color: '#52506A' }}>
-                      &#8377;{tier.regularPrice}
-                    </span>
-                  </div>
-                  {/* Early bird price big */}
                   <div className="flex items-baseline gap-3">
                     <span className="font-display font-extrabold" style={{ fontSize: 'clamp(36px,4vw,52px)', color: '#F0EEF8', letterSpacing: '-0.04em' }}>
                       &#8377;{tier.price}
-                    </span>
-                    <span
-                      className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full self-center"
-                      style={{ background: 'rgba(245,158,11,.15)', color: '#F59E0B', border: '1px solid rgba(245,158,11,.3)', whiteSpace: 'nowrap' }}
-                    >
-                      Early Bird
                     </span>
                   </div>
                   <p className="font-mono text-[11px] mt-1" style={{ color: '#52506A' }}>per person</p>
