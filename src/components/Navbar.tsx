@@ -26,7 +26,7 @@ function AnnouncementBar({ onDismiss, onGoPasses }: { onDismiss: () => void; onG
       <div className="flex items-center gap-2.5 overflow-hidden">
         <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 animate-pulse" style={{ background: '#F59E0B' }} aria-hidden />
         <p className="font-mono text-[11px] uppercase tracking-[.18em] whitespace-nowrap overflow-hidden text-ellipsis" style={{ color: '#F0EEF8' }}>
-          Early Bird Pricing is Live &nbsp;&middot;&nbsp; Limited Passes Available &nbsp;&middot;&nbsp;
+          Limited Passes Available &nbsp;&middot;&nbsp;
           <button
             onClick={onGoPasses}
             className="underline underline-offset-2 transition-opacity hover:opacity-70"

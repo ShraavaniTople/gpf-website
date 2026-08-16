@@ -492,7 +492,6 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
             <p className="font-display font-extrabold text-xl" style={{ color: '#F0EEF8' }}>
               &#8377;{tier.price.toLocaleString('en-IN')}
             </p>
-            <p className="font-mono text-[10px] mt-0.5" style={{ color: '#F59E0B' }}>Early Bird</p>
           </div>
         </div>
 
@@ -557,7 +556,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       <div className="rounded-2xl p-5 space-y-3" style={{ background: '#080618', border: '1px solid #1C1A32' }}>
         <p className="font-mono text-[10px] uppercase tracking-widest mb-3" style={{ color: '#52506A' }}>Order Summary</p>
         <div className="flex justify-between text-sm">
-          <span style={{ color: '#9490AD' }}>{tierName} Pass (Early Bird)</span>
+          <span style={{ color: '#9490AD' }}>{tierName} Pass</span>
           <span style={{ color: '#F0EEF8' }}>&#8377;{tier.price.toLocaleString('en-IN')}</span>
         </div>
         {applied && (
