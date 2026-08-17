@@ -162,7 +162,7 @@ const DAY2: Slot[] = [
     { type: 'keynote', venue: 'Freshworks Hall', title: 'Speaker Session' },
     { type: 'fireside', venue: 'Toast Hall', title: 'In Conversation' },
   ]},
-  { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 2 Close - Band or Comedian' }]},
+  { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 2 Close' }]},
   { start: '18:00', end: '20:00', sessions: [{ type: 'networking', title: 'Dinner Party - Team Celebration' }]},
 ]
 
