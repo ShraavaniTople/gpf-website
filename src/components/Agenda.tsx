@@ -85,9 +85,8 @@ const DAY1: Slot[] = [
   { start: '13:00', sessions: [], milestone: 'BUILD BEGINS - 24-hour timer starts. Teams break to build rooms.' },
   { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }]},
   { start: '14:00', end: '14:35', sessions: [
-    { type: 'keynote', venue: 'Toast Hall', title: 'Session',
-      speakers: [{ name: 'Rajat', role: 'Director of Product, Toast' }] },
-    { type: 'workshop', venue: 'Freshworks Hall', title: 'GEO Workshop by Milestone' },
+    { type: 'keynote', venue: 'Toast Hall', title: 'Session' },
+    { type: 'workshop', venue: 'Freshworks Hall', title: 'GEO Workshop' },
     { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable' },
   ]},
   { start: '14:40', end: '15:25', sessions: [
@@ -129,12 +128,10 @@ const DAY2: Slot[] = [
         { name: 'Sheetal', role: '' }, { name: 'Roopa', role: '' },
         { name: 'Abhishek', role: '' }, { name: 'Supriya', role: '' },
       ]},
-    { type: 'keynote', venue: 'Toast Hall', title: 'Speaker Session',
-      speakers: [{ name: 'Anshuman', role: 'Mercedes-Benz' }] },
+    { type: 'keynote', venue: 'Toast Hall', title: 'Speaker Session' },
   ]},
   { start: '12:05', end: '12:20', sessions: [
-    { type: 'keynote', venue: 'Toast Hall', title: 'Leadership Session',
-      speakers: [{ name: 'Bhavna', role: 'Shenomics' }] },
+    { type: 'keynote', venue: 'Toast Hall', title: 'Leadership Session' },
     { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown',
       speakers: [{ name: 'Adithi Sampath', role: 'Product Leader' }] },
   ]},
@@ -156,17 +153,14 @@ const DAY2: Slot[] = [
   { start: '15:35', end: '16:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
       speakers: [
-        { name: 'Shalini', role: 'Investor' },
         { name: 'Shveta', role: 'Investor' },
         { name: 'Subhadeep', role: 'Investor' },
       ]},
     { type: 'panel', venue: 'Toast Hall', title: 'Voice AI Panel' },
   ]},
   { start: '16:15', end: '16:50', sessions: [
-    { type: 'keynote', venue: 'Freshworks Hall', title: 'Speaker Session',
-      speakers: [{ name: 'Bhavik', role: '' }] },
-    { type: 'fireside', venue: 'Toast Hall', title: 'In Conversation',
-      speakers: [{ name: 'Ritika', role: '' }, { name: 'Swati Dogra', role: '' }] },
+    { type: 'keynote', venue: 'Freshworks Hall', title: 'Speaker Session' },
+    { type: 'fireside', venue: 'Toast Hall', title: 'In Conversation' },
   ]},
   { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 2 Close - Band or Comedian' }]},
   { start: '18:00', end: '20:00', sessions: [{ type: 'networking', title: 'Dinner Party - Team Celebration' }]},
