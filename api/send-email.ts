@@ -171,92 +171,104 @@ function buildTicketHtml(p: {
         </td>
       </tr>
 
-      <!-- ── Redesigned ticket ── -->
+      <!-- ── Ticket ── -->
       <tr>
-        <td style="border-radius:20px;overflow:hidden;border:2px solid ${color};">
+        <td style="border-radius:16px;overflow:hidden;">
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#16112B;border-radius:16px;overflow:hidden;">
 
-          <!-- Top tri-colour bar -->
-          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <!-- Top colour bar -->
             <tr>
-              <td width="33%" height="6" style="background:${color};"></td>
-              <td width="34%" height="6" style="background:#A78BFA;"></td>
-              <td width="33%" height="6" style="background:#F59E0B;"></td>
+              <td width="70%" height="5" style="background:${color};"></td>
+              <td width="2%" height="5" style="background:#2A2748;"></td>
+              <td width="28%" height="5" style="background:#A78BFA;"></td>
             </tr>
-          </table>
 
-          <!-- Dark body -->
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#1a1035;">
-
-            <!-- Logos -->
+            <!-- Main row -->
             <tr>
-              <td style="padding:24px 28px 0;">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+              <!-- LEFT: main ticket body -->
+              <td valign="top" width="70%" style="padding:22px 24px;border-right:2px dashed #3D3B55;">
+
+                <!-- Logos row -->
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
                   <tr>
                     <td valign="middle">
-                      <img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="34" style="display:block;"/>
+                      <img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="30" style="display:block;"/>
                     </td>
                     <td valign="middle" align="right">
-                      <img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="WiP India" width="34" height="34" style="display:block;border-radius:50%;"/>
+                      <img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="WiP India" height="30" style="display:block;"/>
                     </td>
                   </tr>
                 </table>
-              </td>
-            </tr>
 
-            <!-- Name + company + badge -->
-            <tr>
-              <td style="padding:20px 28px 0;">
-                <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#9490AD;letter-spacing:0.2em;text-transform:uppercase;">The Great Product Festival 2026</p>
-                <p style="margin:0 0 5px;font-size:32px;font-weight:900;color:#ffffff;letter-spacing:-0.03em;line-height:1.1;">${p.to_name}</p>
-                ${p.company && p.company !== '—' ? `<p style="margin:0 0 16px;font-size:13px;color:#A78BFA;">${p.company}</p>` : '<p style="margin:0 0 16px;"></p>'}
-                <table cellpadding="0" cellspacing="0" border="0">
+                <!-- Pass type label -->
+                <p style="margin:0 0 4px;font-family:monospace;font-size:9px;color:#6B63A0;letter-spacing:0.2em;text-transform:uppercase;">${p.pass_type.replace(' Pass','').toUpperCase()} PASS</p>
+
+                <!-- Name -->
+                <p style="margin:0 0 4px;font-size:28px;font-weight:900;color:#ffffff;letter-spacing:-0.03em;line-height:1.1;">${p.to_name}</p>
+
+                <!-- Company -->
+                ${p.company && p.company !== '—' ? `<p style="margin:0 0 18px;font-size:12px;color:#A78BFA;">${p.company}</p>` : '<p style="margin:0 0 18px;"></p>'}
+
+                <!-- Fake barcode -->
+                <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
                   <tr>
-                    <td style="background:${color};border-radius:6px;padding:6px 18px;">
-                      <span style="font-family:monospace;font-size:10px;font-weight:700;color:#ffffff;letter-spacing:0.15em;text-transform:uppercase;">${p.pass_type.toUpperCase()}</span>
-                    </td>
+                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="3" height="24" style="background:transparent;"></td>
+                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
+                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
+                    <td width="4" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="3" height="24" style="background:transparent;"></td>
+                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
+                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="4" height="24" style="background:transparent;"></td>
+                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
+                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="3" height="24" style="background:transparent;"></td>
+                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
+                    <td width="4" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td>
                   </tr>
                 </table>
-              </td>
-            </tr>
 
-            <!-- Dashed divider -->
-            <tr>
-              <td style="padding:22px 28px 0;">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <!-- Bottom info -->
+                <p style="margin:0;font-family:monospace;font-size:10px;color:#6B63A0;letter-spacing:0.12em;text-transform:uppercase;">25–26 SEPT 2026 &nbsp;·&nbsp; BANGALORE, INDIA</p>
+
+              </td>
+
+              <!-- RIGHT: stub -->
+              <td valign="top" width="28%" style="background:#1E1840;padding:22px 16px;text-align:center;">
+
+                <p style="margin:0 0 6px;font-family:monospace;font-size:8px;color:#6B63A0;letter-spacing:0.18em;text-transform:uppercase;">Pass No.</p>
+                <p style="margin:0 0 20px;font-family:monospace;font-size:11px;font-weight:700;color:#A78BFA;word-break:break-all;">${p.pass_number}</p>
+
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
                   <tr><td height="1" style="border-top:1px dashed #3D3B55;"></td></tr>
                 </table>
-              </td>
-            </tr>
 
-            <!-- Date + Pass No -->
-            <tr>
-              <td style="padding:16px 28px 28px;">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                  <tr>
-                    <td valign="top">
-                      <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#52506A;letter-spacing:0.16em;text-transform:uppercase;">Date &amp; Venue</p>
-                      <p style="margin:0;font-size:13px;font-weight:700;color:#ffffff;">25–26 Sept 2026</p>
-                      <p style="margin:2px 0 0;font-size:12px;color:#9490AD;">Bangalore, India</p>
-                    </td>
-                    <td valign="top" align="right">
-                      <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#52506A;letter-spacing:0.16em;text-transform:uppercase;">Pass No.</p>
-                      <p style="margin:0;font-family:monospace;font-size:13px;font-weight:700;color:#A78BFA;">${p.pass_number}</p>
-                    </td>
-                  </tr>
+                <p style="margin:0 0 4px;font-family:monospace;font-size:8px;color:#6B63A0;letter-spacing:0.18em;text-transform:uppercase;">Date</p>
+                <p style="margin:0 0 16px;font-size:12px;font-weight:700;color:#ffffff;line-height:1.4;">25–26<br/>Sept 2026</p>
+
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+                  <tr><td height="1" style="border-top:1px dashed #3D3B55;"></td></tr>
                 </table>
+
+                <p style="margin:0 0 4px;font-family:monospace;font-size:8px;color:#6B63A0;letter-spacing:0.18em;text-transform:uppercase;">Venue</p>
+                <p style="margin:0;font-size:12px;font-weight:700;color:#ffffff;line-height:1.4;">Bangalore<br/>India</p>
+
               </td>
+
             </tr>
 
-          </table>
-
-          <!-- Bottom bar -->
-          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <!-- Bottom colour bar -->
             <tr>
-              <td width="50%" height="5" style="background:${color};"></td>
-              <td width="50%" height="5" style="background:#A78BFA;"></td>
+              <td width="70%" height="4" style="background:${color};"></td>
+              <td width="2%" height="4" style="background:#2A2748;"></td>
+              <td width="28%" height="4" style="background:#A78BFA;"></td>
             </tr>
-          </table>
 
+          </table>
         </td>
       </tr>
 
