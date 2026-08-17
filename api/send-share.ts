@@ -276,7 +276,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       from: fromAddress,
       to: [to_email],
       reply_to: 'hello@womeninproductindia.com',
-      subject: `Share Your TGPF 2026 Pass — Make Your Social Card 🎉`,
+      subject: `${to_name.split(' ')[0]}, share your TGPF 2026 Pass 🎉`,
       html: buildShareHtml({ to_name, company, pass_type, pass_number }),
     })
     return res.status(200).json({ ok: true })
