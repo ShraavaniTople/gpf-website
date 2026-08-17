@@ -36,150 +36,178 @@ const THEME_DAYS = [
   },
 ]
 
-// ─── Schedule data ────────────────────────────────────────────────────────────
-type Track = 'main' | 'hackathon' | 'toast' | 'workshop' | 'roundtable'
-type Event = { track: Track; title: string; detail?: string }
-type Slot  = { time: string; events: Event[]; milestone?: string }
+// ─── Schedule ─────────────────────────────────────────────────────────────────
+type SType = 'registration' | 'opening' | 'keynote' | 'panel' | 'workshop'
+           | 'fireside' | 'lightning' | 'lunch' | 'closing' | 'networking'
+           | 'showcase' | 'roundtable' | 'hackathon'
 
-const TRACK: Record<Track, { label: string; color: string }> = {
-  main:       { label: 'Main Stage',  color: '#A78BFA' },
-  hackathon:  { label: 'Hackathon',   color: '#38BDF8' },
-  toast:      { label: 'Toast Room',  color: '#FCD34D' },
-  workshop:   { label: 'Workshop',    color: '#34D399' },
-  roundtable: { label: 'Roundtable',  color: '#FB7185' },
+type Speaker = { name: string; role: string }
+type Session = { type: SType; venue?: string; title: string; detail?: string; speakers?: Speaker[] }
+type Slot    = { time: string; sessions: Session[]; milestone?: string }
+
+const ST: Record<SType, { label: string; color: string; bg: string }> = {
+  registration: { label: 'Registration',  color: '#9CA3AF', bg: 'rgba(107,114,128,0.12)' },
+  opening:      { label: 'Opening',       color: '#C4B5FD', bg: 'rgba(139,92,246,0.13)'  },
+  keynote:      { label: 'Keynote',       color: '#A78BFA', bg: 'rgba(124,58,237,0.15)'  },
+  panel:        { label: 'Panel',         color: '#93C5FD', bg: 'rgba(37,99,235,0.13)'   },
+  workshop:     { label: 'Workshop',      color: '#34D399', bg: 'rgba(5,150,105,0.13)'   },
+  fireside:     { label: 'Fireside Chat', color: '#FCD34D', bg: 'rgba(217,119,6,0.13)'   },
+  lightning:    { label: 'Lightning Talk',color: '#FB923C', bg: 'rgba(234,88,12,0.13)'   },
+  lunch:        { label: 'Lunch',         color: '#6B7280', bg: 'rgba(107,114,128,0.10)' },
+  closing:      { label: 'Closing',       color: '#6B7280', bg: 'rgba(107,114,128,0.10)' },
+  networking:   { label: 'Networking',    color: '#FB7185', bg: 'rgba(225,29,72,0.10)'   },
+  showcase:     { label: 'Showcase',      color: '#38BDF8', bg: 'rgba(14,165,233,0.13)'  },
+  roundtable:   { label: 'Roundtable',    color: '#FB7185', bg: 'rgba(225,29,72,0.10)'   },
+  hackathon:    { label: 'Hackathon',     color: '#38BDF8', bg: 'rgba(14,165,233,0.11)'  },
 }
 
 const DAY1: Slot[] = [
-  { time: '9:00 - 10:00', events: [
-    { track: 'main',      title: 'Registration & Breakfast' },
-    { track: 'hackathon', title: 'Team Check-in & Build-space Allocation' },
+  { time: '9:00 - 10:00', sessions: [
+    { type: 'registration', title: 'Registration & Breakfast' },
   ]},
-  { time: '10:00 - 10:25', events: [
-    { track: 'main', title: 'Welcome & Opening', detail: 'WIP India, Swati' },
+  { time: '10:00 - 10:25', sessions: [
+    { type: 'opening', title: 'Welcome & Opening Remarks', speakers: [
+      { name: 'Swati', role: 'Founder, WIP India' },
+    ]},
   ]},
-  { time: '10:30 - 11:00', events: [
-    { track: 'main', title: 'Keynote - Murali, CTO, Freshworks' },
+  { time: '10:30 - 11:00', sessions: [
+    { type: 'keynote', title: 'Keynote', speakers: [
+      { name: 'Murali', role: 'CTO, Freshworks' },
+    ]},
   ]},
-  { time: '11:05 - 11:40', events: [
-    { track: 'main', title: 'Keynote - Sangeeta, Anthropic' },
+  { time: '11:05 - 11:40', sessions: [
+    { type: 'keynote', title: 'Keynote', speakers: [
+      { name: 'Sangeeta', role: 'Anthropic' },
+    ]},
   ]},
-  { time: '11:45 - 12:30', events: [
-    { track: 'main',     title: 'Panel: The Future of Enterprise Agents', detail: 'Moderated by Minakshi, Sree Dhar (Freshworks), Seema (Databricks), Aditya (Salesforce)' },
-    { track: 'workshop', title: 'Agentic Product Building', detail: 'Freshworks Room' },
+  { time: '11:45 - 12:30', sessions: [
+    { type: 'panel', venue: 'Freshworks Hall', title: 'The Future of Enterprise Agents', speakers: [
+      { name: 'Minakshi', role: 'Moderator' },
+      { name: 'Sree Dhar', role: 'Freshworks' },
+      { name: 'Seema', role: 'Databricks' },
+      { name: 'Aditya', role: 'Salesforce' },
+    ]},
+    { type: 'workshop', venue: 'Toast Hall', title: 'Agentic Product Building' },
   ]},
-  { time: '12:30 - 13:00', events: [
-    { track: 'main',      title: 'Platform & Partner Showcase', detail: 'Agent Studio, MCP, partner toolkits' },
-    { track: 'hackathon', title: 'Hackathon Briefing', detail: 'Tracks, rubric, logistics' },
+  { time: '12:30 - 13:00', sessions: [
+    { type: 'showcase', venue: 'Freshworks Hall', title: 'Platform & Partner Showcase', detail: 'Agent Studio, MCP, partner toolkits' },
+    { type: 'hackathon', venue: 'Build Space', title: 'Hackathon Kickoff' },
   ]},
-  { time: '13:00', milestone: 'BUILD BEGINS - 24-hour timer starts. Teams break to build rooms.', events: [] },
-  { time: '13:00 - 14:00', events: [
-    { track: 'main',      title: 'Lunch' },
-    { track: 'hackathon', title: 'Lunch' },
+  { time: '13:00', milestone: 'BUILD BEGINS - 24-hour timer starts. Teams break to build rooms.', sessions: [] },
+  { time: '13:00 - 14:00', sessions: [
+    { type: 'lunch', title: 'Lunch' },
   ]},
-  { time: '14:00 - 14:35', events: [
-    { track: 'toast',      title: 'Welcome + Session with Rajat, Director of Product, Toast' },
-    { track: 'workshop',   title: 'GEO Workshop by Milestone', detail: 'Freshworks Room' },
-    { track: 'roundtable', title: 'CXO Roundtable' },
+  { time: '14:00 - 14:35', sessions: [
+    { type: 'keynote', venue: 'Toast Hall', title: 'Session', speakers: [
+      { name: 'Rajat', role: 'Director of Product, Toast' },
+    ]},
+    { type: 'workshop', venue: 'Freshworks Hall', title: 'GEO Workshop by Milestone' },
+    { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable' },
   ]},
-  { time: '14:40 - 15:25', events: [
-    { track: 'main',  title: 'Panel: Consumer Products', detail: 'Anuj (Groww CPO), Rapido, Pronto' },
-    { track: 'toast', title: 'Panel' },
+  { time: '14:40 - 15:25', sessions: [
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Consumer Products & Agentic Commerce' },
+    { type: 'panel', venue: 'Toast Hall', title: 'Panel Discussion' },
   ]},
-  { time: '15:30 - 16:15', events: [
-    { track: 'main',      title: 'Panel: Growth & Distribution', detail: 'Amrit, Deeksha, Roopa Pious' },
-    { track: 'hackathon', title: 'Mentor Hours' },
-    { track: 'workshop',  title: 'Evals for PMs with Tanay', detail: 'Toast Room' },
+  { time: '15:30 - 16:15', sessions: [
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Creator-led Growth' },
+    { type: 'workshop', venue: 'Toast Hall', title: 'Evals for PMs', speakers: [
+      { name: 'Tanay', role: 'Product Lead' },
+    ]},
   ]},
-  { time: '16:20 - 16:50', events: [
-    { track: 'main',  title: 'Fireside: Influential Leader / Founder' },
-    { track: 'toast', title: 'Lightning Talks' },
+  { time: '16:20 - 16:50', sessions: [
+    { type: 'fireside', venue: 'Freshworks Hall', title: 'Fireside Chat' },
+    { type: 'lightning', venue: 'Toast Hall', title: 'Lightning Talks' },
   ]},
-  { time: '16:50 - 17:00', events: [
-    { track: 'main',  title: 'Closing Notes' },
-    { track: 'toast', title: 'Closing Note + Head to Freshworks Office' },
+  { time: '16:50 - 17:00', sessions: [
+    { type: 'closing', title: 'Closing Notes' },
   ]},
-  { time: '17:00 - 18:00', events: [
-    { track: 'main',      title: 'Festival Day 1 Close - Games & Engagement' },
-    { track: 'hackathon', title: 'Teams Attend' },
+  { time: '17:00 - 18:00', sessions: [
+    { type: 'networking', title: 'Festival Day 1 Close - Games & Engagement' },
   ]},
-  { time: '18:30 - 21:00', events: [
-    { track: 'hackathon', title: 'Teams Have Dinner + Build' },
-    { track: 'workshop',  title: 'Leadership Dinner' },
-  ]},
-  { time: '21:00 onwards', events: [
-    { track: 'hackathon', title: 'Overnight Build' },
+  { time: '18:30 - 21:00', sessions: [
+    { type: 'networking', title: 'Leadership Dinner' },
   ]},
 ]
 
 const DAY2: Slot[] = [
-  { time: '8:00 - 10:00', events: [
-    { track: 'main',      title: 'Doors Open & Breakfast' },
-    { track: 'hackathon', title: 'Breakfast + Quick Mentor Check-in' },
-    { track: 'toast',     title: 'Breakfast (light)' },
+  { time: '8:00 - 10:00', sessions: [
+    { type: 'registration', title: 'Doors Open & Breakfast' },
   ]},
-  { time: '10:00 - 10:15', events: [
-    { track: 'main',      title: 'Welcome & Recap' },
-    { track: 'hackathon', title: 'Final Build Sprint' },
-    { track: 'toast',     title: 'Welcome & Recap' },
+  { time: '10:00 - 10:15', sessions: [
+    { type: 'opening', title: 'Welcome & Recap' },
   ]},
-  { time: '10:20 - 10:50', events: [
-    { track: 'main',  title: 'Build for Bharat - Sarvam Keynote', detail: 'Tentative' },
-    { track: 'toast', title: 'Fireside with Neha, HerKey' },
+  { time: '10:20 - 10:50', sessions: [
+    { type: 'keynote', venue: 'Freshworks Hall', title: 'Build for Bharat Keynote' },
+    { type: 'fireside', venue: 'Toast Hall', title: 'Fireside Chat', speakers: [
+      { name: 'Neha', role: 'HerKey' },
+    ]},
   ]},
-  { time: '11:00', milestone: 'BUILD STOPS - Submissions frozen. Judging begins.', events: [] },
-  { time: '11:00 - 11:30', events: [
-    { track: 'main',      title: 'VC Keynote' },
-    { track: 'hackathon', title: 'Judges Evaluate Teams. Teams demo at their stations.' },
-    { track: 'toast',     title: '2 Physical AI Demos' },
-    { track: 'workshop',  title: 'GTM for Product Teams with Deeksha', detail: 'Freshworks Room' },
+  { time: '11:00', milestone: 'BUILD STOPS - Submissions frozen. Judging begins.', sessions: [] },
+  { time: '11:00 - 11:30', sessions: [
+    { type: 'keynote', venue: 'Freshworks Hall', title: 'VC Keynote' },
+    { type: 'showcase', venue: 'Toast Hall', title: '2 Physical AI Demos' },
+    { type: 'workshop', venue: 'Workshop Room', title: 'GTM for Product Teams', speakers: [
+      { name: 'Deeksha', role: 'Product Leader' },
+    ]},
   ]},
-  { time: '11:35 - 12:05', events: [
-    { track: 'main',  title: 'Panel: GCCs as Product Innovation Hubs', detail: 'Sheetal, Roopa, Abhishek, Supriya' },
-    { track: 'toast', title: 'Speaker Session with Anshuman, Mercedes-Benz' },
+  { time: '11:35 - 12:05', sessions: [
+    { type: 'panel', venue: 'Freshworks Hall', title: 'GCCs as Product Innovation Hubs', speakers: [
+      { name: 'Sheetal', role: '' },
+      { name: 'Roopa', role: '' },
+      { name: 'Abhishek', role: '' },
+      { name: 'Supriya', role: '' },
+    ]},
+    { type: 'keynote', venue: 'Toast Hall', title: 'Speaker Session', speakers: [
+      { name: 'Anshuman', role: 'Mercedes-Benz' },
+    ]},
   ]},
-  { time: '12:05 - 12:20', events: [
-    { track: 'hackathon', title: 'Judges Huddle & Decide Results' },
-    { track: 'toast',     title: 'Leadership Session with Bhavna, Shenomics' },
-    { track: 'workshop',  title: 'Applied AI Product Teardown with Adithi Sampath', detail: 'Toast Room' },
+  { time: '12:05 - 12:20', sessions: [
+    { type: 'keynote', venue: 'Toast Hall', title: 'Leadership Session', speakers: [
+      { name: 'Bhavna', role: 'Shenomics' },
+    ]},
+    { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown', speakers: [
+      { name: 'Adithi Sampath', role: 'Product Leader' },
+    ]},
   ]},
-  { time: '12:25 - 13:00', events: [
-    { track: 'main',      title: 'Speaker Session with Pulkit, Vedantu' },
-    { track: 'hackathon', title: 'Announce Teams Demoing on Stage' },
+  { time: '12:25 - 13:00', sessions: [
+    { type: 'keynote', venue: 'Freshworks Hall', title: 'Speaker Session', speakers: [
+      { name: 'Pulkit', role: 'Vedantu' },
+    ]},
   ]},
-  { time: '13:00 - 14:00', events: [
-    { track: 'main',  title: 'Lunch' },
-    { track: 'toast', title: 'Lunch' },
+  { time: '13:00 - 14:00', sessions: [
+    { type: 'lunch', title: 'Lunch' },
   ]},
-  { time: '14:00 - 15:00', events: [
-    { track: 'workshop',   title: 'Fundraising + VC Lab with Subhadeep (Toast) and Build Your Brand (Freshworks)' },
-    { track: 'roundtable', title: 'CXO Roundtable' },
+  { time: '14:00 - 15:00', sessions: [
+    { type: 'showcase', venue: 'Freshworks Hall', title: 'Hackathon - Main Stage Showcase', detail: 'Top 4 finalists present their builds' },
+    { type: 'showcase', venue: 'Toast Hall', title: '2-3 AI Product Demos' },
+    { type: 'workshop', venue: 'Workshop Rooms', title: 'Fundraising + VC Lab / Build Your Brand' },
   ]},
-  { time: '14:15 - 15:00', events: [
-    { track: 'main',      title: 'Hackathon Finalists (Top 4) Present on Stage' },
-    { track: 'hackathon', title: 'Finalists on Main Stage' },
-    { track: 'toast',     title: '2-3 AI Product Demos' },
+  { time: '15:00 - 15:30', sessions: [
+    { type: 'showcase', venue: 'Freshworks Hall', title: 'Winners Announced & Award Ceremony' },
+    { type: 'keynote', venue: 'Toast Hall', title: 'Speaker Session' },
   ]},
-  { time: '15:00 - 15:30', events: [
-    { track: 'main',  title: 'Winners Announced & Award Ceremony' },
-    { track: 'toast', title: 'Speaker Session - KDEM' },
+  { time: '15:35 - 16:15', sessions: [
+    { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel', speakers: [
+      { name: 'Shalini', role: 'Investor' },
+      { name: 'Shveta', role: 'Investor' },
+      { name: 'Subhadeep', role: 'Investor' },
+    ]},
+    { type: 'panel', venue: 'Toast Hall', title: 'Voice AI Panel' },
   ]},
-  { time: '15:35 - 16:15', events: [
-    { track: 'main',  title: 'VC Panel', detail: 'Shalini, Shveta, Subhadeep, PeakXV / Accel / Nexus' },
-    { track: 'toast', title: 'Voice AI Panel' },
+  { time: '16:15 - 16:50', sessions: [
+    { type: 'keynote', venue: 'Freshworks Hall', title: 'Speaker Session', speakers: [
+      { name: 'Bhavik', role: '' },
+    ]},
+    { type: 'fireside', venue: 'Toast Hall', title: 'In Conversation', speakers: [
+      { name: 'Ritika', role: '' },
+      { name: 'Swati Dogra', role: '' },
+    ]},
   ]},
-  { time: '16:15 - 16:50', events: [
-    { track: 'main',  title: 'Speaker Session with Bhavik' },
-    { track: 'toast', title: 'In Conversation with Ritika, Swati Dogra' },
+  { time: '17:00 - 18:00', sessions: [
+    { type: 'networking', title: 'Festival Day 2 Close - Band or Comedian' },
   ]},
-  { time: '16:50 - 17:00', events: [
-    { track: 'toast', title: 'Head to Freshworks Office' },
-  ]},
-  { time: '17:00 - 18:00', events: [
-    { track: 'main',  title: 'Festival Day 2 Close - Band or Comedian' },
-    { track: 'toast', title: 'Setup for Dinner' },
-  ]},
-  { time: '18:00 - 20:00', events: [
-    { track: 'toast', title: 'Dinner Party - Team Celebration' },
+  { time: '18:00 - 20:00', sessions: [
+    { type: 'networking', title: 'Dinner Party - Team Celebration' },
   ]},
 ]
 
@@ -196,10 +224,60 @@ function useVis(delay = 0) {
   return ref
 }
 
+const SIMPLE: SType[] = ['registration', 'lunch', 'closing', 'networking']
+
+function SessionCard({ session, parallel }: { session: Session; parallel: boolean }) {
+  const st = ST[session.type]
+  const isSimple = SIMPLE.includes(session.type) && !parallel
+
+  if (isSimple) {
+    return (
+      <div className="flex items-center gap-3">
+        <span className="font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full flex-shrink-0"
+          style={{ color: st.color, background: st.bg }}>
+          {st.label}
+        </span>
+        <span className="text-sm font-medium" style={{ color: '#C4C0E0' }}>{session.title}</span>
+      </div>
+    )
+  }
+
+  return (
+    <div className="rounded-xl p-5 flex flex-col h-full"
+      style={{ background: '#080618', border: '1px solid #1C1A32' }}>
+      {session.venue && (
+        <p className="font-mono text-[9px] uppercase tracking-widest mb-3" style={{ color: '#3A3852' }}>
+          {session.venue}
+        </p>
+      )}
+      <span className="inline-block font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-full mb-3 self-start"
+        style={{ color: st.color, background: st.bg }}>
+        {st.label}
+      </span>
+      <h4 className="font-display font-semibold leading-snug"
+        style={{ fontSize: 'clamp(14px,1.5vw,16px)', color: '#E2DFEF', letterSpacing: '-0.02em' }}>
+        {session.title}
+      </h4>
+      {session.detail && (
+        <p className="text-xs mt-1.5 leading-relaxed" style={{ color: '#52506A' }}>{session.detail}</p>
+      )}
+      {session.speakers && session.speakers.length > 0 && (
+        <div className="mt-4 pt-4 space-y-2.5" style={{ borderTop: '1px solid #1C1A32' }}>
+          {session.speakers.map((s, i) => (
+            <div key={i}>
+              <p className="text-[13px] font-semibold" style={{ color: '#C8C4E0' }}>{s.name}</p>
+              {s.role && <p className="text-[11px]" style={{ color: '#52506A' }}>{s.role}</p>}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 function ScheduleDay({ label, date, slots }: { label: string; date: string; slots: Slot[] }) {
   return (
     <div>
-      {/* Day header */}
       <div className="flex items-center gap-4 mb-8">
         <span className="font-display font-bold text-lg px-4 py-1.5 rounded-full"
           style={{ background: '#7C3AED', color: '#fff' }}>
@@ -208,53 +286,47 @@ function ScheduleDay({ label, date, slots }: { label: string; date: string; slot
         <span className="font-mono text-xs" style={{ color: '#52506A' }}>{date}</span>
       </div>
 
-      {/* Slots */}
       <div style={{ borderTop: '1px solid #1C1A32' }}>
-        {slots.map((slot, i) => (
-          slot.milestone ? (
-            <div key={i} className="flex items-center gap-6 py-4" style={{ borderBottom: '1px solid #1C1A32' }}>
-              <span className="w-28 sm:w-36 flex-shrink-0 font-mono text-[11px] text-right" style={{ color: '#7C3AED' }}>
-                {slot.time}
-              </span>
-              <div className="flex-1 rounded-xl px-5 py-3"
-                style={{ background: 'rgba(124,58,237,0.12)', border: '1px dashed rgba(124,58,237,0.4)' }}>
-                <p className="font-semibold text-sm" style={{ color: '#A78BFA', letterSpacing: '-0.01em' }}>
-                  {slot.milestone}
-                </p>
+        {slots.map((slot, i) => {
+          if (slot.milestone) {
+            return (
+              <div key={i} className="flex items-center gap-6 py-4" style={{ borderBottom: '1px solid #1C1A32' }}>
+                <span className="w-28 sm:w-36 flex-shrink-0 font-mono text-[11px] text-right" style={{ color: '#7C3AED' }}>
+                  {slot.time}
+                </span>
+                <div className="flex-1 rounded-xl px-5 py-3"
+                  style={{ background: 'rgba(124,58,237,0.12)', border: '1px dashed rgba(124,58,237,0.4)' }}>
+                  <p className="font-semibold text-sm" style={{ color: '#A78BFA' }}>{slot.milestone}</p>
+                </div>
               </div>
-            </div>
-          ) : (
+            )
+          }
+
+          const parallel = slot.sessions.length > 1
+          const cols = slot.sessions.length === 2
+            ? 'grid-cols-1 sm:grid-cols-2'
+            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+
+          return (
             <div key={i} className="flex gap-6 py-6" style={{ borderBottom: '1px solid #0E0C22' }}>
-              {/* Time */}
-              <div className="w-28 sm:w-36 flex-shrink-0 text-right pt-[3px]">
-                <span className="font-mono text-[11px] leading-none" style={{ color: '#4A4865' }}>
+              <div className="w-28 sm:w-36 flex-shrink-0 text-right pt-1">
+                <span className="font-mono text-[11px] leading-snug" style={{ color: '#4A4865' }}>
                   {slot.time}
                 </span>
               </div>
 
-              {/* Events */}
-              <div className="flex-1 space-y-5">
-                {slot.events.map((ev, j) => (
-                  <div key={j}>
-                    <p className="font-mono text-[10px] uppercase tracking-[.15em] mb-1.5"
-                      style={{ color: TRACK[ev.track].color }}>
-                      {TRACK[ev.track].label}
-                    </p>
-                    <p className="font-display font-semibold text-[15px] leading-snug"
-                      style={{ color: '#E2DFEF', letterSpacing: '-0.02em' }}>
-                      {ev.title}
-                    </p>
-                    {ev.detail && (
-                      <p className="text-xs mt-1 leading-relaxed" style={{ color: '#52506A' }}>
-                        {ev.detail}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
+              {parallel ? (
+                <div className={`flex-1 grid gap-3 ${cols}`}>
+                  {slot.sessions.map((s, j) => <SessionCard key={j} session={s} parallel={true} />)}
+                </div>
+              ) : (
+                <div className="flex-1">
+                  <SessionCard session={slot.sessions[0]} parallel={false} />
+                </div>
+              )}
             </div>
           )
-        ))}
+        })}
       </div>
     </div>
   )
@@ -262,10 +334,10 @@ function ScheduleDay({ label, date, slots }: { label: string; date: string; slot
 
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function Agenda() {
-  const headRef   = useVis()
-  const day1Ref   = useVis(80)
-  const day2Ref   = useVis(120)
-  const schedRef  = useVis(160)
+  const headRef  = useVis()
+  const day1Ref  = useVis(80)
+  const day2Ref  = useVis(120)
+  const schedRef = useVis(160)
 
   return (
     <section id="agenda" className="relative py-28 px-6 overflow-hidden">
@@ -281,7 +353,7 @@ export default function Agenda() {
           </h2>
         </div>
 
-        {/* ── Thematic tracks ── */}
+        {/* Thematic tracks - Day 1 */}
         <div ref={day1Ref} className="sr mb-16">
           <div className="flex items-center gap-4 mb-4">
             <span className="font-display font-bold text-lg px-4 py-1.5 rounded-full"
@@ -300,9 +372,7 @@ export default function Agenda() {
                 <div className="h-1" style={{ background: ti === 0 ? '#7C3AED' : '#F59E0B' }} />
                 <div className="p-8">
                   <p className="font-mono text-[11px] uppercase tracking-[.18em] mb-3"
-                    style={{ color: ti === 0 ? '#A78BFA' : '#FCD34D' }}>
-                    Track {ti + 1}
-                  </p>
+                    style={{ color: ti === 0 ? '#A78BFA' : '#FCD34D' }}>Track {ti + 1}</p>
                   <h3 className="font-display font-bold mb-7 leading-snug"
                     style={{ fontSize: 'clamp(16px,2vw,22px)', color: '#F0EEF8', letterSpacing: '-0.02em' }}>
                     {track.name}
@@ -322,6 +392,7 @@ export default function Agenda() {
           </div>
         </div>
 
+        {/* Thematic tracks - Day 2 */}
         <div ref={day2Ref} className="sr mb-20">
           <div className="flex items-center gap-4 mb-4">
             <span className="font-display font-bold text-lg px-4 py-1.5 rounded-full"
@@ -340,9 +411,7 @@ export default function Agenda() {
                 <div className="h-1" style={{ background: ti === 0 ? '#7C3AED' : '#F59E0B' }} />
                 <div className="p-8">
                   <p className="font-mono text-[11px] uppercase tracking-[.18em] mb-3"
-                    style={{ color: ti === 0 ? '#A78BFA' : '#FCD34D' }}>
-                    Track {ti + 3}
-                  </p>
+                    style={{ color: ti === 0 ? '#A78BFA' : '#FCD34D' }}>Track {ti + 3}</p>
                   <h3 className="font-display font-bold mb-7 leading-snug"
                     style={{ fontSize: 'clamp(16px,2vw,22px)', color: '#F0EEF8', letterSpacing: '-0.02em' }}>
                     {track.name}
@@ -362,13 +431,11 @@ export default function Agenda() {
           </div>
         </div>
 
-        {/* ── Full schedule ── */}
+        {/* Full schedule */}
         <div ref={schedRef} className="sr">
-          <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-10"
-            style={{ color: '#7C3AED' }}>
+          <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-10" style={{ color: '#7C3AED' }}>
             Full Schedule
           </p>
-
           <div className="space-y-16">
             <ScheduleDay label="Day 1" date="25 September" slots={DAY1} />
             <ScheduleDay label="Day 2" date="26 September" slots={DAY2} />
