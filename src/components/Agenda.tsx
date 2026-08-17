@@ -63,9 +63,9 @@ const DAY1: Slot[] = [
   { start: '9:00',  end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }]},
   { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'Welcome & Opening Remarks',
       speakers: [{ name: 'Swati', role: 'Founder, WIP India' }] }]},
-  { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', title: 'Keynote',
+  { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Keynote',
       speakers: [{ name: 'Murali', role: 'CTO, Freshworks' }] }]},
-  { start: '11:05', end: '11:40', sessions: [{ type: 'keynote', title: 'Keynote',
+  { start: '11:05', end: '11:40', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Keynote',
       speakers: [{ name: 'Sangeeta', role: 'Anthropic' }] }]},
   { start: '11:45', end: '12:30', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'The Future of Enterprise Agents',
@@ -85,7 +85,8 @@ const DAY1: Slot[] = [
   { start: '13:00', sessions: [], milestone: 'BUILD BEGINS - 24-hour timer starts. Teams break to build rooms.' },
   { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }]},
   { start: '14:00', end: '14:35', sessions: [
-    { type: 'keynote', venue: 'Toast Hall', title: 'Session' },
+    { type: 'keynote', venue: 'Toast Hall', title: 'Session',
+      speakers: [{ name: 'Rajat', role: 'Director of Product, Toast' }] },
     { type: 'workshop', venue: 'Freshworks Hall', title: 'GEO Workshop' },
     { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable' },
   ]},
