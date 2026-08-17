@@ -75,7 +75,7 @@ const DAY1: Slot[] = [
         { name: 'Seema', role: 'Databricks' },
         { name: 'Aditya', role: 'Salesforce' },
       ]},
-    { type: 'workshop', venue: 'Toast Hall', title: 'Agentic Product Building' },
+    { type: 'workshop', venue: 'Toast Workshop Room', title: 'Agentic Product Building' },
   ]},
   { start: '12:30', end: '13:00', sessions: [
     { type: 'showcase', venue: 'Freshworks Hall', title: 'Platform & Partner Showcase',
