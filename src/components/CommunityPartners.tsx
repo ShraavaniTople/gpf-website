@@ -11,6 +11,7 @@ const partners = [
   { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai',  h: 64 },
   { name: 'HerKey',                slug: 'herkey' },
   { name: 'Women in Tech India',   slug: 'women-in-tech-india', h: 96 },
+  { name: 'Startups Life',         slug: 'startups-life',       h: 56 },
 ]
 
 function useVis(delay = 0) {
