@@ -60,6 +60,7 @@ export default function SocialCardGenerator() {
   const [portrait,    setPortrait]    = useState(false)
   const [rendering,   setRendering]   = useState(false)
   const [sharing,     setSharing]     = useState(false)
+  const [titleTouched, setTitleTouched] = useState(false)
 
   // photo / crop
   const [rawPhoto,    setRawPhoto]    = useState<string | null>(null)
@@ -219,7 +220,7 @@ export default function SocialCardGenerator() {
               {ROLES.map(r => (
                 <button
                   key={r.id}
-                  onClick={() => { setRoleId(r.id); setCaptionIdx(0); removePhoto() }}
+                  onClick={() => { setRoleId(r.id); setCaptionIdx(0); removePhoto(); setTitleTouched(false) }}
                   style={{
                     padding: '6px 14px', borderRadius: 9999, fontSize: 13,
                     fontFamily: 'Inter, sans-serif', cursor: 'pointer',
@@ -275,13 +276,14 @@ export default function SocialCardGenerator() {
           {/* Title */}
           <Field label={isPersonal ? `Job Title / Tagline${role.titleRequired ? ' *' : ' (optional)'}` : 'Tagline (optional)'}>
             <input
-              style={{ ...inputStyle, borderColor: role.titleRequired && !title.trim() ? 'rgba(248,113,113,.5)' : undefined }}
+              style={{ ...inputStyle, borderColor: role.titleRequired && titleTouched && !title.trim() ? 'rgba(248,113,113,.5)' : undefined }}
               placeholder={isPersonal ? 'e.g. Product Lead at Razorpay' : 'e.g. India\'s fastest growing startup'}
               value={title}
               onChange={e => setTitle(e.target.value)}
+              onBlur={() => setTitleTouched(true)}
               required={role.titleRequired}
             />
-            {role.titleRequired && !title.trim() && (
+            {role.titleRequired && titleTouched && !title.trim() && (
               <p style={{ fontSize: 11, color: '#F87171', marginTop: 4, fontFamily: 'Inter' }}>Required for speaker cards</p>
             )}
           </Field>

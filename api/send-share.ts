@@ -42,7 +42,7 @@ function buildShareHtml(p: {
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td><img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="40" style="display:block;"/></td>
-              <td align="right"><img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="Women in Product India" width="36" height="36" style="display:block;border-radius:50%;"/></td>
+              <td align="right"><img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="Women in Product India" height="36" style="display:block;"/></td>
             </tr>
           </table>
         </td>
