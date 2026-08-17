@@ -200,7 +200,7 @@ function ScheduleDay({ label, date, slots }: { label: string; date: string; slot
   return (
     <div>
       {/* Day header */}
-      <div className="flex items-center gap-4 mb-6">
+      <div className="flex items-center gap-4 mb-8">
         <span className="font-display font-bold text-lg px-4 py-1.5 rounded-full"
           style={{ background: '#7C3AED', color: '#fff' }}>
           {label}
@@ -212,39 +212,43 @@ function ScheduleDay({ label, date, slots }: { label: string; date: string; slot
       <div style={{ borderTop: '1px solid #1C1A32' }}>
         {slots.map((slot, i) => (
           slot.milestone ? (
-            <div key={i} className="flex items-center gap-6 py-3" style={{ borderBottom: '1px solid #1C1A32' }}>
-              <span className="w-36 flex-shrink-0 font-mono text-[11px] text-right" style={{ color: '#7C3AED' }}>
+            <div key={i} className="flex items-center gap-6 py-4" style={{ borderBottom: '1px solid #1C1A32' }}>
+              <span className="w-28 sm:w-36 flex-shrink-0 font-mono text-[11px] text-right" style={{ color: '#7C3AED' }}>
                 {slot.time}
               </span>
-              <div className="flex-1 rounded-lg px-4 py-2.5"
-                style={{ background: 'rgba(124,58,237,0.10)', border: '1px dashed rgba(124,58,237,0.35)' }}>
-                <span className="font-mono text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#A78BFA' }}>
+              <div className="flex-1 rounded-xl px-5 py-3"
+                style={{ background: 'rgba(124,58,237,0.12)', border: '1px dashed rgba(124,58,237,0.4)' }}>
+                <p className="font-semibold text-sm" style={{ color: '#A78BFA', letterSpacing: '-0.01em' }}>
                   {slot.milestone}
-                </span>
+                </p>
               </div>
             </div>
           ) : (
-            <div key={i} className="flex gap-6 py-5" style={{ borderBottom: '1px solid #0E0C22' }}>
-              <span className="w-36 flex-shrink-0 font-mono text-[11px] text-right leading-5"
-                style={{ color: '#3A3852' }}>
-                {slot.time}
-              </span>
-              <div className="flex-1 space-y-3">
+            <div key={i} className="flex gap-6 py-6" style={{ borderBottom: '1px solid #0E0C22' }}>
+              {/* Time */}
+              <div className="w-28 sm:w-36 flex-shrink-0 text-right pt-[3px]">
+                <span className="font-mono text-[11px] leading-none" style={{ color: '#4A4865' }}>
+                  {slot.time}
+                </span>
+              </div>
+
+              {/* Events */}
+              <div className="flex-1 space-y-5">
                 {slot.events.map((ev, j) => (
-                  <div key={j} className="flex items-baseline justify-between gap-4 min-w-0">
-                    <div className="min-w-0">
-                      <span className="text-sm font-medium leading-5"
-                        style={{ color: '#D4D0ED', letterSpacing: '-0.01em' }}>
-                        {ev.title}
-                      </span>
-                      {ev.detail && (
-                        <span className="text-xs ml-2" style={{ color: '#52506A' }}>{ev.detail}</span>
-                      )}
-                    </div>
-                    <span className="font-mono text-[9px] uppercase tracking-wider flex-shrink-0"
-                      style={{ color: '#2E2C44' }}>
+                  <div key={j}>
+                    <p className="font-mono text-[10px] uppercase tracking-[.15em] mb-1.5"
+                      style={{ color: TRACK[ev.track].color }}>
                       {TRACK[ev.track].label}
-                    </span>
+                    </p>
+                    <p className="font-display font-semibold text-[15px] leading-snug"
+                      style={{ color: '#E2DFEF', letterSpacing: '-0.02em' }}>
+                      {ev.title}
+                    </p>
+                    {ev.detail && (
+                      <p className="text-xs mt-1 leading-relaxed" style={{ color: '#52506A' }}>
+                        {ev.detail}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -365,16 +369,7 @@ export default function Agenda() {
             Full Schedule
           </p>
 
-          {/* Track legend */}
-          <div className="flex flex-wrap gap-x-5 gap-y-2 mb-10">
-            {(Object.keys(TRACK) as Track[]).map(k => (
-              <span key={k} className="font-mono text-[10px] uppercase tracking-wider" style={{ color: '#3A3852' }}>
-                {TRACK[k].label}
-              </span>
-            ))}
-          </div>
-
-          <div className="space-y-14">
+          <div className="space-y-16">
             <ScheduleDay label="Day 1" date="25 September" slots={DAY1} />
             <ScheduleDay label="Day 2" date="26 September" slots={DAY2} />
           </div>
