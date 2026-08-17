@@ -424,13 +424,13 @@ export default function Agenda() {
                   : { background: 'transparent', color: '#52506A', border: '1px solid #1C1A32' }
                 }
               >
-                Day {d} &nbsp;<span style={{ opacity: 0.6, fontWeight: 400, fontSize: '0.75em' }}>{d === 1 ? '25 Sep' : '26 Sep'}</span>
+                Day {d}
               </button>
             ))}
           </div>
           {activeDay === 1
-            ? <ScheduleDay label="Day 1" date="25 September" slots={DAY1} />
-            : <ScheduleDay label="Day 2" date="26 September" slots={DAY2} />
+            ? <ScheduleDay label="Day 1" date="" slots={DAY1} />
+            : <ScheduleDay label="Day 2" date="" slots={DAY2} />
           }
         </div>
 
