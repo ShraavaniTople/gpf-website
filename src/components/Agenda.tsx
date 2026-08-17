@@ -50,59 +50,59 @@ const TRACK: Record<Track, { label: string; color: string }> = {
 }
 
 const DAY1: Slot[] = [
-  { time: '9:00 – 10:00', events: [
+  { time: '9:00 - 10:00', events: [
     { track: 'main',      title: 'Registration & Breakfast' },
     { track: 'hackathon', title: 'Team Check-in & Build-space Allocation' },
   ]},
-  { time: '10:00 – 10:25', events: [
-    { track: 'main', title: 'Welcome & Opening', detail: 'WIP India — Swati' },
+  { time: '10:00 - 10:25', events: [
+    { track: 'main', title: 'Welcome & Opening', detail: 'WIP India, Swati' },
   ]},
-  { time: '10:30 – 11:00', events: [
-    { track: 'main', title: 'Keynote — Murali, CTO, Freshworks' },
+  { time: '10:30 - 11:00', events: [
+    { track: 'main', title: 'Keynote - Murali, CTO, Freshworks' },
   ]},
-  { time: '11:05 – 11:40', events: [
-    { track: 'main', title: 'Keynote — Sangeeta, Anthropic' },
+  { time: '11:05 - 11:40', events: [
+    { track: 'main', title: 'Keynote - Sangeeta, Anthropic' },
   ]},
-  { time: '11:45 – 12:30', events: [
-    { track: 'main',     title: 'Panel: The Future of Enterprise Agents', detail: 'Moderated by Minakshi · Sree Dhar (Freshworks), Seema (Databricks), Aditya (Salesforce)' },
+  { time: '11:45 - 12:30', events: [
+    { track: 'main',     title: 'Panel: The Future of Enterprise Agents', detail: 'Moderated by Minakshi, Sree Dhar (Freshworks), Seema (Databricks), Aditya (Salesforce)' },
     { track: 'workshop', title: 'Agentic Product Building', detail: 'Freshworks Room' },
   ]},
-  { time: '12:30 – 13:00', events: [
+  { time: '12:30 - 13:00', events: [
     { track: 'main',      title: 'Platform & Partner Showcase', detail: 'Agent Studio, MCP, partner toolkits' },
     { track: 'hackathon', title: 'Hackathon Briefing', detail: 'Tracks, rubric, logistics' },
   ]},
-  { time: '13:00', milestone: 'BUILD BEGINS — 24-hour timer starts · Teams break to build rooms', events: [] },
-  { time: '13:00 – 14:00', events: [
+  { time: '13:00', milestone: 'BUILD BEGINS - 24-hour timer starts. Teams break to build rooms.', events: [] },
+  { time: '13:00 - 14:00', events: [
     { track: 'main',      title: 'Lunch' },
     { track: 'hackathon', title: 'Lunch' },
   ]},
-  { time: '14:00 – 14:35', events: [
-    { track: 'toast',      title: 'Welcome + Session — Rajat, Director of Product, Toast' },
+  { time: '14:00 - 14:35', events: [
+    { track: 'toast',      title: 'Welcome + Session with Rajat, Director of Product, Toast' },
     { track: 'workshop',   title: 'GEO Workshop by Milestone', detail: 'Freshworks Room' },
     { track: 'roundtable', title: 'CXO Roundtable' },
   ]},
-  { time: '14:40 – 15:25', events: [
+  { time: '14:40 - 15:25', events: [
     { track: 'main',  title: 'Panel: Consumer Products', detail: 'Anuj (Groww CPO), Rapido, Pronto' },
     { track: 'toast', title: 'Panel' },
   ]},
-  { time: '15:30 – 16:15', events: [
+  { time: '15:30 - 16:15', events: [
     { track: 'main',      title: 'Panel: Growth & Distribution', detail: 'Amrit, Deeksha, Roopa Pious' },
     { track: 'hackathon', title: 'Mentor Hours' },
-    { track: 'workshop',  title: 'Evals for PMs — Tanay', detail: 'Toast Room' },
+    { track: 'workshop',  title: 'Evals for PMs with Tanay', detail: 'Toast Room' },
   ]},
-  { time: '16:20 – 16:50', events: [
+  { time: '16:20 - 16:50', events: [
     { track: 'main',  title: 'Fireside: Influential Leader / Founder' },
     { track: 'toast', title: 'Lightning Talks' },
   ]},
-  { time: '16:50 – 17:00', events: [
+  { time: '16:50 - 17:00', events: [
     { track: 'main',  title: 'Closing Notes' },
     { track: 'toast', title: 'Closing Note + Head to Freshworks Office' },
   ]},
-  { time: '17:00 – 18:00', events: [
-    { track: 'main',      title: 'Festival Day 1 Close — Games & Engagement' },
+  { time: '17:00 - 18:00', events: [
+    { track: 'main',      title: 'Festival Day 1 Close - Games & Engagement' },
     { track: 'hackathon', title: 'Teams Attend' },
   ]},
-  { time: '18:30 – 21:00', events: [
+  { time: '18:30 - 21:00', events: [
     { track: 'hackathon', title: 'Teams Have Dinner + Build' },
     { track: 'workshop',  title: 'Leadership Dinner' },
   ]},
@@ -112,74 +112,74 @@ const DAY1: Slot[] = [
 ]
 
 const DAY2: Slot[] = [
-  { time: '8:00 – 10:00', events: [
+  { time: '8:00 - 10:00', events: [
     { track: 'main',      title: 'Doors Open & Breakfast' },
     { track: 'hackathon', title: 'Breakfast + Quick Mentor Check-in' },
     { track: 'toast',     title: 'Breakfast (light)' },
   ]},
-  { time: '10:00 – 10:15', events: [
+  { time: '10:00 - 10:15', events: [
     { track: 'main',      title: 'Welcome & Recap' },
     { track: 'hackathon', title: 'Final Build Sprint' },
     { track: 'toast',     title: 'Welcome & Recap' },
   ]},
-  { time: '10:20 – 10:50', events: [
-    { track: 'main',  title: 'Build for Bharat — Sarvam Keynote', detail: 'Tentative' },
-    { track: 'toast', title: 'Fireside — Neha, HerKey' },
+  { time: '10:20 - 10:50', events: [
+    { track: 'main',  title: 'Build for Bharat - Sarvam Keynote', detail: 'Tentative' },
+    { track: 'toast', title: 'Fireside with Neha, HerKey' },
   ]},
-  { time: '11:00', milestone: 'BUILD STOPS — Submissions frozen · Judging begins', events: [] },
-  { time: '11:00 – 11:30', events: [
+  { time: '11:00', milestone: 'BUILD STOPS - Submissions frozen. Judging begins.', events: [] },
+  { time: '11:00 - 11:30', events: [
     { track: 'main',      title: 'VC Keynote' },
-    { track: 'hackathon', title: 'Judges Evaluate Teams · Teams Demo at Stations' },
+    { track: 'hackathon', title: 'Judges Evaluate Teams. Teams demo at their stations.' },
     { track: 'toast',     title: '2 Physical AI Demos' },
-    { track: 'workshop',  title: 'GTM for Product Teams — Deeksha', detail: 'Freshworks Room' },
+    { track: 'workshop',  title: 'GTM for Product Teams with Deeksha', detail: 'Freshworks Room' },
   ]},
-  { time: '11:35 – 12:05', events: [
+  { time: '11:35 - 12:05', events: [
     { track: 'main',  title: 'Panel: GCCs as Product Innovation Hubs', detail: 'Sheetal, Roopa, Abhishek, Supriya' },
-    { track: 'toast', title: 'Speaker Session — Anshuman, Mercedes-Benz' },
+    { track: 'toast', title: 'Speaker Session with Anshuman, Mercedes-Benz' },
   ]},
-  { time: '12:05 – 12:20', events: [
+  { time: '12:05 - 12:20', events: [
     { track: 'hackathon', title: 'Judges Huddle & Decide Results' },
-    { track: 'toast',     title: 'Leadership Session — Bhavna, Shenomics' },
-    { track: 'workshop',  title: 'Applied AI Product Teardown — Adithi Sampath', detail: 'Toast Room' },
+    { track: 'toast',     title: 'Leadership Session with Bhavna, Shenomics' },
+    { track: 'workshop',  title: 'Applied AI Product Teardown with Adithi Sampath', detail: 'Toast Room' },
   ]},
-  { time: '12:25 – 13:00', events: [
-    { track: 'main',      title: 'Speaker Session — Pulkit, Vedantu' },
+  { time: '12:25 - 13:00', events: [
+    { track: 'main',      title: 'Speaker Session with Pulkit, Vedantu' },
     { track: 'hackathon', title: 'Announce Teams Demoing on Stage' },
   ]},
-  { time: '13:00 – 14:00', events: [
+  { time: '13:00 - 14:00', events: [
     { track: 'main',  title: 'Lunch' },
     { track: 'toast', title: 'Lunch' },
   ]},
-  { time: '14:00 – 15:00', events: [
-    { track: 'workshop',   title: 'Fundraising + VC Lab — Subhadeep (Toast) · Build Your Brand (Freshworks)' },
+  { time: '14:00 - 15:00', events: [
+    { track: 'workshop',   title: 'Fundraising + VC Lab with Subhadeep (Toast) and Build Your Brand (Freshworks)' },
     { track: 'roundtable', title: 'CXO Roundtable' },
   ]},
-  { time: '14:15 – 15:00', events: [
+  { time: '14:15 - 15:00', events: [
     { track: 'main',      title: 'Hackathon Finalists (Top 4) Present on Stage' },
     { track: 'hackathon', title: 'Finalists on Main Stage' },
-    { track: 'toast',     title: '2–3 AI Product Demos' },
+    { track: 'toast',     title: '2-3 AI Product Demos' },
   ]},
-  { time: '15:00 – 15:30', events: [
+  { time: '15:00 - 15:30', events: [
     { track: 'main',  title: 'Winners Announced & Award Ceremony' },
-    { track: 'toast', title: 'Speaker Session — KDEM' },
+    { track: 'toast', title: 'Speaker Session - KDEM' },
   ]},
-  { time: '15:35 – 16:15', events: [
-    { track: 'main',  title: 'VC Panel', detail: 'Shalini, Shveta, Subhadeep · PeakXV / Accel / Nexus' },
+  { time: '15:35 - 16:15', events: [
+    { track: 'main',  title: 'VC Panel', detail: 'Shalini, Shveta, Subhadeep, PeakXV / Accel / Nexus' },
     { track: 'toast', title: 'Voice AI Panel' },
   ]},
-  { time: '16:15 – 16:50', events: [
-    { track: 'main',  title: 'Speaker Session — Bhavik' },
-    { track: 'toast', title: 'In Conversation — Ritika, Swati Dogra' },
+  { time: '16:15 - 16:50', events: [
+    { track: 'main',  title: 'Speaker Session with Bhavik' },
+    { track: 'toast', title: 'In Conversation with Ritika, Swati Dogra' },
   ]},
-  { time: '16:50 – 17:00', events: [
+  { time: '16:50 - 17:00', events: [
     { track: 'toast', title: 'Head to Freshworks Office' },
   ]},
-  { time: '17:00 – 18:00', events: [
-    { track: 'main',  title: 'Festival Day 2 Close — Band or Comedian' },
+  { time: '17:00 - 18:00', events: [
+    { track: 'main',  title: 'Festival Day 2 Close - Band or Comedian' },
     { track: 'toast', title: 'Setup for Dinner' },
   ]},
-  { time: '18:00 – 20:00', events: [
-    { track: 'toast', title: 'Dinner Party — Team Celebration' },
+  { time: '18:00 - 20:00', events: [
+    { track: 'toast', title: 'Dinner Party - Team Celebration' },
   ]},
 ]
 
