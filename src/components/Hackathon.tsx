@@ -163,11 +163,11 @@ export default function Hackathon() {
                 <p className="font-mono text-[10px] uppercase tracking-[.22em] mb-3" style={{ color: '#F59E0B' }}>Prize Pool</p>
                 <div className="flex flex-col gap-1 mb-1">
                   <div className="flex items-baseline gap-2">
-                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(26px,3.5vw,36px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>₹1,00,000</span>
+                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(26px,3.5vw,36px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>₹1L</span>
                     <span className="text-sm" style={{ color: '#6B7280' }}>in cash</span>
                   </div>
                   <div className="flex items-baseline gap-2">
-                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(26px,3.5vw,36px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>₹22 Lakh<span style={{ color: '#F59E0B' }}>+</span></span>
+                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(26px,3.5vw,36px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>₹10L<span style={{ color: '#F59E0B' }}>+</span></span>
                     <span className="text-sm" style={{ color: '#6B7280' }}>in credits</span>
                   </div>
                 </div>
