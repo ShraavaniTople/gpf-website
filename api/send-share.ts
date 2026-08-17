@@ -141,47 +141,78 @@ function buildShareHtml(p: {
         </td>
       </tr>
 
-      <!-- Ticket (re-attached below) -->
+      <!-- Ticket label -->
       <tr>
-        <td style="padding-top:20px;">
-          <p style="margin:0 0 12px;font-size:12px;color:#9CA3AF;text-align:center;">Your pass is attached below for reference.</p>
+        <td style="padding-top:28px;padding-bottom:12px;">
+          <p style="margin:0;font-size:11px;color:#9CA3AF;text-align:center;letter-spacing:0.1em;text-transform:uppercase;">Your Pass</p>
         </td>
       </tr>
 
-      <!-- Ticket shell -->
+      <!-- ── Redesigned dark ticket ── -->
       <tr>
-        <td style="background:#FFFDF9;border:3px solid ${color};border-radius:16px;overflow:hidden;">
+        <td style="border-radius:20px;overflow:hidden;background:#0E0C22;border:1.5px solid #2A2748;">
+
+          <!-- Top gradient bar -->
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr><td height="5" style="background:linear-gradient(90deg,${color} 0%,#A78BFA 60%,#F59E0B 100%);"></td></tr>
+          </table>
+
+          <!-- Header row: logos -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:24px 28px 0;">
             <tr>
-              <td valign="top" style="padding:22px 26px 20px;width:75%;">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:18px;">
-                  <tr>
-                    <td><img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="36" style="display:block;"/></td>
-                    <td align="right"><img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="Women in Product India" width="32" height="32" style="display:block;border-radius:50%;"/></td>
-                  </tr>
-                </table>
-                <p style="margin:0 0 8px;font-size:18px;font-weight:900;color:${color};letter-spacing:-0.01em;text-transform:uppercase;">Namaste, Builder.</p>
-                <p style="margin:0 0 10px;font-size:26px;font-weight:800;color:#1a0a40;letter-spacing:-0.03em;line-height:1.1;">${p.to_name}</p>
-                ${p.company && p.company !== '—' ? `<p style="margin:0 0 10px;font-size:12px;color:#6B7280;font-weight:500;">${p.company}</p>` : ''}
-                <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
-                  <tr>
-                    <td style="background:${badge};border-radius:6px;padding:5px 14px;">
-                      <span style="font-family:monospace;font-size:10px;font-weight:700;color:#FFFFFF;letter-spacing:0.12em;text-transform:uppercase;">${p.pass_type.toUpperCase()}</span>
-                    </td>
-                  </tr>
-                </table>
-                <p style="margin:0;font-size:11px;font-weight:700;color:#4B5563;letter-spacing:0.06em;text-transform:uppercase;">
-                  BANGALORE, INDIA &nbsp;<span style="color:${color};">|</span>&nbsp; 25–26 SEPT 2026
-                </p>
+              <td valign="middle">
+                <img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="32" style="display:block;filter:brightness(0) invert(1);opacity:0.9;"/>
               </td>
-              <td width="2" style="background:${color}30;" valign="top">&nbsp;</td>
-              <td valign="top" style="background:${accentBg};padding:16px 14px;text-align:center;width:25%;">
-                <p style="margin:0 0 8px;font-family:monospace;font-size:9px;color:${badge};letter-spacing:0.1em;text-transform:uppercase;">Pass No.</p>
-                <p style="margin:0 0 16px;font-family:monospace;font-size:10px;color:${color};font-weight:600;word-break:break-all;">${p.pass_number}</p>
-                <p style="margin:0;font-family:monospace;font-size:10px;font-weight:900;color:${color};letter-spacing:0.25em;text-transform:uppercase;">TGPF<br/>2026</p>
+              <td valign="middle" align="right">
+                <img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="WiP India" width="32" height="32" style="display:block;border-radius:50%;border:1.5px solid #3D3B55;"/>
               </td>
             </tr>
           </table>
+
+          <!-- Main content -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:20px 28px 0;">
+            <tr>
+              <td>
+                <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#6B7280;letter-spacing:0.18em;text-transform:uppercase;">The Great Product Festival 2026</p>
+                <p style="margin:0 0 6px;font-size:34px;font-weight:900;color:#F0EEF8;letter-spacing:-0.03em;line-height:1.1;">${p.to_name}</p>
+                ${p.company && p.company !== '—' ? `<p style="margin:0 0 18px;font-size:13px;color:#9490AD;">${p.company}</p>` : '<p style="margin:0 0 18px;"></p>'}
+                <!-- Pass tier badge -->
+                <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:0;">
+                  <tr>
+                    <td style="background:${color};border-radius:6px;padding:6px 16px;">
+                      <span style="font-family:monospace;font-size:10px;font-weight:700;color:#FFFFFF;letter-spacing:0.14em;text-transform:uppercase;">${p.pass_type.toUpperCase()}</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Dashed divider -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:24px 28px 0;">
+            <tr><td height="1" style="border-top:1.5px dashed #2A2748;"></td></tr>
+          </table>
+
+          <!-- Bottom row: date + pass number -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:16px 28px 28px;">
+            <tr>
+              <td valign="top" width="50%">
+                <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#52506A;letter-spacing:0.16em;text-transform:uppercase;">Date &amp; Venue</p>
+                <p style="margin:0;font-size:13px;font-weight:700;color:#F0EEF8;">25–26 Sept 2026</p>
+                <p style="margin:2px 0 0;font-size:12px;color:#9490AD;">Bangalore, India</p>
+              </td>
+              <td valign="top" width="50%" align="right">
+                <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#52506A;letter-spacing:0.16em;text-transform:uppercase;">Pass No.</p>
+                <p style="margin:0;font-family:monospace;font-size:13px;font-weight:700;color:${color};">${p.pass_number}</p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Bottom gradient bar -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr><td height="4" style="background:linear-gradient(90deg,${color} 0%,#A78BFA 100%);opacity:0.5;"></td></tr>
+          </table>
+
         </td>
       </tr>
 
