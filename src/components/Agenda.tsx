@@ -132,8 +132,7 @@ const DAY2: Slot[] = [
   ]},
   { start: '12:05', end: '12:20', sessions: [
     { type: 'keynote', venue: 'Toast Hall', title: 'Leadership Session' },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown',
-      speakers: [{ name: 'Adithi Sampath', role: 'Product Leader' }] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown' },
   ]},
   { start: '12:25', end: '13:00', sessions: [
     { type: 'keynote', venue: 'Freshworks Hall', title: 'Speaker Session',
@@ -151,11 +150,7 @@ const DAY2: Slot[] = [
     { type: 'keynote', venue: 'Toast Hall', title: 'Speaker Session' },
   ]},
   { start: '15:35', end: '16:15', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
-      speakers: [
-        { name: 'Shveta', role: 'Investor' },
-        { name: 'Subhadeep', role: 'Investor' },
-      ]},
+    { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel' },
     { type: 'panel', venue: 'Toast Hall', title: 'Voice AI Panel' },
   ]},
   { start: '16:15', end: '16:50', sessions: [
