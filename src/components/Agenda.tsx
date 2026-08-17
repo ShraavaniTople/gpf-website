@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // ─── Thematic tracks ──────────────────────────────────────────────────────────
 const THEME_DAYS = [
@@ -314,6 +314,7 @@ export default function Agenda() {
   const day1Ref  = useVis(80)
   const day2Ref  = useVis(120)
   const schedRef = useVis(160)
+  const [activeDay, setActiveDay] = useState<1 | 2>(1)
 
   return (
     <section id="agenda" className="relative py-28 px-6 overflow-hidden">
@@ -408,13 +409,29 @@ export default function Agenda() {
 
         {/* Full schedule */}
         <div ref={schedRef} className="sr">
-          <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-10" style={{ color: '#7C3AED' }}>
+          <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-8" style={{ color: '#7C3AED' }}>
             Full Schedule
           </p>
-          <div className="space-y-16">
-            <ScheduleDay label="Day 1" date="25 September" slots={DAY1} />
-            <ScheduleDay label="Day 2" date="26 September" slots={DAY2} />
+          {/* Day tabs */}
+          <div className="flex gap-2 mb-10">
+            {([1, 2] as const).map(d => (
+              <button
+                key={d}
+                onClick={() => setActiveDay(d)}
+                className="font-display font-bold px-6 py-2.5 rounded-full text-sm transition-all duration-200"
+                style={activeDay === d
+                  ? { background: '#7C3AED', color: '#fff', boxShadow: '0 0 24px rgba(124,58,237,.4)' }
+                  : { background: 'transparent', color: '#52506A', border: '1px solid #1C1A32' }
+                }
+              >
+                Day {d} &nbsp;<span style={{ opacity: 0.6, fontWeight: 400, fontSize: '0.75em' }}>{d === 1 ? '25 Sep' : '26 Sep'}</span>
+              </button>
+            ))}
           </div>
+          {activeDay === 1
+            ? <ScheduleDay label="Day 1" date="25 September" slots={DAY1} />
+            : <ScheduleDay label="Day 2" date="26 September" slots={DAY2} />
+          }
         </div>
 
       </div>
