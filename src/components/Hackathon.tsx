@@ -16,6 +16,67 @@ const tracks = [
   'Track 3: AI-native Enterprise Agents',
 ]
 
+const prizes = [
+  {
+    name: 'Overall Winner',
+    cash: '₹40,000',
+    winners: '1 winner',
+    credits: [
+      { label: 'ElevenLabs', amount: '₹50,000 in credits' },
+      { label: 'Dodo Payments', amount: '₹4,70,000 in credits' },
+    ],
+    note: '',
+  },
+  {
+    name: 'Track 1 Winner',
+    cash: '₹20,000',
+    winners: '1 winner',
+    credits: [
+      { label: 'ElevenLabs', amount: '₹20,000 in credits' },
+      { label: 'Dodo Payments', amount: '₹2,30,000 in credits' },
+    ],
+    note: '',
+  },
+  {
+    name: 'Track 2 Winner',
+    cash: '₹20,000',
+    winners: '1 winner',
+    credits: [
+      { label: 'ElevenLabs', amount: '₹20,000 in credits' },
+      { label: 'Dodo Payments', amount: '₹2,30,000 in credits' },
+    ],
+    note: '',
+  },
+  {
+    name: 'Track 3 Winner',
+    cash: '₹20,000',
+    winners: '1 winner',
+    credits: [
+      { label: 'ElevenLabs', amount: '₹20,000 in credits' },
+      { label: 'Dodo Payments', amount: '₹2,30,000 in credits' },
+    ],
+    note: '',
+  },
+  {
+    name: 'Best Project on ElevenLabs',
+    cash: '',
+    winners: '1 winner',
+    credits: [
+      { label: 'ElevenLabs', amount: '₹80,000 in credits' },
+    ],
+    note: 'Can be combined with Track winner prize',
+  },
+  {
+    name: 'Top 20 Teams on Dodo Payments',
+    cash: '',
+    winners: '20 teams',
+    credits: [
+      { label: 'Dodo Payments', amount: '₹47,000 in credits per team' },
+    ],
+    note: '',
+  },
+]
+
 function useVis(delay = 0) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -99,11 +160,17 @@ export default function Hackathon() {
             ))}
             <div className="pt-8">
               <div className="mb-7 rounded-xl p-5" style={{ background: 'rgba(245,158,11,.06)', border: '1px solid rgba(245,158,11,.18)' }}>
-                <p className="font-mono text-[10px] uppercase tracking-[.22em] mb-2" style={{ color: '#F59E0B' }}>Prize Pool</p>
-                <p className="font-display font-extrabold leading-none mb-1.5" style={{ fontSize: 'clamp(34px,4.5vw,48px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
-                  ₹3 Lakh<span style={{ color: '#F59E0B' }}>+</span>
-                </p>
-                <p className="text-sm" style={{ color: '#6B7280' }}>in cash and credits</p>
+                <p className="font-mono text-[10px] uppercase tracking-[.22em] mb-3" style={{ color: '#F59E0B' }}>Prize Pool</p>
+                <div className="flex flex-col gap-1 mb-1">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(26px,3.5vw,36px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>₹1,00,000</span>
+                    <span className="text-sm" style={{ color: '#6B7280' }}>in cash</span>
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(26px,3.5vw,36px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>₹22 Lakh<span style={{ color: '#F59E0B' }}>+</span></span>
+                    <span className="text-sm" style={{ color: '#6B7280' }}>in credits</span>
+                  </div>
+                </div>
               </div>
               <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm">Apply for Hackathon</a>
               <p className="text-xs mt-5" style={{ color: '#52506A', fontFamily: 'JetBrains Mono, monospace' }}>Registration closes on 25 August 2026.</p>
@@ -128,6 +195,42 @@ export default function Hackathon() {
             </div>
           </div>
         </div>
+
+        {/* Prize Breakdown */}
+        <div className="mt-20">
+          <div className="mb-8">
+            <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-2" style={{ color: '#F59E0B' }}>Prize Breakdown</p>
+            <h3 className="font-display font-bold" style={{ fontSize: 'clamp(22px,3vw,32px)', color: '#F0EEF8', letterSpacing: '-0.03em' }}>What you can win</h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {prizes.map((p, i) => (
+              <div key={i} className="rounded-2xl p-6 flex flex-col gap-4" style={{ background: '#05040C', border: '1px solid #1C1A32' }}>
+                <div className="flex items-start justify-between gap-3">
+                  <p className="font-mono text-[10px] uppercase tracking-[.18em] leading-relaxed" style={{ color: '#F59E0B' }}>{p.name}</p>
+                  <span className="text-xs flex-shrink-0 mt-0.5" style={{ color: '#52506A', fontFamily: 'JetBrains Mono, monospace' }}>{p.winners}</span>
+                </div>
+                {p.cash && (
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display font-extrabold" style={{ fontSize: 'clamp(24px,3vw,32px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>{p.cash}</span>
+                    <span className="text-sm" style={{ color: '#6B7280' }}>cash</span>
+                  </div>
+                )}
+                <div className="flex flex-col gap-2">
+                  {p.credits.map((c, j) => (
+                    <div key={j} className="flex items-center justify-between gap-2 rounded-lg px-3 py-2" style={{ background: 'rgba(124,58,237,.07)', border: '1px solid rgba(124,58,237,.15)' }}>
+                      <span className="text-xs font-medium" style={{ color: '#A78BFA' }}>{c.label}</span>
+                      <span className="text-xs" style={{ color: '#F0EEF8', fontFamily: 'JetBrains Mono, monospace' }}>{c.amount}</span>
+                    </div>
+                  ))}
+                </div>
+                {p.note && (
+                  <p className="text-xs" style={{ color: '#52506A' }}>{p.note}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   )
