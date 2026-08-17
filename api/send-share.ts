@@ -148,69 +148,90 @@ function buildShareHtml(p: {
         </td>
       </tr>
 
-      <!-- ── Redesigned dark ticket ── -->
+      <!-- ── Redesigned ticket ── -->
       <tr>
-        <td style="border-radius:20px;overflow:hidden;background:#0E0C22;border:1.5px solid #2A2748;">
+        <td style="border-radius:20px;overflow:hidden;border:2px solid ${color};">
 
           <!-- Top gradient bar -->
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr><td height="5" style="background:linear-gradient(90deg,${color} 0%,#A78BFA 60%,#F59E0B 100%);"></td></tr>
-          </table>
-
-          <!-- Header row: logos -->
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:24px 28px 0;">
             <tr>
-              <td valign="middle">
-                <img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="32" style="display:block;filter:brightness(0) invert(1);opacity:0.9;"/>
-              </td>
-              <td valign="middle" align="right">
-                <img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="WiP India" width="32" height="32" style="display:block;border-radius:50%;border:1.5px solid #3D3B55;"/>
-              </td>
+              <td width="33%" height="6" style="background:${color};"></td>
+              <td width="34%" height="6" style="background:#A78BFA;"></td>
+              <td width="33%" height="6" style="background:#F59E0B;"></td>
             </tr>
           </table>
 
-          <!-- Main content -->
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:20px 28px 0;">
+          <!-- Main body: dark purple -->
+          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#1a1035;">
+
+            <!-- Logos -->
             <tr>
-              <td>
-                <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#6B7280;letter-spacing:0.18em;text-transform:uppercase;">The Great Product Festival 2026</p>
-                <p style="margin:0 0 6px;font-size:34px;font-weight:900;color:#F0EEF8;letter-spacing:-0.03em;line-height:1.1;">${p.to_name}</p>
-                ${p.company && p.company !== '—' ? `<p style="margin:0 0 18px;font-size:13px;color:#9490AD;">${p.company}</p>` : '<p style="margin:0 0 18px;"></p>'}
-                <!-- Pass tier badge -->
-                <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:0;">
+              <td style="padding:24px 28px 0;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
                   <tr>
-                    <td style="background:${color};border-radius:6px;padding:6px 16px;">
-                      <span style="font-family:monospace;font-size:10px;font-weight:700;color:#FFFFFF;letter-spacing:0.14em;text-transform:uppercase;">${p.pass_type.toUpperCase()}</span>
+                    <td valign="middle">
+                      <img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="34" style="display:block;"/>
+                    </td>
+                    <td valign="middle" align="right">
+                      <img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="WiP India" width="34" height="34" style="display:block;border-radius:50%;"/>
                     </td>
                   </tr>
                 </table>
               </td>
             </tr>
-          </table>
 
-          <!-- Dashed divider -->
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:24px 28px 0;">
-            <tr><td height="1" style="border-top:1.5px dashed #2A2748;"></td></tr>
-          </table>
-
-          <!-- Bottom row: date + pass number -->
-          <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:16px 28px 28px;">
+            <!-- Name + company + badge -->
             <tr>
-              <td valign="top" width="50%">
-                <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#52506A;letter-spacing:0.16em;text-transform:uppercase;">Date &amp; Venue</p>
-                <p style="margin:0;font-size:13px;font-weight:700;color:#F0EEF8;">25–26 Sept 2026</p>
-                <p style="margin:2px 0 0;font-size:12px;color:#9490AD;">Bangalore, India</p>
-              </td>
-              <td valign="top" width="50%" align="right">
-                <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#52506A;letter-spacing:0.16em;text-transform:uppercase;">Pass No.</p>
-                <p style="margin:0;font-family:monospace;font-size:13px;font-weight:700;color:${color};">${p.pass_number}</p>
+              <td style="padding:20px 28px 0;">
+                <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#9490AD;letter-spacing:0.2em;text-transform:uppercase;">The Great Product Festival 2026</p>
+                <p style="margin:0 0 5px;font-size:32px;font-weight:900;color:#ffffff;letter-spacing:-0.03em;line-height:1.1;">${p.to_name}</p>
+                ${p.company && p.company !== '—' ? `<p style="margin:0 0 16px;font-size:13px;color:#A78BFA;">${p.company}</p>` : '<p style="margin:0 0 16px;"></p>'}
+                <table cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="background:${color};border-radius:6px;padding:6px 18px;">
+                      <span style="font-family:monospace;font-size:10px;font-weight:700;color:#ffffff;letter-spacing:0.15em;text-transform:uppercase;">${p.pass_type.toUpperCase()}</span>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
+
+            <!-- Dashed divider -->
+            <tr>
+              <td style="padding:22px 28px 0;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr><td height="1" style="border-top:1px dashed #3D3B55;"></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Date + Pass No -->
+            <tr>
+              <td style="padding:16px 28px 28px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td valign="top">
+                      <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#52506A;letter-spacing:0.16em;text-transform:uppercase;">Date &amp; Venue</p>
+                      <p style="margin:0;font-size:13px;font-weight:700;color:#ffffff;">25–26 Sept 2026</p>
+                      <p style="margin:2px 0 0;font-size:12px;color:#9490AD;">Bangalore, India</p>
+                    </td>
+                    <td valign="top" align="right">
+                      <p style="margin:0 0 3px;font-family:monospace;font-size:9px;color:#52506A;letter-spacing:0.16em;text-transform:uppercase;">Pass No.</p>
+                      <p style="margin:0;font-family:monospace;font-size:13px;font-weight:700;color:#A78BFA;">${p.pass_number}</p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
           </table>
 
-          <!-- Bottom gradient bar -->
+          <!-- Bottom bar -->
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr><td height="4" style="background:linear-gradient(90deg,${color} 0%,#A78BFA 100%);opacity:0.5;"></td></tr>
+            <tr>
+              <td width="50%" height="5" style="background:${color};"></td>
+              <td width="50%" height="5" style="background:#A78BFA;"></td>
+            </tr>
           </table>
 
         </td>
