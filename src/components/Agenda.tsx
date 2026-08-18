@@ -218,6 +218,11 @@ function SessionCard({ session }: { session: Session }) {
   return (
     <div className="rounded-xl p-5 h-full flex flex-col"
       style={{ background: '#0A0817', border: '1px solid #1E1B35' }}>
+      {session.venue && (
+        <p className="font-mono text-[9px] uppercase tracking-widest mb-2.5" style={{ color: '#3A3852' }}>
+          {session.venue}
+        </p>
+      )}
       <TypeBadge type={session.type} />
       <h4 className="font-display font-semibold mt-3 leading-snug flex-1"
         style={{ fontSize: 'clamp(14px,1.5vw,17px)', color: '#ECEAF8', letterSpacing: '-0.02em' }}>
@@ -236,14 +241,6 @@ function SessionCard({ session }: { session: Session }) {
 function ScheduleDay({ label, date, slots }: { label: string; date: string; slots: Slot[] }) {
   return (
     <div>
-      <div className="flex items-center gap-4 mb-8">
-        <span className="font-display font-bold text-lg px-4 py-1.5 rounded-full"
-          style={{ background: '#7C3AED', color: '#fff' }}>
-          {label}
-        </span>
-        <span className="font-mono text-xs" style={{ color: '#52506A' }}>{date}</span>
-      </div>
-
       <div className="space-y-0">
         {slots.map((slot, i) => {
           const parallel = slot.sessions.length > 1
@@ -278,16 +275,8 @@ function ScheduleDay({ label, date, slots }: { label: string; date: string; slot
                     <p className="font-semibold text-sm" style={{ color: '#A78BFA' }}>{slot.milestone}</p>
                   </div>
                 ) : parallel ? (
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full"
-                        style={{ color: '#38BDF8', background: 'rgba(56,189,248,0.12)' }}>
-                        Parallel Sessions
-                      </span>
-                    </div>
-                    <div className={`grid gap-3 ${cols}`}>
-                      {slot.sessions.map((s, j) => <SessionCard key={j} session={s} />)}
-                    </div>
+                  <div className={`grid gap-3 ${cols}`}>
+                    {slot.sessions.map((s, j) => <SessionCard key={j} session={s} />)}
                   </div>
                 ) : (
                   <SessionCard session={slot.sessions[0]} />
