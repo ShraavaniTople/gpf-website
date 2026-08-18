@@ -275,8 +275,16 @@ function ScheduleDay({ label, date, slots }: { label: string; date: string; slot
                     <p className="font-semibold text-sm" style={{ color: '#A78BFA' }}>{slot.milestone}</p>
                   </div>
                 ) : parallel ? (
-                  <div className={`grid gap-3 ${cols}`}>
-                    {slot.sessions.map((s, j) => <SessionCard key={j} session={s} />)}
+                  <div>
+                    <div className="mb-4">
+                      <span className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full"
+                        style={{ color: '#38BDF8', background: 'rgba(56,189,248,0.12)' }}>
+                        Parallel Sessions
+                      </span>
+                    </div>
+                    <div className={`grid gap-3 ${cols}`}>
+                      {slot.sessions.map((s, j) => <SessionCard key={j} session={s} />)}
+                    </div>
                   </div>
                 ) : (
                   <SessionCard session={slot.sessions[0]} />
