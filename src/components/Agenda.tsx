@@ -218,11 +218,6 @@ function SessionCard({ session }: { session: Session }) {
   return (
     <div className="rounded-xl p-5 h-full flex flex-col"
       style={{ background: '#0A0817', border: '1px solid #1E1B35' }}>
-      {session.venue && (
-        <p className="font-mono text-[9px] uppercase tracking-widest mb-2.5" style={{ color: '#3A3852' }}>
-          {session.venue}
-        </p>
-      )}
       <TypeBadge type={session.type} />
       <h4 className="font-display font-semibold mt-3 leading-snug flex-1"
         style={{ fontSize: 'clamp(14px,1.5vw,17px)', color: '#ECEAF8', letterSpacing: '-0.02em' }}>
