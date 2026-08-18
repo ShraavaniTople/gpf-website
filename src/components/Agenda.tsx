@@ -289,9 +289,6 @@ function ScheduleDay({ label, date, slots }: { label: string; date: string; slot
                         style={{ color: '#38BDF8', background: 'rgba(56,189,248,0.12)' }}>
                         Parallel Sessions
                       </span>
-                      <span className="text-xs" style={{ color: '#52506A' }}>
-                        {slot.sessions.map(s => s.venue).filter(Boolean).join(' · ')}
-                      </span>
                     </div>
                     <div className={`grid gap-3 ${cols}`}>
                       {slot.sessions.map((s, j) => <SessionCard key={j} session={s} />)}
