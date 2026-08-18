@@ -241,6 +241,12 @@ function SessionCard({ session }: { session: Session }) {
 function ScheduleDay({ label, date, slots }: { label: string; date: string; slots: Slot[] }) {
   return (
     <div>
+      <div className="flex items-center gap-4 mb-8">
+        <span className="font-display font-bold text-lg px-4 py-1.5 rounded-full"
+          style={{ background: '#7C3AED', color: '#fff' }}>
+          {label}
+        </span>
+      </div>
       <div className="space-y-0">
         {slots.map((slot, i) => {
           const parallel = slot.sessions.length > 1
