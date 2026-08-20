@@ -92,10 +92,10 @@ function buildConfirmationHtml(p: {
                 <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Event</p>
                 <p style="margin:0;font-size:14px;color:#4B5563;line-height:1.6;">${p.event_date}<br/>${p.event_city} · 2 Days · 4 Tracks · 500+ Attendees</p>
               </td>
-              <td valign="top" align="right" style="padding-bottom:20px;">
+              ${p.amount && p.amount !== 'Complimentary' ? `<td valign="top" align="right" style="padding-bottom:20px;">
                 <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Amount Paid</p>
                 <p style="margin:0;font-size:24px;font-weight:800;color:#1a0a40;">₹${p.amount}</p>
-              </td>
+              </td>` : '<td></td>'}
             </tr>
           </table>
 

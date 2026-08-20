@@ -23,6 +23,7 @@ members = [
     { "first": "Sai Keerthana",   "last": "Srinivasan",  "company": "Docusign",                   "role": "Lead Product Designer",               "email": "ssai.keerthana@gmail.com",        "payment_id": "XCOMPWIP004" },
     # ADVANCE
     { "first": "Swati",           "last": "Sharma",      "company": "Ellucian India",              "role": "Senior Product Manager",              "email": "swati.sharma8621@gmail.com",      "payment_id": "XCOMPWIP005" },
+    { "first": "Nidhi",           "last": "Shreya",      "company": "",                            "role": "",                                    "email": "nidhishreya@gmail.com",           "payment_id": "XCOMPWIP006" },
 ]
 
 def send_pass(m: dict) -> bool:
