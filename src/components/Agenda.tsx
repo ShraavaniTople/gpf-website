@@ -72,7 +72,7 @@ const DAY1: Slot[] = [
       speakers: [
         { name: 'Minakshi', role: 'Moderator' },
         { name: 'Sree Dhar', role: 'Freshworks' },
-        { name: 'Seema', role: 'Databricks' },
+        { name: 'Seema', role: 'Director, Field Engineering, Databricks' },
         { name: 'Aditya', role: 'Salesforce' },
       ]},
     { type: 'workshop', venue: 'Toast Workshop Room', title: 'Agentic Product Building' },

@@ -41,7 +41,7 @@ const speakers: Speaker[] = [
   },
   {
     name: 'Seema Kumar',
-    title: 'Field Engineering, Databricks',
+    title: 'Director, Field Engineering, Databricks',
     linkedin: 'https://www.linkedin.com/in/seemapkumar/',
     photo: '/speaker-seema.png',
     objectPos: '50% 15%',
