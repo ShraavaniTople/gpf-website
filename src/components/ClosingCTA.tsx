@@ -32,7 +32,7 @@ export default function ClosingCTA({ onRegister, onSponsor, onSpeak }: Props) {
       <div ref={ref} className="sr relative z-10 max-w-4xl mx-auto text-center">
         {/* Label */}
         <p className="font-mono text-[11px] uppercase tracking-[.25em] mb-8" style={{ color: '#F59E0B' }}>
-          See You in Bangalore
+          See You at RMZ Ecoworld, Bangalore
         </p>
 
         {/* Headline */}

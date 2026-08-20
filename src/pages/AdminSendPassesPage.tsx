@@ -53,7 +53,7 @@ async function recordInWeb3Forms(m: typeof generalMembers[0], passNumber: string
         'Role':        m.role,
         'Company':     m.company,
         'Event Date':  '25–26 Sept 2026',
-        'Venue':       'Bangalore, India',
+        'Venue':       'RMZ Ecoworld, Bangalore',
       }),
     })
   } catch { /* silent */ }
@@ -75,7 +75,7 @@ async function sendGeneralPass(m: typeof generalMembers[0]): Promise<boolean> {
         payment_id:  'COMP-CORE-TEAM',
         pass_number: passNumber,
         event_date:  '25–26 Sept 2026',
-        event_city:  'Bangalore',
+        event_city:  'RMZ Ecoworld, Bangalore',
       }),
     })
     const data = await res.json()
@@ -102,7 +102,7 @@ async function sendPremiumPass(m: typeof premiumMembers[0]): Promise<boolean> {
         payment_id:  m.paymentId,
         pass_number: passNumber,
         event_date:  '25–26 Sept 2026',
-        event_city:  'Bangalore',
+        event_city:  'RMZ Ecoworld, Bangalore',
       }),
     })
     const data = await res.json()

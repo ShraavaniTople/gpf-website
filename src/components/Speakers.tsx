@@ -40,10 +40,10 @@ const speakers: Speaker[] = [
     objectPos: '50% 15%',
   },
   {
-    name: 'Tulasi Menon',
-    title: 'Head of Product AI Strategy, JSM, Atlassian',
-    linkedin: 'https://www.linkedin.com/in/tulasi-menon-08b5aa26/',
-    photo: '/speaker-tulasi.png',
+    name: 'Seema Kumar',
+    title: 'Field Engineering, Databricks',
+    linkedin: 'https://www.linkedin.com/in/seemapkumar/',
+    photo: '/speaker-seema.png',
     objectPos: '50% 15%',
   },
   {

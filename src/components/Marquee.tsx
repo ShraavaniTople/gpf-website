@@ -1,4 +1,4 @@
-const items = ['GPF 2026','Bangalore','25-26 Sept 2026','Women in Product India','Product Innovation','2 Days','500+ Attendees','World-class Speakers','Hackathon','Workshops','Leadership','Networking']
+const items = ['GPF 2026','RMZ Ecoworld, Bangalore','25-26 Sept 2026','Women in Product India','Product Innovation','2 Days','500+ Attendees','World-class Speakers','Hackathon','Workshops','Leadership','Networking']
 const all = [...items, ...items, ...items]
 
 export default function Marquee() {

@@ -65,7 +65,7 @@ async function sendConfirmationEmail(params: {
         payment_id:  params.paymentId,
         pass_number: params.passNumber,
         event_date:  '25-26 Sept 2026',
-        event_city:  'Bangalore',
+        event_city:  'RMZ Ecoworld, Bangalore',
       }),
     })
   } catch { /* email failure is silent — pass is shown on screen */ }
@@ -165,7 +165,7 @@ function PhysicalTicket({ name, company, tierName, amount, paymentId, passNumber
 
         {/* Bottom: location + date */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, fontWeight: 600, color: '#6B7280', letterSpacing: '0.07em', textTransform: 'uppercase', paddingTop: 14 }}>
-          <span>Bangalore, India</span>
+          <span>RMZ Ecoworld, Bangalore</span>
           <span style={{ color: tierColor, fontWeight: 900, fontSize: 13 }}>|</span>
           <span>25–26 Sept 2026</span>
         </div>
@@ -391,7 +391,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
             You're In! 🎉
           </h3>
           <p className="text-sm" style={{ color: '#6B7280' }}>
-            Your pass has been confirmed. See you in Bangalore!
+            Your pass has been confirmed. See you at RMZ Ecoworld, Bangalore!
           </p>
         </div>
 

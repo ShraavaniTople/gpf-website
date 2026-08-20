@@ -2,7 +2,7 @@ export const EVENT = {
   name: 'The Great Product Festival',
   short: 'TGPF 2026',
   dates: '25–26 Sept 2026',
-  city: 'Bangalore, India',
+  city: 'RMZ Ecoworld, Bangalore, India',
   theme: 'Infinite Builders',
   url: 'thegreatproductfestival.com',
   hashtag: '#TGPF2026',
@@ -59,7 +59,7 @@ export const ROLES: Role[] = [
     lockedDesign: 'editorial',
     captions: [
       `Proud community partner of ${EVENT.name} 2026 — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
-      `Our community is backing ${EVENT.name} 2026! Join us in Bangalore. ${EVENT.hashtag}`,
+      `Our community is backing ${EVENT.name} 2026! Join us at RMZ Ecoworld, Bangalore. ${EVENT.hashtag}`,
     ],
   },
 ]
