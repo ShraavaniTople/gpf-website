@@ -144,6 +144,41 @@ const speakers: Speaker[] = [
     photo: '/speaker-bhavik.png',
     objectPos: '50% 15%',
   },
+  {
+    name: 'Aditya Singh',
+    title: 'VP, Product & India Site Head, Salesforce',
+    linkedin: 'https://in.linkedin.com/in/aditya-singh-sfdc',
+    photo: '/speaker-aditya.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Anshuman Awasthi',
+    title: 'SVP, Mercedes-Benz Research & Development India',
+    linkedin: 'https://in.linkedin.com/in/anshumanawasthi',
+    photo: '/speaker-anshuman.jpg',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Mansi Jain',
+    title: 'COO, Glance',
+    linkedin: 'https://www.linkedin.com/in/mansi-jain-39b51728/',
+    photo: '/speaker-mansi.png',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Usha Rengaraju',
+    title: 'AI, NVIDIA',
+    linkedin: 'https://in.linkedin.com/in/usha-rengaraju-b570b7a2',
+    photo: '/speaker-usha.jpg',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Tanay Agrawal',
+    title: 'Director of AI & Platform, KronosX AI',
+    linkedin: 'https://www.linkedin.com/in/agrawaltanay/',
+    photo: '/speaker-tanay.jpg',
+    objectPos: '50% 15%',
+  },
 ]
 
 function useVis(delay = 0) {

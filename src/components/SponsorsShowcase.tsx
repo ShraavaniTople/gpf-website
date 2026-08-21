@@ -27,9 +27,24 @@ export default function SponsorsShowcase() {
 
         <div ref={bodyRef} className="sg flex flex-col gap-5 items-center">
 
-          {/* Presented by — Freshworks */}
+          {/* Presented by — WiP India */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Presented by</p>
+            <div
+              className="flex items-center justify-center rounded-2xl px-10 py-4"
+              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
+            >
+              <img
+                src="/wip-logo.png"
+                alt="Women in Product India"
+                style={{ height: 48, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+              />
+            </div>
+          </div>
+
+          {/* Powered by — Freshworks */}
+          <div className="flex flex-col items-center gap-2 w-full">
+            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Powered by</p>
             <div
               className="flex items-center justify-center rounded-2xl px-10 py-4"
               style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
@@ -43,9 +58,9 @@ export default function SponsorsShowcase() {
           </div>
 
 
-          {/* Co-presented by — Toast */}
+          {/* Co-powered by — Toast */}
           <div className="flex flex-col items-center gap-2 w-full">
-            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-presented by</p>
+            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-powered by</p>
             <div
               className="flex items-center justify-center rounded-2xl px-10 py-4"
               style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
