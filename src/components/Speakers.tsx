@@ -166,13 +166,6 @@ const speakers: Speaker[] = [
     objectPos: '50% 15%',
   },
   {
-    name: 'Usha Rengaraju',
-    title: 'Field CTO - AI & Generative AI, NVIDIA',
-    linkedin: 'https://in.linkedin.com/in/usha-rengaraju-b570b7a2',
-    photo: '/speaker-usha.jpg',
-    objectPos: '50% 15%',
-  },
-  {
     name: 'Tanay Agrawal',
     title: 'Director of AI & Platform, KronosX AI',
     linkedin: 'https://www.linkedin.com/in/agrawaltanay/',
