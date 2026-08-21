@@ -97,7 +97,7 @@ const DAY1: Slot[] = [
   { start: '15:30', end: '16:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Creator-led Growth' },
     { type: 'workshop', venue: 'Toast Hall', title: 'Evals for PMs',
-      speakers: [{ name: 'Tanay', role: 'Product Lead' }] },
+      speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI' }] },
   ]},
   { start: '16:20', end: '16:50', sessions: [
     { type: 'fireside', venue: 'Freshworks Hall', title: 'Fireside Chat' },
