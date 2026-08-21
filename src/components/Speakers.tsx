@@ -167,7 +167,7 @@ const speakers: Speaker[] = [
   },
   {
     name: 'Usha Rengaraju',
-    title: 'AI, NVIDIA',
+    title: 'Field CTO - AI & Generative AI, NVIDIA',
     linkedin: 'https://in.linkedin.com/in/usha-rengaraju-b570b7a2',
     photo: '/speaker-usha.jpg',
     objectPos: '50% 15%',
