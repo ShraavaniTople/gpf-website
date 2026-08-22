@@ -400,7 +400,7 @@ export default function Agenda() {
         {/* Full schedule */}
         <div ref={schedRef} className="sr">
           <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-8" style={{ color: '#7C3AED' }}>
-            Full Schedule
+            Full Schedule <span className="font-extrabold">(Tentative)</span>
           </p>
           {/* Day tabs */}
           <div className="flex gap-2 mb-10">
