@@ -85,7 +85,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
       </div>
 
       {/* ── CTAs in normal flow — never overlaps anything ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-6 pb-4 flex flex-col items-start gap-3">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-4 lg:-mt-32 flex flex-col items-start gap-3">
         <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>⚡ Limited passes – Grab yours now</p>
         <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
         <p className="text-sm" style={{ color: '#52506A' }}>
