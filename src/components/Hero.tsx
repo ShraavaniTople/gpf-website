@@ -78,15 +78,15 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
                 <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
               </div>
-              <div className="flex flex-wrap lg:flex-nowrap gap-2 items-center mt-6 mb-4">
+              <div className="flex flex-col items-start gap-3 mt-6 mb-2">
                 <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes</button>
+                <p className="text-sm" style={{ color: '#52506A' }}>
+                  Last few sponsor slots remaining &nbsp;
+                  <button onClick={onSponsor} className="font-semibold hover:opacity-75 transition-opacity" style={{ color: '#F59E0B' }}>
+                    Become a Sponsor &rarr;
+                  </button>
+                </p>
               </div>
-              <p className="text-sm" style={{ color: '#52506A' }}>
-                Priority sponsor slots are open &nbsp;
-                <button onClick={onSponsor} className="font-semibold hover:opacity-75 transition-opacity" style={{ color: '#F59E0B' }}>
-                  Become a Sponsor &rarr;
-                </button>
-              </p>
             </div>
           </div>
           </div>
