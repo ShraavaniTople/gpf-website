@@ -81,17 +81,21 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               <div className="flex flex-col items-start gap-3 mt-6 mb-2">
                 <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>⚡ Limited passes – Grab yours now</p>
                 <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
-                <p className="text-sm" style={{ color: '#52506A' }}>
-                  Last few sponsor slots remaining &nbsp;
-                  <button onClick={onSponsor} className="font-semibold hover:opacity-75 transition-opacity" style={{ color: '#F59E0B' }}>
-                    Become a Sponsor &rarr;
-                  </button>
-                </p>
               </div>
             </div>
           </div>
           </div>
         </div>
+      </div>
+
+      {/* Sponsor line — in normal flow so it never overlaps */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pb-4">
+        <p className="text-sm" style={{ color: '#52506A' }}>
+          Last few sponsor slots remaining &nbsp;
+          <button onClick={onSponsor} className="font-semibold hover:opacity-75 transition-opacity" style={{ color: '#F59E0B' }}>
+            Become a Sponsor &rarr;
+          </button>
+        </p>
       </div>
 
       {/* ── Film strip ── */}
