@@ -149,7 +149,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
         }
         .film-track:hover { animation-play-state: paused; }
         @media (max-width: 1023px) {
-          .hero-banner-wrap { min-height: 720px; }
+          .hero-banner-wrap { min-height: 460px; }
         }
       `}</style>
     </section>
