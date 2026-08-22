@@ -8,7 +8,7 @@ const faqs = [
   },
   {
     q: 'Is GPF only for women in product?',
-    a: "No. While it is a Women in Product India initiative, GPF is India's most inclusive product conference. We welcome professionals of all genders, career levels, and industries.",
+    a: "No, we welcome professionals of all genders, career levels, and industries. While it is a Women in Product India initiative, GPF is India's most inclusive product conference.",
   },
   {
     q: 'Do I need a pass to join the Hackathon?',
