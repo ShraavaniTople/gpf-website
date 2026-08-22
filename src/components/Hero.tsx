@@ -80,8 +80,6 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
               </div>
               <div className="flex flex-wrap lg:flex-nowrap gap-2 items-center mt-6 mb-4">
                 <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes</button>
-                <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Apply for Hackathon</a>
-                <button onClick={onCommunity} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Become a Community Partner</button>
               </div>
               <p className="text-sm" style={{ color: '#52506A' }}>
                 Priority sponsor slots are open &nbsp;
