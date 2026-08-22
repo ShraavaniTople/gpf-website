@@ -78,18 +78,16 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
                 <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
               </div>
-              <div className="flex flex-col items-start gap-3 mt-6 mb-2">
-                <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>⚡ Limited passes – Grab yours now</p>
-                <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
-              </div>
             </div>
           </div>
           </div>
         </div>
       </div>
 
-      {/* Sponsor line — in normal flow so it never overlaps */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pb-4">
+      {/* ── CTAs in normal flow — never overlaps anything ── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-6 pb-4 flex flex-col items-start gap-3">
+        <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>⚡ Limited passes – Grab yours now</p>
+        <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
         <p className="text-sm" style={{ color: '#52506A' }}>
           Last few sponsor slots remaining &nbsp;
           <button onClick={onSponsor} className="font-semibold hover:opacity-75 transition-opacity" style={{ color: '#F59E0B' }}>
