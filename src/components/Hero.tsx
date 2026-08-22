@@ -78,8 +78,15 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
                 <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
               </div>
-              <div className="flex flex-wrap lg:flex-nowrap gap-2 items-center mt-6 mb-4">
-                <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes</button>
+              <div className="flex flex-col items-start gap-2 mt-6 mb-4">
+                <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>⚡ Limited passes — grab yours now</p>
+                <button
+                  onClick={() => go('passes')}
+                  className="btn-purple whitespace-nowrap hero-cta-pulse"
+                  style={{ fontSize: '1.05rem', padding: '16px 40px', letterSpacing: '0.01em' }}
+                >
+                  Get Passes →
+                </button>
               </div>
               <p className="text-sm" style={{ color: '#52506A' }}>
                 Priority sponsor slots are open &nbsp;
