@@ -147,7 +147,7 @@ const speakers: Speaker[] = [
   {
     name: 'Aditya Singh',
     title: 'VP, Product & India Site Head, Salesforce',
-    linkedin: 'https://in.linkedin.com/in/aditya-singh-sfdc',
+    linkedin: 'https://www.linkedin.com/in/adityas76',
     photo: '/speaker-aditya.png',
     objectPos: '50% 15%',
   },

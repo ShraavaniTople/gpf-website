@@ -18,7 +18,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
   return (
     <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: '118px' }}>
       {/* Banner wrapper — banner image + text overlay bound to image area */}
-      <div className="relative hero-banner-wrap">
+      <div className="relative overflow-hidden hero-banner-wrap">
         <img src={heroBanner} alt="The Great Product Festival speakers"
           className="hidden lg:block"
           style={{ width: '100%', height: 'auto' }} />
@@ -46,11 +46,11 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             </div>
           </div>
 
-          {/* Title + CTAs — fills remaining height and centers vertically */}
+          {/* Title — fills remaining height and centers vertically */}
           <div className="flex-1 max-w-7xl mx-auto px-6 w-full pb-6 flex items-center">
             <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
             {/* Title */}
-            <h1 className="font-display font-extrabold leading-none mb-5"
+            <h1 className="font-display font-extrabold leading-none"
               style={{ fontSize: 'clamp(52px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
               {[
                 { text: 'The Great', cls: '',     delay: '0.1s' },
@@ -64,28 +64,27 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
                 </span>
               ))}
             </h1>
-
-            {/* Theme + Tagline + CTAs */}
-            <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
-              <div className="inline-flex items-center gap-4 mb-5 px-5 py-3 rounded-xl"
-                style={{ background: 'linear-gradient(135deg, rgba(124,58,237,.1) 0%, rgba(245,158,11,.05) 100%)', border: '1px solid rgba(124,58,237,.2)', backdropFilter: 'blur(8px)' }}>
-                <div className="flex flex-col gap-0.5">
-                  <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[.3em]" style={{ color: '#A78BFA' }}>Conference Theme</p>
-                  <p className="font-display font-extrabold text-base md:text-lg leading-tight" style={{ letterSpacing: '-0.03em', color: '#F0EEF8' }}>
-                    Infinite <span style={{ background: 'linear-gradient(90deg, #A78BFA, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Builders</span>
-                  </p>
-                </div>
-                <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
-                <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
-              </div>
-            </div>
           </div>
           </div>
         </div>
       </div>
 
-      {/* ── CTAs in normal flow — never overlaps anything ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-4 lg:-mt-32 flex flex-col items-start gap-3">
+      {/* ── Theme badge + CTAs in normal flow — never overlaps anything ── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-4 flex flex-col items-start gap-3">
+        {/* Theme badge */}
+        <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
+          <div className="inline-flex items-center gap-4 mb-2 px-5 py-3 rounded-xl"
+            style={{ background: 'linear-gradient(135deg, rgba(124,58,237,.1) 0%, rgba(245,158,11,.05) 100%)', border: '1px solid rgba(124,58,237,.2)', backdropFilter: 'blur(8px)' }}>
+            <div className="flex flex-col gap-0.5">
+              <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[.3em]" style={{ color: '#A78BFA' }}>Conference Theme</p>
+              <p className="font-display font-extrabold text-base md:text-lg leading-tight" style={{ letterSpacing: '-0.03em', color: '#F0EEF8' }}>
+                Infinite <span style={{ background: 'linear-gradient(90deg, #A78BFA, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Builders</span>
+              </p>
+            </div>
+            <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
+            <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
+          </div>
+        </div>
         <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>⚡ Limited passes – Grab yours now</p>
         <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
         <p className="text-sm" style={{ color: '#52506A' }}>
