@@ -46,8 +46,8 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             </div>
           </div>
 
-          {/* Title — fills remaining height and centers vertically */}
-          <div className="flex-1 max-w-7xl mx-auto px-6 w-full pb-6 flex items-center">
+          {/* Title — bottom-anchored on desktop so it sits flush above the badge+CTAs */}
+          <div className="flex-1 max-w-7xl mx-auto px-6 w-full pb-6 flex items-center lg:items-end">
             <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
             {/* Title */}
             <h1 className="font-display font-extrabold leading-none"
@@ -70,7 +70,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
       </div>
 
       {/* ── Theme badge + CTAs in normal flow — never overlaps anything ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-4 flex flex-col items-start gap-3">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-4 pb-4 lg:-mt-8 flex flex-col items-start gap-3">
         {/* Theme badge */}
         <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
           <div className="inline-flex items-center gap-4 mb-2 px-5 py-3 rounded-xl"
