@@ -201,7 +201,7 @@ function SessionCard({ session }: { session: Session }) {
   )
 }
 
-function ScheduleDay({ slots }: { label: string; date: string; slots: Slot[] }) {
+function ScheduleDay({ slots }: { slots: Slot[] }) {
   return (
     <div>
       <div className="space-y-0">
@@ -304,8 +304,8 @@ export default function Agenda() {
             ))}
           </div>
           {activeDay === 1
-            ? <ScheduleDay label="Day 1" date="25 Sept 2026" slots={DAY1} />
-            : <ScheduleDay label="Day 2" date="26 Sept 2026" slots={DAY2} />
+            ? <ScheduleDay slots={DAY1} />
+            : <ScheduleDay slots={DAY2} />
           }
         </div>
 

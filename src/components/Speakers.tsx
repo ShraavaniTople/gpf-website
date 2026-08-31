@@ -172,6 +172,13 @@ const speakers: Speaker[] = [
     photo: '/speaker-tanay.jpg',
     objectPos: '50% 15%',
   },
+  {
+    name: 'Usha Rengaraju',
+    title: 'AI Technologist, NVIDIA',
+    linkedin: 'https://www.linkedin.com/in/usha-rengaraju/',
+    photo: '/speaker-usha.jpg',
+    objectPos: '50% 15%',
+  },
 ]
 
 function useVis(delay = 0) {

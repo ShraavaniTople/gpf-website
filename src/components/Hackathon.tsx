@@ -16,66 +16,6 @@ const tracks = [
   'Track 3: AI-native Enterprise Agents',
 ]
 
-const prizes = [
-  {
-    name: 'Overall Winner',
-    cash: '₹40,000',
-    winners: '1 winner',
-    credits: [
-      { label: 'ElevenLabs', amount: '₹50,000 in credits' },
-      { label: 'Dodo Payments', amount: '₹4,70,000 in credits' },
-    ],
-    note: '',
-  },
-  {
-    name: 'Track 1 Winner',
-    cash: '₹20,000',
-    winners: '1 winner',
-    credits: [
-      { label: 'ElevenLabs', amount: '₹20,000 in credits' },
-      { label: 'Dodo Payments', amount: '₹2,30,000 in credits' },
-    ],
-    note: '',
-  },
-  {
-    name: 'Track 2 Winner',
-    cash: '₹20,000',
-    winners: '1 winner',
-    credits: [
-      { label: 'ElevenLabs', amount: '₹20,000 in credits' },
-      { label: 'Dodo Payments', amount: '₹2,30,000 in credits' },
-    ],
-    note: '',
-  },
-  {
-    name: 'Track 3 Winner',
-    cash: '₹20,000',
-    winners: '1 winner',
-    credits: [
-      { label: 'ElevenLabs', amount: '₹20,000 in credits' },
-      { label: 'Dodo Payments', amount: '₹2,30,000 in credits' },
-    ],
-    note: '',
-  },
-  {
-    name: 'Best Project on ElevenLabs',
-    cash: '',
-    winners: '1 winner',
-    credits: [
-      { label: 'ElevenLabs', amount: '₹80,000 in credits' },
-    ],
-    note: 'Can be combined with Track winner prize',
-  },
-  {
-    name: 'Top 20 Teams on Dodo Payments',
-    cash: '',
-    winners: '20 teams',
-    credits: [
-      { label: 'Dodo Payments', amount: '₹47,000 in credits per team' },
-    ],
-    note: '',
-  },
-]
 
 function useVis(delay = 0) {
   const ref = useRef<HTMLDivElement>(null)
