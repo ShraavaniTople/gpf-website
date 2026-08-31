@@ -128,7 +128,7 @@ const DAY2: Slot[] = [
 
   { start: '11:35', end: '12:05', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Voice AI Panel',
-      detail: 'Bolna · Deepgram · Superbryn · Vobiz' },
+      detail: 'Bolna · Murf.ai · Oneinbox · Superbryn · Vobiz' },
     { type: 'keynote', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World',
       speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India' }] },
   ]},
