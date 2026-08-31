@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Check, Tag, X, ArrowLeft, Shield, Download, Mail, Copy, ExternalLink } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
 
@@ -19,7 +19,7 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
 }
 
 // ─── Discount codes ───────────────────────────────────────────────────────────
-const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number }> = {
+const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number; minQty?: number }> = {
   WIPINDIA15: { label: 'WiP India member · 15% off', pct: 15 },
   PRODUCT25: { label: 'WiP India member · 25% off', pct: 25 },
   PRODOM: { label: '25% off', pct: 25 },
@@ -33,6 +33,8 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   FFDG25:     { label: 'FFDG Mumbai community · 25% off', pct: 25 },
   AIC25:      { label: 'AIC community · 25% off', pct: 25 },
   CN25:       { label: 'Coding Ninjas community · 25% off', pct: 25 },
+  // Group discount — 40% off, requires 3+ passes
+  GROUP40:    { label: 'Group discount · 40% off', pct: 40, minQty: 3 },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
@@ -300,29 +302,45 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   const tier = TIERS[tierName] || TIERS.General
 
   const [step, setStep] = useState<'details' | 'review'>('details')
+  const [qty, setQty] = useState(1)
   const [details, setDetails] = useState({ firstName: '', lastName: '', email: '', phone: '', company: '', linkedin: '', role: '' })
   const [codeInput, setCodeInput] = useState('')
-  const [applied, setApplied] = useState<{ code: string; label: string; pct?: number; fixed?: number } | null>(null)
+  const [applied, setApplied] = useState<{ code: string; label: string; pct?: number; fixed?: number; minQty?: number } | null>(null)
   const [codeErr, setCodeErr] = useState('')
   const [paying, setPaying] = useState(false)
   const [success, setSuccess] = useState(false)
   const [paymentId, setPaymentId] = useState('')
   const [emailSent, setEmailSent] = useState(false)
 
+  // Remove code if user reduces qty below the minimum required
+  useEffect(() => {
+    if (applied?.minQty && qty < applied.minQty) {
+      setApplied(null)
+      setCodeInput('')
+      setCodeErr(`Code removed — requires ${applied.minQty}+ passes.`)
+    }
+  }, [qty]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const baseTotal = tier.price * qty
   const discount = applied
     ? applied.fixed !== undefined
-      ? tier.price - applied.fixed
-      : Math.round(tier.price * (applied.pct || 0) / 100)
+      ? applied.fixed
+      : Math.round(baseTotal * (applied.pct || 0) / 100)
     : 0
-  const finalPrice = tier.price - discount
+  const finalPrice = baseTotal - discount
 
   const canProceed = details.firstName.trim() && details.lastName.trim() && details.email.trim() && details.phone.trim() && details.company.trim() && details.linkedin.trim() && details.role.trim()
 
   function applyCode() {
     const key = codeInput.trim().toUpperCase()
     const found = DISCOUNT_CODES[key]
-    if (found) { setApplied({ code: key, ...found }); setCodeErr('') }
-    else { setCodeErr('Invalid code. Please check and try again.'); setApplied(null) }
+    if (!found) { setCodeErr('Invalid code. Please check and try again.'); setApplied(null); return }
+    if (found.minQty && qty < found.minQty) {
+      setCodeErr(`This code is valid for ${found.minQty}+ passes. Please increase your quantity.`)
+      setApplied(null)
+      return
+    }
+    setApplied({ code: key, ...found }); setCodeErr('')
   }
 
   function removeCode() { setApplied(null); setCodeInput(''); setCodeErr('') }
@@ -342,9 +360,9 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       amount: finalPrice * 100,
       currency: 'INR',
       name: 'GPF 2026',
-      description: `${tierName} Pass | The Great Product Festival`,
+      description: `${tierName} Pass × ${qty} | The Great Product Festival`,
       prefill: { name: `${details.firstName} ${details.lastName}`, email: details.email, contact: details.phone },
-      notes: { pass_type: `${tierName} Pass`, company: details.company || '', role: details.role || '', linkedin: details.linkedin || '', discount_code: applied?.code || '', final_price: finalPrice },
+      notes: { pass_type: `${tierName} Pass`, quantity: qty, company: details.company || '', role: details.role || '', linkedin: details.linkedin || '', discount_code: applied?.code || '', final_price: finalPrice },
       theme: { color: '#7C3AED' },
       handler: async (response: { razorpay_payment_id: string }) => {
         const pid = response.razorpay_payment_id
@@ -490,8 +508,37 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
           </div>
           <div className="text-right">
             <p className="font-display font-extrabold text-xl" style={{ color: '#F0EEF8' }}>
-              &#8377;{tier.price.toLocaleString('en-IN')}
+              &#8377;{baseTotal.toLocaleString('en-IN')}
             </p>
+            {qty > 1 && (
+              <p className="text-xs" style={{ color: '#6B7280' }}>₹{tier.price.toLocaleString('en-IN')} × {qty}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Quantity selector */}
+        <div className="flex items-center justify-between px-5 py-4 rounded-2xl"
+          style={{ background: '#080618', border: '1px solid #1C1A32' }}>
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-widest mb-0.5" style={{ color: '#52506A' }}>Number of Passes</p>
+            <p className="text-xs" style={{ color: '#6B7280' }}>Each pass admits one person</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setQty(q => Math.max(1, q - 1))}
+              className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg transition-opacity hover:opacity-70"
+              style={{ background: '#1C1A32', color: '#F0EEF8' }}
+            >
+              −
+            </button>
+            <span className="font-display font-bold text-xl w-5 text-center" style={{ color: '#F0EEF8' }}>{qty}</span>
+            <button
+              onClick={() => setQty(q => Math.min(20, q + 1))}
+              className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg transition-opacity hover:opacity-70"
+              style={{ background: '#1C1A32', color: '#F0EEF8' }}
+            >
+              +
+            </button>
           </div>
         </div>
 
@@ -556,12 +603,14 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       <div className="rounded-2xl p-5 space-y-3" style={{ background: '#080618', border: '1px solid #1C1A32' }}>
         <p className="font-mono text-[10px] uppercase tracking-widest mb-3" style={{ color: '#52506A' }}>Order Summary</p>
         <div className="flex justify-between text-sm">
-          <span style={{ color: '#9490AD' }}>{tierName} Pass</span>
-          <span style={{ color: '#F0EEF8' }}>&#8377;{tier.price.toLocaleString('en-IN')}</span>
+          <span style={{ color: '#9490AD' }}>
+            {tierName} Pass{qty > 1 ? ` × ${qty}` : ''}
+          </span>
+          <span style={{ color: '#F0EEF8' }}>&#8377;{baseTotal.toLocaleString('en-IN')}</span>
         </div>
         {applied && (
           <div className="flex justify-between text-sm">
-            <span style={{ color: '#34D399' }}>{applied.label} ({applied.pct}% off)</span>
+            <span style={{ color: '#34D399' }}>{applied.label}</span>
             <span style={{ color: '#34D399' }}>- &#8377;{discount.toLocaleString('en-IN')}</span>
           </div>
         )}
