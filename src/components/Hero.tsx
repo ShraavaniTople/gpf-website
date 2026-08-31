@@ -79,7 +79,7 @@ export default function Hero({ onSponsor }: HeroProps) {
           <div className="max-w-7xl mx-auto w-full px-6 pt-6 flex-shrink-0 pointer-events-auto">
             {venueBadge}
           </div>
-          <div className="flex-1 max-w-7xl mx-auto px-6 w-full flex items-end pb-6">
+          <div className="flex-1 max-w-7xl mx-auto px-6 w-full flex items-center">
             <div className="w-[50%] pointer-events-auto">
               <h1 className="font-display font-extrabold leading-none"
                 style={{ fontSize: 'clamp(52px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
@@ -97,7 +97,7 @@ export default function Hero({ onSponsor }: HeroProps) {
       </div>
 
       {/* ── Theme badge + CTAs — desktop only, pulled up into banner ── */}
-      <div className="hidden lg:flex relative z-10 max-w-7xl mx-auto px-6 pt-5 pb-4 lg:-mt-8 flex-col items-start gap-3">
+      <div className="hidden lg:flex relative z-10 max-w-7xl mx-auto px-6 pt-5 pb-4 flex-col items-start gap-3">
         <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
           <div className="inline-flex items-center gap-4 px-5 py-3 rounded-xl"
             style={{ background: 'linear-gradient(135deg, rgba(124,58,237,.1) 0%, rgba(245,158,11,.05) 100%)', border: '1px solid rgba(124,58,237,.2)', backdropFilter: 'blur(8px)' }}>
