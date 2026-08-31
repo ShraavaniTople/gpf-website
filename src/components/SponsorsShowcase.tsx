@@ -74,6 +74,21 @@ export default function SponsorsShowcase() {
           </div>
 
 
+          {/* Associate partner — Databricks */}
+          <div className="flex flex-col items-center gap-2 w-full">
+            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Associate partner</p>
+            <div
+              className="flex items-center justify-center rounded-2xl px-10 py-4"
+              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
+            >
+              <img
+                src="/logos/databricks.png"
+                alt="Databricks"
+                style={{ height: 48, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+              />
+            </div>
+          </div>
+
           {/* Supported by — ElevenLabs + Dodo Payments */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
