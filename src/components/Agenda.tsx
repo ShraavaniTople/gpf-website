@@ -1,39 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 
-// ─── Thematic tracks ──────────────────────────────────────────────────────────
-const THEME_DAYS = [
-  {
-    label: 'Day 1', title: 'Building Intelligent Products',
-    tracks: [
-      { name: 'Product in the Intelligence Era', sessions: [
-        'Building products that think, learn, and act: agents, copilots, automation, and AI-native experiences.',
-        'From PM to Product Architect: navigating strategy, discovery, experimentation, and decision-making in the AI era.',
-        'Designing the future of human-AI collaboration: trust, workflows, interfaces, and responsible innovation.',
-      ]},
-      { name: 'Growth, Distribution & Digital Influence', sessions: [
-        'Winning attention in the age of infinite content: positioning, storytelling, and brand differentiation.',
-        'Modern distribution playbooks: creator ecosystems, communities, partnerships, and AI-powered growth.',
-        'Building trust at scale: turning audiences into advocates, customers, and loyal communities.',
-      ]},
-    ],
-  },
-  {
-    label: 'Day 2', title: 'Building Companies & Leaders',
-    tracks: [
-      { name: 'Infinite Startups', sessions: [
-        'Building AI-native companies from idea to scale: product, GTM, talent, and execution.',
-        'Creating durable advantages in a rapidly changing world: moats, defensibility, and market timing.',
-        'Founder, operator, and investor playbooks: lessons from building, backing, and scaling breakout companies.',
-      ]},
-      { name: 'Leading the Infinite Builders', sessions: [
-        'Leading humans and AI together: the evolving role of leadership, management, and decision-making.',
-        'Building high-performance organizations: talent, culture, and execution in fast-changing environments.',
-        'Thriving in the future of work: careers, skills, adaptability, and lifelong learning.',
-      ]},
-    ],
-  },
-]
-
 // ─── Schedule types & data ────────────────────────────────────────────────────
 type SType = 'registration' | 'opening' | 'keynote' | 'panel' | 'workshop'
            | 'fireside' | 'lightning' | 'lunch' | 'closing' | 'networking'
@@ -301,9 +267,7 @@ function ScheduleDay({ label, date, slots }: { label: string; date: string; slot
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function Agenda() {
   const headRef  = useVis()
-  const day1Ref  = useVis(80)
-  const day2Ref  = useVis(120)
-  const schedRef = useVis(160)
+  const schedRef = useVis(80)
   const [activeDay, setActiveDay] = useState<1 | 2>(1)
 
   return (
@@ -317,84 +281,6 @@ export default function Agenda() {
             style={{ fontSize: 'clamp(40px,6vw,80px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
             2 Days of Impact
           </h2>
-        </div>
-
-        {/* Thematic tracks Day 1 */}
-        <div ref={day1Ref} className="sr mb-16">
-          <div className="flex items-center gap-4 mb-4">
-            <span className="font-display font-bold text-lg px-4 py-1.5 rounded-full"
-              style={{ background: '#7C3AED', color: '#fff' }}>
-              {THEME_DAYS[0].label}
-            </span>
-            <p className="font-display font-semibold text-base"
-              style={{ color: '#52506A', letterSpacing: '-0.01em' }}>
-              {THEME_DAYS[0].title}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {THEME_DAYS[0].tracks.map((track, ti) => (
-              <div key={ti} className="rounded-2xl overflow-hidden"
-                style={{ background: '#080618', border: '1px solid #1C1A32' }}>
-                <div className="h-1" style={{ background: ti === 0 ? '#7C3AED' : '#F59E0B' }} />
-                <div className="p-8">
-                  <p className="font-mono text-[11px] uppercase tracking-[.18em] mb-3"
-                    style={{ color: ti === 0 ? '#A78BFA' : '#FCD34D' }}>Track {ti + 1}</p>
-                  <h3 className="font-display font-bold mb-7 leading-snug"
-                    style={{ fontSize: 'clamp(16px,2vw,22px)', color: '#F0EEF8', letterSpacing: '-0.02em' }}>
-                    {track.name}
-                  </h3>
-                  <ul className="space-y-3">
-                    {track.sessions.map((s, si) => (
-                      <li key={si} className="flex items-start gap-3">
-                        <span aria-hidden className="w-1 h-1 rounded-full mt-2.5 flex-shrink-0"
-                          style={{ background: ti === 0 ? '#7C3AED' : '#F59E0B' }} />
-                        <span className="text-sm leading-relaxed" style={{ color: '#6B7280' }}>{s}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Thematic tracks Day 2 */}
-        <div ref={day2Ref} className="sr mb-20">
-          <div className="flex items-center gap-4 mb-4">
-            <span className="font-display font-bold text-lg px-4 py-1.5 rounded-full"
-              style={{ background: '#7C3AED', color: '#fff' }}>
-              {THEME_DAYS[1].label}
-            </span>
-            <p className="font-display font-semibold text-base"
-              style={{ color: '#52506A', letterSpacing: '-0.01em' }}>
-              {THEME_DAYS[1].title}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {THEME_DAYS[1].tracks.map((track, ti) => (
-              <div key={ti} className="rounded-2xl overflow-hidden"
-                style={{ background: '#080618', border: '1px solid #1C1A32' }}>
-                <div className="h-1" style={{ background: ti === 0 ? '#7C3AED' : '#F59E0B' }} />
-                <div className="p-8">
-                  <p className="font-mono text-[11px] uppercase tracking-[.18em] mb-3"
-                    style={{ color: ti === 0 ? '#A78BFA' : '#FCD34D' }}>Track {ti + 3}</p>
-                  <h3 className="font-display font-bold mb-7 leading-snug"
-                    style={{ fontSize: 'clamp(16px,2vw,22px)', color: '#F0EEF8', letterSpacing: '-0.02em' }}>
-                    {track.name}
-                  </h3>
-                  <ul className="space-y-3">
-                    {track.sessions.map((s, si) => (
-                      <li key={si} className="flex items-start gap-3">
-                        <span aria-hidden className="w-1 h-1 rounded-full mt-2.5 flex-shrink-0"
-                          style={{ background: ti === 0 ? '#7C3AED' : '#F59E0B' }} />
-                        <span className="text-sm leading-relaxed" style={{ color: '#6B7280' }}>{s}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Full schedule */}
