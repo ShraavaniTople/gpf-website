@@ -46,8 +46,8 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             </div>
           </div>
 
-          {/* Title — bottom-anchored on desktop so it sits flush above the badge+CTAs */}
-          <div className="flex-1 max-w-7xl mx-auto px-6 w-full pb-6 flex items-center lg:items-end">
+          {/* Title — mobile: compensate for removed badge to keep original vertical position; desktop: bottom-anchor */}
+          <div className="flex-1 max-w-7xl mx-auto px-6 w-full flex items-center pb-24 lg:items-end lg:pb-6">
             <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
             {/* Title */}
             <h1 className="font-display font-extrabold leading-none"
