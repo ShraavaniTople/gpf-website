@@ -122,24 +122,20 @@ export default function Hackathon() {
             </h2>
           </div>
           {/* Right: partner logos */}
-          <div className="flex items-start gap-8 flex-shrink-0 flex-wrap">
-            <div className="flex flex-col gap-3">
-              <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Powered by</p>
-              <div style={{ width: 120, height: 36, display: 'flex', alignItems: 'center' }}>
-                <img src="/logos/freshworks-full.png" alt="Freshworks" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
-              </div>
-            </div>
-            <div className="hidden sm:block" style={{ width: 1, height: 60, background: '#1C1A32', flexShrink: 0, marginTop: 4 }} />
-            <div className="flex flex-col gap-3">
-              <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
-              <div className="flex items-center gap-4 flex-wrap" style={{ minHeight: 36 }}>
-                <div style={{ height: 36, display: 'flex', alignItems: 'center' }}>
-                  <img src="/logos/elevenlabs-crop.png" alt="ElevenLabs" style={{ width: 100, maxHeight: '100%', objectFit: 'contain' }} />
+          <div className="flex flex-col gap-3 flex-shrink-0">
+            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Hackathon Partners</p>
+            <div className="flex items-center gap-6 flex-wrap" style={{ minHeight: 36 }}>
+              {[
+                { src: '/logos/sarvam.png', alt: 'Sarvam', w: 90 },
+                { src: '/logos/anthropic.png', alt: 'Anthropic', w: 100 },
+                { src: '/logos/aws.png', alt: 'AWS', w: 56 },
+                { src: '/logos/dodopayments.png', alt: 'Dodo Payments', w: 100 },
+                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs', w: 100 },
+              ].map(({ src, alt, w }) => (
+                <div key={alt} style={{ height: 32, display: 'flex', alignItems: 'center' }}>
+                  <img src={src} alt={alt} style={{ width: w, maxHeight: '100%', objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.85 }} />
                 </div>
-                <div style={{ height: 36, display: 'flex', alignItems: 'center' }}>
-                  <img src="/logos/dodopayments.png" alt="Dodo Payments" style={{ width: 100, maxHeight: '100%', objectFit: 'contain' }} />
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
