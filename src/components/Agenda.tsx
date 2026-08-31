@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 // ─── Schedule types & data ────────────────────────────────────────────────────
 type SType = 'registration' | 'opening' | 'keynote' | 'panel' | 'workshop'
-           | 'fireside' | 'lightning' | 'lunch' | 'closing' | 'networking'
+           | 'fireside' | 'lightning' | 'expert' | 'lunch' | 'closing' | 'networking'
            | 'showcase' | 'roundtable' | 'hackathon'
 
 type Speaker = { name: string; role: string }
@@ -17,6 +17,7 @@ const ST: Record<SType, { label: string; color: string; bg: string }> = {
   workshop:     { label: 'Workshop',       color: '#34D399', bg: 'rgba(16,185,129,0.13)'  },
   fireside:     { label: 'Fireside Chat',  color: '#FCD34D', bg: 'rgba(245,158,11,0.13)'  },
   lightning:    { label: 'Lightning Talk', color: '#FB923C', bg: 'rgba(249,115,22,0.13)'  },
+  expert:       { label: 'Expert Session', color: '#2DD4BF', bg: 'rgba(20,184,166,0.13)'  },
   lunch:        { label: 'Lunch',          color: '#9CA3AF', bg: 'rgba(156,163,175,0.10)' },
   closing:      { label: 'Closing',        color: '#9CA3AF', bg: 'rgba(156,163,175,0.10)' },
   networking:   { label: 'Networking',     color: '#FB7185', bg: 'rgba(251,113,133,0.12)' },
@@ -56,7 +57,7 @@ const DAY1: Slot[] = [
   { start: '14:15', end: '14:35', sessions: [
     { type: 'keynote', venue: 'Toast Hall', title: 'From SaaS to Super Platforms: The Convergence of Software, Fintech & AI',
       speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast' }] },
-    { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks' },
+    { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)' },
     { type: 'workshop', venue: 'Workshop Room', title: 'Workshop: Build your first AI employee',
       speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI' }] },
   ]},
@@ -88,13 +89,13 @@ const DAY1: Slot[] = [
   { start: '16:20', end: '16:50', sessions: [
     { type: 'fireside', venue: 'Freshworks Hall', title: 'From Bet to Breakthrough: 20 Years of Product Lessons',
       speakers: [{ name: 'Lalitha Ramani', role: 'GM, Google Maps' }] },
-    { type: 'lightning', venue: 'Toast Hall', title: 'Generative Engine Optimization (GEO): How to Get Discovered by AI',
+    { type: 'expert', venue: 'Toast Hall', title: 'Generative Engine Optimization (GEO): How to Get Discovered by AI',
       speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone' }] },
   ]},
 
   { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 1 Close — Games & Engagement' }]},
 
-  { start: '18:30', end: '21:00', sessions: [{ type: 'networking', title: 'After Hours: Leadership Dinner' }]},
+  { start: '18:30', end: '21:00', sessions: [{ type: 'networking', title: 'After Hours: Leadership Dinner (Invite Only)' }]},
 ]
 
 const DAY2: Slot[] = [
