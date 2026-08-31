@@ -48,7 +48,7 @@ const DAY1: Slot[] = [
       ]},
   ]},
 
-  { start: '12:30', end: '13:00', sessions: [{ type: 'hackathon', title: 'The Great Indian Hackathon Kickoff' }]},
+  { start: '12:30', end: '13:00', sessions: [{ type: 'hackathon', title: 'The Great Agent Hackathon Kickoff' }]},
 
   { start: '13:00', sessions: [], milestone: 'BUILD BEGINS — 24-hour build sprint starts. Teams move to build rooms.' },
 
@@ -304,7 +304,7 @@ export default function Agenda() {
         {/* Full schedule */}
         <div ref={schedRef} className="sr">
           <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-8" style={{ color: '#7C3AED' }}>
-            Full Schedule <span className="font-extrabold">(Tentative)</span>
+            Full Schedule
           </p>
           {/* Day tabs */}
           <div className="flex gap-2 mb-10">
