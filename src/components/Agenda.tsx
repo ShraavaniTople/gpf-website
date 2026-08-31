@@ -26,106 +26,109 @@ const ST: Record<SType, { label: string; color: string; bg: string }> = {
 }
 
 const DAY1: Slot[] = [
-  { start: '9:00',  end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }]},
-  { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'Welcome & Opening Remarks',
-      speakers: [{ name: 'Swati', role: 'Founder, WIP India' }] }]},
-  { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Keynote',
-      speakers: [{ name: 'Murali', role: 'CTO, Freshworks' }] }]},
-  { start: '11:05', end: '11:40', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Keynote',
-      speakers: [{ name: 'Sangeeta', role: 'Anthropic' }] }]},
+  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }]},
+
+  { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'The Great Product Festival: Welcoming Infinite Builders',
+      speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India' }] }]},
+
+  { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'The New Rules of Building Products & Companies',
+      speakers: [{ name: 'Murali Swaminathan', role: 'CTO, Freshworks' }] }]},
+
+  { start: '11:05', end: '11:40', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Building at the Frontlines of AI by Anthropic',
+      speakers: [{ name: 'Sangeeta Bavi', role: 'Head, Anthropic India' }] }]},
+
   { start: '11:45', end: '12:30', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'The Future of Enterprise Agents',
       speakers: [
-        { name: 'Minakshi', role: 'Moderator' },
-        { name: 'Sree Dhar', role: 'Freshworks' },
-        { name: 'Seema', role: 'Director, Field Engineering, Databricks' },
-        { name: 'Aditya', role: 'Salesforce' },
+        { name: 'Minakshi Khuntia', role: 'Senior Director of Product, Freshworks · Moderator' },
+        { name: 'Sreedhar Gade', role: 'Head of AI & Data, Freshworks' },
+        { name: 'Seema Kumar', role: 'Director of Engineering, Databricks' },
+        { name: 'Aditya Singh', role: 'VP Product & India Site Head, Salesforce' },
       ]},
-    { type: 'workshop', venue: 'Toast Workshop Room', title: 'Agentic Product Building' },
   ]},
-  { start: '12:30', end: '13:00', sessions: [
-    { type: 'showcase', venue: 'Freshworks Hall', title: 'Platform & Partner Showcase',
-      detail: 'Agent Studio, MCP, partner toolkits' },
-    { type: 'hackathon', venue: 'Build Space', title: 'Hackathon Kickoff' },
-  ]},
-  { start: '13:00', sessions: [], milestone: 'BUILD BEGINS - 24-hour timer starts. Teams break to build rooms.' },
-  { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }]},
-  { start: '14:00', end: '14:35', sessions: [
-    { type: 'keynote', venue: 'Toast Hall', title: 'Session',
+
+  { start: '12:30', end: '13:00', sessions: [{ type: 'hackathon', title: 'The Great Indian Hackathon Kickoff' }]},
+
+  { start: '13:00', sessions: [], milestone: 'BUILD BEGINS — 24-hour build sprint starts. Teams move to build rooms.' },
+
+  { start: '13:00', end: '14:15', sessions: [{ type: 'lunch', title: 'Lunch' }]},
+
+  { start: '14:15', end: '14:35', sessions: [
+    { type: 'keynote', venue: 'Freshworks Hall', title: 'Generative Engine Optimization (GEO): How to Get Discovered by AI',
+      speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone' }] },
+    { type: 'keynote', venue: 'Toast Hall', title: 'From SaaS to Super Platforms: The Convergence of Software, Fintech & AI',
       speakers: [{ name: 'Rajat', role: 'Director of Product, Toast' }] },
-    { type: 'workshop', venue: 'Freshworks Hall', title: 'GEO Workshop' },
-    { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable' },
+    { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks' },
+    { type: 'workshop', venue: 'Workshop Room', title: 'Workshop: Build your first AI employee',
+      speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI' }] },
   ]},
+
   { start: '14:40', end: '15:25', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'Consumer Products & Agentic Commerce' },
-    { type: 'panel', venue: 'Toast Hall', title: 'Panel Discussion' },
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Win Attention, Earn Habit: The Art of Consumer Product',
+      speakers: [
+        { name: 'Dipika Jaikishan', role: 'VP, Special Projects, Pronto' },
+        { name: 'Shivalik Sen', role: 'Head of Product, Rapido' },
+        { name: 'Anuj Rathi', role: 'Founder & CEO, Profound.me' },
+      ]},
+    { type: 'panel', venue: 'Toast Hall', title: 'The New Distribution: Creators, Communities & Growth',
+      speakers: [
+        { name: 'Amrit Raj', role: 'CMO, WIP India & Founder, FMI' },
+        { name: 'Deeksha Anand', role: 'Senior PMM, Google' },
+        { name: 'Roopa Pious', role: 'Partnerships Manager, Meta' },
+      ]},
   ]},
+
   { start: '15:30', end: '16:15', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'Creator-led Growth' },
-    { type: 'workshop', venue: 'Toast Hall', title: 'Evals for PMs',
+    { type: 'keynote', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
+      speakers: [{ name: 'Mansi', role: 'COO, Glance' }] },
+    { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo by NVIDIA',
+      speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA' }] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'Workshop: AI Evals for Product Teams',
       speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI' }] },
   ]},
-  { start: '16:20', end: '16:50', sessions: [
-    { type: 'fireside', venue: 'Freshworks Hall', title: 'Fireside Chat' },
-    { type: 'lightning', venue: 'Toast Hall', title: 'Lightning Talks' },
-  ]},
-  { start: '16:50', end: '17:00', sessions: [{ type: 'closing', title: 'Closing Notes' }]},
-  { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 1 Close - Games & Engagement' }]},
-  { start: '18:30', end: '21:00', sessions: [{ type: 'networking', title: 'Leadership Dinner' }]},
+
+  { start: '16:20', end: '16:50', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'From Bet to Breakthrough: 20 Years of Product Lessons',
+      speakers: [{ name: 'Lalitha Ramani', role: 'GM, Google Maps' }] }]},
+
+  { start: '18:30', end: '21:00', sessions: [{ type: 'networking', title: 'After Hours: Leadership Dinner' }]},
 ]
 
 const DAY2: Slot[] = [
-  { start: '8:00',  end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }]},
-  { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Recap' }]},
-  { start: '10:20', end: '10:50', sessions: [
-    { type: 'keynote', venue: 'Freshworks Hall', title: 'Build for Bharat Keynote' },
-    { type: 'fireside', venue: 'Toast Hall', title: 'Fireside Chat',
-      speakers: [{ name: 'Neha', role: 'HerKey' }] },
+  { start: '08:00', end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }]},
+
+  { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Day 2 Kickoff' }]},
+
+  { start: '10:15', end: '10:45', sessions: [
+    { type: 'keynote', venue: 'Freshworks Hall', title: 'Build for Bharat: How AI is Being Built for the Next Billion by Sarvam' },
+    { type: 'panel', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging' },
   ]},
-  { start: '11:00', sessions: [], milestone: 'BUILD STOPS - Submissions frozen. Judging begins.' },
-  { start: '11:00', end: '11:30', sessions: [
+
+  { start: '10:45', end: '11:35', sessions: [
     { type: 'keynote', venue: 'Freshworks Hall', title: 'VC Keynote' },
-    { type: 'showcase', venue: 'Toast Hall', title: '2 Physical AI Demos' },
-    { type: 'workshop', venue: 'Workshop Room', title: 'GTM for Product Teams',
-      speakers: [{ name: 'Deeksha', role: 'Product Leader' }] },
+    { type: 'panel', venue: 'Toast Hall', title: 'Global Capability Centres (GCCs) as Product Innovation Hubs' },
   ]},
-  { start: '11:35', end: '12:05', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'GCCs as Product Innovation Hubs',
-      speakers: [
-        { name: 'Sheetal', role: '' }, { name: 'Roopa', role: '' },
-        { name: 'Abhishek', role: '' }, { name: 'Supriya', role: '' },
-      ]},
-    { type: 'keynote', venue: 'Toast Hall', title: 'Speaker Session' },
+
+  { start: '11:00', sessions: [], milestone: 'BUILD STOPS — Hackathon submissions frozen. Judging begins.' },
+
+  { start: '11:00', end: '11:35', sessions: [{ type: 'workshop', venue: 'Workshop Room', title: 'The Product Automation Lab: Build with n8n' }]},
+
+  { start: '11:35', end: '12:30', sessions: [
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Voice AI Panel',
+      detail: 'Bolna · Deepgram · Superbryn · Vobiz' },
+    { type: 'keynote', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World' },
   ]},
-  { start: '12:05', end: '12:20', sessions: [
-    { type: 'keynote', venue: 'Toast Hall', title: 'Leadership Session' },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown' },
-  ]},
-  { start: '12:25', end: '13:00', sessions: [
-    { type: 'keynote', venue: 'Freshworks Hall', title: 'Speaker Session',
-      speakers: [{ name: 'Pulkit', role: 'Vedantu' }] },
-  ]},
-  { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }]},
-  { start: '14:00', end: '15:00', sessions: [
-    { type: 'showcase', venue: 'Freshworks Hall', title: 'Hackathon - Main Stage Showcase',
-      detail: 'Top 4 finalists present their builds on the main stage' },
-    { type: 'showcase', venue: 'Toast Hall', title: '2-3 AI Product Demos' },
-    { type: 'workshop', venue: 'Workshop Rooms', title: 'Fundraising + VC Lab / Build Your Brand' },
-  ]},
-  { start: '15:00', end: '15:30', sessions: [
-    { type: 'showcase', venue: 'Freshworks Hall', title: 'Winners Announced & Award Ceremony' },
-    { type: 'keynote', venue: 'Toast Hall', title: 'Speaker Session' },
-  ]},
-  { start: '15:35', end: '16:15', sessions: [
+
+  { start: '13:00', end: '14:35', sessions: [{ type: 'lunch', title: 'Lunch' }]},
+
+  { start: '14:35', end: '15:20', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel' },
-    { type: 'panel', venue: 'Toast Hall', title: 'Voice AI Panel' },
+    { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets' },
   ]},
-  { start: '16:15', end: '16:50', sessions: [
-    { type: 'keynote', venue: 'Freshworks Hall', title: 'Speaker Session' },
-    { type: 'fireside', venue: 'Toast Hall', title: 'In Conversation' },
-  ]},
-  { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 2 Close' }]},
-  { start: '18:00', end: '20:00', sessions: [{ type: 'networking', title: 'Dinner Party - Team Celebration' }]},
+
+  { start: '15:20', end: '17:00', sessions: [{ type: 'showcase', venue: 'Freshworks Hall', title: 'The Great Agent Showcase',
+      detail: 'Hackathon finalists demo live in front of India\'s top product leaders. Winners announced on stage.' }]},
+
+  { start: '17:00', end: '18:00', sessions: [{ type: 'closing', title: 'TGPF Unplugged: Closing Jam Session' }]},
 ]
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -165,15 +168,9 @@ function SpeakerList({ speakers }: { speakers: Speaker[] }) {
   return (
     <div className="mt-4 pt-4 flex flex-col gap-2" style={{ borderTop: '1px solid #1C1A32' }}>
       {speakers.map((s, i) => (
-        <div key={i} className="flex items-start gap-2.5">
-          <div className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-bold mt-0.5"
-            style={{ background: 'rgba(124,58,237,0.25)', color: '#A78BFA' }}>
-            {s.name[0]}
-          </div>
-          <div>
-            <p className="text-[13px] font-semibold leading-tight" style={{ color: '#D4D0ED' }}>{s.name}</p>
-            {s.role && <p className="text-[11px]" style={{ color: '#52506A' }}>{s.role}</p>}
-          </div>
+        <div key={i}>
+          <p className="text-[13px] font-semibold leading-tight" style={{ color: '#D4D0ED' }}>{s.name}</p>
+          {s.role && <p className="text-[11px] mt-0.5" style={{ color: '#52506A' }}>{s.role}</p>}
         </div>
       ))}
     </div>
@@ -204,15 +201,17 @@ function SessionCard({ session }: { session: Session }) {
   )
 }
 
-function ScheduleDay({ label, date, slots }: { label: string; date: string; slots: Slot[] }) {
+function ScheduleDay({ slots }: { label: string; date: string; slots: Slot[] }) {
   return (
     <div>
       <div className="space-y-0">
         {slots.map((slot, i) => {
           const parallel = slot.sessions.length > 1
-          const cols = slot.sessions.length === 3
-            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-            : 'grid-cols-1 sm:grid-cols-2'
+          const cols = slot.sessions.length >= 4
+            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+            : slot.sessions.length === 3
+              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+              : 'grid-cols-1 sm:grid-cols-2'
 
           return (
             <div key={i} className="flex gap-6 sm:gap-10 py-6"
@@ -305,8 +304,8 @@ export default function Agenda() {
             ))}
           </div>
           {activeDay === 1
-            ? <ScheduleDay label="Day 1" date="" slots={DAY1} />
-            : <ScheduleDay label="Day 2" date="" slots={DAY2} />
+            ? <ScheduleDay label="Day 1" date="25 Sept 2026" slots={DAY1} />
+            : <ScheduleDay label="Day 2" date="26 Sept 2026" slots={DAY2} />
           }
         </div>
 
