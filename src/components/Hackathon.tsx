@@ -97,7 +97,7 @@ export default function Hackathon() {
             <div className="pt-8">
               <div className="mb-7 rounded-xl p-5" style={{ background: 'rgba(245,158,11,.06)', border: '1px solid rgba(245,158,11,.18)' }}>
                 <p className="font-mono text-[10px] uppercase tracking-[.22em] mb-3" style={{ color: '#F59E0B' }}>Prize Pool</p>
-                <div className="flex flex-col gap-1 mb-1">
+                <div className="flex flex-col gap-1 mb-4">
                   <div className="flex items-baseline gap-2">
                     <span className="font-display font-extrabold" style={{ fontSize: 'clamp(26px,3.5vw,36px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>₹1L</span>
                     <span className="text-sm" style={{ color: '#6B7280' }}>in cash</span>
@@ -106,6 +106,19 @@ export default function Hackathon() {
                     <span className="font-display font-extrabold" style={{ fontSize: 'clamp(26px,3.5vw,36px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>₹10L<span style={{ color: '#F59E0B' }}>+</span></span>
                     <span className="text-sm" style={{ color: '#6B7280' }}>in credits</span>
                   </div>
+                </div>
+                <div className="flex flex-col gap-2 pt-3" style={{ borderTop: '1px solid rgba(245,158,11,.15)' }}>
+                  <p className="font-mono text-[9px] uppercase tracking-[.18em] mb-1" style={{ color: '#52506A' }}>Breakdown</p>
+                  {[
+                    { partner: 'AWS',    prize: '$500 credits × 4 winning teams' },
+                    { partner: 'Sarvam', prize: '80,000 credits — best Sarvam track' },
+                    { partner: 'Sarvam', prize: '30,000 credits — overall winner' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-2">
+                      <span className="font-mono text-[10px] font-bold flex-shrink-0 mt-0.5" style={{ color: '#F59E0B', minWidth: 52 }}>{item.partner}</span>
+                      <span className="text-xs leading-relaxed" style={{ color: '#6B7280' }}>{item.prize}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
               <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm">Apply for Hackathon</a>
