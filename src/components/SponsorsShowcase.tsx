@@ -33,7 +33,7 @@ export default function SponsorsShowcase() {
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Presented by</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
-              <img src="/wip-logo.png" alt="Women in Product India"
+              <img src="/wip-logo.webp" alt="Women in Product India"
                 style={{ height: 72, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function SponsorsShowcase() {
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Powered by</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
-              <img src="/logos/freshworks-full.png" alt="Freshworks"
+              <img src="/logos/freshworks-full.webp" alt="Freshworks"
                 style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
@@ -51,7 +51,7 @@ export default function SponsorsShowcase() {
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-powered by</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
-              <img src="/logos/toast.png" alt="Toast"
+              <img src="/logos/toast.webp" alt="Toast"
                 style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function SponsorsShowcase() {
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Associate partner</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
-              <img src="/logos/databricks.png" alt="Databricks"
+              <img src="/logos/databricks.webp" alt="Databricks"
                 style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
@@ -70,8 +70,8 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
             <div className="flex flex-wrap items-center justify-center gap-4 w-full">
               {[
-                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs' },
-                { src: '/logos/dodopayments.png', alt: 'Dodo Payments' },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs' },
+                { src: '/logos/dodopayments.webp', alt: 'Dodo Payments' },
               ].map(({ src, alt }) => (
                 <div key={alt} className="flex items-center justify-center rounded-2xl px-10 py-5"
                   style={{ background: '#0E0C22', border: '1px solid #1C1A32', minWidth: 200, flex: '1 1 200px', maxWidth: 280 }}>

@@ -66,11 +66,11 @@ export default function Hackathon() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Hackathon Partners</p>
             <div className="flex items-center gap-8 flex-wrap" style={{ minHeight: 40 }}>
               {[
-                { src: '/logos/sarvam.png',          alt: 'Sarvam',        w: 110, f: undefined },
-                { src: '/logos/anthropic.png',       alt: 'Anthropic',     w: 120, f: 'invert(1)' },
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        w: 110, f: undefined },
+                { src: '/logos/anthropic.webp',       alt: 'Anthropic',     w: 120, f: 'invert(1)' },
                 { src: '/logos/aws.svg',             alt: 'AWS',           w: 80,  f: undefined },
-                { src: '/logos/dodopayments.png',    alt: 'Dodo Payments', w: 120, f: undefined },
-                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs',    w: 110, f: undefined },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', w: 120, f: undefined },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    w: 110, f: undefined },
               ].map(({ src, alt, w, f }) => (
                 <div key={alt} style={{ height: 40, display: 'flex', alignItems: 'center' }}>
                   <img src={src} alt={alt} style={{ width: w, maxHeight: '100%', objectFit: 'contain', opacity: 0.9, filter: f }} />
@@ -126,7 +126,7 @@ export default function Hackathon() {
             </div>
 
             <div ref={photoRef} className="rounded-2xl overflow-hidden" style={{ height: 'clamp(120px, 25vw, 200px)', position: 'relative' }}>
-              <img src="/photos/hackathon-people.jpg" alt="Hackathon team" style={{ height: '120%', width: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }} />
+              <img src="/photos/hackathon-people.webp" alt="Hackathon team" style={{ height: '120%', width: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }} />
               <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(13,11,31,.6) 0%, transparent 60%)' }} />
             </div>
           </div>

@@ -116,7 +116,7 @@ function PhysicalTicket({ name, company, tierName, amount, paymentId, passNumber
         {/* Top row: GPF logo only */}
         <div>
           <div style={{ marginBottom: 12 }}>
-            <img src="/gpf-logo.png" alt="The Great Product Festival" style={{ height: 34, width: 'auto', maxWidth: 120 }} />
+            <img src="/gpf-logo.webp" alt="The Great Product Festival" style={{ height: 34, width: 'auto', maxWidth: 120 }} />
           </div>
           <div style={{ height: 1, background: `${tierColor}15`, marginBottom: 14 }} />
         </div>
@@ -189,7 +189,7 @@ function PhysicalTicket({ name, company, tierName, amount, paymentId, passNumber
         gap: 0,
       }}>
         {/* WiP India logo — no label */}
-        <img src="/wip-logo.png" alt="WiP India" style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tierColor}25` }} />
+        <img src="/wip-logo.webp" alt="WiP India" style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${tierColor}25` }} />
 
         {/* QR code */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>

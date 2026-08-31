@@ -1,13 +1,13 @@
-import heroBanner from '../assets/hero-banner.jpg'
+import heroBanner from '../assets/hero-banner.webp'
 
 interface HeroProps { onSponsor: () => void; onCommunity: () => void }
 
 const filmPhotos = [
-  { src: './photos/group.jpg', alt: 'Women in Product India community group' },
-  { src: './photos/speaker1.jpg', alt: 'Speaker at Women in Product India event' },
-  { src: './photos/audience1.jpg', alt: 'Attendees at product conference' },
-  { src: './photos/speaker2.jpg', alt: 'Speaker on stage' },
-  { src: './photos/audience3.jpg', alt: 'Event audience' },
+  { src: './photos/group.webp', alt: 'Women in Product India community group' },
+  { src: './photos/speaker1.webp', alt: 'Speaker at Women in Product India event' },
+  { src: './photos/audience1.webp', alt: 'Attendees at product conference' },
+  { src: './photos/speaker2.webp', alt: 'Speaker on stage' },
+  { src: './photos/audience3.webp', alt: 'Event audience' },
 ]
 
 function go(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }

@@ -29,12 +29,13 @@ function useVis(delay = 0) {
 }
 
 function PartnerLogo({ name, slug, h = 40 }: { name: string; slug: string; h?: number }) {
-  const [tried, setTried] = useState<'png' | 'svg' | 'failed'>('png')
+  const [tried, setTried] = useState<'webp' | 'png' | 'svg' | 'failed'>('webp')
 
-  const src = tried === 'png' ? `/community/${slug}.png` : `/community/${slug}.svg`
+  const src = tried === 'webp' ? `/community/${slug}.webp` : tried === 'png' ? `/community/${slug}.png` : `/community/${slug}.svg`
 
   function handleError() {
-    if (tried === 'png') setTried('svg')
+    if (tried === 'webp') setTried('png')
+    else if (tried === 'png') setTried('svg')
     else setTried('failed')
   }
 
