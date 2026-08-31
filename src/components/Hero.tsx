@@ -67,56 +67,58 @@ export default function Hero({ onSponsor }: HeroProps) {
         </p>
       </div>
 
-      {/* ── DESKTOP hero — banner image with absolute text overlay ── */}
+      {/* ── DESKTOP hero — everything inside the banner image ── */}
       <div className="hidden lg:block relative overflow-hidden">
         <img src={heroBanner} alt="The Great Product Festival speakers" style={{ width: '100%', height: 'auto' }} />
         {/* Gradients */}
         <div aria-hidden className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 25%, rgba(5,4,12,.3) 50%, rgba(5,4,12,0) 70%)' }} />
         <div aria-hidden className="absolute inset-x-0 top-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,.5) 50%, transparent 100%)' }} />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to top, #05040C 0%, rgba(5,4,12,.5) 50%, transparent 100%)' }} />
-        {/* Text overlay — venue badge + title as one centered unit */}
-        <div className="absolute inset-0 z-20 pointer-events-none flex items-center">
-          <div className="max-w-7xl mx-auto w-full px-6 pointer-events-auto">
-            <div className="mb-3">{venueBadge}</div>
-            <div className="w-[50%]">
-              <h1 className="font-display font-extrabold leading-none"
-                style={{ fontSize: 'clamp(52px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
-                {titleLines.map(({ text, cls, delay }) => (
-                  <span key={text} className="block" style={{ overflow: 'hidden' }}>
-                    <span className={`block ${cls}`} style={{ color: cls ? undefined : '#F0EEF8', opacity: 0, transform: 'translateY(105%)', animation: `heroLine .9s cubic-bezier(0.16,1,0.3,1) ${delay} forwards` }}>
-                      {text}
+        <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '120px', background: 'linear-gradient(to top, #05040C 0%, rgba(5,4,12,.5) 60%, transparent 100%)' }} />
+        {/* Full overlay: venue badge + title (center) + CTAs (bottom) */}
+        <div className="absolute inset-0 z-20 pointer-events-none flex flex-col">
+          {/* Center block: badge + title */}
+          <div className="flex-1 flex items-center">
+            <div className="max-w-7xl mx-auto w-full px-6 pointer-events-auto">
+              <div className="mb-3">{venueBadge}</div>
+              <div className="w-[50%]">
+                <h1 className="font-display font-extrabold leading-none"
+                  style={{ fontSize: 'clamp(52px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
+                  {titleLines.map(({ text, cls, delay }) => (
+                    <span key={text} className="block" style={{ overflow: 'hidden' }}>
+                      <span className={`block ${cls}`} style={{ color: cls ? undefined : '#F0EEF8', opacity: 0, transform: 'translateY(105%)', animation: `heroLine .9s cubic-bezier(0.16,1,0.3,1) ${delay} forwards` }}>
+                        {text}
+                      </span>
                     </span>
-                  </span>
-                ))}
-              </h1>
+                  ))}
+                </h1>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ── Theme badge + CTAs — desktop only, pulled up into banner ── */}
-      <div className="hidden lg:flex relative z-10 max-w-7xl mx-auto px-6 pt-3 pb-4 flex-col items-start gap-3">
-        <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
-          <div className="inline-flex items-center gap-4 px-5 py-3 rounded-xl"
-            style={{ background: 'linear-gradient(135deg, rgba(124,58,237,.1) 0%, rgba(245,158,11,.05) 100%)', border: '1px solid rgba(124,58,237,.2)', backdropFilter: 'blur(8px)' }}>
-            <div className="flex flex-col gap-0.5">
-              <p className="font-mono text-[9px] md:text-[10px] uppercase tracking-[.3em]" style={{ color: '#A78BFA' }}>Conference Theme</p>
-              <p className="font-display font-extrabold text-base md:text-lg leading-tight" style={{ letterSpacing: '-0.03em', color: '#F0EEF8' }}>
-                Infinite <span style={{ background: 'linear-gradient(90deg, #A78BFA, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Builders</span>
-              </p>
+          {/* Bottom block: CTAs */}
+          <div className="max-w-7xl mx-auto w-full px-6 pb-7 pointer-events-auto flex flex-col items-start gap-2.5">
+            <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
+              <div className="inline-flex items-center gap-4 px-5 py-3 rounded-xl"
+                style={{ background: 'linear-gradient(135deg, rgba(124,58,237,.1) 0%, rgba(245,158,11,.05) 100%)', border: '1px solid rgba(124,58,237,.2)', backdropFilter: 'blur(8px)' }}>
+                <div className="flex flex-col gap-0.5">
+                  <p className="font-mono text-[9px] uppercase tracking-[.3em]" style={{ color: '#A78BFA' }}>Conference Theme</p>
+                  <p className="font-display font-extrabold text-base leading-tight" style={{ letterSpacing: '-0.03em', color: '#F0EEF8' }}>
+                    Infinite <span style={{ background: 'linear-gradient(90deg, #A78BFA, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Builders</span>
+                  </p>
+                </div>
+                <div className="w-[2px] h-8 rounded-full flex-shrink-0" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
+                <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
+              </div>
             </div>
-            <div className="w-[2px] h-8 rounded-full flex-shrink-0 hidden sm:block" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
-            <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight hidden sm:block" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
+            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>⚡ Limited passes – Grab yours now</p>
+            <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
+            <p className="text-sm" style={{ color: '#52506A' }}>
+              Last few sponsor slots remaining &nbsp;
+              <button onClick={onSponsor} className="font-semibold hover:opacity-75 transition-opacity" style={{ color: '#F59E0B' }}>
+                Become a Sponsor →
+              </button>
+            </p>
           </div>
         </div>
-        <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>⚡ Limited passes – Grab yours now</p>
-        <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
-        <p className="text-sm" style={{ color: '#52506A' }}>
-          Last few sponsor slots remaining &nbsp;
-          <button onClick={onSponsor} className="font-semibold hover:opacity-75 transition-opacity" style={{ color: '#F59E0B' }}>
-            Become a Sponsor &rarr;
-          </button>
-        </p>
       </div>
 
       {/* ── Film strip ── */}
