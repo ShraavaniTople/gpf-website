@@ -35,7 +35,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-baseline gap-1.5 mb-4">
-              <span className="font-display font-extrabold text-2xl" style={{ color: '#F0EEF8', letterSpacing: '-0.03em' }}>GPF</span>
+              <span className="font-display font-extrabold text-2xl" style={{ color: '#F0EEF8', letterSpacing: '-0.03em' }}>TGPF</span>
               <span className="font-mono text-sm font-medium" style={{ color: '#F59E0B' }}>2026</span>
             </div>
             <p className="font-display font-bold text-lg leading-snug mb-2" style={{ color: '#F0EEF8' }}>The Great Product Festival</p>
