@@ -54,10 +54,8 @@ const DAY1: Slot[] = [
   { start: '13:00', end: '14:15', sessions: [{ type: 'lunch', title: 'Lunch' }]},
 
   { start: '14:15', end: '14:35', sessions: [
-    { type: 'keynote', venue: 'Freshworks Hall', title: 'Generative Engine Optimization (GEO): How to Get Discovered by AI',
-      speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone' }] },
     { type: 'keynote', venue: 'Toast Hall', title: 'From SaaS to Super Platforms: The Convergence of Software, Fintech & AI',
-      speakers: [{ name: 'Rajat', role: 'Director of Product, Toast' }] },
+      speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast' }] },
     { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks' },
     { type: 'workshop', venue: 'Workshop Room', title: 'Workshop: Build your first AI employee',
       speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI' }] },
@@ -72,7 +70,7 @@ const DAY1: Slot[] = [
       ]},
     { type: 'panel', venue: 'Toast Hall', title: 'The New Distribution: Creators, Communities & Growth',
       speakers: [
-        { name: 'Amrit Raj', role: 'CMO, WIP India & Founder, FMI' },
+        { name: 'Amrit Raj', role: 'CMO, WiP India & Founder, FMI' },
         { name: 'Deeksha Anand', role: 'Senior PMM, Google' },
         { name: 'Roopa Pious', role: 'Partnerships Manager, Meta' },
       ]},
@@ -80,15 +78,21 @@ const DAY1: Slot[] = [
 
   { start: '15:30', end: '16:15', sessions: [
     { type: 'keynote', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
-      speakers: [{ name: 'Mansi', role: 'COO, Glance' }] },
+      speakers: [{ name: 'Mansi Jain', role: 'COO, Glance' }] },
     { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo by NVIDIA',
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA' }] },
     { type: 'workshop', venue: 'Workshop Room', title: 'Workshop: AI Evals for Product Teams',
       speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI' }] },
   ]},
 
-  { start: '16:20', end: '16:50', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'From Bet to Breakthrough: 20 Years of Product Lessons',
-      speakers: [{ name: 'Lalitha Ramani', role: 'GM, Google Maps' }] }]},
+  { start: '16:20', end: '16:50', sessions: [
+    { type: 'fireside', venue: 'Freshworks Hall', title: 'From Bet to Breakthrough: 20 Years of Product Lessons',
+      speakers: [{ name: 'Lalitha Ramani', role: 'GM, Google Maps' }] },
+    { type: 'lightning', venue: 'Toast Hall', title: 'Generative Engine Optimization (GEO): How to Get Discovered by AI',
+      speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone' }] },
+  ]},
+
+  { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 1 Close — Games & Engagement' }]},
 
   { start: '18:30', end: '21:00', sessions: [{ type: 'networking', title: 'After Hours: Leadership Dinner' }]},
 ]
@@ -100,32 +104,46 @@ const DAY2: Slot[] = [
 
   { start: '10:15', end: '10:45', sessions: [
     { type: 'keynote', venue: 'Freshworks Hall', title: 'Build for Bharat: How AI is Being Built for the Next Billion by Sarvam' },
-    { type: 'panel', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging' },
+    { type: 'fireside', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
+      speakers: [{ name: 'Neha Bagaria', role: 'Founder & CEO, HerKey' }] },
   ]},
 
-  { start: '10:45', end: '11:35', sessions: [
+  { start: '10:45', end: '11:30', sessions: [
     { type: 'keynote', venue: 'Freshworks Hall', title: 'VC Keynote' },
-    { type: 'panel', venue: 'Toast Hall', title: 'Global Capability Centres (GCCs) as Product Innovation Hubs' },
+    { type: 'panel', venue: 'Toast Hall', title: 'Global Capability Centres (GCCs) as Product Innovation Hubs',
+      speakers: [
+        { name: 'Sheetal Kale', role: 'MD, Head of DataArt India' },
+        { name: 'Roopa Jayaraman', role: 'Chief Product & Technology Officer, Odessa' },
+        { name: 'Abhishek Gupta', role: 'Partner & National Sector Leader, KPMG' },
+        { name: 'Supriya Rao', role: 'Managing Director, ClearRoute' },
+      ]},
+    { type: 'workshop', venue: 'Workshop Room', title: 'Workshop: GTM for Product Teams',
+      speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google' }] },
   ]},
 
   { start: '11:00', sessions: [], milestone: 'BUILD STOPS — Hackathon submissions frozen. Judging begins.' },
 
   { start: '11:00', end: '11:35', sessions: [{ type: 'workshop', venue: 'Workshop Room', title: 'The Product Automation Lab: Build with n8n' }]},
 
-  { start: '11:35', end: '12:30', sessions: [
+  { start: '11:35', end: '12:05', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Voice AI Panel',
       detail: 'Bolna · Deepgram · Superbryn · Vobiz' },
-    { type: 'keynote', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World' },
+    { type: 'keynote', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World',
+      speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India' }] },
   ]},
 
-  { start: '13:00', end: '14:35', sessions: [{ type: 'lunch', title: 'Lunch' }]},
+  { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }]},
 
   { start: '14:35', end: '15:20', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel' },
-    { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets' },
+    { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
+      speakers: [
+        { name: 'Bhavik Kaul', role: 'CPO, SuperMoney' },
+        { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu' },
+      ]},
   ]},
 
-  { start: '15:20', end: '17:00', sessions: [{ type: 'showcase', venue: 'Freshworks Hall', title: 'The Great Agent Showcase',
+  { start: '15:20', end: '16:20', sessions: [{ type: 'showcase', venue: 'Freshworks Hall', title: 'The Great Agent Showcase',
       detail: 'Hackathon finalists demo live in front of India\'s top product leaders. Winners announced on stage.' }]},
 
   { start: '17:00', end: '18:00', sessions: [{ type: 'closing', title: 'TGPF Unplugged: Closing Jam Session' }]},
