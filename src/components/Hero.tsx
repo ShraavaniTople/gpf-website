@@ -46,8 +46,8 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
             </div>
           </div>
 
-          {/* Title — mobile: compensate for removed badge to keep original vertical position; desktop: bottom-anchor */}
-          <div className="flex-1 max-w-7xl mx-auto px-6 w-full flex items-center pb-24 lg:items-end lg:pb-6">
+          {/* Title — mobile: top-anchored tight to venue badge; desktop: bottom-anchored flush above badge+CTAs */}
+          <div className="flex-1 max-w-7xl mx-auto px-6 w-full flex items-start pt-3 lg:items-end lg:pt-0 lg:pb-6">
             <div className="w-full lg:w-[50%] flex flex-col pointer-events-auto">
             {/* Title */}
             <h1 className="font-display font-extrabold leading-none"
@@ -148,7 +148,7 @@ export default function Hero({ onSponsor, onCommunity }: HeroProps) {
         }
         .film-track:hover { animation-play-state: paused; }
         @media (max-width: 1023px) {
-          .hero-banner-wrap { min-height: 460px; }
+          .hero-banner-wrap { min-height: 380px; }
         }
       `}</style>
     </section>
