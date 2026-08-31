@@ -13,6 +13,8 @@ function useVis(delay = 0) {
   return ref
 }
 
+const cardStyle = { background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }
+
 export default function SponsorsShowcase() {
   const headRef = useVis()
   const bodyRef = useVis(80)
@@ -30,62 +32,37 @@ export default function SponsorsShowcase() {
           {/* Presented by — WiP India */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Presented by</p>
-            <div
-              className="flex items-center justify-center rounded-2xl px-10 py-4"
-              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
-            >
-              <img
-                src="/wip-logo.png"
-                alt="Women in Product India"
-                style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
-              />
+            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
+              <img src="/wip-logo.png" alt="Women in Product India"
+                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
 
           {/* Powered by — Freshworks */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Powered by</p>
-            <div
-              className="flex items-center justify-center rounded-2xl px-10 py-4"
-              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
-            >
-              <img
-                src="/logos/freshworks-full.png"
-                alt="Freshworks"
-                style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
-              />
+            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
+              <img src="/logos/freshworks-full.png" alt="Freshworks"
+                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
-
 
           {/* Co-powered by — Toast */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-powered by</p>
-            <div
-              className="flex items-center justify-center rounded-2xl px-10 py-4"
-              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
-            >
-              <img
-                src="/logos/toast.png"
-                alt="Toast"
-                style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
-              />
+            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
+              <img src="/logos/toast.png" alt="Toast"
+                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
-
 
           {/* Associate partner — Databricks */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Associate partner</p>
-            <div
-              className="flex items-center justify-center rounded-2xl px-10 py-4"
-              style={{ background: '#FFFFFF', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
-            >
-              <img
-                src="/logos/databricks.png"
-                alt="Databricks"
-                style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
-              />
+            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
+              {/* mix-blend-mode: screen makes the dark logo background disappear into the dark card */}
+              <img src="/logos/databricks.png" alt="Databricks"
+                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain', mixBlendMode: 'screen' }} />
             </div>
           </div>
 
@@ -94,19 +71,13 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
             <div className="flex flex-wrap items-center justify-center gap-4 w-full">
               {[
-                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs', dark: true },
-                { src: '/logos/dodopayments.png', alt: 'Dodo Payments', dark: true },
-              ].map(({ src, alt, dark }) => (
-                <div
-                  key={alt}
-                  className="flex items-center justify-center rounded-2xl px-10 py-5"
-                  style={{ background: dark ? '#0E0C22' : '#FFFFFF', border: '1px solid #1C1A32', minWidth: 200, flex: '1 1 200px', maxWidth: 280 }}
-                >
-                  <img
-                    src={src}
-                    alt={alt}
-                    style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
-                  />
+                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs' },
+                { src: '/logos/dodopayments.png', alt: 'Dodo Payments' },
+              ].map(({ src, alt }) => (
+                <div key={alt} className="flex items-center justify-center rounded-2xl px-10 py-5"
+                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', minWidth: 200, flex: '1 1 200px', maxWidth: 280 }}>
+                  <img src={src} alt={alt}
+                    style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
                 </div>
               ))}
             </div>
