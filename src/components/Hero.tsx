@@ -32,11 +32,11 @@ export default function Hero({ onSponsor }: HeroProps) {
   return (
     <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: '118px' }}>
 
-      {/* ── MOBILE hero — pure normal flow, no absolute positioning, no gaps ── */}
+      {/* ── MOBILE hero — everything in one unified div, no inter-div gaps ── */}
       <div className="lg:hidden relative px-6 pt-5 pb-8"
         style={{ background: 'radial-gradient(120% 80% at 80% 20%, rgba(124,58,237,.3) 0%, transparent 55%), radial-gradient(90% 60% at 10% 90%, rgba(245,158,11,.15) 0%, transparent 55%)' }}>
         <div className="mb-4">{venueBadge}</div>
-        <h1 className="font-display font-extrabold leading-none"
+        <h1 className="font-display font-extrabold leading-none mb-5"
           style={{ fontSize: 'clamp(52px,13vw,80px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
           {titleLines.map(({ text, cls, delay }) => (
             <span key={text} className="block" style={{ overflow: 'hidden' }}>
@@ -46,6 +46,25 @@ export default function Hero({ onSponsor }: HeroProps) {
             </span>
           ))}
         </h1>
+        {/* Theme badge */}
+        <div className="mb-4" style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
+          <div className="inline-flex items-center gap-3 px-4 py-3 rounded-xl"
+            style={{ background: 'linear-gradient(135deg, rgba(124,58,237,.1) 0%, rgba(245,158,11,.05) 100%)', border: '1px solid rgba(124,58,237,.2)', backdropFilter: 'blur(8px)' }}>
+            <div className="flex flex-col gap-0.5">
+              <p className="font-mono text-[9px] uppercase tracking-[.3em]" style={{ color: '#A78BFA' }}>Conference Theme</p>
+              <p className="font-display font-extrabold text-base leading-tight" style={{ letterSpacing: '-0.03em', color: '#F0EEF8' }}>
+                Infinite <span style={{ background: 'linear-gradient(90deg, #A78BFA, #F59E0B)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Builders</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* CTAs */}
+        <p className="font-mono text-[10px] uppercase tracking-[.18em] mb-3" style={{ color: '#F59E0B' }}>⚡ Limited passes – Grab yours now</p>
+        <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap mb-3" style={{ padding: '10px 18px' }}>Get Passes →</button>
+        <p className="text-sm" style={{ color: '#52506A' }}>
+          Last few sponsor slots remaining &nbsp;
+          <button onClick={onSponsor} className="font-semibold hover:opacity-75 transition-opacity" style={{ color: '#F59E0B' }}>Become a Sponsor →</button>
+        </p>
       </div>
 
       {/* ── DESKTOP hero — banner image with absolute text overlay ── */}
@@ -77,8 +96,8 @@ export default function Hero({ onSponsor }: HeroProps) {
         </div>
       </div>
 
-      {/* ── Theme badge + CTAs — normal flow on both mobile and desktop ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-5 pb-4 lg:-mt-8 flex flex-col items-start gap-3">
+      {/* ── Theme badge + CTAs — desktop only, pulled up into banner ── */}
+      <div className="hidden lg:flex relative z-10 max-w-7xl mx-auto px-6 pt-5 pb-4 lg:-mt-8 flex-col items-start gap-3">
         <div style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
           <div className="inline-flex items-center gap-4 px-5 py-3 rounded-xl"
             style={{ background: 'linear-gradient(135deg, rgba(124,58,237,.1) 0%, rgba(245,158,11,.05) 100%)', border: '1px solid rgba(124,58,237,.2)', backdropFilter: 'blur(8px)' }}>
