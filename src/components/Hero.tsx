@@ -74,10 +74,10 @@ export default function Hero({ onSponsor }: HeroProps) {
         <div aria-hidden className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 25%, rgba(5,4,12,.3) 50%, rgba(5,4,12,0) 70%)' }} />
         <div aria-hidden className="absolute inset-x-0 top-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,.5) 50%, transparent 100%)' }} />
         <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to top, #05040C 0%, rgba(5,4,12,.5) 50%, transparent 100%)' }} />
-        {/* Text overlay — venue badge + title anchored together at bottom-left */}
-        <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-end">
-          <div className="max-w-7xl mx-auto w-full px-6 pb-8 pointer-events-auto">
-            <div className="mb-4">{venueBadge}</div>
+        {/* Text overlay — venue badge + title as one centered unit */}
+        <div className="absolute inset-0 z-20 pointer-events-none flex items-center">
+          <div className="max-w-7xl mx-auto w-full px-6 pointer-events-auto">
+            <div className="mb-3">{venueBadge}</div>
             <div className="w-[50%]">
               <h1 className="font-display font-extrabold leading-none"
                 style={{ fontSize: 'clamp(52px,8.5vw,128px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
