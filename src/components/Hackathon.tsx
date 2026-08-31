@@ -126,14 +126,14 @@ export default function Hackathon() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Hackathon Partners</p>
             <div className="flex items-center gap-8 flex-wrap" style={{ minHeight: 40 }}>
               {[
-                { src: '/logos/sarvam.png',        alt: 'Sarvam',        w: 110 },
-                { src: '/logos/anthropic.png',     alt: 'Anthropic',     w: 120 },
-                { src: '/logos/aws.png',           alt: 'AWS',           w: 72  },
-                { src: '/logos/dodopayments.png',  alt: 'Dodo Payments', w: 120 },
-                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs',  w: 110 },
-              ].map(({ src, alt, w }) => (
+                { src: '/logos/sarvam.png',          alt: 'Sarvam',        w: 110, f: undefined },
+                { src: '/logos/anthropic.png',       alt: 'Anthropic',     w: 120, f: 'invert(1)' },
+                { src: '/logos/aws.svg',             alt: 'AWS',           w: 80,  f: undefined },
+                { src: '/logos/dodopayments.png',    alt: 'Dodo Payments', w: 120, f: undefined },
+                { src: '/logos/elevenlabs-crop.png', alt: 'ElevenLabs',    w: 110, f: undefined },
+              ].map(({ src, alt, w, f }) => (
                 <div key={alt} style={{ height: 40, display: 'flex', alignItems: 'center' }}>
-                  <img src={src} alt={alt} style={{ width: w, maxHeight: '100%', objectFit: 'contain', opacity: 0.9 }} />
+                  <img src={src} alt={alt} style={{ width: w, maxHeight: '100%', objectFit: 'contain', opacity: 0.9, filter: f }} />
                 </div>
               ))}
             </div>

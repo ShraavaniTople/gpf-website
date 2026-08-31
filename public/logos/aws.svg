@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 65" fill="white">
+  <!-- aws text -->
+  <text x="75" y="38" font-family="Arial, sans-serif" font-size="42" font-weight="bold" text-anchor="middle" letter-spacing="-1">aws</text>
+  <!-- smile arrow -->
+  <path d="M 30 50 Q 75 68 120 50" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <polygon points="118,44 125,52 113,54" fill="white"/>
+</svg>
