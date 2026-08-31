@@ -34,7 +34,7 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Presented by</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
               <img src="/wip-logo.png" alt="Women in Product India"
-                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
+                style={{ height: 72, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
 
@@ -60,9 +60,8 @@ export default function SponsorsShowcase() {
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Associate partner</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
-              {/* mix-blend-mode: screen makes the dark logo background disappear into the dark card */}
               <img src="/logos/databricks.png" alt="Databricks"
-                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain', mixBlendMode: 'screen' }} />
+                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
 
