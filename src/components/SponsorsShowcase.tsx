@@ -37,7 +37,7 @@ export default function SponsorsShowcase() {
               <img
                 src="/wip-logo.png"
                 alt="Women in Product India"
-                style={{ height: 48, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+                style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
               />
             </div>
           </div>
@@ -52,7 +52,7 @@ export default function SponsorsShowcase() {
               <img
                 src="/logos/freshworks-full.png"
                 alt="Freshworks"
-                style={{ height: 48, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+                style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
               />
             </div>
           </div>
@@ -66,9 +66,9 @@ export default function SponsorsShowcase() {
               style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
             >
               <img
-                src="/logos/toast.svg"
+                src="/logos/toast.png"
                 alt="Toast"
-                style={{ height: 48, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+                style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
               />
             </div>
           </div>
@@ -79,12 +79,12 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Associate partner</p>
             <div
               className="flex items-center justify-center rounded-2xl px-10 py-4"
-              style={{ background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
+              style={{ background: '#FFFFFF', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }}
             >
               <img
                 src="/logos/databricks.png"
                 alt="Databricks"
-                style={{ height: 48, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+                style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
               />
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function SponsorsShowcase() {
                   <img
                     src={src}
                     alt={alt}
-                    style={{ height: 44, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+                    style={{ height: 36, width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
                   />
                 </div>
               ))}
