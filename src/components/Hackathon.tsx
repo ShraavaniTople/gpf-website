@@ -109,7 +109,7 @@ export default function Hackathon() {
                 </div>
               </div>
               <a href="https://the-great-agent-hackathon.devpost.com/" target="_blank" rel="noopener noreferrer" className="btn-purple text-sm">Apply for Hackathon</a>
-              <p className="text-xs mt-5" style={{ color: '#52506A', fontFamily: 'JetBrains Mono, monospace' }}>Registration closes on 25 August 2026.</p>
+              <p className="text-xs mt-5" style={{ color: '#52506A', fontFamily: 'JetBrains Mono, monospace' }}>Registrations closed. Shortlisting in progress.</p>
             </div>
           </div>
 

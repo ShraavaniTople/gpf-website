@@ -10,11 +10,11 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
   },
   Premium: {
     price: 9999,
-    features: ['Everything in General', 'Workshop Sessions', 'Hackathon Participation', 'Priority Seating'],
+    features: ['Everything in General', 'Workshops Worth ₹1–2 Lakhs', 'Priority Seating', '6 Months WiP India Advance Membership', 'Swag Kit'],
   },
   VIP: {
     price: 15999,
-    features: ['Everything in Premium', 'Founders Roundtables', 'VIP Networking Dinner'],
+    features: ['Everything in Premium', 'Founders Roundtables', 'VIP Networking Dinner', '1 Year WiP India Advance Membership', 'Swag Kit'],
   },
 }
 
