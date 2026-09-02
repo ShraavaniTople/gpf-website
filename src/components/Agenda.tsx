@@ -147,7 +147,7 @@ const DAY2: Slot[] = [
 
   { start: '12:05', end: '12:20', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'The Future of Data Centers',
-      speakers: [{ name: 'Rekha Poosala', role: '' }] },
+      speakers: [{ name: 'Rekha Poosala', role: 'Engineering Leader, Dell' }] },
     { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown' },
   ] },
 
