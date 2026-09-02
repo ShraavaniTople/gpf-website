@@ -51,7 +51,7 @@ const DAY1: Slot[] = [
 
   { start: '12:15', end: '12:45', sessions: [
     { type: 'showcase', venue: 'Freshworks Hall', title: 'Platform & Partner Showcase — Agent Studio, MCP & Partner Toolkits' },
-    { type: 'hackathon', title: 'Hackathon Briefing — Tracks, Rubric & Logistics' },
+    { type: 'hackathon', title: 'Hackathon Kickoff — Tracks, Rubric & Logistics' },
   ] },
 
   { start: '13:00', sessions: [], milestone: 'BUILD BEGINS — 24-hour build sprint starts. Hackathon teams move to build rooms.' },
@@ -59,10 +59,10 @@ const DAY1: Slot[] = [
   { start: '13:15', end: '14:15', sessions: [{ type: 'lunch', title: 'Lunch' }] },
 
   { start: '14:15', end: '14:45', sessions: [
-    { type: 'keynote', venue: 'Toast Hall', title: 'From SaaS to Super Platforms: The Convergence of Software, Fintech & AI',
+    { type: 'keynote', venue: 'Toast Hall', title: 'Leveraging AI for Product Development',
       speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast' }] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Build Your First AI Employee',
-      speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI' }] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'GTM for Product Teams',
+      speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google Play' }] },
     { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)' },
   ] },
 
@@ -73,7 +73,7 @@ const DAY1: Slot[] = [
         { name: 'Shivalik Sen', role: 'Associate Director of Product, Rapido' },
         { name: 'Dipika Jaikishan', role: 'VP Special Projects, Pronto' },
       ] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'GEO: How to Get Discovered by AI',
+    { type: 'expert', venue: 'Toast Hall', title: 'GEO: How AI Search Is Rewriting Martech',
       speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone' }] },
   ] },
 
@@ -126,11 +126,9 @@ const DAY2: Slot[] = [
         { name: 'Abhishek Gupta', role: 'Partner & National Sector Leader, KPMG' },
         { name: 'Supriya Rao', role: 'Managing Director, ClearRoute' },
       ] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'GTM for Product Teams',
-      speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google Play' }] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'Build Your First AI Employee',
+      speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI' }] },
   ] },
-
-  { start: '11:00', sessions: [], milestone: 'BUILD STOPS — Hackathon submissions frozen. Judges begin evaluation.' },
 
   { start: '11:00', end: '11:30', sessions: [
     { type: 'workshop', venue: 'Toast Hall', title: 'Product Automation Lab: Build with n8n' },
@@ -146,8 +144,7 @@ const DAY2: Slot[] = [
   { start: '12:05', end: '12:20', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'The Future of Data Centers',
       speakers: [{ name: 'Rekha Poosala', role: '' }] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown',
-      speakers: [{ name: 'Adithi Sampath', role: '' }] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown' },
   ] },
 
   { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }] },
@@ -162,16 +159,17 @@ const DAY2: Slot[] = [
   { start: '14:35', end: '15:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital' }] },
-    { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
+    { type: 'expert', venue: 'Toast Hall', title: 'PLG: Growth in High-Trust Markets',
       speakers: [
         { name: 'Bhavik Kaul', role: 'CPO, SuperMoney' },
         { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu' },
+        { name: 'Ira', role: 'EvenHealth' },
       ] },
   ] },
 
   { start: '15:20', end: '15:50', sessions: [
     { type: 'hackathon', venue: 'Freshworks Hall', title: 'Hackathon Finalists Present — Top 4 Teams' },
-    { type: 'keynote', venue: 'Toast Hall', title: 'Product Insights from eBay',
+    { type: 'expert', venue: 'Toast Hall', title: 'Product Insights from eBay',
       speakers: [{ name: 'Dharam', role: 'eBay' }] },
   ] },
 
