@@ -132,6 +132,10 @@ const DAY2: Slot[] = [
 
   { start: '11:00', sessions: [], milestone: 'BUILD STOPS — Hackathon submissions frozen. Judges begin evaluation.' },
 
+  { start: '11:00', end: '11:30', sessions: [
+    { type: 'workshop', venue: 'Toast Hall', title: 'Product Automation Lab: Build with n8n' },
+  ] },
+
   { start: '11:35', end: '12:05', sessions: [
     { type: 'expert', venue: 'Freshworks Hall', title: 'Demystifying AI Neo Cloud',
       speakers: [{ name: 'Prashant Pandey', role: 'Global Head, Neysa' }] },
@@ -139,11 +143,19 @@ const DAY2: Slot[] = [
       speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India' }] },
   ] },
 
+  { start: '12:05', end: '12:20', sessions: [
+    { type: 'expert', venue: 'Toast Hall', title: 'The Future of Data Centers',
+      speakers: [{ name: 'Rekha Poosala', role: '' }] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown',
+      speakers: [{ name: 'Adithi Sampath', role: '' }] },
+  ] },
+
   { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }] },
 
   { start: '14:00', end: '14:30', sessions: [
     { type: 'workshop', venue: 'Workshop Room', title: 'Fundraising + VC Lab',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital' }] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'Build Your Brand' },
     { type: 'roundtable', venue: 'Bay Leaf', title: 'CXO Roundtable (Invite Only)' },
   ] },
 
@@ -159,6 +171,8 @@ const DAY2: Slot[] = [
 
   { start: '15:20', end: '15:50', sessions: [
     { type: 'hackathon', venue: 'Freshworks Hall', title: 'Hackathon Finalists Present — Top 4 Teams' },
+    { type: 'keynote', venue: 'Toast Hall', title: 'Product Insights from eBay',
+      speakers: [{ name: 'Dharam', role: 'eBay' }] },
   ] },
 
   { start: '16:00', end: '16:20', sessions: [
@@ -184,7 +198,6 @@ const FILTERS: { key: FilterKey; label: string }[] = [
   { key: 'showcase',   label: 'Showcase' },
   { key: 'hackathon',  label: 'Hackathon' },
   { key: 'roundtable', label: 'Roundtable' },
-  { key: 'networking', label: 'Networking' },
 ]
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
