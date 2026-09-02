@@ -171,6 +171,22 @@ const DAY2: Slot[] = [
   { start: '18:00', end: '20:00', sessions: [{ type: 'networking', title: 'Dinner Party — Team Celebration' }] },
 ]
 
+// ─── Filter config ────────────────────────────────────────────────────────────
+type FilterKey = SType | 'all'
+
+const FILTERS: { key: FilterKey; label: string }[] = [
+  { key: 'all',        label: 'All Sessions' },
+  { key: 'keynote',    label: 'Keynote' },
+  { key: 'panel',      label: 'Panel' },
+  { key: 'fireside',   label: 'Fireside' },
+  { key: 'expert',     label: 'Expert Session' },
+  { key: 'workshop',   label: 'Workshop' },
+  { key: 'showcase',   label: 'Showcase' },
+  { key: 'hackathon',  label: 'Hackathon' },
+  { key: 'roundtable', label: 'Roundtable' },
+  { key: 'networking', label: 'Networking' },
+]
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function useVis(delay = 0) {
   const ref = useRef<HTMLDivElement>(null)
@@ -241,64 +257,78 @@ function SessionCard({ session }: { session: Session }) {
   )
 }
 
-function ScheduleDay({ slots }: { slots: Slot[] }) {
-  return (
-    <div>
-      <div className="space-y-0">
-        {slots.map((slot, i) => {
-          const parallel = slot.sessions.length > 1
-          const cols = slot.sessions.length >= 4
-            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-            : slot.sessions.length === 3
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-              : 'grid-cols-1 sm:grid-cols-2'
+function ScheduleDay({ slots, filter }: { slots: Slot[]; filter: FilterKey }) {
+  const visible = filter === 'all'
+    ? slots
+    : slots.flatMap(slot => {
+        if (slot.milestone) return [slot]
+        const matched = slot.sessions.filter(s => s.type === filter)
+        return matched.length > 0 ? [{ ...slot, sessions: matched }] : []
+      })
 
-          return (
-            <div key={i} className="flex gap-6 sm:gap-10 py-6"
-              style={{ borderBottom: '1px solid #12101E' }}>
-
-              {/* Time column */}
-              <div className="w-20 sm:w-28 flex-shrink-0 pt-0.5">
-                <p className="font-mono text-sm font-bold leading-none" style={{ color: '#A78BFA' }}>
-                  {fmt(slot.start)}
-                </p>
-                {slot.end && (
-                  <>
-                    <p className="font-mono text-[10px] mt-1" style={{ color: '#3A3852' }}>to</p>
-                    <p className="font-mono text-[11px] mt-0.5" style={{ color: '#52506A' }}>
-                      {fmt(slot.end)}
-                    </p>
-                  </>
-                )}
-              </div>
-
-              {/* Content */}
-              <div className="flex-1 min-w-0">
-                {slot.milestone ? (
-                  <div className="rounded-xl px-5 py-3"
-                    style={{ background: 'rgba(124,58,237,0.12)', border: '1px dashed rgba(124,58,237,0.4)' }}>
-                    <p className="font-semibold text-sm" style={{ color: '#A78BFA' }}>{slot.milestone}</p>
-                  </div>
-                ) : parallel ? (
-                  <div>
-                    <div className="mb-4">
-                      <span className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full"
-                        style={{ color: '#38BDF8', background: 'rgba(56,189,248,0.12)' }}>
-                        Parallel Sessions
-                      </span>
-                    </div>
-                    <div className={`grid gap-3 ${cols}`}>
-                      {slot.sessions.map((s, j) => <SessionCard key={j} session={s} />)}
-                    </div>
-                  </div>
-                ) : (
-                  <SessionCard session={slot.sessions[0]} />
-                )}
-              </div>
-            </div>
-          )
-        })}
+  if (visible.length === 0) {
+    return (
+      <div className="py-20 text-center">
+        <p className="text-base" style={{ color: '#52506A' }}>No sessions of this type today.</p>
       </div>
+    )
+  }
+
+  return (
+    <div className="space-y-0">
+      {visible.map((slot, i) => {
+        const parallel = slot.sessions.length > 1
+        const cols = slot.sessions.length >= 4
+          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+          : slot.sessions.length === 3
+            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+            : 'grid-cols-1 sm:grid-cols-2'
+
+        return (
+          <div key={i} className="flex gap-6 sm:gap-10 py-6"
+            style={{ borderBottom: '1px solid #12101E' }}>
+
+            {/* Time column */}
+            <div className="w-20 sm:w-28 flex-shrink-0 pt-0.5">
+              <p className="font-mono text-sm font-bold leading-none" style={{ color: '#A78BFA' }}>
+                {fmt(slot.start)}
+              </p>
+              {slot.end && (
+                <>
+                  <p className="font-mono text-[10px] mt-1" style={{ color: '#3A3852' }}>to</p>
+                  <p className="font-mono text-[11px] mt-0.5" style={{ color: '#52506A' }}>
+                    {fmt(slot.end)}
+                  </p>
+                </>
+              )}
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              {slot.milestone ? (
+                <div className="rounded-xl px-5 py-3"
+                  style={{ background: 'rgba(124,58,237,0.12)', border: '1px dashed rgba(124,58,237,0.4)' }}>
+                  <p className="font-semibold text-sm" style={{ color: '#A78BFA' }}>{slot.milestone}</p>
+                </div>
+              ) : parallel ? (
+                <div>
+                  <div className="mb-4">
+                    <span className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full"
+                      style={{ color: '#38BDF8', background: 'rgba(56,189,248,0.12)' }}>
+                      Parallel Sessions
+                    </span>
+                  </div>
+                  <div className={`grid gap-3 ${cols}`}>
+                    {slot.sessions.map((s, j) => <SessionCard key={j} session={s} />)}
+                  </div>
+                </div>
+              ) : (
+                <SessionCard session={slot.sessions[0]} />
+              )}
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -308,6 +338,7 @@ export default function Agenda() {
   const headRef  = useVis()
   const schedRef = useVis(80)
   const [activeDay, setActiveDay] = useState<1 | 2>(1)
+  const [activeFilter, setActiveFilter] = useState<FilterKey>('all')
 
   return (
     <section id="agenda" className="relative py-28 px-6 overflow-hidden">
@@ -322,13 +353,13 @@ export default function Agenda() {
           </h2>
         </div>
 
-        {/* Full schedule */}
         <div ref={schedRef} className="sr">
           <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-8" style={{ color: '#7C3AED' }}>
             Full Schedule
           </p>
+
           {/* Day tabs */}
-          <div className="flex gap-2 mb-10">
+          <div className="flex gap-2 mb-8">
             {([1, 2] as const).map(d => (
               <button
                 key={d}
@@ -339,13 +370,38 @@ export default function Agenda() {
                   : { background: 'transparent', color: '#52506A', border: '1px solid #1C1A32' }
                 }
               >
-                Day {d}
+                Day {d} — {d === 1 ? '25 Sep' : '26 Sep'}
               </button>
             ))}
           </div>
+
+          {/* Filter pills */}
+          <div className="flex gap-2 mb-10 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
+            {FILTERS.map(f => {
+              const isActive = activeFilter === f.key
+              const typeStyle = f.key !== 'all' ? ST[f.key as SType] : null
+              return (
+                <button
+                  key={f.key}
+                  onClick={() => setActiveFilter(f.key)}
+                  className="flex-shrink-0 font-mono text-[11px] uppercase tracking-widest px-4 py-1.5 rounded-full transition-all duration-200"
+                  style={isActive
+                    ? f.key === 'all'
+                      ? { background: '#7C3AED', color: '#fff', boxShadow: '0 0 16px rgba(124,58,237,.35)' }
+                      : { background: typeStyle!.bg, color: typeStyle!.color, boxShadow: `0 0 12px ${typeStyle!.bg}`, border: `1px solid ${typeStyle!.color}33` }
+                    : { background: 'rgba(255,255,255,0.03)', color: '#52506A', border: '1px solid #1C1A32' }
+                  }
+                >
+                  {f.label}
+                </button>
+              )
+            })}
+          </div>
+
+          {/* Schedule */}
           {activeDay === 1
-            ? <ScheduleDay slots={DAY1} />
-            : <ScheduleDay slots={DAY2} />
+            ? <ScheduleDay slots={DAY1} filter={activeFilter} />
+            : <ScheduleDay slots={DAY2} filter={activeFilter} />
           }
         </div>
 
