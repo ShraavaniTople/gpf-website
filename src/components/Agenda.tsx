@@ -69,6 +69,7 @@ const DAY1: Slot[] = [
   { start: '14:50', end: '15:35', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Win Attention, Earn Habit: The Art of Consumer Product',
       speakers: [
+        { name: 'Vaishnavi', role: 'Moderator' },
         { name: 'Anuj Rathi', role: 'Founder, Profound.me' },
         { name: 'Shivalik Sen', role: 'Associate Director of Product, Rapido' },
         { name: 'Dipika Jaikishan', role: 'VP Special Projects, Pronto' },
@@ -107,7 +108,10 @@ const DAY2: Slot[] = [
     { type: 'keynote', venue: 'Freshworks Hall', title: 'Build for Bharat: AI for the Next Billion',
       speakers: [{ name: 'Manikantha', role: 'Head of Product, Sarvam' }] },
     { type: 'fireside', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
-      speakers: [{ name: 'Neha Bagaria', role: 'Founder & CEO, HerKey' }] },
+      speakers: [
+        { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey' },
+        { name: 'Mitasha Singh', role: 'Founder, All Things Talent · Moderator' },
+      ] },
   ] },
 
   { start: '10:45', end: '11:30', sessions: [
