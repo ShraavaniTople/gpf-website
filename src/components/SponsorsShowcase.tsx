@@ -77,7 +77,7 @@ export default function SponsorsShowcase() {
           {/* Supported by — all hackathon partners */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
-            <div className="flex flex-wrap items-center justify-center gap-4 w-full">
+            <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
               {[
                 { src: '/logos/sarvam.webp',          alt: 'Sarvam',        f: undefined,   h: 36 },
                 { src: '/logos/anthropic.webp',       alt: 'Anthropic',     f: 'invert(1)', h: 32 },
@@ -87,7 +87,7 @@ export default function SponsorsShowcase() {
                 { src: '/logos/vobiz.webp',           alt: 'Vobiz',         f: undefined,   h: 52 },
               ].map(({ src, alt, f, h }) => (
                 <div key={alt} className="flex items-center justify-center rounded-2xl px-8 py-5"
-                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', minWidth: 160, flex: '1 1 160px', maxWidth: 240 }}>
+                  style={{ background: '#0E0C22', border: '1px solid #1C1A32' }}>
                   <img src={src} alt={alt}
                     style={{ height: h, width: 'auto', maxWidth: '100%', objectFit: 'contain', filter: f }} />
                 </div>
