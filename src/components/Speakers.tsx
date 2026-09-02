@@ -4,49 +4,49 @@ interface Speaker { name: string; title: string; linkedin: string | null; photo:
 interface Props { onApply: () => void; onNominate: () => void }
 
 const speakers: Speaker[] = [
-  // Row 1
+  // Row 1 — original order preserved
   { name: 'Sangeeta Bavi', title: 'Head of Digital Natives, Startups & Growth, Anthropic India', linkedin: 'https://www.linkedin.com/in/sangeetabavi/', photo: '/speaker-sangeeta.webp', objectPos: '50% 15%' },
   { name: 'Murali Swaminathan', title: 'CTO, Freshworks', linkedin: 'https://www.linkedin.com/in/muraliswaminathan', photo: '/speaker-murali.webp', objectPos: '50% 15%' },
   { name: 'Minakshi Khuntia', title: 'Senior Director, Product Management, Freshworks', linkedin: 'https://www.linkedin.com/in/khuntiaminakshi/', photo: '/speaker-minakshi.webp', objectPos: '50% 15%' },
-  { name: 'Anuj Rathi', title: 'Founder, Profound.me', linkedin: 'https://www.linkedin.com/in/anujrathi1', photo: '/speaker-anuj.webp', objectPos: '50% 15%' },
-  // Row 2
   { name: 'Swati Awasthi', title: 'Founder, Women in Product India', linkedin: 'https://www.linkedin.com/in/swati-awasthi/', photo: '/speaker-swati.webp', objectPos: '50% 20%' },
-  { name: 'Pulkit Jain', title: 'Co-Founder & CPO, Vedantu', linkedin: 'https://www.linkedin.com/in/jainpulkit/', photo: '/speaker-pulkit.webp', objectPos: '50% 20%' },
+  // Row 2 — original order preserved
+  { name: 'Anuj Rathi', title: 'Founder, Profound.me', linkedin: 'https://www.linkedin.com/in/anujrathi1', photo: '/speaker-anuj.webp', objectPos: '50% 15%' },
   { name: 'Seema Kumar', title: 'Director, Field Engineering, Databricks', linkedin: 'https://www.linkedin.com/in/seemapkumar/', photo: '/speaker-seema.webp', objectPos: '50% 15%' },
-  { name: 'Abhishek Gupta', title: 'Partner & National Sector Leader, KPMG', linkedin: 'https://www.linkedin.com/in/akgin/', photo: '/speaker-abhishek.webp', objectPos: '50% 15%' },
-  // Row 3
   { name: 'Neha Bagaria', title: 'Founder & CEO, HerKey', linkedin: 'https://www.linkedin.com/in/nehabagariaherkey', photo: '/speaker-neha.webp', objectPos: '50% 15%' },
-  { name: 'Amrit Raj', title: 'Co-Founder, Women in Product India', linkedin: 'https://www.linkedin.com/in/amritraj02/', photo: '/speaker-amrit.webp', objectPos: '50% 15%' },
+  { name: 'Pulkit Jain', title: 'Co-Founder & CPO, Vedantu', linkedin: 'https://www.linkedin.com/in/jainpulkit/', photo: '/speaker-pulkit.webp', objectPos: '50% 20%' },
+  // Row 3 — original order preserved
   { name: 'Roopa Jayaraman', title: 'Chief Product & Technology Officer, Odessa', linkedin: 'https://www.linkedin.com/in/roopajayaraman/', photo: '/speaker-roopa.webp', objectPos: '50% 15%' },
-  { name: 'Shivalik Sen', title: 'Associate Director of Product, Rapido', linkedin: 'https://www.linkedin.com/in/shivaliksen/', photo: '/speaker-shivalik.webp', objectPos: '50% 10%' },
-  // Row 4
+  { name: 'Abhishek Gupta', title: 'Partner & National Sector Leader, KPMG', linkedin: 'https://www.linkedin.com/in/akgin/', photo: '/speaker-abhishek.webp', objectPos: '50% 15%' },
   { name: 'Supriya Rao', title: 'Managing Director, ClearRoute', linkedin: 'https://www.linkedin.com/in/supriya-y-rao/', photo: '/speaker-supriya-new.webp', objectPos: '50% 20%' },
-  { name: 'Sreedhar Gade', title: 'Vice President, Engineering, Freshworks', linkedin: 'https://www.linkedin.com/in/sreegade/', photo: '/speaker-sreedhar.webp', objectPos: '50% 15%' },
+  { name: 'Amrit Raj', title: 'Co-Founder, Women in Product India', linkedin: 'https://www.linkedin.com/in/amritraj02/', photo: '/speaker-amrit.webp', objectPos: '50% 15%' },
+  // Row 4 — balanced F/M
   { name: 'Dipika Jaikishan', title: 'VP Special Projects, Pronto', linkedin: 'https://www.linkedin.com/in/dipika-jaikishan-b16b439/', photo: '/speaker-dipika.webp', objectPos: '50% 15%' },
-  { name: 'Rajat Harlalka', title: 'Director of Product, Toast', linkedin: 'https://www.linkedin.com/in/rajatharlalka/', photo: '/speaker-rajat.webp', objectPos: '50% 15%' },
-  // Row 5
+  { name: 'Shivalik Sen', title: 'Associate Director of Product, Rapido', linkedin: 'https://www.linkedin.com/in/shivaliksen/', photo: '/speaker-shivalik.webp', objectPos: '50% 10%' },
   { name: 'Ritika Chugh', title: 'Head of Product, Milestone', linkedin: 'https://www.linkedin.com/in/ritikachugh/', photo: '/speaker-ritika-new.webp', objectPos: '50% 15%' },
-  { name: 'Bhavik Kaul', title: 'CPO, SuperMoney', linkedin: 'https://www.linkedin.com/in/kaulbhavik/', photo: '/speaker-bhavik.webp', objectPos: '50% 15%' },
+  { name: 'Sreedhar Gade', title: 'Vice President, Engineering, Freshworks', linkedin: 'https://www.linkedin.com/in/sreegade/', photo: '/speaker-sreedhar.webp', objectPos: '50% 15%' },
+  // Row 5 — balanced F/M
   { name: 'Sheetal Kale', title: 'Managing Director, Head of DataArt India', linkedin: 'https://www.linkedin.com/in/sheetalskale/', photo: '/speaker-sheetal.webp', objectPos: '50% 15%' },
-  { name: 'Aditya Singh', title: 'VP, Product & India Site Head, Salesforce', linkedin: 'https://www.linkedin.com/in/adityas76', photo: '/speaker-aditya.webp', objectPos: '50% 15%' },
-  // Row 6
+  { name: 'Rajat Harlalka', title: 'Director of Product, Toast', linkedin: 'https://www.linkedin.com/in/rajatharlalka/', photo: '/speaker-rajat.webp', objectPos: '50% 15%' },
   { name: 'Deeksha Anand', title: 'Senior PMM, Google Play', linkedin: 'https://www.linkedin.com/in/deekshaanand/', photo: '/speaker-deeksha.webp', objectPos: '50% 15%' },
-  { name: 'Anshuman Awasthi', title: 'SVP, Mercedes-Benz Research & Development India', linkedin: 'https://in.linkedin.com/in/anshumanawasthi', photo: '/speaker-anshuman.webp', objectPos: '50% 15%' },
+  { name: 'Bhavik Kaul', title: 'CPO, SuperMoney', linkedin: 'https://www.linkedin.com/in/kaulbhavik/', photo: '/speaker-bhavik.webp', objectPos: '50% 15%' },
+  // Row 6 — balanced F/M
   { name: 'Mansi Jain', title: 'COO, Glance', linkedin: 'https://www.linkedin.com/in/mansi-jain-39b51728/', photo: '/speaker-mansi.webp', objectPos: '50% 15%' },
-  { name: 'Tanay Agrawal', title: 'Director of AI & Platform, KronosX AI', linkedin: 'https://www.linkedin.com/in/agrawaltanay/', photo: '/speaker-tanay.webp', objectPos: '50% 15%' },
-  // Row 7
+  { name: 'Aditya Singh', title: 'VP, Product & India Site Head, Salesforce', linkedin: 'https://www.linkedin.com/in/adityas76', photo: '/speaker-aditya.webp', objectPos: '50% 15%' },
   { name: 'Usha Rengaraju', title: 'AI Technologist, NVIDIA', linkedin: 'https://www.linkedin.com/in/usha-rengaraju/', photo: '/speaker-usha.webp', objectPos: '50% 15%' },
-  { name: 'Suman G', title: 'Founder, Vobiz', linkedin: 'https://www.linkedin.com/in/gsuman/', photo: '/speaker-suman.webp', objectPos: '50% 20%' },
+  { name: 'Anshuman Awasthi', title: 'SVP, Mercedes-Benz Research & Development India', linkedin: 'https://in.linkedin.com/in/anshumanawasthi', photo: '/speaker-anshuman.webp', objectPos: '50% 15%' },
+  // Row 7 — balanced F/M
   { name: 'Mitasha Singh', title: 'Founder, All Things Talent', linkedin: 'https://www.linkedin.com/in/mitashasingh/', photo: '/speaker-mitasha.webp', objectPos: '50% 15%' },
-  { name: 'Manikantha', title: 'Head of Product, Sarvam', linkedin: 'https://www.linkedin.com/in/manikantha/', photo: '/speaker-manikantha.webp', objectPos: '50% 15%' },
-  // Row 8
+  { name: 'Tanay Agrawal', title: 'Director of AI & Platform, KronosX AI', linkedin: 'https://www.linkedin.com/in/agrawaltanay/', photo: '/speaker-tanay.webp', objectPos: '50% 15%' },
   { name: 'Lalitha Ramani K', title: 'GM, Google Maps', linkedin: 'https://www.linkedin.com/in/lalitha-ramani-k-b863462/', photo: '/speaker-lalitha.webp', objectPos: '72% 15%' },
-  { name: 'Prashant Pandey', title: 'Head of Global, Neysa', linkedin: 'https://www.linkedin.com/in/prashantpandeyofficial/', photo: '/speaker-prashant.webp', objectPos: '50% 15%' },
+  { name: 'Suman G', title: 'Founder, Vobiz', linkedin: 'https://www.linkedin.com/in/gsuman/', photo: '/speaker-suman.webp', objectPos: '50% 20%' },
+  // Row 8 — balanced F/M
   { name: 'Nikkitha Shanker', title: 'Founder & CEO, SuperBryn', linkedin: 'https://www.linkedin.com/in/nikkitha-shanker/', photo: '/speaker-nikkitha.webp', objectPos: '50% 15%' },
-  { name: 'Subhadeep Mondal', title: 'VC, Kalaari Capital', linkedin: 'https://www.linkedin.com/in/subhadeepmondal/', photo: '/speaker-subhadeep.webp', objectPos: '50% 15%' },
-  // Row 9
+  { name: 'Manikantha', title: 'Head of Product, Sarvam', linkedin: 'https://www.linkedin.com/in/manikantha/', photo: '/speaker-manikantha.webp', objectPos: '50% 15%' },
   { name: 'Sreya Sanyal', title: 'Product Lead, Ford', linkedin: 'https://www.linkedin.com/in/sreya-sanyal-138b8144/', photo: '/speaker-sreya.webp', objectPos: '50% 15%' },
+  { name: 'Prashant Pandey', title: 'Head of Global, Neysa', linkedin: 'https://www.linkedin.com/in/prashantpandeyofficial/', photo: '/speaker-prashant.webp', objectPos: '50% 15%' },
+  // Row 9 — balanced F/M/F
   { name: 'Ekta Shah', title: 'Data Scientist, MSCI', linkedin: 'https://www.linkedin.com/in/ekta-shah30/', photo: '/speaker-ekta.webp', objectPos: '50% 8%' },
+  { name: 'Subhadeep Mondal', title: 'VC, Kalaari Capital', linkedin: 'https://www.linkedin.com/in/subhadeepmondal/', photo: '/speaker-subhadeep.webp', objectPos: '50% 15%' },
   { name: 'Jagriti', title: 'COO, OneInbox', linkedin: 'https://www.linkedin.com/in/jagritishreya/', photo: '/speaker-jagriti.webp', objectPos: '50% 15%' },
 ]
 
