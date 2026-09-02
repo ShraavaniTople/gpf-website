@@ -64,7 +64,7 @@ export default function Hackathon() {
           {/* Right: partner logos */}
           <div className="flex flex-col gap-3 flex-shrink-0">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Hackathon Partners</p>
-            <div className="flex flex-wrap gap-x-6 gap-y-4 items-center" style={{ maxWidth: 380 }}>
+            <div className="flex flex-wrap gap-x-6 gap-y-4 items-center" style={{ maxWidth: 450 }}>
               {[
                 { src: '/logos/sarvam.webp',          alt: 'Sarvam',        f: undefined },
                 { src: '/logos/anthropic.webp',       alt: 'Anthropic',     f: 'invert(1)' },
@@ -73,9 +73,9 @@ export default function Hackathon() {
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    f: undefined },
                 { src: '/logos/vobiz.webp',           alt: 'Vobiz',         f: undefined },
               ].map(({ src, alt, f }) => (
-                <div key={alt} style={{ width: 108, height: 36, display: 'flex', alignItems: 'center' }}>
+                <div key={alt} style={{ width: 130, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <img src={src} alt={alt}
-                    style={{ maxWidth: '100%', maxHeight: '100%', width: 'auto', height: 'auto', objectFit: 'contain', opacity: 0.9, filter: f }} />
+                    style={{ width: '100%', height: 36, objectFit: 'contain', opacity: 0.9, filter: f }} />
                 </div>
               ))}
             </div>

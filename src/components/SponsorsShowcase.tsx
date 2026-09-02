@@ -79,17 +79,17 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
             <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
               {[
-                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        f: undefined,   h: 36 },
-                { src: '/logos/anthropic.webp',       alt: 'Anthropic',     f: 'invert(1)', h: 32 },
-                { src: '/logos/aws.svg',              alt: 'AWS',           f: undefined,   h: 36 },
-                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', f: undefined,   h: 36 },
-                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    f: undefined,   h: 36 },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         f: undefined,   h: 52 },
-              ].map(({ src, alt, f, h }) => (
-                <div key={alt} className="flex items-center justify-center rounded-2xl px-8 py-5"
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        f: undefined },
+                { src: '/logos/anthropic.webp',       alt: 'Anthropic',     f: 'invert(1)' },
+                { src: '/logos/aws.svg',              alt: 'AWS',           f: undefined },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', f: undefined },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    f: undefined },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         f: undefined },
+              ].map(({ src, alt, f }) => (
+                <div key={alt} className="flex items-center justify-center rounded-2xl px-6 py-5"
                   style={{ background: '#0E0C22', border: '1px solid #1C1A32' }}>
                   <img src={src} alt={alt}
-                    style={{ height: h, width: 'auto', maxWidth: '100%', objectFit: 'contain', filter: f }} />
+                    style={{ display: 'block', width: '100%', height: 40, objectFit: 'contain', filter: f }} />
                 </div>
               ))}
             </div>
