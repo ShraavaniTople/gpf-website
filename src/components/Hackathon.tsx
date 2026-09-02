@@ -64,18 +64,17 @@ export default function Hackathon() {
           {/* Right: partner logos */}
           <div className="flex flex-col gap-3 flex-shrink-0">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Hackathon Partners</p>
-            <div className="flex items-center gap-8 flex-wrap" style={{ minHeight: 40 }}>
+            <div className="flex items-center gap-8 flex-wrap">
               {[
-                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        w: 110, f: undefined },
-                { src: '/logos/anthropic.webp',       alt: 'Anthropic',     w: 120, f: 'invert(1)' },
-                { src: '/logos/aws.svg',              alt: 'AWS',           w: 80,  f: undefined },
-                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', w: 120, f: undefined },
-                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    w: 110, f: undefined },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         w: 160, f: undefined },
-              ].map(({ src, alt, w, f }) => (
-                <div key={alt} style={{ height: 40, display: 'flex', alignItems: 'center' }}>
-                  <img src={src} alt={alt} style={{ width: w, height: '100%', objectFit: 'contain', opacity: 0.9, filter: f }} />
-                </div>
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        f: undefined },
+                { src: '/logos/anthropic.webp',       alt: 'Anthropic',     f: 'invert(1)' },
+                { src: '/logos/aws.svg',              alt: 'AWS',           f: undefined },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', f: undefined },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    f: undefined },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         f: undefined },
+              ].map(({ src, alt, f }) => (
+                <img key={alt} src={src} alt={alt}
+                  style={{ height: 32, width: 'auto', maxWidth: 130, objectFit: 'contain', opacity: 0.9, filter: f }} />
               ))}
             </div>
           </div>
