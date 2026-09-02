@@ -71,7 +71,7 @@ export default function Hackathon() {
                 { src: '/logos/aws.svg',              alt: 'AWS',           w: 80,  f: undefined },
                 { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', w: 120, f: undefined },
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    w: 110, f: undefined },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         w: 90,  f: undefined },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         w: 110, f: undefined },
               ].map(({ src, alt, w, f }) => (
                 <div key={alt} style={{ height: 40, display: 'flex', alignItems: 'center' }}>
                   <img src={src} alt={alt} style={{ width: w, maxHeight: '100%', objectFit: 'contain', opacity: 0.9, filter: f }} />
