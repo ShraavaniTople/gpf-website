@@ -27,127 +27,148 @@ const ST: Record<SType, { label: string; color: string; bg: string }> = {
 }
 
 const DAY1: Slot[] = [
-  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }]},
+  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }] },
 
-  { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'The Great Product Festival: Welcoming Infinite Builders',
-      speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India' }] }]},
+  { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'Welcome & Opening — The Great Product Festival',
+      speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India' }] }] },
 
   { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'The New Rules of Building Products & Companies',
-      speakers: [{ name: 'Murali Swaminathan', role: 'CTO, Freshworks' }] }]},
+      speakers: [{ name: 'Murali Swaminathan', role: 'CTO, Freshworks' }] }] },
 
-  { start: '11:05', end: '11:40', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Building at the Frontlines of AI by Anthropic',
-      speakers: [{ name: 'Sangeeta Bavi', role: 'Head, Anthropic India' }] }]},
+  { start: '11:05', end: '11:25', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Building at the Frontlines of AI',
+      speakers: [{ name: 'Sangeeta Bavi', role: 'Head of Digital Natives, Startups & Growth, Anthropic India' }] }] },
 
-  { start: '11:45', end: '12:30', sessions: [
+  { start: '11:30', end: '12:10', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'The Future of Enterprise Agents',
       speakers: [
-        { name: 'Minakshi Khuntia', role: 'Senior Director of Product, Freshworks · Moderator' },
-        { name: 'Sreedhar Gade', role: 'Head of AI & Data, Freshworks' },
-        { name: 'Seema Kumar', role: 'Director of Engineering, Databricks' },
+        { name: 'Minakshi Khuntia', role: 'Senior Director, Product Management, Freshworks · Moderator' },
+        { name: 'Sreedhar Gade', role: 'Vice President, Engineering, Freshworks' },
+        { name: 'Seema Kumar', role: 'Director, Field Engineering, Databricks' },
         { name: 'Aditya Singh', role: 'VP Product & India Site Head, Salesforce' },
-      ]},
-  ]},
+      ] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'Agentic Product Building' },
+  ] },
 
-  { start: '12:30', end: '13:00', sessions: [{ type: 'hackathon', title: 'The Great Agent Hackathon Kickoff' }]},
+  { start: '12:15', end: '12:45', sessions: [
+    { type: 'showcase', venue: 'Freshworks Hall', title: 'Platform & Partner Showcase — Agent Studio, MCP & Partner Toolkits' },
+    { type: 'hackathon', title: 'Hackathon Briefing — Tracks, Rubric & Logistics' },
+  ] },
 
-  { start: '13:00', sessions: [], milestone: 'BUILD BEGINS — 24-hour build sprint starts. Teams move to build rooms.' },
+  { start: '13:00', sessions: [], milestone: 'BUILD BEGINS — 24-hour build sprint starts. Hackathon teams move to build rooms.' },
 
-  { start: '13:00', end: '14:15', sessions: [{ type: 'lunch', title: 'Lunch' }]},
+  { start: '13:15', end: '14:15', sessions: [{ type: 'lunch', title: 'Lunch' }] },
 
-  { start: '14:15', end: '14:35', sessions: [
+  { start: '14:15', end: '14:45', sessions: [
     { type: 'keynote', venue: 'Toast Hall', title: 'From SaaS to Super Platforms: The Convergence of Software, Fintech & AI',
       speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast' }] },
-    { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)' },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Workshop: Build your first AI employee',
+    { type: 'workshop', venue: 'Workshop Room', title: 'Build Your First AI Employee',
       speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI' }] },
-  ]},
+    { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)' },
+  ] },
 
-  { start: '14:40', end: '15:25', sessions: [
+  { start: '14:50', end: '15:35', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Win Attention, Earn Habit: The Art of Consumer Product',
       speakers: [
-        { name: 'Dipika Jaikishan', role: 'VP, Special Projects, Pronto' },
-        { name: 'Shivalik Sen', role: 'Head of Product, Rapido' },
-        { name: 'Anuj Rathi', role: 'Founder & CEO, Profound.me' },
-      ]},
-    { type: 'panel', venue: 'Toast Hall', title: 'The New Distribution: Creators, Communities & Growth',
-      speakers: [
-        { name: 'Amrit Raj', role: 'CMO, WiP India & Founder, FMI' },
-        { name: 'Deeksha Anand', role: 'Senior PMM, Google' },
-        { name: 'Roopa Pious', role: 'Partnerships Manager, Meta' },
-      ]},
-  ]},
+        { name: 'Anuj Rathi', role: 'Founder, Profound.me' },
+        { name: 'Shivalik Sen', role: 'Associate Director of Product, Rapido' },
+        { name: 'Dipika Jaikishan', role: 'VP Special Projects, Pronto' },
+      ] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'GEO: How to Get Discovered by AI',
+      speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone' }] },
+  ] },
 
-  { start: '15:30', end: '16:15', sessions: [
-    { type: 'keynote', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
+  { start: '15:40', end: '16:15', sessions: [
+    { type: 'expert', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
       speakers: [{ name: 'Mansi Jain', role: 'COO, Glance' }] },
-    { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo by NVIDIA',
+    { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo',
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA' }] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Workshop: AI Evals for Product Teams',
+    { type: 'workshop', venue: 'Workshop Room', title: 'AI Evals for Product Teams',
       speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI' }] },
-  ]},
+  ] },
 
   { start: '16:20', end: '16:50', sessions: [
     { type: 'fireside', venue: 'Freshworks Hall', title: 'From Bet to Breakthrough: 20 Years of Product Lessons',
-      speakers: [{ name: 'Lalitha Ramani', role: 'GM, Google Maps' }] },
-    { type: 'expert', venue: 'Toast Hall', title: 'Generative Engine Optimization (GEO): How to Get Discovered by AI',
-      speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone' }] },
-  ]},
+      speakers: [{ name: 'Lalitha Ramani K', role: 'GM, Google Maps' }] },
+  ] },
 
-  { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 1 Close — Games & Engagement' }]},
+  { start: '16:50', end: '17:00', sessions: [{ type: 'closing', title: 'Closing Notes — Day 1' }] },
 
-  { start: '18:30', end: '21:00', sessions: [{ type: 'networking', title: 'After Hours: Leadership Dinner (Invite Only)' }]},
+  { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 1 Close — Games & Engagement' }] },
+
+  { start: '18:30', end: '21:00', sessions: [{ type: 'networking', title: 'After Hours: Leadership Dinner (Invite Only)' }] },
 ]
 
 const DAY2: Slot[] = [
-  { start: '08:00', end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }]},
+  { start: '08:00', end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }] },
 
-  { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Day 2 Kickoff' }]},
+  { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Day 2 Kickoff' }] },
 
-  { start: '10:15', end: '10:45', sessions: [
-    { type: 'keynote', venue: 'Freshworks Hall', title: 'Build for Bharat: How AI is Being Built for the Next Billion by Sarvam' },
+  { start: '10:15', end: '10:40', sessions: [
+    { type: 'keynote', venue: 'Freshworks Hall', title: 'Build for Bharat: AI for the Next Billion',
+      speakers: [{ name: 'Manikantha', role: 'Head of Product, Sarvam' }] },
     { type: 'fireside', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [{ name: 'Neha Bagaria', role: 'Founder & CEO, HerKey' }] },
-  ]},
+  ] },
 
   { start: '10:45', end: '11:30', sessions: [
-    { type: 'keynote', venue: 'Freshworks Hall', title: 'VC Keynote' },
-    { type: 'panel', venue: 'Toast Hall', title: 'Global Capability Centres (GCCs) as Product Innovation Hubs',
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Voice AI Panel',
+      detail: 'Murf.ai · OneInbox · SuperBryn · Vobiz',
       speakers: [
-        { name: 'Sheetal Kale', role: 'MD, Head of DataArt India' },
+        { name: 'Jagriti', role: 'COO, OneInbox' },
+        { name: 'Nikkitha Shanker', role: 'Founder & CEO, SuperBryn' },
+        { name: 'Suman G', role: 'Founder, Vobiz' },
+      ] },
+    { type: 'panel', venue: 'Toast Hall', title: 'GCCs as Product Innovation Hubs',
+      speakers: [
+        { name: 'Sreya Sanyal', role: 'Product Lead, Ford · Moderator' },
+        { name: 'Sheetal Kale', role: 'Managing Director, Head of DataArt India' },
         { name: 'Roopa Jayaraman', role: 'Chief Product & Technology Officer, Odessa' },
         { name: 'Abhishek Gupta', role: 'Partner & National Sector Leader, KPMG' },
         { name: 'Supriya Rao', role: 'Managing Director, ClearRoute' },
-      ]},
-    { type: 'workshop', venue: 'Workshop Room', title: 'Workshop: GTM for Product Teams',
-      speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google' }] },
-  ]},
+      ] },
+    { type: 'workshop', venue: 'Workshop Room', title: 'GTM for Product Teams',
+      speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google Play' }] },
+  ] },
 
-  { start: '11:00', sessions: [], milestone: 'BUILD STOPS — Hackathon submissions frozen. Judging begins.' },
-
-  { start: '11:00', end: '11:35', sessions: [{ type: 'workshop', venue: 'Workshop Room', title: 'The Product Automation Lab: Build with n8n' }]},
+  { start: '11:00', sessions: [], milestone: 'BUILD STOPS — Hackathon submissions frozen. Judges begin evaluation.' },
 
   { start: '11:35', end: '12:05', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'Voice AI Panel',
-      detail: 'Murf.ai · Oneinbox · Superbryn · Vobiz' },
-    { type: 'keynote', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World',
+    { type: 'expert', venue: 'Freshworks Hall', title: 'Demystifying AI Neo Cloud',
+      speakers: [{ name: 'Prashant Pandey', role: 'Global Head, Neysa' }] },
+    { type: 'expert', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World',
       speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India' }] },
-  ]},
+  ] },
 
-  { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }]},
+  { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }] },
 
-  { start: '14:35', end: '15:20', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel' },
+  { start: '14:00', end: '14:30', sessions: [
+    { type: 'workshop', venue: 'Workshop Room', title: 'Fundraising + VC Lab',
+      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital' }] },
+    { type: 'roundtable', venue: 'Bay Leaf', title: 'CXO Roundtable (Invite Only)' },
+  ] },
+
+  { start: '14:35', end: '15:15', sessions: [
+    { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
+      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital' }] },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
       speakers: [
         { name: 'Bhavik Kaul', role: 'CPO, SuperMoney' },
         { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu' },
-      ]},
-  ]},
+      ] },
+  ] },
 
-  { start: '15:20', end: '16:20', sessions: [{ type: 'showcase', venue: 'Freshworks Hall', title: 'The Great Agent Showcase',
-      detail: 'Hackathon finalists demo live in front of India\'s top product leaders. Winners announced on stage.' }]},
+  { start: '15:20', end: '15:50', sessions: [
+    { type: 'hackathon', venue: 'Freshworks Hall', title: 'Hackathon Finalists Present — Top 4 Teams' },
+  ] },
 
-  { start: '17:00', end: '18:00', sessions: [{ type: 'closing', title: 'TGPF Unplugged: Closing Jam Session' }]},
+  { start: '16:00', end: '16:20', sessions: [
+    { type: 'showcase', venue: 'Freshworks Hall', title: 'The Great Agent Showcase — Winners Announced & Award Ceremony',
+      detail: 'Hackathon finalists demo live in front of India\'s top product leaders. Winners announced on stage.' },
+  ] },
+
+  { start: '17:00', end: '18:00', sessions: [{ type: 'closing', title: 'TGPF Unplugged: Closing Jam Session' }] },
+
+  { start: '18:00', end: '20:00', sessions: [{ type: 'networking', title: 'Dinner Party — Team Celebration' }] },
 ]
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
