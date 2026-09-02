@@ -99,7 +99,7 @@ export default function Navbar() {
             </button>
 
             {/* Desktop nav links */}
-            <div className="hidden xl:flex items-center gap-6">
+            <div className="hidden lg:flex items-center gap-5">
               {links.map(l => (
                 <button key={l.id} onClick={() => go(l.id)}
                   className="text-xs font-medium tracking-wide transition-colors duration-200"
@@ -125,7 +125,7 @@ export default function Navbar() {
               </button>
               <button
                 onClick={() => setOpen(true)}
-                className="xl:hidden w-10 h-10 flex items-center justify-center rounded-lg"
+                className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg"
                 style={{ color: '#F0EEF8', background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.3)' }}
               >
                 <Menu size={20} />
