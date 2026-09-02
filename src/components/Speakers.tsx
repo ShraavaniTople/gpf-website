@@ -179,6 +179,34 @@ const speakers: Speaker[] = [
     photo: '/speaker-usha.webp',
     objectPos: '50% 15%',
   },
+  {
+    name: 'Mitasha Singh',
+    title: 'Founder, All Things Talent',
+    linkedin: 'https://www.linkedin.com/in/mitashasingh/',
+    photo: '/speaker-mitasha.webp',
+    objectPos: '50% 15%',
+  },
+  {
+    name: 'Lalitha Ramani K',
+    title: 'GM, Google Maps',
+    linkedin: 'https://www.linkedin.com/in/lalitha-ramani-k-b863462/',
+    photo: '/speaker-lalitha.webp',
+    objectPos: '72% 15%',
+  },
+  {
+    name: 'Suman G',
+    title: 'Founder, Vobiz',
+    linkedin: 'https://www.linkedin.com/in/gsuman/',
+    photo: '/speaker-suman.webp',
+    objectPos: '50% 20%',
+  },
+  {
+    name: 'Nikkitha Shanker',
+    title: 'Founder & CEO, SuperBryn',
+    linkedin: 'https://www.linkedin.com/in/nikkitha-shanker/',
+    photo: '/speaker-nikkitha.webp',
+    objectPos: '50% 15%',
+  },
 ]
 
 function useVis(delay = 0) {
