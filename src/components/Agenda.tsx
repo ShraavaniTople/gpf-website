@@ -69,7 +69,7 @@ const DAY1: Slot[] = [
   { start: '14:50', end: '15:35', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Win Attention, Earn Habit: The Art of Consumer Product',
       speakers: [
-        { name: 'Vaishnavi', role: 'Moderator' },
+        { name: 'Vaishnavi Devi', role: 'AVP of Product, Swiggy · Moderator' },
         { name: 'Anuj Rathi', role: 'Founder, Profound.me' },
         { name: 'Shivalik Sen', role: 'Associate Director of Product, Rapido' },
         { name: 'Dipika Jaikishan', role: 'VP Special Projects, Pronto' },
