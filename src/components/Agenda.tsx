@@ -163,8 +163,9 @@ const DAY2: Slot[] = [
   { start: '14:35', end: '15:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital' }] },
-    { type: 'expert', venue: 'Toast Hall', title: 'PLG: Growth in High-Trust Markets',
+    { type: 'panel', venue: 'Toast Hall', title: 'PLG: Growth in High-Trust Markets',
       speakers: [
+        { name: 'Vikas', role: 'CPO, Groww' },
         { name: 'Bhavik Kaul', role: 'CPO, SuperMoney' },
         { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu' },
         { name: 'Ira', role: 'EvenHealth' },
