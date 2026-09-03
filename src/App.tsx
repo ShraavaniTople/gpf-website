@@ -9,6 +9,7 @@ import WhyAttend from './components/WhyAttend'
 import WhoInRoom from './components/WhoInRoom'
 import Hackathon from './components/Hackathon'
 import Agenda from './components/Agenda'
+import FloorMap from './components/FloorMap'
 import Speakers from './components/Speakers'
 import Passes from './components/Passes'
 import Sponsor from './components/Sponsor'
@@ -60,6 +61,7 @@ function HomePage() {
         <WhoInRoom />
         <hr className="div-glow" />
         <Agenda />
+        <FloorMap />
         <Hackathon />
         <Speakers onApply={() => setSpeakerModal(true)} onNominate={() => setNominateModal(true)} />
         <Passes onGetPass={(tierName) => setPassModal({ open: true, tierName })} />
