@@ -61,7 +61,7 @@ function HomePage() {
         <WhoInRoom />
         <hr className="div-glow" />
         <Agenda />
-        <FloorMap />
+        {/* <FloorMap /> */}
         <Hackathon />
         <Speakers onApply={() => setSpeakerModal(true)} onNominate={() => setNominateModal(true)} />
         <Passes onGetPass={(tierName) => setPassModal({ open: true, tierName })} />

@@ -6,7 +6,6 @@ const links = [
   { label: 'Why Attend',    id: 'why-attend' },
   { label: 'Agenda',        id: 'agenda' },
   { label: 'Hackathon',     id: 'hackathon' },
-  { label: 'Floor Map',    id: 'floor-map' },
   { label: 'Speakers',      id: 'speakers' },
   { label: 'Passes',        id: 'passes' },
   { label: 'Sponsors',           id: 'sponsors-showcase' },

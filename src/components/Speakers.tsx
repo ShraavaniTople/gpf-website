@@ -30,15 +30,15 @@ const speakers: Speaker[] = [
   { name: 'Deeksha Anand', title: 'Senior PMM, Google Play', linkedin: 'https://www.linkedin.com/in/deekshaanand/', photo: '/speaker-deeksha.webp', objectPos: '50% 15%' },
   { name: 'Bhavik Kaul', title: 'CPO, SuperMoney', linkedin: 'https://www.linkedin.com/in/kaulbhavik/', photo: '/speaker-bhavik.webp', objectPos: '50% 15%' },
   // Row 6 — balanced F/M
-  { name: 'Mansi Jain', title: 'COO, Glance', linkedin: 'https://www.linkedin.com/in/mansi-jain-39b51728/', photo: '/speaker-mansi.webp', objectPos: '50% 15%' },
+  { name: 'Mansi Jain', title: 'COO, Glance', linkedin: 'https://www.linkedin.com/in/mansi-jain-39b51728/', photo: '/speaker-mansi2.webp', objectPos: '50% 15%' },
   { name: 'Aditya Singh', title: 'VP, Product & India Site Head, Salesforce', linkedin: 'https://www.linkedin.com/in/adityas76', photo: '/speaker-aditya.webp', objectPos: '50% 15%' },
   { name: 'Usha Rengaraju', title: 'AI Technologist, NVIDIA', linkedin: 'https://www.linkedin.com/in/usha-rengaraju/', photo: '/speaker-usha.webp', objectPos: '50% 15%' },
   { name: 'Anshuman Awasthi', title: 'SVP, Mercedes-Benz Research & Development India', linkedin: 'https://in.linkedin.com/in/anshumanawasthi', photo: '/speaker-anshuman.webp', objectPos: '50% 15%' },
   // Row 7 — balanced F/M
   { name: 'Mitasha Singh', title: 'Founder, All Things Talent', linkedin: 'https://www.linkedin.com/in/mitashasingh/', photo: '/speaker-mitasha.webp', objectPos: '50% 15%' },
   { name: 'Tanay Agrawal', title: 'Director of AI & Platform, KronosX AI', linkedin: 'https://www.linkedin.com/in/agrawaltanay/', photo: '/speaker-tanay.webp', objectPos: '50% 15%' },
-  { name: 'Lalitha Ramani K', title: 'GM, Google Maps', linkedin: 'https://www.linkedin.com/in/lalitha-ramani-k-b863462/', photo: '/speaker-lalitha.webp', objectPos: '50% 10%' },
-  { name: 'Suman G', title: 'Founder, Vobiz', linkedin: 'https://www.linkedin.com/in/gsuman/', photo: '/speaker-suman.webp', objectPos: '50% 10%' },
+  { name: 'Lalitha Ramani K', title: 'GM, Google Maps', linkedin: 'https://www.linkedin.com/in/lalitha-ramani-k-b863462/', photo: '/speaker-lalitha2.webp', objectPos: '50% 10%' },
+  { name: 'Suman G', title: 'Founder, Vobiz', linkedin: 'https://www.linkedin.com/in/gsuman/', photo: '/speaker-suman2.webp', objectPos: '50% 10%' },
   // Row 8 — balanced F/M
   { name: 'Nikkitha Shanker', title: 'Founder & CEO, SuperBryn', linkedin: 'https://www.linkedin.com/in/nikkitha-shanker/', photo: '/speaker-nikkitha.webp', objectPos: '50% 15%' },
   { name: 'Manikantha', title: 'Head of Product, Sarvam', linkedin: 'https://www.linkedin.com/in/manikantha/', photo: '/speaker-manikantha.webp', objectPos: '50% 15%' },
