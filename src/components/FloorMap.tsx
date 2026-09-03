@@ -37,92 +37,141 @@ export default function FloorMap() {
           </div>
         </div>
 
-        {/* Floor Map Grid */}
+        {/* Map */}
         <div ref={mapRef} className="sr">
-          <div
-            className="rounded-2xl p-3 sm:p-4"
-            style={{ background: '#0E0C22', border: '1px solid #1C1A32' }}
-          >
-            {/* Top row: Main Hall + Workshop rooms */}
-            <div className="grid grid-cols-5 gap-3 mb-3">
+          <div className="rounded-2xl overflow-hidden" style={{ border: '1.5px solid #2D2B4E' }}>
+            <svg
+              viewBox="0 0 1100 560"
+              width="100%"
+              aria-label="Freshworks 5th Floor — Event Layout"
+              style={{ display: 'block' }}
+            >
+              {/* ── Background / floor base ── */}
+              <rect width="1100" height="560" fill="#0D0B1F" />
 
-              {/* Main Hall — spans 3 cols */}
-              <div
-                className="col-span-5 sm:col-span-3 rounded-xl p-6 flex flex-col justify-between"
-                style={{ background: 'linear-gradient(135deg, #1A0A4C 0%, #120830 100%)', border: '1.5px solid #5B21B6', minHeight: 200 }}
-              >
-                <div>
-                  <div className="text-3xl mb-3">🎤</div>
-                  <p className="font-display font-bold text-xl" style={{ color: '#E9D5FF' }}>Main Hall</p>
-                  <p className="text-sm mt-1" style={{ color: '#9490AD' }}>Keynotes · Panels · Fireside chats</p>
-                </div>
-                <div
-                  className="mt-6 rounded-lg py-2 px-4 text-center text-xs font-mono font-semibold tracking-widest"
-                  style={{ background: '#2D1B69', color: '#A78BFA', border: '1px solid #5B21B633' }}
-                >
-                  ▬ &nbsp; STAGE &nbsp; ▬
-                </div>
+              {/* Floor outline — matches actual building footprint (wide, slightly irregular) */}
+              {/* Main floor body */}
+              <path
+                d="M 30 30 L 850 30 L 850 80 L 1070 80 L 1070 480 L 850 480 L 850 530 L 30 530 Z"
+                fill="#13112A"
+                stroke="#2D2B4E"
+                strokeWidth="2.5"
+              />
+
+              {/* ══════════════════════════════════
+                  ZONE 1 — MAIN HALL + STAGE
+                  Large open area, left/centre
+              ══════════════════════════════════ */}
+              <rect x="40" y="40" width="500" height="350" rx="4" fill="#1A0A4C" fillOpacity="0.85" />
+              <rect x="40" y="40" width="500" height="350" rx="4" fill="none" stroke="#7C3AED" strokeWidth="2.5" />
+              {/* Stage platform */}
+              <rect x="110" y="290" width="360" height="80" rx="5" fill="#2D1B69" />
+              <rect x="110" y="290" width="360" height="80" rx="5" fill="none" stroke="#5B21B6" strokeWidth="1.5" />
+              <text x="290" y="337" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fill="#A78BFA" fontWeight="700" letterSpacing="5">▬  STAGE  ▬</text>
+              {/* Label */}
+              <text x="290" y="130" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="30" fill="#E9D5FF">🎤</text>
+              <text x="290" y="190" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="26" fill="#E9D5FF" fontWeight="800">Main Hall</text>
+              <text x="290" y="220" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="13" fill="#9490AD">Keynotes · Panels · Fireside chats</text>
+
+              {/* ══════════════════════════════════
+                  ZONE 2 — EXPO & NETWORKING
+                  Wide bottom strip
+              ══════════════════════════════════ */}
+              <rect x="40" y="408" width="790" height="112" rx="4" fill="#1C1000" fillOpacity="0.9" />
+              <rect x="40" y="408" width="790" height="112" rx="4" fill="none" stroke="#F59E0B" strokeWidth="2" />
+              {/* Round table indicators */}
+              {[130, 270, 410, 550, 690].map((cx, i) => (
+                <g key={i}>
+                  <circle cx={cx} cy={488} r={22} fill="#251400" stroke="#F59E0B" strokeWidth="1.2" strokeOpacity="0.5" />
+                  <circle cx={cx} cy={488} r={8} fill="#2C1A02" />
+                </g>
+              ))}
+              {/* Label */}
+              <text x="415" y="445" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="18" fill="#FCD34D" fontWeight="800">Expo &amp; Networking</text>
+              <text x="415" y="463" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fill="#9490AD">Sponsor booths · Demos · Round tables</text>
+
+              {/* ══════════════════════════════════
+                  ZONE 3 — WORKSHOP ROOMS
+                  Top right, 3 rooms side by side
+              ══════════════════════════════════ */}
+              {/* Outer container label */}
+              <text x="700" y="72" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fill="#6B7280" letterSpacing="2" fontWeight="600">WORKSHOP ROOMS</text>
+              {/* Room 1 */}
+              <rect x="558" y="82" width="94" height="158" rx="3" fill="#160C3A" />
+              <rect x="558" y="82" width="94" height="158" rx="3" fill="none" stroke="#7C3AED" strokeWidth="1.5" />
+              <text x="605" y="145" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="18" fill="#C4B5FD">💡</text>
+              <text x="605" y="170" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fill="#C4B5FD" fontWeight="700">Room 1</text>
+              {/* Room 2 */}
+              <rect x="660" y="82" width="94" height="158" rx="3" fill="#160C3A" />
+              <rect x="660" y="82" width="94" height="158" rx="3" fill="none" stroke="#7C3AED" strokeWidth="1.5" />
+              <text x="707" y="145" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="18" fill="#C4B5FD">💡</text>
+              <text x="707" y="170" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fill="#C4B5FD" fontWeight="700">Room 2</text>
+              {/* Room 3 */}
+              <rect x="762" y="82" width="94" height="158" rx="3" fill="#160C3A" />
+              <rect x="762" y="82" width="94" height="158" rx="3" fill="none" stroke="#7C3AED" strokeWidth="1.5" />
+              <text x="809" y="145" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="18" fill="#C4B5FD">💡</text>
+              <text x="809" y="170" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fill="#C4B5FD" fontWeight="700">Room 3</text>
+
+              {/* ══════════════════════════════════
+                  ZONE 4 — LUNCH & LOUNGE
+                  Right side mid area (cafeteria)
+              ══════════════════════════════════ */}
+              <rect x="558" y="256" width="298" height="144" rx="3" fill="#051020" />
+              <rect x="558" y="256" width="298" height="144" rx="3" fill="none" stroke="#3B82F6" strokeWidth="1.5" />
+              <text x="707" y="318" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="20" fill="#60A5FA">☕</text>
+              <text x="707" y="348" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="14" fill="#93C5FD" fontWeight="700">Lunch &amp; Lounge</text>
+              <text x="707" y="366" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fill="#52506A">Meals &amp; informal chats</text>
+
+              {/* ══════════════════════════════════
+                  ZONE 5 — REGISTRATION
+                  Far right, near lifts (entry)
+              ══════════════════════════════════ */}
+              <rect x="870" y="90" width="188" height="260" rx="3" fill="#031810" />
+              <rect x="870" y="90" width="188" height="260" rx="3" fill="none" stroke="#10B981" strokeWidth="2" />
+              <text x="964" y="180" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="28" fill="#6EE7B7">✅</text>
+              <text x="964" y="215" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="16" fill="#6EE7B7" fontWeight="800">Registration</text>
+              <text x="964" y="237" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fill="#9490AD">Entry &amp; badge pickup</text>
+              <text x="964" y="260" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fill="#52506A">Lift lobby</text>
+
+              {/* ── Entry arrow (from outside right) ── */}
+              <defs>
+                <marker id="ea" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L8,3 L0,6 Z" fill="#10B981" />
+                </marker>
+              </defs>
+              <line x1="1090" y1="220" x2="1062" y2="220" stroke="#10B981" strokeWidth="2.5" markerEnd="url(#ea)" />
+              <text x="1093" y="215" textAnchor="start" fontFamily="Inter, sans-serif" fontSize="9" fill="#10B981" fontWeight="700">ENTRY</text>
+
+              {/* ── Corridor strip between zones ── */}
+              <rect x="558" y="248" width="298" height="10" rx="0" fill="#0D0B1F" />
+              <rect x="548" y="248" width="8" height="162" rx="0" fill="#0D0B1F" />
+
+              {/* ── Walls / partition lines ── */}
+              {/* Vertical wall between main hall and workshop zones */}
+              <line x1="548" y1="40" x2="548" y2="400" stroke="#2D2B4E" strokeWidth="2" />
+              {/* Corridor between main hall bottom and expo */}
+              <rect x="40" y="396" width="810" height="14" fill="#0D0B1F" />
+
+              {/* ── Floor note ── */}
+              <text x="550" y="549" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#3D3B5A">5th Floor · Freshworks Bldg 32 · Not to scale</text>
+            </svg>
+          </div>
+
+          {/* Legend */}
+          <div className="flex flex-wrap gap-3 justify-center mt-6">
+            {[
+              { color: '#7C3AED', label: 'Main Hall' },
+              { color: '#A78BFA', label: 'Workshop Rooms' },
+              { color: '#F59E0B', label: 'Expo & Networking' },
+              { color: '#10B981', label: 'Registration' },
+              { color: '#3B82F6', label: 'Lunch & Lounge' },
+            ].map(z => (
+              <div key={z.label} className="flex items-center gap-2 rounded-full px-4 py-2"
+                style={{ background: '#0E0C22', border: `1px solid ${z.color}33` }}>
+                <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: z.color }} />
+                <span className="text-xs font-medium" style={{ color: '#D1D5DB' }}>{z.label}</span>
               </div>
-
-              {/* Workshop rooms — spans 2 cols, stacked inside */}
-              <div className="col-span-5 sm:col-span-2 flex flex-col gap-3">
-                {['Workshop Room 1', 'Workshop Room 2', 'Workshop Room 3'].map((name, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl px-4 py-3 flex items-center gap-3 flex-1"
-                    style={{ background: '#160C3A', border: '1.5px solid #7C3AED55' }}
-                  >
-                    <span className="text-xl">💡</span>
-                    <div>
-                      <p className="text-sm font-semibold" style={{ color: '#C4B5FD' }}>{name}</p>
-                      <p className="text-xs" style={{ color: '#52506A' }}>Breakout sessions</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Bottom row: Expo wide + Registration */}
-            <div className="grid grid-cols-5 gap-3">
-
-              {/* Expo & Networking — spans 3 cols */}
-              <div
-                className="col-span-5 sm:col-span-3 rounded-xl p-6"
-                style={{ background: 'linear-gradient(135deg, #1C1000 0%, #110A00 100%)', border: '1.5px solid #F59E0B55' }}
-              >
-                <div className="text-3xl mb-3">🤝</div>
-                <p className="font-display font-bold text-xl" style={{ color: '#FCD34D' }}>Expo & Networking</p>
-                <p className="text-sm mt-1" style={{ color: '#9490AD' }}>Sponsor booths · Demos · Round tables</p>
-                <div className="flex gap-2 mt-4 flex-wrap">
-                  {['Round Table', 'Round Table', 'Round Table'].map((_, i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full flex-shrink-0"
-                      style={{ background: '#1C1000', border: '1.5px solid #F59E0B44' }}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Registration — spans 2 cols */}
-              <div
-                className="col-span-5 sm:col-span-2 rounded-xl p-6 flex flex-col justify-between"
-                style={{ background: '#031810', border: '1.5px solid #10B98155' }}
-              >
-                <div>
-                  <div className="text-3xl mb-3">✅</div>
-                  <p className="font-display font-bold text-xl" style={{ color: '#6EE7B7' }}>Registration</p>
-                  <p className="text-sm mt-1" style={{ color: '#9490AD' }}>Entry & badge pickup</p>
-                </div>
-                <div
-                  className="mt-4 flex items-center gap-2 text-xs font-mono"
-                  style={{ color: '#10B981' }}
-                >
-                  <span>→</span>
-                  <span>Lift lobby · Main entry</span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <p className="text-center text-xs mt-5" style={{ color: '#52506A' }}>
