@@ -100,7 +100,7 @@ const DAY1: Slot[] = [
 ]
 
 const DAY2: Slot[] = [
-  { start: '08:00', end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }] },
+  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }] },
 
   { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Day 2 Kickoff' }] },
 
