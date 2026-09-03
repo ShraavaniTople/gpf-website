@@ -237,16 +237,16 @@ function TypeBadge({ type }: { type: SType }) {
 
 function SpeakerChip({ s }: { s: Speaker }) {
   return (
-    <div className="flex items-center gap-2.5 rounded-lg px-2.5 py-2" style={{ background: '#0D0B1F', border: '1px solid #1E1B35' }}>
+    <div className="flex items-center gap-2 rounded-lg px-2 py-2" style={{ background: '#0D0B1F', border: '1px solid #1E1B35' }}>
       {s.photo
         ? <img src={s.photo} alt={s.name}
-            style={{ width: 44, height: 44, borderRadius: 7, objectFit: 'cover', objectPosition: '50% 15%', flexShrink: 0 }} />
-        : <div style={{ width: 44, height: 44, borderRadius: 7, flexShrink: 0, background: '#1C1A32' }} />
+            style={{ width: 40, height: 40, borderRadius: 6, objectFit: 'cover', objectPosition: '50% 15%', flexShrink: 0 }} />
+        : <div style={{ width: 40, height: 40, borderRadius: 6, flexShrink: 0, background: '#1C1A32' }} />
       }
-      <div style={{ minWidth: 0 }}>
-        <p className="text-[12px] font-bold leading-tight" style={{ color: '#ECEAF8' }}>{s.name}</p>
+      <div style={{ minWidth: 0, overflow: 'hidden' }}>
+        <p className="text-[11px] font-bold leading-tight truncate" style={{ color: '#ECEAF8' }}>{s.name}</p>
         {s.role && (
-          <p className="text-[10px] mt-0.5 leading-snug" style={{ color: '#7C6FA8' }}>{s.role}</p>
+          <p className="text-[10px] mt-0.5 leading-snug" style={{ color: '#7C6FA8', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{s.role}</p>
         )}
       </div>
     </div>
@@ -258,14 +258,13 @@ function SpeakerList({ speakers }: { speakers: Speaker[] }) {
   const many = speakers.length > 1
 
   return (
-    <div className="mt-4 pt-4" style={{ borderTop: '1px solid #1C1A32' }}>
+    <div className="mt-3 pt-3" style={{ borderTop: '1px solid #1C1A32' }}>
       {many ? (
-        /* Panel: 2-column grid of chips */
-        <div className="grid grid-cols-2 gap-2">
+        /* Panel: 1-col on mobile, 2-col on sm+ */
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {speakers.map((s, i) => <SpeakerChip key={i} s={s} />)}
         </div>
       ) : (
-        /* Solo: single full-width chip */
         <SpeakerChip s={speakers[0]} />
       )}
     </div>
@@ -274,7 +273,7 @@ function SpeakerList({ speakers }: { speakers: Speaker[] }) {
 
 function SessionCard({ session }: { session: Session }) {
   return (
-    <div className="rounded-xl p-5 h-full flex flex-col"
+    <div className="rounded-xl p-3 sm:p-5 h-full flex flex-col"
       style={{ background: '#0A0817', border: '1px solid #1E1B35' }}>
       {session.venue && (
         <p className="font-mono text-[9px] uppercase tracking-widest mb-2.5" style={{ color: '#3A3852' }}>
@@ -324,12 +323,12 @@ function ScheduleDay({ slots, filter }: { slots: Slot[]; filter: FilterKey }) {
             : 'grid-cols-1 sm:grid-cols-2'
 
         return (
-          <div key={i} className="flex gap-6 sm:gap-10 py-6"
+          <div key={i} className="flex gap-3 sm:gap-10 py-5 sm:py-6"
             style={{ borderBottom: '1px solid #12101E' }}>
 
             {/* Time column */}
-            <div className="w-20 sm:w-28 flex-shrink-0 pt-0.5">
-              <p className="font-mono text-sm font-bold leading-none" style={{ color: '#A78BFA' }}>
+            <div className="w-14 sm:w-28 flex-shrink-0 pt-0.5">
+              <p className="font-mono text-[12px] sm:text-sm font-bold leading-none whitespace-nowrap" style={{ color: '#A78BFA' }}>
                 {fmt(slot.start)}
               </p>
               {slot.end && (
@@ -380,7 +379,7 @@ export default function Agenda() {
   const [activeFilter, setActiveFilter] = useState<FilterKey>('all')
 
   return (
-    <section id="agenda" className="relative py-28 px-6 overflow-hidden">
+    <section id="agenda" className="relative py-16 sm:py-28 px-4 sm:px-6 overflow-hidden">
       <div className="bg-num" style={{ top: '-5%', left: '-2%' }} aria-hidden>04</div>
       <div className="relative z-10 max-w-7xl mx-auto">
 
