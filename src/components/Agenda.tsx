@@ -5,7 +5,7 @@ type SType = 'registration' | 'opening' | 'keynote' | 'panel' | 'workshop'
            | 'fireside' | 'lightning' | 'expert' | 'lunch' | 'closing' | 'networking'
            | 'showcase' | 'roundtable' | 'hackathon'
 
-type Speaker = { name: string; role: string }
+type Speaker = { name: string; role: string; photo?: string }
 type Session = { type: SType; venue?: string; title: string; detail?: string; speakers?: Speaker[] }
 type Slot    = { start: string; end?: string; sessions: Session[]; milestone?: string }
 
@@ -30,21 +30,21 @@ const DAY1: Slot[] = [
   { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }] },
 
   { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'Welcome & Opening — The Great Product Festival',
-      speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India' }] }] },
+      speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India', photo: '/speaker-swati.webp' }] }] },
 
   { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'The New Rules of Building Products & Companies',
-      speakers: [{ name: 'Murali Swaminathan', role: 'CTO, Freshworks' }] }] },
+      speakers: [{ name: 'Murali Swaminathan', role: 'CTO, Freshworks', photo: '/speaker-murali.webp' }] }] },
 
   { start: '11:05', end: '11:25', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Building at the Frontlines of AI',
-      speakers: [{ name: 'Sangeeta Bavi', role: 'Head of Digital Natives, Startups & Growth, Anthropic India' }] }] },
+      speakers: [{ name: 'Sangeeta Bavi', role: 'Head of Digital Natives, Startups & Growth, Anthropic India', photo: '/speaker-sangeeta.webp' }] }] },
 
   { start: '11:30', end: '12:10', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'The Future of Enterprise Agents',
       speakers: [
-        { name: 'Minakshi Khuntia', role: 'Senior Director, Product Management, Freshworks · Moderator' },
-        { name: 'Sreedhar Gade', role: 'Vice President, Engineering, Freshworks' },
-        { name: 'Seema Kumar', role: 'Director, Field Engineering, Databricks' },
-        { name: 'Aditya Singh', role: 'VP Product & India Site Head, Salesforce' },
+        { name: 'Minakshi Khuntia', role: 'Senior Director, Product Management, Freshworks · Moderator', photo: '/speaker-minakshi.webp' },
+        { name: 'Sreedhar Gade', role: 'Vice President, Engineering, Freshworks', photo: '/speaker-sreedhar.webp' },
+        { name: 'Seema Kumar', role: 'Director, Field Engineering, Databricks', photo: '/speaker-seema.webp' },
+        { name: 'Aditya Singh', role: 'VP Product & India Site Head, Salesforce', photo: '/speaker-aditya.webp' },
       ] },
     { type: 'workshop', venue: 'Workshop Room', title: 'Agentic Product Building' },
   ] },
@@ -60,36 +60,36 @@ const DAY1: Slot[] = [
 
   { start: '14:15', end: '14:45', sessions: [
     { type: 'keynote', venue: 'Toast Hall', title: 'Leveraging AI for Product Development',
-      speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast' }] },
+      speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast', photo: '/speaker-rajat.webp' }] },
     { type: 'workshop', venue: 'Workshop Room', title: 'GTM for Product Teams',
-      speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google Play' }] },
+      speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google Play', photo: '/speaker-deeksha.webp' }] },
     { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)' },
   ] },
 
   { start: '14:50', end: '15:35', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Win Attention, Earn Habit: The Art of Consumer Product',
       speakers: [
-        { name: 'Vaishnavi Devi', role: 'AVP of Product, Swiggy · Moderator' },
-        { name: 'Anuj Rathi', role: 'Founder, Profound.me' },
-        { name: 'Shivalik Sen', role: 'Associate Director of Product, Rapido' },
-        { name: 'Dipika Jaikishan', role: 'VP Special Projects, Pronto' },
+        { name: 'Vaishnavi Devi', role: 'AVP of Product, Swiggy · Moderator', photo: '/speaker-vaishnavi.webp' },
+        { name: 'Anuj Rathi', role: 'Founder, Profound.me', photo: '/speaker-anuj.webp' },
+        { name: 'Shivalik Sen', role: 'Associate Director of Product, Rapido', photo: '/speaker-shivalik.webp' },
+        { name: 'Dipika Jaikishan', role: 'VP Special Projects, Pronto', photo: '/speaker-dipika.webp' },
       ] },
     { type: 'expert', venue: 'Toast Hall', title: 'GEO: How AI Search Is Rewriting Martech',
-      speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone' }] },
+      speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone', photo: '/speaker-ritika-new.webp' }] },
   ] },
 
   { start: '15:40', end: '16:15', sessions: [
     { type: 'expert', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
-      speakers: [{ name: 'Mansi Jain', role: 'COO, Glance' }] },
+      speakers: [{ name: 'Mansi Jain', role: 'COO, Glance', photo: '/speaker-mansi2.webp' }] },
     { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo',
-      speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA' }] },
+      speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA', photo: '/speaker-usha.webp' }] },
     { type: 'workshop', venue: 'Workshop Room', title: 'AI Evals for Product Teams',
-      speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI' }] },
+      speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI', photo: '/speaker-tanay.webp' }] },
   ] },
 
   { start: '16:20', end: '16:50', sessions: [
     { type: 'fireside', venue: 'Freshworks Hall', title: 'From Bet to Breakthrough: 20 Years of Product Lessons',
-      speakers: [{ name: 'Lalitha Ramani K', role: 'GM, Google Maps' }] },
+      speakers: [{ name: 'Lalitha Ramani K', role: 'GM, Google Maps', photo: '/speaker-lalitha2.webp' }] },
   ] },
 
   { start: '16:50', end: '17:00', sessions: [{ type: 'closing', title: 'Closing Notes — Day 1' }] },
@@ -106,11 +106,11 @@ const DAY2: Slot[] = [
 
   { start: '10:15', end: '10:40', sessions: [
     { type: 'keynote', venue: 'Freshworks Hall', title: 'Build for Bharat: AI for the Next Billion',
-      speakers: [{ name: 'Manikantha', role: 'Head of Product, Sarvam' }] },
+      speakers: [{ name: 'Manikantha', role: 'Head of Product, Sarvam', photo: '/speaker-manikantha.webp' }] },
     { type: 'fireside', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [
-        { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey' },
-        { name: 'Mitasha Singh', role: 'Founder, All Things Talent · Moderator' },
+        { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey', photo: '/speaker-neha.webp' },
+        { name: 'Mitasha Singh', role: 'Founder, All Things Talent · Moderator', photo: '/speaker-mitasha.webp' },
       ] },
   ] },
 
@@ -118,20 +118,20 @@ const DAY2: Slot[] = [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Voice AI Panel',
       detail: 'Murf.ai · OneInbox · SuperBryn · Vobiz',
       speakers: [
-        { name: 'Jagriti', role: 'COO, OneInbox' },
-        { name: 'Nikkitha Shanker', role: 'Founder & CEO, SuperBryn' },
-        { name: 'Suman G', role: 'Founder, Vobiz' },
+        { name: 'Jagriti', role: 'COO, OneInbox', photo: '/speaker-jagriti.webp' },
+        { name: 'Nikkitha Shanker', role: 'Founder & CEO, SuperBryn', photo: '/speaker-nikkitha.webp' },
+        { name: 'Suman G', role: 'Founder, Vobiz', photo: '/speaker-suman2.webp' },
       ] },
     { type: 'panel', venue: 'Toast Hall', title: 'GCCs as Product Innovation Hubs',
       speakers: [
-        { name: 'Sreya Sanyal', role: 'Product Lead, Ford · Moderator' },
-        { name: 'Sheetal Kale', role: 'Managing Director, Head of DataArt India' },
-        { name: 'Roopa Jayaraman', role: 'Chief Product & Technology Officer, Odessa' },
-        { name: 'Abhishek Gupta', role: 'Partner & National Sector Leader, KPMG' },
-        { name: 'Supriya Rao', role: 'Managing Director, ClearRoute' },
+        { name: 'Sreya Sanyal', role: 'Product Lead, Ford · Moderator', photo: '/speaker-sreya.webp' },
+        { name: 'Sheetal Kale', role: 'Managing Director, Head of DataArt India', photo: '/speaker-sheetal.webp' },
+        { name: 'Roopa Jayaraman', role: 'Chief Product & Technology Officer, Odessa', photo: '/speaker-roopa.webp' },
+        { name: 'Abhishek Gupta', role: 'Partner & National Sector Leader, KPMG', photo: '/speaker-abhishek.webp' },
+        { name: 'Supriya Rao', role: 'Managing Director, ClearRoute', photo: '/speaker-supriya-new.webp' },
       ] },
     { type: 'workshop', venue: 'Workshop Room', title: 'Build Your First AI Employee',
-      speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI' }] },
+      speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI', photo: '/speaker-ekta.webp' }] },
   ] },
 
   { start: '11:00', end: '11:30', sessions: [
@@ -140,14 +140,14 @@ const DAY2: Slot[] = [
 
   { start: '11:35', end: '12:05', sessions: [
     { type: 'expert', venue: 'Freshworks Hall', title: 'Demystifying AI Neo Cloud',
-      speakers: [{ name: 'Prashant Pandey', role: 'Global Head, Neysa' }] },
+      speakers: [{ name: 'Prashant Pandey', role: 'Global Head, Neysa', photo: '/speaker-prashant.webp' }] },
     { type: 'expert', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World',
-      speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India' }] },
+      speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India', photo: '/speaker-anshuman.webp' }] },
   ] },
 
   { start: '12:05', end: '12:20', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'The Future of Data Centers',
-      speakers: [{ name: 'Rekha Poosala', role: 'Engineering Leader, Dell' }] },
+      speakers: [{ name: 'Rekha Poosala', role: 'Engineering Leader, Dell', photo: '/speaker-rekha.webp' }] },
     { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown' },
   ] },
 
@@ -155,19 +155,19 @@ const DAY2: Slot[] = [
 
   { start: '14:00', end: '14:30', sessions: [
     { type: 'workshop', venue: 'Workshop Room', title: 'Fundraising + VC Lab',
-      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital' }] },
+      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
     { type: 'workshop', venue: 'Workshop Room', title: 'Build Your Brand' },
     { type: 'roundtable', venue: 'Bay Leaf', title: 'CXO Roundtable (Invite Only)' },
   ] },
 
   { start: '14:35', end: '15:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
-      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital' }] },
+      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG: Growth in High-Trust Markets',
       speakers: [
-        { name: 'Vikas', role: 'CPO, Groww' },
-        { name: 'Bhavik Kaul', role: 'CPO, SuperMoney' },
-        { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu' },
+        { name: 'Vikas', role: 'CPO, Groww', photo: '/speaker-vikas.webp' },
+        { name: 'Bhavik Kaul', role: 'CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
+        { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu', photo: '/speaker-pulkit.webp' },
         { name: 'Ira', role: 'EvenHealth' },
       ] },
   ] },
@@ -235,16 +235,39 @@ function TypeBadge({ type }: { type: SType }) {
   )
 }
 
+function SpeakerChip({ s }: { s: Speaker }) {
+  return (
+    <div className="flex items-center gap-2.5 rounded-lg px-2.5 py-2" style={{ background: '#0D0B1F', border: '1px solid #1E1B35' }}>
+      {s.photo
+        ? <img src={s.photo} alt={s.name}
+            style={{ width: 44, height: 44, borderRadius: 7, objectFit: 'cover', objectPosition: '50% 15%', flexShrink: 0 }} />
+        : <div style={{ width: 44, height: 44, borderRadius: 7, flexShrink: 0, background: '#1C1A32' }} />
+      }
+      <div style={{ minWidth: 0 }}>
+        <p className="text-[12px] font-bold leading-tight" style={{ color: '#ECEAF8' }}>{s.name}</p>
+        {s.role && (
+          <p className="text-[10px] mt-0.5 leading-snug" style={{ color: '#7C6FA8' }}>{s.role}</p>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function SpeakerList({ speakers }: { speakers: Speaker[] }) {
   if (!speakers.length) return null
+  const many = speakers.length > 1
+
   return (
-    <div className="mt-4 pt-4 flex flex-col gap-2" style={{ borderTop: '1px solid #1C1A32' }}>
-      {speakers.map((s, i) => (
-        <div key={i}>
-          <p className="text-[13px] font-semibold leading-tight" style={{ color: '#D4D0ED' }}>{s.name}</p>
-          {s.role && <p className="text-[11px] mt-0.5" style={{ color: '#52506A' }}>{s.role}</p>}
+    <div className="mt-4 pt-4" style={{ borderTop: '1px solid #1C1A32' }}>
+      {many ? (
+        /* Panel: 2-column grid of chips */
+        <div className="grid grid-cols-2 gap-2">
+          {speakers.map((s, i) => <SpeakerChip key={i} s={s} />)}
         </div>
-      ))}
+      ) : (
+        /* Solo: single full-width chip */
+        <SpeakerChip s={speakers[0]} />
+      )}
     </div>
   )
 }
