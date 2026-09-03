@@ -37,8 +37,8 @@ const speakers: Speaker[] = [
   // Row 7 — balanced F/M
   { name: 'Mitasha Singh', title: 'Founder, All Things Talent', linkedin: 'https://www.linkedin.com/in/mitashasingh/', photo: '/speaker-mitasha.webp', objectPos: '50% 15%' },
   { name: 'Tanay Agrawal', title: 'Director of AI & Platform, KronosX AI', linkedin: 'https://www.linkedin.com/in/agrawaltanay/', photo: '/speaker-tanay.webp', objectPos: '50% 15%' },
-  { name: 'Lalitha Ramani K', title: 'GM, Google Maps', linkedin: 'https://www.linkedin.com/in/lalitha-ramani-k-b863462/', photo: '/speaker-lalitha.webp', objectPos: '50% 15%' },
-  { name: 'Suman G', title: 'Founder, Vobiz', linkedin: 'https://www.linkedin.com/in/gsuman/', photo: '/speaker-suman.webp', objectPos: '50% 20%' },
+  { name: 'Lalitha Ramani K', title: 'GM, Google Maps', linkedin: 'https://www.linkedin.com/in/lalitha-ramani-k-b863462/', photo: '/speaker-lalitha.webp', objectPos: '50% 10%' },
+  { name: 'Suman G', title: 'Founder, Vobiz', linkedin: 'https://www.linkedin.com/in/gsuman/', photo: '/speaker-suman.webp', objectPos: '50% 10%' },
   // Row 8 — balanced F/M
   { name: 'Nikkitha Shanker', title: 'Founder & CEO, SuperBryn', linkedin: 'https://www.linkedin.com/in/nikkitha-shanker/', photo: '/speaker-nikkitha.webp', objectPos: '50% 15%' },
   { name: 'Manikantha', title: 'Head of Product, Sarvam', linkedin: 'https://www.linkedin.com/in/manikantha/', photo: '/speaker-manikantha.webp', objectPos: '50% 15%' },
