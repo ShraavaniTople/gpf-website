@@ -38,6 +38,7 @@ const speakers: Speaker[] = [
   { name: 'Anshuman Awasthi', title: 'SVP, Mercedes-Benz Research & Development India', linkedin: 'https://in.linkedin.com/in/anshumanawasthi', photo: '/speaker-anshuman.webp', objectPos: '50% 15%' },
   { name: 'Mitasha Singh', title: 'Founder, All Things Talent', linkedin: 'https://www.linkedin.com/in/mitashasingh/', photo: '/speaker-mitasha.webp', objectPos: '50% 15%' },
   { name: 'Tanay Agrawal', title: 'Director of AI & Platform, KronosX AI', linkedin: 'https://www.linkedin.com/in/agrawaltanay/', photo: '/speaker-tanay.webp', objectPos: '50% 15%' },
+  { name: 'Dharma Varahappian', title: 'Product Leader, eBay', linkedin: 'https://www.linkedin.com/in/dharmav/', photo: '/speaker-dharma.webp', objectPos: '50% 15%' },
   { name: 'Suman G', title: 'Founder, Vobiz', linkedin: 'https://www.linkedin.com/in/gsuman/', photo: '/speaker-suman2.webp', objectPos: '50% 10%' },
   { name: 'Nikkitha Shanker', title: 'Founder & CEO, SuperBryn', linkedin: 'https://www.linkedin.com/in/nikkitha-shanker/', photo: '/speaker-nikkitha.webp', objectPos: '50% 15%' },
   { name: 'Sreya Sanyal', title: 'Product Lead, Ford', linkedin: 'https://www.linkedin.com/in/sreya-sanyal-138b8144/', photo: '/speaker-sreya.webp', objectPos: '50% 15%' },
@@ -46,7 +47,6 @@ const speakers: Speaker[] = [
   { name: 'Jagriti Shreya', title: 'COO, OneInbox', linkedin: 'https://www.linkedin.com/in/jagritishreya/', photo: '/speaker-jagriti2.webp', objectPos: '50% 15%' },
   { name: 'Rekha Poosala', title: 'Engineering Leader, Dell', linkedin: null, photo: '/speaker-rekha.webp', objectPos: '50% 15%' },
   { name: 'Vaishnavi Devi', title: 'AVP of Product, Swiggy', linkedin: null, photo: '/speaker-vaishnavi.webp', objectPos: '50% 15%' },
-  { name: 'Dharma Varahappian', title: 'Product Leader, eBay', linkedin: 'https://www.linkedin.com/in/dharmav/', photo: '/speaker-dharma.webp', objectPos: '50% 15%' },
 ]
 
 function useVis(delay = 0) {
