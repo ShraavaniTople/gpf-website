@@ -34,7 +34,7 @@ const speakers: Speaker[] = [
   { name: 'Sheetal Kale', title: 'Managing Director, Head of DataArt India', linkedin: 'https://www.linkedin.com/in/sheetalskale/', photo: '/speaker-sheetal.webp', objectPos: '50% 15%' },
   { name: 'Rajat Harlalka', title: 'Director of Product, Toast', linkedin: 'https://www.linkedin.com/in/rajatharlalka/', photo: '/speaker-rajat.webp', objectPos: '50% 15%' },
   { name: 'Deeksha Anand', title: 'Senior PMM, Google Play', linkedin: 'https://www.linkedin.com/in/deekshaanand/', photo: '/speaker-deeksha.webp', objectPos: '50% 15%' },
-  { name: 'Bhavik Kaul', title: 'CPO, SuperMoney', linkedin: 'https://www.linkedin.com/in/kaulbhavik/', photo: '/speaker-bhavik.webp', objectPos: '50% 15%' },
+  { name: 'Bhavik Kaul', title: 'CPO, SuperMoney', linkedin: 'https://www.linkedin.com/in/kaulbhavik/', photo: '/speaker-bhavik2.webp', objectPos: '50% 15%' },
   { name: 'Anshuman Awasthi', title: 'SVP, Mercedes-Benz Research & Development India', linkedin: 'https://in.linkedin.com/in/anshumanawasthi', photo: '/speaker-anshuman.webp', objectPos: '50% 15%' },
   { name: 'Mitasha Singh', title: 'Founder, All Things Talent', linkedin: 'https://www.linkedin.com/in/mitashasingh/', photo: '/speaker-mitasha.webp', objectPos: '50% 15%' },
   { name: 'Tanay Agrawal', title: 'Director of AI & Platform, KronosX AI', linkedin: 'https://www.linkedin.com/in/agrawaltanay/', photo: '/speaker-tanay.webp', objectPos: '50% 15%' },
@@ -46,6 +46,7 @@ const speakers: Speaker[] = [
   { name: 'Jagriti', title: 'COO, OneInbox', linkedin: 'https://www.linkedin.com/in/jagritishreya/', photo: '/speaker-jagriti.webp', objectPos: '50% 15%' },
   { name: 'Rekha Poosala', title: 'Engineering Leader, Dell', linkedin: null, photo: '/speaker-rekha.webp', objectPos: '50% 15%' },
   { name: 'Vaishnavi Devi', title: 'AVP of Product, Swiggy', linkedin: null, photo: '/speaker-vaishnavi.webp', objectPos: '50% 15%' },
+  { name: 'Dharma Varahappian', title: 'Product Leader, eBay', linkedin: 'https://www.linkedin.com/in/dharmav/', photo: '/speaker-dharma.webp', objectPos: '50% 15%' },
 ]
 
 function useVis(delay = 0) {
