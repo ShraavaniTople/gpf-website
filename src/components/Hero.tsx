@@ -69,7 +69,7 @@ export default function Hero({ onSponsor }: HeroProps) {
 
       {/* ── DESKTOP hero — everything inside the banner image ── */}
       <div className="hidden lg:block relative overflow-hidden">
-        <img src={heroBanner} alt="The Great Product Festival speakers" style={{ width: '100%', height: 'auto' }} />
+        <img src={heroBanner} alt="The Great Product Festival speakers" width={1800} height={750} fetchPriority="high" style={{ width: '100%', height: 'auto', display: 'block' }} />
         {/* Gradients */}
         <div aria-hidden className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(5,4,12,.92) 0%, rgba(5,4,12,.75) 25%, rgba(5,4,12,.3) 50%, rgba(5,4,12,0) 70%)' }} />
         <div aria-hidden className="absolute inset-x-0 top-0 z-10 pointer-events-none" style={{ height: '80px', background: 'linear-gradient(to bottom, #05040C 0%, rgba(5,4,12,.5) 50%, transparent 100%)' }} />

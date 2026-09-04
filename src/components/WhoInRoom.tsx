@@ -123,7 +123,7 @@ export default function WhoInRoom() {
 
           {/* Photo */}
           <div ref={photoRef} className="px-wrap rounded-2xl overflow-hidden" style={{ height: 360 }}>
-            <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=900&q=80" alt="Panel discussion" style={{ height: '120%', width: '100%', objectFit: 'cover' }} />
+            <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=900&q=80" alt="Panel discussion" style={{ height: '120%', width: '100%', objectFit: 'cover', willChange: 'transform' }} />
             <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(8,6,24,.7) 0%, transparent 60%)' }} />
           </div>
         </div>

@@ -67,7 +67,19 @@
 .sg.vis > *:nth-child(6){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .30s forwards}
 .sg.vis > *:nth-child(7){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .35s forwards}
 .sg.vis > *:nth-child(8){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .40s forwards}
+.sg.vis > *:nth-child(9){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .45s forwards}
+.sg.vis > *:nth-child(10){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .50s forwards}
+.sg.vis > *:nth-child(11){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .55s forwards}
+.sg.vis > *:nth-child(12){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .60s forwards}
 @keyframes sup { to { opacity:1; transform:none } }
+
+/* ─── Reduced motion ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sr, .sr-l, .sr-r { opacity:1; transform:none; transition:none; }
+  .sg > * { opacity:1; transform:none; animation:none; }
+  .mq-track { animation-play-state:paused; }
+  .shim-top, .fl, .pd { animation:none; }
+}
 
 /* ─── Parallax img ────────────────────────────────────── */
 .px-wrap { overflow: hidden; }
@@ -135,33 +147,15 @@
   width:650px; height:650px;
   border-radius:50%;
   background:radial-gradient(circle,rgba(124,58,237,.06) 0%,transparent 65%);
-  transform:translate(-50%,-50%);
+  top:0; left:0;
+  transform:translate(-650px,-650px);
   z-index:0;
-  will-change:left,top;
-  transition:left .3s ease,top .3s ease;
+  will-change:transform;
+  transition:transform .3s ease;
 }
 
 /* ─── Film strip (hero bottom photos) ────────────────── */
-.film-strip {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding-bottom: 4px;
-}
-.film-strip::-webkit-scrollbar { display: none; }
-.film-strip::before,
-.film-strip::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 80px;
-  pointer-events: none;
-  z-index: 2;
-}
-.film-strip::before { left:0; background:linear-gradient(to right,#05040C,transparent); }
-.film-strip::after  { right:0; background:linear-gradient(to left,#05040C,transparent); }
+/* Note: hero uses .film-track (inline style); this block kept for reference only */
 
 /* ─── Section bg label ────────────────────────────────── */
 .bg-num {

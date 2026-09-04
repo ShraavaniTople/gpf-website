@@ -42,8 +42,7 @@ function HomePage() {
     const glow = document.getElementById('cg')
     if (!glow) return
     const move = (e: MouseEvent) => {
-      glow.style.left = e.clientX + 'px'
-      glow.style.top = e.clientY + 'px'
+      glow.style.transform = `translate(${e.clientX - 325}px, ${e.clientY - 325}px)`
     }
     window.addEventListener('mousemove', move)
     return () => window.removeEventListener('mousemove', move)
