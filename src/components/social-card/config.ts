@@ -8,7 +8,7 @@ export const EVENT = {
   hashtag: '#TGPF2026',
 }
 
-export type RoleId = 'attendee' | 'speaker' | 'sponsor' | 'community-partner'
+export type RoleId = 'attendee' | 'speaker' | 'mentor' | 'judge' | 'sponsor' | 'community-partner'
 
 export type DesignId = 'hero' | 'editorial' | 'festival'
 
@@ -41,6 +41,28 @@ export const ROLES: Role[] = [
     captions: [
       `Thrilled to be speaking at ${EVENT.name} 2026! ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
       `See you on stage at ${EVENT.name} 2026 — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
+    ],
+  },
+  {
+    id: 'mentor',
+    label: 'Mentor',
+    hasPhoto: true,
+    lockedDesign: 'festival',
+    titleRequired: true,
+    captions: [
+      `Excited to be mentoring at ${EVENT.name} 2026 — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
+      `Giving back to the builder community at ${EVENT.name} 2026. ${EVENT.dates} · Bangalore ${EVENT.hashtag}`,
+    ],
+  },
+  {
+    id: 'judge',
+    label: 'Judge',
+    hasPhoto: true,
+    lockedDesign: 'festival',
+    titleRequired: true,
+    captions: [
+      `Honoured to be judging at ${EVENT.name} 2026 — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
+      `Looking forward to seeing the best builders at ${EVENT.name} 2026. ${EVENT.dates} · Bangalore ${EVENT.hashtag}`,
     ],
   },
   {

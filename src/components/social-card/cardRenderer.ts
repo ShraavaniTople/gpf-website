@@ -44,6 +44,14 @@ function getTheme(id: RoleId): T {
       r: 161, g: 98,  b: 7,   hex: '#A16207', light: '#FCD34D',
       bar: ['#B45309', '#F59E0B', '#FEF3C7'], watermark: 'STAGE',
     },
+    mentor: {
+      r: 20,  g: 184, b: 166, hex: '#14B8A6', light: '#5EEAD4',
+      bar: ['#0F766E', '#14B8A6', '#CCFBF1'], watermark: 'MENTOR',
+    },
+    judge: {
+      r: 234, g: 88,  b: 12,  hex: '#EA580C', light: '#FB923C',
+      bar: ['#C2410C', '#EA580C', '#FED7AA'], watermark: 'JUDGE',
+    },
     sponsor: {
       r: 29,  g: 78,  b: 216, hex: '#1D4ED8', light: '#93C5FD',
       bar: ['#1D4ED8', '#60A5FA', '#BFDBFE'], watermark: '2026',
