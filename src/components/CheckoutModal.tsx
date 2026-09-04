@@ -78,6 +78,38 @@ async function sendConfirmationEmail(params: {
   } catch { /* email failure is silent — pass is shown on screen */ }
 }
 
+// ─── Submit pass purchase to Web3Forms ───────────────────────────────────────
+async function submitPassToWeb3Forms(params: {
+  name: string; email: string; phone: string; company: string; role: string; linkedin: string
+  tierName: string; qty: number; amount: string; paymentId: string; passNumber: string
+  discountCode: string; consentToShare: boolean
+}) {
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key:               '05343d66-4685-49cf-ba57-e57dbf8a2bf1',
+        subject:                  `GPF 2026 - Pass Purchase: ${params.tierName} × ${params.qty} — ${params.name}`,
+        from_name:                'GPF 2026 Website',
+        'Full Name':              params.name,
+        'Email':                  params.email,
+        'Phone':                  params.phone,
+        'Company':                params.company,
+        'Role':                   params.role,
+        'LinkedIn':               params.linkedin,
+        'Pass Type':              params.tierName + ' Pass',
+        'Quantity':               String(params.qty),
+        'Amount Paid (INR)':      '₹' + params.amount,
+        'Payment ID':             params.paymentId,
+        'Pass Number':            params.passNumber,
+        'Discount Code':          params.discountCode || 'None',
+        'Consent to Share Data':  params.consentToShare ? 'Yes — opted in' : 'No — opted out',
+      }),
+    })
+  } catch { /* non-blocking */ }
+}
+
 // ─── Generate pass number ─────────────────────────────────────────────────────
 function genPassNumber(paymentId: string, tier: string) {
   const prefix = tier === 'VIP' ? 'V' : tier === 'Premium' ? 'P' : 'G'
@@ -312,6 +344,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   const [codeInput, setCodeInput] = useState('')
   const [applied, setApplied] = useState<{ code: string; label: string; pct?: number; fixed?: number; minQty?: number } | null>(null)
   const [codeErr, setCodeErr] = useState('')
+  const [consent, setConsent] = useState(false)
   const [paying, setPaying] = useState(false)
   const [success, setSuccess] = useState(false)
   const [paymentId, setPaymentId] = useState('')
@@ -370,21 +403,38 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       notes: { pass_type: `${tierName} Pass`, quantity: qty, company: details.company || '', role: details.role || '', linkedin: details.linkedin || '', discount_code: applied?.code || '', final_price: finalPrice },
       theme: { color: '#7C3AED' },
       handler: async (response: { razorpay_payment_id: string }) => {
-        const pid = response.razorpay_payment_id
-        const pn  = genPassNumber(pid, tierName)
+        const pid      = response.razorpay_payment_id
+        const pn       = genPassNumber(pid, tierName)
+        const fullName = `${details.firstName} ${details.lastName}`
+        const amountStr = finalPrice.toLocaleString('en-IN')
         setPaymentId(pid)
         setSuccess(true)
         setPaying(false)
         const sent = await sendConfirmationEmail({
-          name: `${details.firstName} ${details.lastName}`,
+          name: fullName,
           email: details.email,
           company: details.company,
           tierName,
-          amount: finalPrice.toLocaleString('en-IN'),
+          amount: amountStr,
           paymentId: pid,
           passNumber: pn,
         })
         if (sent !== undefined) setEmailSent(true)
+        submitPassToWeb3Forms({
+          name:           fullName,
+          email:          details.email,
+          phone:          details.phone,
+          company:        details.company,
+          role:           details.role,
+          linkedin:       details.linkedin,
+          tierName,
+          qty,
+          amount:         amountStr,
+          paymentId:      pid,
+          passNumber:     pn,
+          discountCode:   applied?.code || '',
+          consentToShare: consent,
+        })
       },
       modal: { ondismiss: () => setPaying(false) },
     }
@@ -680,6 +730,22 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
           <p className="text-xs mt-1 truncate" style={{ color: '#6B7280' }}>{details.linkedin}</p>
         )}
       </div>
+
+      {/* Data sharing consent */}
+      <label className="flex items-start gap-3 cursor-pointer group select-none"
+        style={{ padding: '14px 16px', borderRadius: 12, background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.18)' }}>
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={e => setConsent(e.target.checked)}
+          className="mt-0.5 w-4 h-4 flex-shrink-0 cursor-pointer accent-[#7C3AED]"
+        />
+        <span className="text-xs leading-relaxed" style={{ color: '#9490AD' }}>
+          <span style={{ color: '#F0EEF8', fontWeight: 600 }}>I consent to share my contact details with TGPF 2026 sponsors and partners</span>{' '}
+          for networking and relevant opportunities. You can opt out at any time by emailing{' '}
+          <a href="mailto:hello@womeninproductindia.com" style={{ color: '#A78BFA' }}>hello@womeninproductindia.com</a>.
+        </span>
+      </label>
 
       <button
         onClick={handlePay}
