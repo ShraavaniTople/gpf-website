@@ -73,7 +73,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50">
+      <div className="fixed top-0 left-0 right-0 z-50" style={{ background: 'rgba(5,4,12,0.95)', backdropFilter: 'blur(16px)' }}>
         {/* Announcement bar */}
         {banner && (
           <div className="hidden sm:block" style={{ animation: 'fadeIn .5s ease' }}>
