@@ -91,7 +91,7 @@ export default function Hackathon() {
                 onMouseLeave={e => (e.currentTarget.style.borderColor = '#1C1A32')}>
                 <span className="font-mono text-xs mt-0.5 flex-shrink-0 w-7" style={{ color: '#F59E0B' }}>{item.n}</span>
                 <div>
-                  <h4 className="font-display font-bold mb-1.5 text-sm" style={{ color: '#F0EEF8', letterSpacing: '-0.01em' }}>{item.title}</h4>
+                  <h3 className="font-display font-bold mb-1.5 text-sm" style={{ color: '#F0EEF8', letterSpacing: '-0.01em' }}>{item.title}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: '#6B7280' }}>{item.desc}</p>
                 </div>
               </div>

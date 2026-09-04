@@ -127,6 +127,7 @@ export default function Navbar() {
                 onClick={() => setOpen(true)}
                 className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg"
                 style={{ color: '#F0EEF8', background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.3)' }}
+                aria-label="Open menu"
               >
                 <Menu size={20} />
               </button>
@@ -140,7 +141,7 @@ export default function Navbar() {
         <div className="fixed inset-0 z-[100] flex flex-col" style={{ background: '#05040C' }}>
           <div className="flex items-center justify-between px-6 h-16 border-b" style={{ borderColor: '#1C1A32' }}>
             <img src="/gpf-logo.webp" alt="The Great Product Festival" style={{ height: 44, width: 'auto', maxWidth: '160px' }} />
-            <button onClick={() => setOpen(false)} style={{ color: '#9490AD' }}><X size={22} /></button>
+            <button onClick={() => setOpen(false)} style={{ color: '#9490AD' }} aria-label="Close menu"><X size={22} /></button>
           </div>
           <div className="flex flex-col flex-1 justify-center px-8 gap-6">
             {links.map(l => (

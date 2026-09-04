@@ -281,10 +281,10 @@ function SessionCard({ session }: { session: Session }) {
         </p>
       )}
       <TypeBadge type={session.type} />
-      <h4 className="font-display font-semibold mt-3 leading-snug flex-1"
+      <h3 className="font-display font-semibold mt-3 leading-snug flex-1"
         style={{ fontSize: 'clamp(14px,1.5vw,17px)', color: '#ECEAF8', letterSpacing: '-0.02em' }}>
         {session.title}
-      </h4>
+      </h3>
       {session.detail && (
         <p className="text-xs mt-1.5 leading-relaxed" style={{ color: '#52506A' }}>{session.detail}</p>
       )}

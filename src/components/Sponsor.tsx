@@ -26,11 +26,15 @@ export default function Sponsor({ onRequest }: Props) {
 
   useEffect(() => {
     const el = photoRef.current; if (!el) return
+    let raf = 0
     const fn = () => {
-      const rect = el.getBoundingClientRect()
-      const off = (window.innerHeight / 2 - (rect.top + rect.height / 2)) * 0.15
-      const img = el.querySelector('img') as HTMLImageElement
-      if (img) img.style.transform = `translateY(${off}px) scale(1.2)`
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        const rect = el.getBoundingClientRect()
+        const off = (window.innerHeight / 2 - (rect.top + rect.height / 2)) * 0.15
+        const img = el.querySelector('img') as HTMLImageElement
+        if (img) img.style.transform = `translateY(${off}px) scale(1.2)`
+      })
     }
     window.addEventListener('scroll', fn, { passive: true }); fn()
     return () => window.removeEventListener('scroll', fn)

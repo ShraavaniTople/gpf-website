@@ -103,15 +103,22 @@
   pointer-events:none;
 }
 
-/* ─── Shimmer on popular card ─────────────────────────── */
+/* ─── Shimmer on popular card (GPU-composited via transform) ── */
 @keyframes shim {
-  0%   { background-position: -600px 0 }
-  100% { background-position:  600px 0 }
+  from { transform: translateX(-100%) }
+  to   { transform: translateX(100%) }
 }
 .shim-top {
   height: 1px;
+  overflow: hidden;
+  position: relative;
+}
+.shim-top::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: linear-gradient(90deg,transparent,rgba(167,139,250,.9),rgba(245,158,11,.7),transparent);
-  background-size: 600px 100%;
+  will-change: transform;
   animation: shim 3.5s linear infinite;
 }
 
