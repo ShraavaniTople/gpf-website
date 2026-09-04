@@ -732,20 +732,37 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       </div>
 
       {/* Data sharing consent */}
-      <label className="flex items-start gap-3 cursor-pointer group select-none"
-        style={{ padding: '14px 16px', borderRadius: 12, background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.18)' }}>
-        <input
-          type="checkbox"
-          checked={consent}
-          onChange={e => setConsent(e.target.checked)}
-          className="mt-0.5 w-4 h-4 flex-shrink-0 cursor-pointer accent-[#7C3AED]"
-        />
-        <span className="text-xs leading-relaxed" style={{ color: '#9490AD' }}>
-          <span style={{ color: '#F0EEF8', fontWeight: 600 }}>I consent to share my contact details with TGPF 2026 sponsors and partners</span>{' '}
-          for networking and relevant opportunities. You can opt out at any time by emailing{' '}
-          <a href="mailto:hello@womeninproductindia.com" style={{ color: '#A78BFA' }}>hello@womeninproductindia.com</a>.
-        </span>
-      </label>
+      <div style={{ padding: '14px 16px', borderRadius: 12, background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.18)' }}>
+        <p className="text-xs font-semibold mb-3" style={{ color: '#F0EEF8' }}>
+          Share my contact details with TGPF 2026 sponsors &amp; partners for networking opportunities?
+        </p>
+        <div className="flex gap-3">
+          <button
+            type="button"
+            onClick={() => setConsent(true)}
+            style={{
+              flex: 1, padding: '10px', borderRadius: 10, fontSize: 13, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", cursor: 'pointer', transition: 'all .15s',
+              background: consent ? '#7C3AED' : 'transparent',
+              color: consent ? '#fff' : '#9490AD',
+              border: consent ? '1px solid #7C3AED' : '1px solid #1C1A32',
+            }}
+          >
+            Yes, Opt In
+          </button>
+          <button
+            type="button"
+            onClick={() => setConsent(false)}
+            style={{
+              flex: 1, padding: '10px', borderRadius: 10, fontSize: 13, fontWeight: 700, fontFamily: "'Space Grotesk', sans-serif", cursor: 'pointer', transition: 'all .15s',
+              background: !consent ? '#1C1A32' : 'transparent',
+              color: !consent ? '#F0EEF8' : '#9490AD',
+              border: !consent ? '1px solid #52506A' : '1px solid #1C1A32',
+            }}
+          >
+            No, Opt Out
+          </button>
+        </div>
+      </div>
 
       <button
         onClick={handlePay}
