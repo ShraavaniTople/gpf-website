@@ -175,7 +175,7 @@ const DAY2: Slot[] = [
   { start: '15:20', end: '15:50', sessions: [
     { type: 'hackathon', venue: 'Freshworks Hall', title: 'Hackathon Finalists Present — Top 4 Teams' },
     { type: 'expert', venue: 'Toast Hall', title: 'Product Insights from eBay',
-      speakers: [{ name: 'Dharam', role: 'eBay' }] },
+      speakers: [{ name: 'Dharma Varahappian', role: 'Product Leader, eBay', photo: '/speaker-dharma2.webp' }] },
   ] },
 
   { start: '16:00', end: '16:20', sessions: [
