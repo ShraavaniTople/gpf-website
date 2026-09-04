@@ -543,8 +543,8 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   await drawWipLogo(ctx, W - PAD, 54, 60)
 
   // ── Photo / logo zone ─────────────────────────────────────────────────────────
-  const PHOTO_R = opts.portrait ? 200 : 178
-  const PHOTO_CY = height * 0.37
+  const PHOTO_R = opts.portrait ? 248 : 220
+  const PHOTO_CY = height * 0.355
 
   const ORG_BW = opts.portrait ? 580 : 520
   const ORG_BH = opts.portrait ? 300 : 270
@@ -625,13 +625,13 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   let cursor = nameY + nameLines.length * lineH
 
   if (opts.title.trim()) {
-    cursor += 20
+    cursor += 14
     ctx.font = font(26, 400, 'Inter'); ctx.fillStyle = '#6B7280'
-    ctx.fillText(opts.title.trim(), cx, cursor); cursor += 28
+    ctx.fillText(opts.title.trim(), cx, cursor); cursor += 22
   }
 
   // Role chip in role accent colour
-  cursor += 20
+  cursor += 12
   ctx.font = font(21, 400, 'JetBrains Mono')
   const chipTxt = opts.role.label.toUpperCase()
   const chipW = ctx.measureText(chipTxt).width + 56
@@ -641,20 +641,20 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   ctx.fillStyle = t.light; ctx.fillText(chipTxt, cx, cursor + 31)
   cursor += 48
 
-  cursor += 20
+  cursor += 12
   ctx.font = font(30, 600); ctx.fillStyle = '#F59E0B'
   ctx.fillText(EVENT.dates, cx, cursor)
-  cursor += 32
+  cursor += 24
   ctx.font = font(23, 400, 'Inter'); ctx.fillStyle = '#6B7280'
   ctx.fillText(EVENT.city, cx, cursor)
 
   // ── Footer divider + hashtag ──────────────────────────────────────────────────
   const dg = ctx.createLinearGradient(PAD, 0, W - PAD, 0)
   dg.addColorStop(0, ac(r, g, b, 0)); dg.addColorStop(0.5, t.light + '80'); dg.addColorStop(1, ac(r, g, b, 0))
-  ctx.fillStyle = dg; ctx.fillRect(PAD, height - 88, W - PAD * 2, 2)
+  ctx.fillStyle = dg; ctx.fillRect(PAD, height - 52, W - PAD * 2, 2)
 
   ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = '#3A3856'
-  ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, cx, height - 36)
+  ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, cx, height - 22)
   ctx.textAlign = 'left'
 }
 
