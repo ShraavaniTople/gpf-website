@@ -57,60 +57,16 @@
 .sr-r.vis{ opacity: 1; transform: none; }
 
 /* stagger */
-.sg > * { opacity: 0; transform: translateY(30px); }
-.sg.vis > *:nth-child(1){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .04s forwards}
-.sg.vis > *:nth-child(2){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .12s forwards}
-.sg.vis > *:nth-child(3){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .20s forwards}
-.sg.vis > *:nth-child(4){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .28s forwards}
-.sg.vis > *:nth-child(5){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .36s forwards}
-.sg.vis > *:nth-child(6){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .44s forwards}
-.sg.vis > *:nth-child(7){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .52s forwards}
-.sg.vis > *:nth-child(8){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .60s forwards}
-.sg.vis > *:nth-child(9){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .68s forwards}
-.sg.vis > *:nth-child(10){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .76s forwards}
-.sg.vis > *:nth-child(11){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .84s forwards}
-.sg.vis > *:nth-child(12){animation:sup .7s cubic-bezier(0.16,1,0.3,1) .92s forwards}
-.sg.vis > *:nth-child(13){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.00s forwards}
-.sg.vis > *:nth-child(14){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.08s forwards}
-.sg.vis > *:nth-child(15){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.16s forwards}
-.sg.vis > *:nth-child(16){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.24s forwards}
-.sg.vis > *:nth-child(17){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.32s forwards}
-.sg.vis > *:nth-child(18){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.40s forwards}
-.sg.vis > *:nth-child(19){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.48s forwards}
-.sg.vis > *:nth-child(20){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.56s forwards}
-.sg.vis > *:nth-child(21){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.64s forwards}
-.sg.vis > *:nth-child(22){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.72s forwards}
-.sg.vis > *:nth-child(23){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.80s forwards}
-.sg.vis > *:nth-child(24){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.88s forwards}
-.sg.vis > *:nth-child(25){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 1.96s forwards}
-.sg.vis > *:nth-child(26){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.04s forwards}
-.sg.vis > *:nth-child(27){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.12s forwards}
-.sg.vis > *:nth-child(28){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.20s forwards}
-.sg.vis > *:nth-child(29){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.28s forwards}
-.sg.vis > *:nth-child(30){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.36s forwards}
-.sg.vis > *:nth-child(31){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.44s forwards}
-.sg.vis > *:nth-child(32){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.52s forwards}
-.sg.vis > *:nth-child(33){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.60s forwards}
-.sg.vis > *:nth-child(34){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.68s forwards}
-.sg.vis > *:nth-child(35){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.76s forwards}
-.sg.vis > *:nth-child(36){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.84s forwards}
-.sg.vis > *:nth-child(37){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 2.92s forwards}
-.sg.vis > *:nth-child(38){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.00s forwards}
-.sg.vis > *:nth-child(39){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.08s forwards}
-.sg.vis > *:nth-child(40){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.16s forwards}
-.sg.vis > *:nth-child(41){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.24s forwards}
-.sg.vis > *:nth-child(42){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.32s forwards}
-.sg.vis > *:nth-child(43){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.40s forwards}
-.sg.vis > *:nth-child(44){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.48s forwards}
-.sg.vis > *:nth-child(45){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.56s forwards}
-.sg.vis > *:nth-child(46){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.64s forwards}
-.sg.vis > *:nth-child(47){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.72s forwards}
-.sg.vis > *:nth-child(48){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.80s forwards}
-.sg.vis > *:nth-child(49){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.88s forwards}
-.sg.vis > *:nth-child(50){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 3.96s forwards}
-.sg.vis > *:nth-child(51){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 4.04s forwards}
-.sg.vis > *:nth-child(52){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 4.12s forwards}
-.sg.vis > *:nth-child(n+53){animation:sup .7s cubic-bezier(0.16,1,0.3,1) 4.20s forwards}
+.sg > * { opacity: 0; transform: translateY(20px); }
+.sg.vis > * { animation: sup .6s cubic-bezier(0.16,1,0.3,1) .05s forwards }
+.sg.vis > *:nth-child(1){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .05s forwards}
+.sg.vis > *:nth-child(2){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .10s forwards}
+.sg.vis > *:nth-child(3){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .15s forwards}
+.sg.vis > *:nth-child(4){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .20s forwards}
+.sg.vis > *:nth-child(5){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .25s forwards}
+.sg.vis > *:nth-child(6){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .30s forwards}
+.sg.vis > *:nth-child(7){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .35s forwards}
+.sg.vis > *:nth-child(8){animation:sup .6s cubic-bezier(0.16,1,0.3,1) .40s forwards}
 @keyframes sup { to { opacity:1; transform:none } }
 
 /* ─── Parallax img ────────────────────────────────────── */

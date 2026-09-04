@@ -93,7 +93,7 @@ export default function Speakers({ onApply, onNominate }: Props) {
                   onMouseEnter={e => { if (!isTba) e.currentTarget.style.transform = 'scale(1.06)' }}
                   onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
                 <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,4,12,1) 0%, rgba(5,4,12,.7) 35%, rgba(5,4,12,.1) 60%, transparent 100%)' }} />
-                <div className="ov absolute bottom-0 left-0 right-0 px-4 py-4 z-10">
+                <div className="ov absolute bottom-0 left-0 right-0 px-4 pt-4 pb-5 z-10">
                   <p className="font-display font-bold leading-tight text-sm" style={{ color: '#F0EEF8' }}>{s.name}</p>
                   <p className="text-[11px] mt-1 font-medium leading-snug" style={{ color: isTba ? '#52506A' : '#F59E0B' }}>{s.title}</p>
                   {s.linkedin && (
