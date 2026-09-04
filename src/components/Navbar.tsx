@@ -21,7 +21,7 @@ function AnnouncementBar({ onDismiss, onGoPasses }: { onDismiss: () => void; onG
   return (
     <div
       className="relative w-full flex items-center justify-center px-8 sm:px-10 py-2.5 text-center"
-      style={{ background: 'linear-gradient(90deg, rgba(124,58,237,.18) 0%, rgba(245,158,11,.12) 50%, rgba(124,58,237,.18) 100%)', borderBottom: '1px solid rgba(245,158,11,.15)' }}
+      style={{ background: 'linear-gradient(90deg, rgba(124,58,237,.25) 0%, rgba(245,158,11,.15) 50%, rgba(124,58,237,.25) 100%), #05040C', borderBottom: '1px solid rgba(245,158,11,.15)' }}
     >
       <div className="flex items-center gap-2.5 overflow-hidden">
         <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 animate-pulse" style={{ background: '#F59E0B' }} aria-hidden />
@@ -73,7 +73,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50" style={{ background: 'rgba(5,4,12,0.95)', backdropFilter: 'blur(16px)' }}>
+      <div className="fixed top-0 left-0 right-0 z-50" style={{ background: '#05040C' }}>
         {/* Announcement bar */}
         {banner && (
           <div className="hidden sm:block" style={{ animation: 'fadeIn .5s ease' }}>
