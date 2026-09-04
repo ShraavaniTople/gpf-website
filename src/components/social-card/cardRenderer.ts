@@ -622,7 +622,8 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
 
   ctx.font = font(nameFontSize, 700); ctx.fillStyle = '#F0EEF8'
   nameLines.forEach((line, i) => ctx.fillText(line, cx, nameY + i * lineH))
-  let cursor = nameY + nameLines.length * lineH
+  // Advance from last line's baseline by descenders + gap (not a full lineH, which leaves a dead zone)
+  let cursor = nameY + (nameLines.length - 1) * lineH + Math.round(nameFontSize * 0.28) + 36
 
   if (opts.title.trim()) {
     cursor += 14
