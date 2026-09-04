@@ -12,7 +12,7 @@ const speakers: Speaker[] = [
   // Row 2
   { name: 'Lalitha Ramani K', title: 'GM, Google Maps', linkedin: 'https://www.linkedin.com/in/lalitha-ramani-k-b863462/', photo: '/speaker-lalitha2.webp', objectPos: '50% 10%' },
   { name: 'Vikas Bansal', title: 'CPO, Groww', linkedin: 'https://www.linkedin.com/in/vikasbansal/', photo: '/speaker-vikas.webp', objectPos: '50% 15%' },
-  { name: 'Mansi Jain', title: 'COO, Glance', linkedin: 'https://www.linkedin.com/in/mansi-jain-39b51728/', photo: '/speaker-mansi2.webp', objectPos: '50% 15%' },
+  { name: 'Mansi Jain', title: 'COO, Glance', linkedin: 'https://www.linkedin.com/in/mansi-jain-39b51728/', photo: '/speaker-mansi3.webp', objectPos: '50% 15%' },
   { name: 'Pulkit Jain', title: 'Co-Founder & CPO, Vedantu', linkedin: 'https://www.linkedin.com/in/jainpulkit/', photo: '/speaker-pulkit.webp', objectPos: '50% 20%' },
   // Row 3
   { name: 'Prashant Pandey', title: 'Head of Global, Neysa', linkedin: 'https://www.linkedin.com/in/prashantpandeyofficial/', photo: '/speaker-prashant.webp', objectPos: '50% 15%' },

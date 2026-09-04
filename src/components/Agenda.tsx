@@ -80,7 +80,7 @@ const DAY1: Slot[] = [
 
   { start: '15:40', end: '16:15', sessions: [
     { type: 'expert', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
-      speakers: [{ name: 'Mansi Jain', role: 'COO, Glance', photo: '/speaker-mansi2.webp' }] },
+      speakers: [{ name: 'Mansi Jain', role: 'COO, Glance', photo: '/speaker-mansi3.webp' }] },
     { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo',
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA', photo: '/speaker-usha.webp' }] },
     { type: 'workshop', venue: 'Workshop Room', title: 'AI Evals for Product Teams',
