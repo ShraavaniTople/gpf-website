@@ -86,8 +86,8 @@ export default function Speakers({ onApply, onNominate }: Props) {
           {speakers.map((s, i) => {
             const isTba = false
             const inner = (
-              <div className={`spk-card relative overflow-hidden rounded-2xl h-full w-full ${isTba ? 'opacity-50' : 'cursor-pointer'}`} style={{ aspectRatio: '3/4' }}>
-                <img src={s.photo} alt={s.name} className="w-full h-full object-cover transition-transform duration-[900ms]"
+              <div className={`spk-card relative overflow-hidden rounded-2xl h-full w-full ${isTba ? 'opacity-50' : 'cursor-pointer'}`}>
+                <img src={s.photo} alt={s.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms]"
                   loading="lazy" decoding="async"
                   style={{ objectPosition: s.objectPos }}
                   onMouseEnter={e => { if (!isTba) e.currentTarget.style.transform = 'scale(1.06)' }}
@@ -103,8 +103,8 @@ export default function Speakers({ onApply, onNominate }: Props) {
               </div>
             )
             return s.linkedin
-              ? <a key={i} href={s.linkedin} target="_blank" rel="noopener noreferrer" style={{ aspectRatio: '3/4', display: 'block' }}>{inner}</a>
-              : <div key={i} style={{ aspectRatio: '3/4' }}>{inner}</div>
+              ? <a key={i} href={s.linkedin} target="_blank" rel="noopener noreferrer" style={{ aspectRatio: '3/4', display: 'block', overflow: 'hidden', borderRadius: 16 }}>{inner}</a>
+              : <div key={i} style={{ aspectRatio: '3/4', overflow: 'hidden', borderRadius: 16 }}>{inner}</div>
           })}
         </div>
 
