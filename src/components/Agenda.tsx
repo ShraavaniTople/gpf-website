@@ -168,7 +168,7 @@ const DAY2: Slot[] = [
         { name: 'Vikas', role: 'CPO, Groww', photo: '/speaker-vikas.webp' },
         { name: 'Bhavik Kaul', role: 'CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
         { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu', photo: '/speaker-pulkit.webp' },
-        { name: 'Ira', role: 'EvenHealth' },
+        { name: 'Ira', role: 'EvenHealth', photo: '/speaker-ira.webp' },
       ] },
   ] },
 
