@@ -641,10 +641,10 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   ctx.fillStyle = t.light; ctx.fillText(chipTxt, cx, cursor + 31)
   cursor += 48
 
-  cursor += 12
+  cursor += 26
   ctx.font = font(30, 600); ctx.fillStyle = '#F59E0B'
   ctx.fillText(EVENT.dates, cx, cursor)
-  cursor += 24
+  cursor += 36
   ctx.font = font(23, 400, 'Inter'); ctx.fillStyle = '#6B7280'
   ctx.fillText(EVENT.city, cx, cursor)
 
