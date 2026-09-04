@@ -42,14 +42,14 @@ function PartnerLogo({ name, slug, h = 40 }: { name: string; slug: string; h?: n
   return (
     <div
       className="flex items-center justify-center rounded-2xl"
-      style={{ background: '#0E0C22', border: '1px solid #1C1A32', padding: '20px 24px', minHeight: 88 }}
+      style={{ background: '#0E0C22', border: '1px solid #1C1A32', padding: '16px 12px', minHeight: 88 }}
     >
       {tried !== 'failed' ? (
         <img
           src={src}
           alt={name}
           onError={handleError}
-          style={{ height: h, width: 'auto', maxWidth: 220, objectFit: 'contain', opacity: 0.9 }}
+          style={{ height: 'auto', maxHeight: h, width: 'auto', maxWidth: '100%', objectFit: 'contain', opacity: 0.9 }}
         />
       ) : (
         <span className="font-display font-semibold text-sm text-center" style={{ color: '#6B7280', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
