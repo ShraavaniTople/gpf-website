@@ -85,26 +85,28 @@ export default function Speakers({ onApply, onNominate }: Props) {
         <div ref={gridRef} className="sg grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
           {speakers.map((s, i) => {
             const isTba = false
+            const wrapStyle: React.CSSProperties = { position: 'relative', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 16, display: 'block' }
             const inner = (
-              <div className={`spk-card relative overflow-hidden rounded-2xl h-full w-full ${isTba ? 'opacity-50' : 'cursor-pointer'}`}>
-                <img src={s.photo} alt={s.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms]"
+              <>
+                <img src={s.photo} alt={s.name}
+                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ${isTba ? 'opacity-50' : 'cursor-pointer'}`}
                   loading="lazy" decoding="async"
                   style={{ objectPosition: s.objectPos }}
                   onMouseEnter={e => { if (!isTba) e.currentTarget.style.transform = 'scale(1.06)' }}
                   onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
                 <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,4,12,1) 0%, rgba(5,4,12,.7) 35%, rgba(5,4,12,.1) 60%, transparent 100%)' }} />
-                <div className="ov absolute bottom-0 left-0 right-0 px-4 pt-4 pb-5 z-10">
+                <div className="absolute bottom-0 left-0 right-0 px-4 pt-4 pb-5 z-10">
                   <p className="font-display font-bold leading-tight text-sm" style={{ color: '#F0EEF8' }}>{s.name}</p>
                   <p className="text-[11px] mt-1 font-medium leading-snug" style={{ color: isTba ? '#52506A' : '#F59E0B' }}>{s.title}</p>
                   {s.linkedin && (
                     <p className="text-[10px] mt-1.5 font-mono" style={{ color: '#7C3AED' }}>View LinkedIn</p>
                   )}
                 </div>
-              </div>
+              </>
             )
             return s.linkedin
-              ? <a key={i} href={s.linkedin} target="_blank" rel="noopener noreferrer" style={{ aspectRatio: '3/4', display: 'block', overflow: 'hidden', borderRadius: 16 }}>{inner}</a>
-              : <div key={i} style={{ aspectRatio: '3/4', overflow: 'hidden', borderRadius: 16 }}>{inner}</div>
+              ? <a key={i} href={s.linkedin} target="_blank" rel="noopener noreferrer" style={wrapStyle}>{inner}</a>
+              : <div key={i} style={wrapStyle}>{inner}</div>
           })}
         </div>
 
