@@ -641,20 +641,20 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   ctx.fillStyle = t.light; ctx.fillText(chipTxt, cx, cursor + 31)
   cursor += 48
 
-  cursor += 26
+  cursor += 40
   ctx.font = font(30, 600); ctx.fillStyle = '#F59E0B'
   ctx.fillText(EVENT.dates, cx, cursor)
-  cursor += 36
+  cursor += 46
   ctx.font = font(23, 400, 'Inter'); ctx.fillStyle = '#6B7280'
   ctx.fillText(EVENT.city, cx, cursor)
 
   // ── Footer divider + hashtag ──────────────────────────────────────────────────
   const dg = ctx.createLinearGradient(PAD, 0, W - PAD, 0)
   dg.addColorStop(0, ac(r, g, b, 0)); dg.addColorStop(0.5, t.light + '80'); dg.addColorStop(1, ac(r, g, b, 0))
-  ctx.fillStyle = dg; ctx.fillRect(PAD, height - 52, W - PAD * 2, 2)
+  ctx.fillStyle = dg; ctx.fillRect(PAD, height - 32, W - PAD * 2, 2)
 
   ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = '#3A3856'
-  ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, cx, height - 22)
+  ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, cx, height - 14)
   ctx.textAlign = 'left'
 }
 
