@@ -20,6 +20,7 @@ const speakers: Speaker[] = [
   { name: 'Aditya Singh', title: 'VP, Product & India Site Head, Salesforce', linkedin: 'https://www.linkedin.com/in/adityas76', photo: '/speaker-aditya.webp', objectPos: '50% 15%' },
   { name: 'Seema Kumar', title: 'Director, Field Engineering, Databricks', linkedin: 'https://www.linkedin.com/in/seemapkumar/', photo: '/speaker-seema.webp', objectPos: '50% 15%' },
   // Row 4 onwards — rest
+  { name: 'Dharma Varahappian', title: 'Product Leader, eBay', linkedin: 'https://www.linkedin.com/in/dharmav/', photo: '/speaker-dharma.webp', objectPos: '50% 15%' },
   { name: 'Minakshi Khuntia', title: 'Senior Director, Product Management, Freshworks', linkedin: 'https://www.linkedin.com/in/khuntiaminakshi/', photo: '/speaker-minakshi.webp', objectPos: '50% 15%' },
   { name: 'Anuj Rathi', title: 'Founder, Profound.me', linkedin: 'https://www.linkedin.com/in/anujrathi1', photo: '/speaker-anuj.webp', objectPos: '50% 15%' },
   { name: 'Neha Bagaria', title: 'Founder & CEO, HerKey', linkedin: 'https://www.linkedin.com/in/nehabagariaherkey', photo: '/speaker-neha.webp', objectPos: '50% 15%' },
@@ -43,10 +44,9 @@ const speakers: Speaker[] = [
   { name: 'Sreya Sanyal', title: 'Product Lead, Ford', linkedin: 'https://www.linkedin.com/in/sreya-sanyal-138b8144/', photo: '/speaker-sreya.webp', objectPos: '50% 15%' },
   { name: 'Ekta Shah', title: 'Data Scientist, MSCI', linkedin: 'https://www.linkedin.com/in/ekta-shah30/', photo: '/speaker-ekta.webp', objectPos: '50% 8%' },
   { name: 'Subhadeep Mondal', title: 'VC, Kalaari Capital', linkedin: 'https://www.linkedin.com/in/subhadeepmondal/', photo: '/speaker-subhadeep.webp', objectPos: '50% 15%' },
-  { name: 'Jagriti', title: 'COO, OneInbox', linkedin: 'https://www.linkedin.com/in/jagritishreya/', photo: '/speaker-jagriti.webp', objectPos: '50% 15%' },
+  { name: 'Jagriti Shreya', title: 'COO, OneInbox', linkedin: 'https://www.linkedin.com/in/jagritishreya/', photo: '/speaker-jagriti2.webp', objectPos: '50% 15%' },
   { name: 'Rekha Poosala', title: 'Engineering Leader, Dell', linkedin: null, photo: '/speaker-rekha.webp', objectPos: '50% 15%' },
   { name: 'Vaishnavi Devi', title: 'AVP of Product, Swiggy', linkedin: null, photo: '/speaker-vaishnavi.webp', objectPos: '50% 15%' },
-  { name: 'Dharma Varahappian', title: 'Product Leader, eBay', linkedin: 'https://www.linkedin.com/in/dharmav/', photo: '/speaker-dharma.webp', objectPos: '50% 15%' },
 ]
 
 function useVis(delay = 0) {
