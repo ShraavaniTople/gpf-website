@@ -15,10 +15,10 @@ export default function SharePage() {
   return (
     <>
       <Navbar />
-      <main style={{ background: '#05040C', minHeight: '100vh', paddingTop: 120 }}>
+      <main style={{ background: '#05040C', minHeight: '100vh', paddingTop: 148 }}>
 
         {/* ── Header ── */}
-        <section style={{ padding: '48px 24px 40px' }}>
+        <section style={{ padding: '24px 24px 40px' }}>
           <div style={{ maxWidth: 1100, margin: '0 auto' }}>
             <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-3" style={{ color: '#7C3AED' }}>
               Share the Festival

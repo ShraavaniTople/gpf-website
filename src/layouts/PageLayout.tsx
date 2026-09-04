@@ -18,7 +18,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
     <>
       <div id="cg" aria-hidden="true" />
       <Navbar />
-      <main style={{ paddingTop: '108px' }}>
+      <main style={{ paddingTop: '148px' }}>
         {children}
       </main>
       <Footer />
