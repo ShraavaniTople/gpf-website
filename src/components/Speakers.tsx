@@ -24,7 +24,7 @@ const speakers: Speaker[] = [
   { name: 'Anuj Rathi', title: 'Founder, Profound.me', linkedin: 'https://www.linkedin.com/in/anujrathi1', photo: '/speaker-anuj.webp', objectPos: '50% 15%' },
   { name: 'Neha Bagaria', title: 'Founder & CEO, HerKey', linkedin: 'https://www.linkedin.com/in/nehabagariaherkey', photo: '/speaker-neha.webp', objectPos: '50% 15%' },
   { name: 'Roopa Jayaraman', title: 'Chief Product & Technology Officer, Odessa', linkedin: 'https://www.linkedin.com/in/roopajayaraman/', photo: '/speaker-roopa.webp', objectPos: '50% 15%' },
-  { name: 'Abhishek Gupta', title: 'Partner & National Sector Leader, KPMG', linkedin: 'https://www.linkedin.com/in/akgin/', photo: '/speaker-abhishek.webp', objectPos: '50% 15%' },
+  { name: 'Abhishek Gupta', title: 'Partner, KPMG', linkedin: 'https://www.linkedin.com/in/akgin/', photo: '/speaker-abhishek.webp', objectPos: '50% 15%' },
   { name: 'Supriya Rao', title: 'Managing Director, ClearRoute', linkedin: 'https://www.linkedin.com/in/supriya-y-rao/', photo: '/speaker-supriya-new.webp', objectPos: '50% 20%' },
   { name: 'Amrit Raj', title: 'Co-Founder, Women in Product India', linkedin: 'https://www.linkedin.com/in/amritraj02/', photo: '/speaker-amrit.webp', objectPos: '50% 15%' },
   { name: 'Dipika Jaikishan', title: 'VP Special Projects, Pronto', linkedin: 'https://www.linkedin.com/in/dipika-jaikishan-b16b439/', photo: '/speaker-dipika.webp', objectPos: '50% 15%' },
