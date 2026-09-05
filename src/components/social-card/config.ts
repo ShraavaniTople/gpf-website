@@ -8,7 +8,7 @@ export const EVENT = {
   hashtag: '#TGPF2026',
 }
 
-export type RoleId = 'attendee' | 'speaker' | 'mentor' | 'judge' | 'sponsor' | 'community-partner'
+export type RoleId = 'attendee' | 'speaker' | 'mentor' | 'judge' | 'sponsor' | 'community-partner' | 'organizer'
 
 export type DesignId = 'hero' | 'editorial' | 'festival'
 
@@ -82,6 +82,17 @@ export const ROLES: Role[] = [
     captions: [
       `Proud community partner of ${EVENT.name} 2026 — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
       `Our community is backing ${EVENT.name} 2026! Join us at RMZ Ecoworld, Bangalore. ${EVENT.hashtag}`,
+    ],
+  },
+  {
+    id: 'organizer',
+    label: 'Organizer',
+    hasPhoto: true,
+    lockedDesign: 'festival',
+    titleRequired: true,
+    captions: [
+      `Building ${EVENT.name} 2026 for India's product community — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
+      `Part of the team bringing ${EVENT.name} 2026 to life! ${EVENT.dates} · RMZ Ecoworld, Bangalore. ${EVENT.hashtag}`,
     ],
   },
 ]

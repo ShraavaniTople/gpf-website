@@ -1,7 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 65" fill="white">
-  <!-- aws text -->
-  <text x="75" y="38" font-family="Arial, sans-serif" font-size="42" font-weight="bold" text-anchor="middle" letter-spacing="-1">aws</text>
-  <!-- smile arrow -->
-  <path d="M 30 50 Q 75 68 120 50" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <polygon points="118,44 125,52 113,54" fill="white"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 65" fill="none">
+  <text
+    x="80" y="38"
+    fill="white"
+    font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-weight="900"
+    font-size="38"
+    text-anchor="middle"
+    letter-spacing="-1.5"
+  >aws</text>
+  <path
+    d="M 24 50 C 55 67 105 67 137 50"
+    stroke="white"
+    stroke-width="3.5"
+    stroke-linecap="round"
+    fill="none"
+  />
+  <path
+    d="M 124 43 L 138 51 L 125 58"
+    stroke="white"
+    stroke-width="3.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
 </svg>

@@ -60,6 +60,10 @@ function getTheme(id: RoleId): T {
       r: 6,   g: 95,  b: 70,  hex: '#065F46', light: '#6EE7B7',
       bar: ['#065F46', '#059669', '#D1FAE5'], watermark: 'COMM',
     },
+    organizer: {
+      r: 190, g: 24,  b: 93,  hex: '#BE185D', light: '#F472B6',
+      bar: ['#9D174D', '#EC4899', '#FDF2F8'], watermark: 'TEAM',
+    },
   }
   return map[id]
 }
