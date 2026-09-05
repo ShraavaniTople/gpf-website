@@ -66,16 +66,16 @@ export default function Hackathon() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Hackathon Partners</p>
             <div className="flex flex-wrap gap-x-6 gap-y-5 items-center" style={{ maxWidth: 420 }}>
               {[
-                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        f: undefined },
-                { src: '/logos/anthropic.webp',       alt: 'Anthropic',     f: 'invert(1)' },
-                { src: '/logos/aws.svg',              alt: 'AWS',           f: undefined },
-                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', f: undefined },
-                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    f: undefined },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         f: undefined },
-              ].map(({ src, alt, f }: { src: string; alt: string; f?: string }) => (
-                <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 36, width: 110 }}>
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 28, f: undefined },
+                { src: '/logos/anthropic.webp',       alt: 'Anthropic',     h: 24, f: 'invert(1)' },
+                { src: '/logos/aws-v2.svg',           alt: 'AWS',           h: 32, f: undefined },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 26, f: undefined },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 20, f: undefined },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 28, f: undefined },
+              ].map(({ src, alt, h, f }: { src: string; alt: string; h: number; f?: string }) => (
+                <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <img src={src} alt={alt}
-                    style={{ maxHeight: '100%', maxWidth: '100%', width: 'auto', height: 'auto', objectFit: 'contain', opacity: 0.9, filter: f }} />
+                    style={{ height: h, width: 'auto', maxWidth: 120, objectFit: 'contain', opacity: 0.9, filter: f }} />
                 </div>
               ))}
             </div>
