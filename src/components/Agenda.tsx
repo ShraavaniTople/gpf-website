@@ -108,7 +108,7 @@ const DAY2: Slot[] = [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Build for Bharat: AI for the Next Billion',
       speakers: [
         { name: 'Manikantha', role: 'Head of Product, Sarvam', photo: '/speaker-manikantha.webp' },
-        { name: 'Saurav', role: 'Reliance Intelligence', photo: '' },
+        { name: 'Gaurav Aggarwal', role: 'Chief AI Scientist, Reliance Intelligence', photo: '/speaker-gaurav.jpg' },
         { name: 'Amrit Raj', role: 'Co-Founder, WiP India · Moderator', photo: '/speaker-amrit.webp' },
       ] },
     { type: 'fireside', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
