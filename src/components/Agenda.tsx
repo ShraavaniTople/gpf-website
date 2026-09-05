@@ -105,8 +105,12 @@ const DAY2: Slot[] = [
   { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Day 2 Kickoff' }] },
 
   { start: '10:15', end: '10:40', sessions: [
-    { type: 'keynote', venue: 'Freshworks Hall', title: 'Build for Bharat: AI for the Next Billion',
-      speakers: [{ name: 'Manikantha', role: 'Head of Product, Sarvam', photo: '/speaker-manikantha.webp' }] },
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Build for Bharat: AI for the Next Billion',
+      speakers: [
+        { name: 'Manikantha', role: 'Head of Product, Sarvam', photo: '/speaker-manikantha.webp' },
+        { name: 'Saurav', role: 'Reliance Intelligence', photo: '' },
+        { name: 'Amrit Raj', role: 'Co-Founder, WiP India · Moderator', photo: '/speaker-amrit.webp' },
+      ] },
     { type: 'fireside', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [
         { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey', photo: '/speaker-neha.webp' },
