@@ -48,6 +48,7 @@ const speakers: Speaker[] = [
   { name: 'Rekha Poosala', title: 'Engineering Leader, Dell', linkedin: null, photo: '/speaker-rekha.webp', objectPos: '50% 15%' },
   { name: 'Vaishnavi Devi', title: 'AVP of Product, Swiggy', linkedin: null, photo: '/speaker-vaishnavi.webp', objectPos: '50% 15%' },
   { name: 'Dharma Varahappian', title: 'Product Leader, eBay', linkedin: 'https://www.linkedin.com/in/dharmav/', photo: '/speaker-dharma2.webp', objectPos: '50% 15%' },
+  { name: 'Adithi Sampath', title: 'VP of Product & Design, Stellantis', linkedin: 'https://www.linkedin.com/in/adithisampath/', photo: '/speaker-adithi.jpg', objectPos: '50% 15%' },
 ]
 
 function useVis(delay = 0) {
