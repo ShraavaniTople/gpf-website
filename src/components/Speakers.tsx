@@ -30,6 +30,7 @@ const speakers: Speaker[] = [
   { name: 'Dipika Jaikishan', title: 'VP Special Projects, Pronto', linkedin: 'https://www.linkedin.com/in/dipika-jaikishan-b16b439/', photo: '/speaker-dipika.webp', objectPos: '50% 15%' },
   { name: 'Shivalik Sen', title: 'Associate Director of Product, Rapido', linkedin: 'https://www.linkedin.com/in/shivaliksen/', photo: '/speaker-shivalik.webp', objectPos: '50% 10%' },
   { name: 'Ritika Chugh', title: 'Head of Product, Milestone', linkedin: 'https://www.linkedin.com/in/ritikachugh/', photo: '/speaker-ritika-new.webp', objectPos: '50% 15%' },
+  { name: 'Sachin Jain', title: 'Senior Product Manager, Milestone', linkedin: 'https://www.linkedin.com/in/tellmesachin/', photo: '/speaker-sachin.jpg', objectPos: '50% 15%' },
   { name: 'Sreedhar Gade', title: 'Vice President, Engineering, Freshworks', linkedin: 'https://www.linkedin.com/in/sreegade/', photo: '/speaker-sreedhar.webp', objectPos: '50% 15%' },
   { name: 'Sheetal Kale', title: 'Managing Director, Head of DataArt India', linkedin: 'https://www.linkedin.com/in/sheetalskale/', photo: '/speaker-sheetal2.webp', objectPos: '50% 15%' },
   { name: 'Rajat Harlalka', title: 'Director of Product, Toast', linkedin: 'https://www.linkedin.com/in/rajatharlalka/', photo: '/speaker-rajat.webp', objectPos: '50% 15%' },

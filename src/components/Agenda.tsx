@@ -46,7 +46,8 @@ const DAY1: Slot[] = [
         { name: 'Seema Kumar', role: 'Director, Field Engineering, Databricks', photo: '/speaker-seema.webp' },
         { name: 'Aditya Singh', role: 'VP Product & India Site Head, Salesforce', photo: '/speaker-aditya.webp' },
       ] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Agentic Product Building' },
+    { type: 'workshop', venue: 'Workshop Room', title: 'Agentic Product Ideation',
+      speakers: [{ name: 'Adithi Sampath', role: 'VP of Product & Design, Stellantis', photo: '/speaker-adithi.jpg' }] },
   ] },
 
   { start: '12:15', end: '12:45', sessions: [
@@ -75,7 +76,10 @@ const DAY1: Slot[] = [
         { name: 'Dipika Jaikishan', role: 'VP Special Projects, Pronto', photo: '/speaker-dipika.webp' },
       ] },
     { type: 'expert', venue: 'Toast Hall', title: 'GEO: How AI Search Is Rewriting Martech',
-      speakers: [{ name: 'Ritika Chugh', role: 'Head of Product, Milestone', photo: '/speaker-ritika-new.webp' }] },
+      speakers: [
+        { name: 'Ritika Chugh', role: 'Head of Product, Milestone', photo: '/speaker-ritika-new.webp' },
+        { name: 'Sachin Jain', role: 'Senior Product Manager, Milestone', photo: '/speaker-sachin.jpg' },
+      ] },
   ] },
 
   { start: '15:40', end: '16:15', sessions: [
@@ -152,7 +156,6 @@ const DAY2: Slot[] = [
   { start: '12:05', end: '12:20', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'The Future of Data Centers',
       speakers: [{ name: 'Rekha Poosala', role: 'Engineering Leader, Dell', photo: '/speaker-rekha.webp' }] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Applied AI Product Teardown' },
   ] },
 
   { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }] },
@@ -160,8 +163,7 @@ const DAY2: Slot[] = [
   { start: '14:00', end: '14:30', sessions: [
     { type: 'workshop', venue: 'Workshop Room', title: 'Fundraising + VC Lab',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Build Your Brand' },
-    { type: 'roundtable', venue: 'Bay Leaf', title: 'CXO Roundtable (Invite Only)' },
+    { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India' },
   ] },
 
   { start: '14:35', end: '15:15', sessions: [
