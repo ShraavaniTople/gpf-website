@@ -163,7 +163,7 @@ const DAY2: Slot[] = [
   { start: '14:00', end: '14:30', sessions: [
     { type: 'workshop', venue: 'Workshop Room', title: 'Fundraising + VC Lab',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
-    { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India' },
+    { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India (Invite Only)' },
   ] },
 
   { start: '14:35', end: '15:15', sessions: [
