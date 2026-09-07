@@ -170,8 +170,6 @@ const DAY2: Slot[] = [
     { type: 'workshop', venue: 'Toast Training Room', title: 'Figma to Code',
       speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP' }] },
     { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India (Invite Only)', detail: 'Voice is the new interface' },
-    { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
-      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG: Growth in High-Trust Markets',
       speakers: [
         { name: 'Vikas', role: 'CPO, Groww', photo: '/speaker-vikas.webp' },
@@ -187,7 +185,7 @@ const DAY2: Slot[] = [
       speakers: [{ name: 'Dharma Varahappian', role: 'Product Leader, eBay', photo: '/speaker-dharma2.webp' }] },
   ] },
 
-  { start: '16:00', end: '16:20', sessions: [
+  { start: '16:00', end: '16:30', sessions: [
     { type: 'showcase', venue: 'Freshworks Hall', title: 'The Great Agent Showcase — Winners Announced & Award Ceremony',
       detail: 'Hackathon finalists demo live in front of India\'s top product leaders. Winners announced on stage.' },
   ] },
