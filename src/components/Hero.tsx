@@ -126,17 +126,17 @@ export default function Hero({ onSponsor }: HeroProps) {
         <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#3D3B55', textTransform: 'uppercase' }}>Our Partners</p>
         <div className="flex items-center justify-center" style={{ gap: 36, overflowX: 'auto' }}>
           {([
-            { src: '/wip-logo.webp',              alt: 'Women in Product India', mh: 36 },
-            { src: '/logos/freshworks-full.webp', alt: 'Freshworks',             mh: 28 },
-            { src: '/logos/anthropic-v2.webp',       alt: 'Anthropic',              mh: 26 },
-            { src: '/logos/databricks.webp',      alt: 'Databricks',             mh: 28 },
-            { src: '/logos/sarvam.webp',          alt: 'Sarvam',                 mh: 28 },
-            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',             mh: 24 },
-            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments',          mh: 28 },
-            { src: '/logos/aws.webp',             alt: 'AWS',                    mh: 36 },
-          ] as { src: string; alt: string; mh: number }[]).map(({ src, alt, mh }) => (
+            { src: '/wip-logo.webp',              alt: 'Women in Product India', mh: 36, mw: 40  },
+            { src: '/logos/freshworks-full.webp', alt: 'Freshworks',             mh: 28, mw: 140 },
+            { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',              mh: 26, mw: 140 },
+            { src: '/logos/databricks.webp',      alt: 'Databricks',             mh: 28, mw: 140 },
+            { src: '/logos/sarvam.webp',          alt: 'Sarvam',                 mh: 28, mw: 140 },
+            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',             mh: 24, mw: 140 },
+            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments',          mh: 28, mw: 140 },
+            { src: '/logos/aws.webp',             alt: 'AWS',                    mh: 36, mw: 140 },
+          ] as { src: string; alt: string; mh: number; mw: number }[]).map(({ src, alt, mh, mw }) => (
             <div key={alt} style={{ height: 44, display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-              <img src={src} alt={alt} style={{ maxHeight: mh, width: 'auto', maxWidth: 140, objectFit: 'contain', opacity: 0.9 }} />
+              <img src={src} alt={alt} style={{ maxHeight: mh, width: 'auto', maxWidth: mw, objectFit: 'contain', opacity: 0.9 }} />
             </div>
           ))}
         </div>
