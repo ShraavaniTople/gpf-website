@@ -49,7 +49,7 @@ const DAY1: Slot[] = [
         { name: 'Seema Kumar', role: 'Director, Field Engineering, Databricks', photo: '/speaker-seema.webp' },
         { name: 'Aditya Singh', role: 'VP Product & India Site Head, Salesforce', photo: '/speaker-aditya.webp' },
       ] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Agentic Product Ideation',
+    { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Agentic Product Ideation',
       speakers: [{ name: 'Adithi Sampath', role: 'VP of Product & Design, Stellantis', photo: '/speaker-adithi.jpg' }] },
   ] },
 
@@ -65,11 +65,11 @@ const DAY1: Slot[] = [
   { start: '14:15', end: '14:45', sessions: [
     { type: 'keynote', venue: 'Toast Hall', title: 'Leveraging AI for Product Development',
       speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast', photo: '/speaker-rajat.webp' }] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'GTM for Product Teams',
+    { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'GTM for Product Teams',
       speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google Play', photo: '/speaker-deeksha.webp' }] },
-    { type: 'workshop', venue: 'Training Room', title: 'AI Evals for Product Teams',
+    { type: 'workshop', venue: 'Toast Training Room', title: 'AI Evals for Product Teams',
       speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI', photo: '/speaker-tanay.webp' }] },
-    { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)' },
+    { type: 'roundtable', venue: 'Freshworks Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)' },
   ] },
 
   { start: '14:50', end: '15:35', sessions: [
@@ -142,7 +142,7 @@ const DAY2: Slot[] = [
         { name: 'Abhishek Gupta', role: 'Partner & National Sector Leader, KPMG', photo: '/speaker-abhishek.webp' },
         { name: 'Supriya Rao', role: 'Managing Director, ClearRoute', photo: '/speaker-supriya-new.webp' },
       ] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'Build Your First AI Employee',
+    { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Build Your First AI Employee',
       speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI', photo: '/speaker-ekta.webp' }] },
   ] },
 
@@ -164,15 +164,12 @@ const DAY2: Slot[] = [
 
   { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }] },
 
-  { start: '14:00', end: '14:30', sessions: [
-    { type: 'workshop', venue: 'Workshop Room', title: 'Fundraising + VC Lab',
+  { start: '14:00', end: '15:15', sessions: [
+    { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Fundraising + VC Lab',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
-    { type: 'workshop', venue: 'Training Room', title: 'Figma to Code',
+    { type: 'workshop', venue: 'Toast Training Room', title: 'Figma to Code',
       speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP' }] },
     { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India (Invite Only)', detail: 'Voice is the new interface' },
-  ] },
-
-  { start: '14:35', end: '15:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG: Growth in High-Trust Markets',
@@ -287,7 +284,7 @@ function SessionCard({ session }: { session: Session }) {
     <div className="rounded-xl p-3 sm:p-5 h-full flex flex-col"
       style={{ background: '#0A0817', border: '1px solid #1E1B35' }}>
       {session.venue && (
-        <p className="font-mono text-[9px] uppercase tracking-widest mb-2.5" style={{ color: '#3A3852' }}>
+        <p className="font-mono text-[9px] uppercase tracking-widest mb-2.5" style={{ color: '#7C78A5' }}>
           {session.venue}
         </p>
       )}
