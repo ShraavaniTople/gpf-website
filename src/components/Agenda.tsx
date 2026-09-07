@@ -126,6 +126,7 @@ const DAY2: Slot[] = [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Voice AI Panel',
       detail: 'Murf.ai · OneInbox · SuperBryn · Vobiz',
       speakers: [
+        { name: 'Sahil Gupta', role: 'Head of Product, Murf AI', photo: '/speaker-sahil.jpg' },
         { name: 'Jagriti', role: 'COO, OneInbox', photo: '/speaker-jagriti.webp' },
         { name: 'Nikkitha Shanker', role: 'Founder & CEO, SuperBryn', photo: '/speaker-nikkitha.webp' },
         { name: 'Suman G', role: 'Founder, Vobiz', photo: '/speaker-suman2.webp' },
@@ -163,7 +164,7 @@ const DAY2: Slot[] = [
   { start: '14:00', end: '14:30', sessions: [
     { type: 'workshop', venue: 'Workshop Room', title: 'Fundraising + VC Lab',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
-    { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India (Invite Only)' },
+    { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India (Invite Only)', detail: 'Voice is the new interface' },
   ] },
 
   { start: '14:35', end: '15:15', sessions: [
@@ -191,7 +192,6 @@ const DAY2: Slot[] = [
 
   { start: '17:00', end: '18:00', sessions: [{ type: 'closing', title: 'TGPF Unplugged: Closing Jam Session' }] },
 
-  { start: '18:00', end: '20:00', sessions: [{ type: 'networking', title: 'Dinner Party — Team Celebration' }] },
 ]
 
 // ─── Filter config ────────────────────────────────────────────────────────────
