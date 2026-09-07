@@ -27,7 +27,7 @@ const ST: Record<SType, { label: string; color: string; bg: string }> = {
 }
 
 const DAY1: Slot[] = [
-  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }] },
+  { start: '08:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }] },
 
   { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'Welcome & Opening — The Great Product Festival',
       speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India', photo: '/speaker-swati.webp' }] }] },
@@ -67,6 +67,8 @@ const DAY1: Slot[] = [
       speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast', photo: '/speaker-rajat.webp' }] },
     { type: 'workshop', venue: 'Workshop Room', title: 'GTM for Product Teams',
       speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google Play', photo: '/speaker-deeksha.webp' }] },
+    { type: 'workshop', venue: 'Training Room', title: 'AI Evals for Product Teams',
+      speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI', photo: '/speaker-tanay.webp' }] },
     { type: 'roundtable', venue: 'Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)' },
   ] },
 
@@ -90,8 +92,6 @@ const DAY1: Slot[] = [
       speakers: [{ name: 'Mansi Jain', role: 'COO, Glance', photo: '/speaker-mansi3.webp' }] },
     { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo',
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA', photo: '/speaker-usha.webp' }] },
-    { type: 'workshop', venue: 'Workshop Room', title: 'AI Evals for Product Teams',
-      speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI', photo: '/speaker-tanay.webp' }] },
   ] },
 
   { start: '16:20', end: '16:50', sessions: [
@@ -158,7 +158,7 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '12:05', end: '12:20', sessions: [
-    { type: 'expert', venue: 'Toast Hall', title: 'The Future of Data Centers',
+    { type: 'expert', venue: 'Toast Hall', title: 'Rethinking Data Center Efficiency for AI',
       speakers: [{ name: 'Rekha Poosala', role: 'Engineering Leader, Dell', photo: '/speaker-rekha.webp' }] },
   ] },
 
