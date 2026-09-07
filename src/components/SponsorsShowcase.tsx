@@ -65,6 +65,15 @@ export default function SponsorsShowcase() {
             </div>
           </div>
 
+          {/* Strategic partner — KDEM */}
+          <div className="flex flex-col items-center gap-2 w-full">
+            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Strategic partner</p>
+            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
+              <img src="/logos/kdem.webp" alt="Karnataka Digital Economy Mission"
+                style={{ height: 72, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
+            </div>
+          </div>
+
           {/* Gifting partner — Lamhenow */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Gifting partner</p>
