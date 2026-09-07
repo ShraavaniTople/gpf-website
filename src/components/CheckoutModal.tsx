@@ -40,6 +40,8 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   UNWIND25:   { label: 'Unwind Ventures community · 25% off', pct: 25 },
   // Group discount — 40% off, requires 3+ passes
   GROUP40:    { label: 'Group discount · 40% off', pct: 40, minQty: 3 },
+  // Full comp
+  TGPF2026VIP$X: { label: '100% off', pct: 100 },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
@@ -385,6 +387,43 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
 
   async function handlePay() {
     setPaying(true)
+
+    // Free pass — bypass Razorpay entirely
+    if (finalPrice === 0) {
+      const pid      = `FREE-${Date.now()}`
+      const pn       = genPassNumber(pid, tierName)
+      const fullName = `${details.firstName} ${details.lastName}`
+      const amountStr = '0'
+      setPaymentId(pid)
+      setSuccess(true)
+      setPaying(false)
+      const sent = await sendConfirmationEmail({
+        name: fullName,
+        email: details.email,
+        company: details.company,
+        tierName,
+        amount: amountStr,
+        paymentId: pid,
+        passNumber: pn,
+      })
+      if (sent !== undefined) setEmailSent(true)
+      submitPassToWeb3Forms({
+        name:           fullName,
+        email:          details.email,
+        phone:          details.phone,
+        company:        details.company,
+        role:           details.role,
+        linkedin:       details.linkedin,
+        tierName,
+        qty,
+        amount:         amountStr,
+        paymentId:      pid,
+        passNumber:     pn,
+        discountCode:   applied?.code || '',
+        consentToShare: consent,
+      })
+      return
+    }
 
     const loaded = await loadRazorpay()
     if (!loaded) {
