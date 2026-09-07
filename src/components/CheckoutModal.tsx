@@ -38,6 +38,7 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   WIT25:      { label: 'Women in Tech India community · 25% off', pct: 25 },
   SAL25:      { label: 'Startups & Life community · 25% off', pct: 25 },
   UNWIND25:   { label: 'Unwind Ventures community · 25% off', pct: 25 },
+  INCX25:     { label: 'IncX community · 25% off', pct: 25 },
   // Group discount — 40% off, requires 3+ passes
   GROUP40:    { label: 'Group discount · 40% off', pct: 40, minQty: 3 },
   // Full comp
