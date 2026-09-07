@@ -128,7 +128,7 @@ export default function Hero({ onSponsor }: HeroProps) {
           {([
             { src: '/wip-logo.webp',              alt: 'Women in Product India', mh: 36 },
             { src: '/logos/freshworks-full.webp', alt: 'Freshworks',             mh: 28 },
-            { src: '/logos/anthropic.webp',       alt: 'Anthropic',              mh: 26 },
+            { src: '/logos/anthropic-v2.webp',       alt: 'Anthropic',              mh: 26 },
             { src: '/logos/databricks.webp',      alt: 'Databricks',             mh: 28 },
             { src: '/logos/sarvam.webp',          alt: 'Sarvam',                 mh: 28 },
             { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',             mh: 24 },

@@ -67,7 +67,7 @@ export default function Hackathon() {
             <div className="flex flex-wrap gap-x-6 gap-y-5 items-center" style={{ maxWidth: 420 }}>
               {[
                 { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 28, f: undefined },
-                { src: '/logos/anthropic.webp',       alt: 'Anthropic',     h: 24, f: undefined },
+                { src: '/logos/anthropic-v2.webp',       alt: 'Anthropic',     h: 24, f: undefined },
                 { src: '/logos/aws.webp',             alt: 'AWS',           h: 32, f: undefined },
                 { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 26, f: undefined },
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 20, f: undefined },
