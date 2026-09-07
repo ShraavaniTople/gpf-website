@@ -213,21 +213,21 @@ function buildTicketHtml(p: {
                 <!-- Fake barcode -->
                 <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
                   <tr>
-                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
-                    <td width="1" height="24" style="background:#ffffff;"></td><td width="3" height="24" style="background:transparent;"></td>
-                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
-                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
-                    <td width="1" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
-                    <td width="4" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
-                    <td width="1" height="24" style="background:#ffffff;"></td><td width="3" height="24" style="background:transparent;"></td>
-                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
-                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
-                    <td width="1" height="24" style="background:#ffffff;"></td><td width="4" height="24" style="background:transparent;"></td>
-                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
-                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
-                    <td width="1" height="24" style="background:#ffffff;"></td><td width="3" height="24" style="background:transparent;"></td>
-                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:transparent;"></td>
-                    <td width="4" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:transparent;"></td>
+                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:#16112B;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="3" height="24" style="background:#16112B;"></td>
+                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:#16112B;"></td>
+                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:#16112B;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:#16112B;"></td>
+                    <td width="4" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:#16112B;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="3" height="24" style="background:#16112B;"></td>
+                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:#16112B;"></td>
+                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:#16112B;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="4" height="24" style="background:#16112B;"></td>
+                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:#16112B;"></td>
+                    <td width="3" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:#16112B;"></td>
+                    <td width="1" height="24" style="background:#ffffff;"></td><td width="3" height="24" style="background:#16112B;"></td>
+                    <td width="2" height="24" style="background:#ffffff;"></td><td width="1" height="24" style="background:#16112B;"></td>
+                    <td width="4" height="24" style="background:#ffffff;"></td><td width="2" height="24" style="background:#16112B;"></td>
                     <td width="1" height="24" style="background:#ffffff;"></td>
                   </tr>
                 </table>
