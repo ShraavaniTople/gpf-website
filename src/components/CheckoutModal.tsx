@@ -774,7 +774,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       {/* Data sharing consent */}
       <div style={{ padding: '14px 16px', borderRadius: 12, background: 'rgba(124,58,237,.06)', border: '1px solid rgba(124,58,237,.18)' }}>
         <p className="text-xs font-semibold mb-3" style={{ color: '#F0EEF8' }}>
-          Share my contact details with TGPF 2026 sponsors &amp; partners for networking opportunities?
+          Would you like us to share your details with selected TGPF partners and use them to send you relevant event, community, and opportunity updates?
         </p>
         <div className="flex gap-3">
           <button
