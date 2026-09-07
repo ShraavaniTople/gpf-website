@@ -133,7 +133,7 @@ export default function Hero({ onSponsor }: HeroProps) {
             { src: '/logos/sarvam.webp',          alt: 'Sarvam'                 },
             { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs'             },
             { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments'          },
-            { src: '/logos/aws.svg',              alt: 'AWS'                    },
+            { src: '/logos/aws.webp',             alt: 'AWS'                    },
           ] as { src: string; alt: string }[]).map(({ src, alt }) => (
             <div key={alt} style={{ height: 28, display: 'flex', alignItems: 'center', flexShrink: 0 }}>
               <img src={src} alt={alt} style={{ maxHeight: 22, width: 'auto', maxWidth: 90, objectFit: 'contain', opacity: 0.85 }} />

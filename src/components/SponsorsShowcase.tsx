@@ -81,7 +81,7 @@ export default function SponsorsShowcase() {
               {[
                 { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 32 },
                 { src: '/logos/anthropic.webp',       alt: 'Anthropic',     h: 28 },
-                { src: '/logos/aws.svg',              alt: 'AWS',           h: 36 },
+                { src: '/logos/aws.webp',             alt: 'AWS',           h: 36 },
                 { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 28 },
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 22 },
                 { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 52 },
