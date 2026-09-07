@@ -124,19 +124,19 @@ export default function Hero({ onSponsor }: HeroProps) {
       {/* ── Partners strip ── */}
       <div className="relative z-10 w-full px-6 pb-4 pt-0">
         <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#3D3B55', textTransform: 'uppercase' }}>Our Partners</p>
-        <div className="flex items-center justify-center" style={{ gap: 32, overflowX: 'auto' }}>
+        <div className="flex items-center justify-center" style={{ gap: 36, overflowX: 'auto' }}>
           {([
-            { src: '/wip-logo.webp',              alt: 'Women in Product India' },
-            { src: '/logos/freshworks-full.webp', alt: 'Freshworks'             },
-            { src: '/logos/anthropic.webp',       alt: 'Anthropic'              },
-            { src: '/logos/databricks.webp',      alt: 'Databricks'             },
-            { src: '/logos/sarvam.webp',          alt: 'Sarvam'                 },
-            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs'             },
-            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments'          },
-            { src: '/logos/aws.webp',             alt: 'AWS'                    },
-          ] as { src: string; alt: string }[]).map(({ src, alt }) => (
-            <div key={alt} style={{ height: 28, display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-              <img src={src} alt={alt} style={{ maxHeight: 22, width: 'auto', maxWidth: 90, objectFit: 'contain', opacity: 0.85 }} />
+            { src: '/wip-logo.webp',              alt: 'Women in Product India', mh: 36 },
+            { src: '/logos/freshworks-full.webp', alt: 'Freshworks',             mh: 28 },
+            { src: '/logos/anthropic.webp',       alt: 'Anthropic',              mh: 26 },
+            { src: '/logos/databricks.webp',      alt: 'Databricks',             mh: 28 },
+            { src: '/logos/sarvam.webp',          alt: 'Sarvam',                 mh: 28 },
+            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',             mh: 24 },
+            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments',          mh: 28 },
+            { src: '/logos/aws.webp',             alt: 'AWS',                    mh: 36 },
+          ] as { src: string; alt: string; mh: number }[]).map(({ src, alt, mh }) => (
+            <div key={alt} style={{ height: 44, display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+              <img src={src} alt={alt} style={{ maxHeight: mh, width: 'auto', maxWidth: 140, objectFit: 'contain', opacity: 0.9 }} />
             </div>
           ))}
         </div>
