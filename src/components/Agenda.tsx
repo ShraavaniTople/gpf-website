@@ -170,6 +170,7 @@ const DAY2: Slot[] = [
     { type: 'workshop', venue: 'Toast Training Room', title: 'Figma to Code',
       speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP' }] },
     { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India (Invite Only)', detail: 'Voice is the new interface' },
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Beyond the Unicorn: VC Panel' },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG: Growth in High-Trust Markets',
       speakers: [
         { name: 'Vikas', role: 'CPO, Groww', photo: '/speaker-vikas.webp' },
