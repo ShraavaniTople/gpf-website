@@ -122,24 +122,22 @@ export default function Hero({ onSponsor }: HeroProps) {
       </div>
 
       {/* ── Partners strip ── */}
-      <div className="relative z-10 w-full px-6 pb-8 pt-2">
-        <div className="max-w-5xl mx-auto">
-          <p className="font-mono text-center mb-5" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#3D3B55', textTransform: 'uppercase' }}>Our Partners</p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
-            <img src="/wip-logo.webp"              alt="Women in Product India" style={{ height: 28, width: 'auto', opacity: 0.85 }} />
-            <img src="/logos/freshworks-full.webp" alt="Freshworks"             style={{ height: 22, width: 'auto', opacity: 0.85 }} />
-            <img src="/logos/anthropic.webp"       alt="Anthropic"              style={{ height: 20, width: 'auto', opacity: 0.85 }} />
-            <img src="/logos/databricks.webp"      alt="Databricks"             style={{ height: 22, width: 'auto', opacity: 0.85 }} />
-            <img src="/logos/sarvam.webp"          alt="Sarvam"                 style={{ height: 22, width: 'auto', opacity: 0.85 }} />
-            <img src="/logos/elevenlabs-crop.webp" alt="ElevenLabs"             style={{ height: 20, width: 'auto', opacity: 0.85 }} />
-            <img src="/logos/dodopayments.webp"    alt="Dodo Payments"          style={{ height: 22, width: 'auto', opacity: 0.85 }} />
-            <img src="/logos/aws.svg"              alt="AWS"                    style={{ height: 28, width: 'auto', opacity: 0.85 }} />
-          </div>
+      <div className="relative z-10 w-full px-6 pb-4 pt-0">
+        <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#3D3B55', textTransform: 'uppercase' }}>Our Partners</p>
+        <div className="flex items-center justify-center" style={{ gap: 36, overflowX: 'auto', whiteSpace: 'nowrap' }}>
+          <img src="/wip-logo.webp"              alt="Women in Product India" style={{ height: 24, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
+          <img src="/logos/freshworks-full.webp" alt="Freshworks"             style={{ height: 20, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
+          <img src="/logos/anthropic.webp"       alt="Anthropic"              style={{ height: 18, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
+          <img src="/logos/databricks.webp"      alt="Databricks"             style={{ height: 20, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
+          <img src="/logos/sarvam.webp"          alt="Sarvam"                 style={{ height: 20, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
+          <img src="/logos/elevenlabs-crop.webp" alt="ElevenLabs"             style={{ height: 18, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
+          <img src="/logos/dodopayments.webp"    alt="Dodo Payments"          style={{ height: 20, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
+          <img src="/logos/aws.svg"              alt="AWS"                    style={{ height: 24, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
         </div>
       </div>
 
       {/* ── Film strip ── */}
-      <div className="relative z-10 w-full pt-10 pb-10 overflow-hidden">
+      <div className="relative z-10 w-full pt-6 pb-10 overflow-hidden">
         <div className="relative">
           <div aria-hidden className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, #05040C, transparent)' }} />
           <div aria-hidden className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, #05040C, transparent)' }} />
