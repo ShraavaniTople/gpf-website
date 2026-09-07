@@ -1,24 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 72" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" fill="none">
   <text
-    x="80" y="38"
+    x="100" y="46"
     fill="white"
-    font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
     font-weight="900"
-    font-size="38"
+    font-size="46"
     text-anchor="middle"
-    letter-spacing="-1.5"
+    letter-spacing="2"
   >aws</text>
   <path
-    d="M 24 50 C 55 67 105 67 137 50"
-    stroke="white"
-    stroke-width="3.5"
+    d="M 38 62 C 72 82 128 82 162 62"
+    stroke="#FF9900"
+    stroke-width="4"
     stroke-linecap="round"
     fill="none"
   />
   <path
-    d="M 124 43 L 138 51 L 125 58"
-    stroke="white"
-    stroke-width="3.5"
+    d="M 151 55 L 163 62 L 152 70"
+    stroke="#FF9900"
+    stroke-width="4"
     stroke-linecap="round"
     stroke-linejoin="round"
     fill="none"
