@@ -124,15 +124,21 @@ export default function Hero({ onSponsor }: HeroProps) {
       {/* ── Partners strip ── */}
       <div className="relative z-10 w-full px-6 pb-4 pt-0">
         <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#3D3B55', textTransform: 'uppercase' }}>Our Partners</p>
-        <div className="flex items-center justify-center" style={{ gap: 36, overflowX: 'auto', whiteSpace: 'nowrap' }}>
-          <img src="/wip-logo.webp"              alt="Women in Product India" style={{ height: 24, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
-          <img src="/logos/freshworks-full.webp" alt="Freshworks"             style={{ height: 20, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
-          <img src="/logos/anthropic.webp"       alt="Anthropic"              style={{ height: 18, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
-          <img src="/logos/databricks.webp"      alt="Databricks"             style={{ height: 20, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
-          <img src="/logos/sarvam.webp"          alt="Sarvam"                 style={{ height: 20, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
-          <img src="/logos/elevenlabs-crop.webp" alt="ElevenLabs"             style={{ height: 18, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
-          <img src="/logos/dodopayments.webp"    alt="Dodo Payments"          style={{ height: 20, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
-          <img src="/logos/aws.svg"              alt="AWS"                    style={{ height: 24, width: 'auto', opacity: 0.85, flexShrink: 0 }} />
+        <div className="flex items-center justify-center" style={{ gap: 32, overflowX: 'auto' }}>
+          {([
+            { src: '/wip-logo.webp',              alt: 'Women in Product India' },
+            { src: '/logos/freshworks-full.webp', alt: 'Freshworks'             },
+            { src: '/logos/anthropic.webp',       alt: 'Anthropic'              },
+            { src: '/logos/databricks.webp',      alt: 'Databricks'             },
+            { src: '/logos/sarvam.webp',          alt: 'Sarvam'                 },
+            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs'             },
+            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments'          },
+            { src: '/logos/aws.svg',              alt: 'AWS'                    },
+          ] as { src: string; alt: string }[]).map(({ src, alt }) => (
+            <div key={alt} style={{ height: 28, display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+              <img src={src} alt={alt} style={{ maxHeight: 22, width: 'auto', maxWidth: 90, objectFit: 'contain', opacity: 0.85 }} />
+            </div>
+          ))}
         </div>
       </div>
 
