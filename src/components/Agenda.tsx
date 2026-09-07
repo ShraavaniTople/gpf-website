@@ -33,7 +33,10 @@ const DAY1: Slot[] = [
       speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India', photo: '/speaker-swati.webp' }] }] },
 
   { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'The New Rules of Building Products & Companies',
-      speakers: [{ name: 'Murali Swaminathan', role: 'CTO, Freshworks', photo: '/speaker-murali.webp' }] }] },
+      speakers: [
+        { name: 'Ryan', role: 'Freshworks', photo: '/speaker-ryan.webp' },
+        { name: 'Murali Swaminathan', role: 'CTO, Freshworks', photo: '/speaker-murali.webp' },
+      ] }] },
 
   { start: '11:05', end: '11:25', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Building at the Frontlines of AI',
       speakers: [{ name: 'Sangeeta Bavi', role: 'Head of Digital Natives, Startups & Growth, Anthropic India', photo: '/speaker-sangeeta.webp' }] }] },
@@ -104,7 +107,7 @@ const DAY1: Slot[] = [
 ]
 
 const DAY2: Slot[] = [
-  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }] },
+  { start: '08:00', end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }] },
 
   { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Day 2 Kickoff' }] },
 
@@ -164,6 +167,8 @@ const DAY2: Slot[] = [
   { start: '14:00', end: '14:30', sessions: [
     { type: 'workshop', venue: 'Workshop Room', title: 'Fundraising + VC Lab',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
+    { type: 'workshop', venue: 'Training Room', title: 'Figma to Code',
+      speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP' }] },
     { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India (Invite Only)', detail: 'Voice is the new interface' },
   ] },
 
@@ -181,7 +186,7 @@ const DAY2: Slot[] = [
 
   { start: '15:20', end: '15:50', sessions: [
     { type: 'hackathon', venue: 'Freshworks Hall', title: 'Hackathon Finalists Present — Top 4 Teams' },
-    { type: 'expert', venue: 'Toast Hall', title: 'Product Insights from eBay',
+    { type: 'expert', venue: 'Toast Hall', title: 'Designing Resilient AI for the Next Era of Commerce',
       speakers: [{ name: 'Dharma Varahappian', role: 'Product Leader, eBay', photo: '/speaker-dharma2.webp' }] },
   ] },
 
