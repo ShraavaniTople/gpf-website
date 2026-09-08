@@ -46,7 +46,7 @@ const titleLines = [
 
 export default function Hero({ onSponsor }: HeroProps) {
   return (
-    <section className="relative overflow-hidden pt-[72px] lg:pt-[118px]" style={{ background: '#05040C' }}>
+    <section className="hero-section relative overflow-hidden" style={{ background: '#05040C' }}>
 
       {/* ── MOBILE hero ── */}
       <div className="lg:hidden relative px-6 pt-6 pb-8"
@@ -190,6 +190,8 @@ export default function Hero({ onSponsor }: HeroProps) {
           from { transform: translateX(0) }
           to   { transform: translateX(-50%) }
         }
+        .hero-section { padding-top: 68px; }
+        @media (min-width: 1024px) { .hero-section { padding-top: 118px; } }
         .partners-strip { scrollbar-width: none; }
         .partners-strip::-webkit-scrollbar { display: none; }
         .film-track {
