@@ -85,7 +85,7 @@ async function sendConfirmationEmail(params: {
 async function submitPassToWeb3Forms(params: {
   name: string; email: string; phone: string; company: string; role: string; linkedin: string
   tierName: string; qty: number; amount: string; paymentId: string; passNumber: string
-  discountCode: string; consentToShare: boolean
+  discountCode: string; consentToShare: boolean; memberSummary?: string
 }) {
   try {
     await fetch('https://api.web3forms.com/submit', {
@@ -108,6 +108,7 @@ async function submitPassToWeb3Forms(params: {
         'Pass Number':            params.passNumber,
         'Discount Code':          params.discountCode || 'None',
         'Consent to Share Data':  params.consentToShare ? 'Yes — opted in' : 'No — opted out',
+        ...(params.memberSummary ? { 'Additional Members': params.memberSummary } : {}),
       }),
     })
   } catch { /* non-blocking */ }
@@ -341,9 +342,11 @@ Organised by @womeninproductindia 🙌
 export default function CheckoutModal({ tierName, onClose }: Props) {
   const tier = TIERS[tierName] || TIERS.General
 
-  const [step, setStep] = useState<'details' | 'review'>('details')
+  const [step, setStep] = useState<'details' | 'members' | 'review'>('details')
   const [qty, setQty] = useState(1)
   const [details, setDetails] = useState({ firstName: '', lastName: '', email: '', phone: '', company: '', linkedin: '', role: '' })
+  const emptyMember = () => ({ firstName: '', lastName: '', email: '', phone: '', company: '', role: '', linkedin: '' })
+  const [memberDetails, setMemberDetails] = useState<ReturnType<typeof emptyMember>[]>([])
   const [codeInput, setCodeInput] = useState('')
   const [applied, setApplied] = useState<{ code: string; label: string; pct?: number; fixed?: number; minQty?: number } | null>(null)
   const [codeErr, setCodeErr] = useState('')
@@ -352,6 +355,16 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   const [success, setSuccess] = useState(false)
   const [paymentId, setPaymentId] = useState('')
   const [emailSent, setEmailSent] = useState(false)
+
+  // Sync memberDetails array length with qty
+  useEffect(() => {
+    const needed = Math.max(0, qty - 1)
+    setMemberDetails(prev => {
+      if (prev.length === needed) return prev
+      if (prev.length < needed) return [...prev, ...Array.from({ length: needed - prev.length }, emptyMember)]
+      return prev.slice(0, needed)
+    })
+  }, [qty])
 
   // Remove code if user reduces qty below the minimum required
   useEffect(() => {
@@ -398,31 +411,14 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       setPaymentId(pid)
       setSuccess(true)
       setPaying(false)
-      const sent = await sendConfirmationEmail({
-        name: fullName,
-        email: details.email,
-        company: details.company,
-        tierName,
-        amount: amountStr,
-        paymentId: pid,
-        passNumber: pn,
-      })
+      const sent = await sendConfirmationEmail({ name: fullName, email: details.email, company: details.company, tierName, amount: amountStr, paymentId: pid, passNumber: pn })
       if (sent !== undefined) setEmailSent(true)
-      submitPassToWeb3Forms({
-        name:           fullName,
-        email:          details.email,
-        phone:          details.phone,
-        company:        details.company,
-        role:           details.role,
-        linkedin:       details.linkedin,
-        tierName,
-        qty,
-        amount:         amountStr,
-        paymentId:      pid,
-        passNumber:     pn,
-        discountCode:   applied?.code || '',
-        consentToShare: consent,
-      })
+      for (let i = 0; i < memberDetails.length; i++) {
+        const m = memberDetails[i]
+        await sendConfirmationEmail({ name: `${m.firstName} ${m.lastName}`, email: m.email, company: m.company, tierName, amount: amountStr, paymentId: pid, passNumber: `${pn}-${i + 2}` })
+      }
+      const memberSummary = memberDetails.map((m, i) => `Member ${i + 2}: ${m.firstName} ${m.lastName} | ${m.email} | ${m.phone} | ${m.company} | ${m.role} | ${m.linkedin}`).join('\n')
+      submitPassToWeb3Forms({ name: fullName, email: details.email, phone: details.phone, company: details.company, role: details.role, linkedin: details.linkedin, tierName, qty, amount: amountStr, paymentId: pid, passNumber: pn, discountCode: applied?.code || '', consentToShare: consent, memberSummary })
       return
     }
 
@@ -450,31 +446,14 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         setPaymentId(pid)
         setSuccess(true)
         setPaying(false)
-        const sent = await sendConfirmationEmail({
-          name: fullName,
-          email: details.email,
-          company: details.company,
-          tierName,
-          amount: amountStr,
-          paymentId: pid,
-          passNumber: pn,
-        })
+        const sent = await sendConfirmationEmail({ name: fullName, email: details.email, company: details.company, tierName, amount: amountStr, paymentId: pid, passNumber: pn })
         if (sent !== undefined) setEmailSent(true)
-        submitPassToWeb3Forms({
-          name:           fullName,
-          email:          details.email,
-          phone:          details.phone,
-          company:        details.company,
-          role:           details.role,
-          linkedin:       details.linkedin,
-          tierName,
-          qty,
-          amount:         amountStr,
-          paymentId:      pid,
-          passNumber:     pn,
-          discountCode:   applied?.code || '',
-          consentToShare: consent,
-        })
+        for (let i = 0; i < memberDetails.length; i++) {
+          const m = memberDetails[i]
+          await sendConfirmationEmail({ name: `${m.firstName} ${m.lastName}`, email: m.email, company: m.company, tierName, amount: amountStr, paymentId: pid, passNumber: `${pn}-${i + 2}` })
+        }
+        const memberSummary = memberDetails.map((m, i) => `Member ${i + 2}: ${m.firstName} ${m.lastName} | ${m.email} | ${m.phone} | ${m.company} | ${m.role} | ${m.linkedin}`).join('\n')
+        submitPassToWeb3Forms({ name: fullName, email: details.email, phone: details.phone, company: details.company, role: details.role, linkedin: details.linkedin, tierName, qty, amount: amountStr, paymentId: pid, passNumber: pn, discountCode: applied?.code || '', consentToShare: consent, memberSummary })
       },
       modal: { ondismiss: () => setPaying(false) },
     }
@@ -676,10 +655,75 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         </div>
 
         <button
-          onClick={() => setStep('review')}
+          onClick={() => qty > 1 ? setStep('members') : setStep('review')}
           disabled={!canProceed}
           className="btn-purple w-full"
           style={{ padding: '14px', fontSize: 15, opacity: canProceed ? 1 : 0.45, cursor: canProceed ? 'pointer' : 'not-allowed' }}
+        >
+          {qty > 1 ? `Continue — Add ${qty - 1} More Member${qty > 2 ? 's' : ''} →` : 'Continue to Review'}
+        </button>
+        <p className="text-xs text-center" style={{ color: '#52506A' }}>* Required fields</p>
+      </div>
+    )
+  }
+
+  // ── Step 1b: Additional members ────────────────────────────────────────────
+  if (step === 'members') {
+    const allMembersFilled = memberDetails.every(m =>
+      m.firstName.trim() && m.lastName.trim() && m.email.trim() && m.phone.trim() && m.company.trim() && m.role.trim()
+    )
+    function updateMember(i: number, field: string, val: string) {
+      setMemberDetails(prev => prev.map((m, idx) => idx === i ? { ...m, [field]: val } : m))
+    }
+    return (
+      <div className="space-y-6">
+        <button onClick={() => setStep('details')} className="flex items-center gap-1.5 text-sm transition-colors hover:text-white" style={{ color: '#6B7280' }}>
+          <ArrowLeft size={14} /> Back
+        </button>
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-widest mb-1" style={{ color: '#7C3AED' }}>Group Registration</p>
+          <p className="text-sm" style={{ color: '#6B7280' }}>Enter details for the remaining {qty - 1} member{qty > 2 ? 's' : ''} — each will receive their own confirmation email and pass.</p>
+        </div>
+        {memberDetails.map((m, i) => (
+          <div key={i} className="space-y-4 rounded-2xl p-5" style={{ background: '#080618', border: '1px solid #1C1A32' }}>
+            <p className="font-display font-bold text-sm" style={{ color: '#F0EEF8' }}>Member {i + 2} of {qty}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className={lbl}>First Name *</label>
+                <input value={m.firstName} onChange={e => updateMember(i, 'firstName', e.target.value)} type="text" placeholder="Priya" className={inp} />
+              </div>
+              <div>
+                <label className={lbl}>Last Name *</label>
+                <input value={m.lastName} onChange={e => updateMember(i, 'lastName', e.target.value)} type="text" placeholder="Sharma" className={inp} />
+              </div>
+              <div className="col-span-1 sm:col-span-2">
+                <label className={lbl}>Email *</label>
+                <input value={m.email} onChange={e => updateMember(i, 'email', e.target.value)} type="email" placeholder="priya@example.com" className={inp} />
+              </div>
+              <div>
+                <label className={lbl}>Phone *</label>
+                <input value={m.phone} onChange={e => updateMember(i, 'phone', e.target.value)} type="tel" placeholder="+91 98765 43210" className={inp} />
+              </div>
+              <div>
+                <label className={lbl}>Company *</label>
+                <input value={m.company} onChange={e => updateMember(i, 'company', e.target.value)} type="text" placeholder="Your company" className={inp} />
+              </div>
+              <div>
+                <label className={lbl}>Role *</label>
+                <input value={m.role} onChange={e => updateMember(i, 'role', e.target.value)} type="text" placeholder="Product Manager" className={inp} />
+              </div>
+              <div>
+                <label className={lbl}>LinkedIn Profile</label>
+                <input value={m.linkedin} onChange={e => updateMember(i, 'linkedin', e.target.value)} type="url" placeholder="https://linkedin.com/in/..." className={inp} />
+              </div>
+            </div>
+          </div>
+        ))}
+        <button
+          onClick={() => setStep('review')}
+          disabled={!allMembersFilled}
+          className="btn-purple w-full"
+          style={{ padding: '14px', fontSize: 15, opacity: allMembersFilled ? 1 : 0.45, cursor: allMembersFilled ? 'pointer' : 'not-allowed' }}
         >
           Continue to Review
         </button>
