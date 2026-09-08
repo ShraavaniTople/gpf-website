@@ -17,8 +17,18 @@ const venueBadge = (
   <div className="inline-flex items-center gap-2.5 w-fit"
     style={{ border: '1px solid rgba(245,158,11,.4)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.10)' }}>
     <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#F59E0B' }} aria-hidden />
-    <span className="font-mono font-medium uppercase" style={{ color: '#F59E0B', fontSize: 10, letterSpacing: '0.08em', lineHeight: 1.5 }}>
+    <span className="font-mono font-medium uppercase" style={{ color: '#F59E0B', fontSize: 11, letterSpacing: '0.14em', lineHeight: 1.5, whiteSpace: 'nowrap' }}>
       RMZ Ecoworld, Bangalore &nbsp;·&nbsp; 25-26 Sept 2026
+    </span>
+  </div>
+)
+
+const venueBadgeMobile = (
+  <div className="inline-flex items-center gap-2 w-fit"
+    style={{ border: '1px solid rgba(245,158,11,.4)', borderRadius: 16, padding: '6px 12px', background: 'rgba(245,158,11,.10)' }}>
+    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#F59E0B' }} aria-hidden />
+    <span className="font-mono font-medium uppercase" style={{ color: '#F59E0B', fontSize: 10, letterSpacing: '0.07em', lineHeight: 1.5 }}>
+      RMZ Ecoworld, Bangalore · 25-26 Sept 2026
     </span>
   </div>
 )
@@ -63,7 +73,7 @@ export default function Hero({ onSponsor }: HeroProps) {
           </div>
         </div>
         {/* Venue badge */}
-        <div className="mb-5" style={{ overflowX: 'auto', scrollbarWidth: 'none' }}>{venueBadge}</div>
+        <div className="mb-5">{venueBadgeMobile}</div>
         <h1 className="font-display font-extrabold leading-none mb-5"
           style={{ fontSize: 'clamp(52px,14vw,72px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
           {titleLines.map(({ text, cls, delay }) => (
