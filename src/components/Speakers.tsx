@@ -53,6 +53,7 @@ const speakers: Speaker[] = [
   { name: 'Sahil Gupta', title: 'Head of Product, Murf AI', linkedin: 'https://www.linkedin.com/in/sahilsgupta/', photo: '/speaker-sahil.jpg', objectPos: '50% 15%' },
   { name: 'Gaurav Aggarwal', title: 'Chief AI Scientist, Reliance Intelligence', linkedin: 'https://www.linkedin.com/in/gauagg/', photo: '/speaker-gaurav.jpg', objectPos: '50% 15%' },
   { name: 'Vijeta Pai', title: 'Senior PM, Ex-Microsoft', linkedin: 'https://www.linkedin.com/in/vijetapai/', photo: '/speaker-vijeta.jpg', objectPos: '50% 15%' },
+  { name: 'Ryan Manning', title: 'CPO, Freshworks', linkedin: 'https://www.linkedin.com/in/rpmanning2/', photo: '/speaker-ryan.jpg', objectPos: '50% 15%' },
 ]
 
 function useVis(delay = 0) {
