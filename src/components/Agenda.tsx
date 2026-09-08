@@ -147,7 +147,7 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '11:00', end: '11:30', sessions: [
-    { type: 'workshop', venue: 'Toast Hall', title: 'Product Automation Lab: Build with n8n' },
+    { type: 'workshop', venue: 'Toast Hall', title: 'Vibe Code Your Product MVP with Google AI Studio' },
   ] },
 
   { start: '11:35', end: '12:05', sessions: [
