@@ -148,7 +148,7 @@ export default function Hero({ onSponsor }: HeroProps) {
       </div>
 
       {/* ── Partners strip — rest of logos ── */}
-      <div className="partners-wrap relative z-10 w-full px-6 pb-5 pt-2">
+      <div className="relative z-10 w-full px-6 pb-5 pt-2 lg:-mt-[60px]">
         <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#52506A', textTransform: 'uppercase' }}>Our Partners</p>
         <div className="partners-strip flex items-center" style={{ gap: '0 28px', overflowX: 'auto', paddingBottom: 4 }}>
           {([
@@ -202,7 +202,6 @@ export default function Hero({ onSponsor }: HeroProps) {
         @media (min-width: 1024px) { .hero-section { padding-top: 118px; } }
         .partners-strip { scrollbar-width: none; }
         .partners-strip::-webkit-scrollbar { display: none; }
-        @media (min-width: 1024px) { .partners-wrap { margin-top: -60px; } }
         .film-track {
           display: flex;
           gap: 0.75rem;
