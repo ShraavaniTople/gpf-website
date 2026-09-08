@@ -131,19 +131,19 @@ export default function Hero({ onSponsor }: HeroProps) {
       {/* ── Partners strip — rest of logos ── */}
       <div className="relative z-10 w-full px-6 py-5">
         <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#52506A', textTransform: 'uppercase' }}>Our Partners</p>
-        <div className="flex items-center justify-center flex-wrap" style={{ gap: '12px 36px' }}>
+        <div className="flex items-center justify-center flex-wrap" style={{ gap: '8px 32px' }}>
           {([
-            { src: '/logos/kdem.webp',            alt: 'KDEM',          mh: 46, mw: 110 },
-            { src: '/logos/databricks.webp',      alt: 'Databricks',    mh: 30, mw: 140 },
-            { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     mh: 28, mw: 140 },
-            { src: '/logos/sarvam.webp',          alt: 'Sarvam',        mh: 24, mw: 120 },
-            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    mh: 26, mw: 140 },
-            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', mh: 30, mw: 150 },
-            { src: '/logos/aws.webp',             alt: 'AWS',           mh: 38, mw: 120 },
-          ] as { src: string; alt: string; mh: number; mw: number }[]).map(({ src, alt, mh, mw }) => (
-            <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 52, flexShrink: 0 }}>
+            { src: '/logos/kdem.webp',            alt: 'KDEM',          mw: 100 },
+            { src: '/logos/databricks.webp',      alt: 'Databricks',    mw: 130 },
+            { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     mw: 130 },
+            { src: '/logos/sarvam.webp',          alt: 'Sarvam',        mw: 110 },
+            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    mw: 130 },
+            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', mw: 130 },
+            { src: '/logos/aws.webp',             alt: 'AWS',           mw: 70  },
+          ] as { src: string; alt: string; mw: number }[]).map(({ src, alt, mw }) => (
+            <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 40, flexShrink: 0 }}>
               <img src={src} alt={alt}
-                style={{ maxHeight: mh, width: 'auto', maxWidth: mw, objectFit: 'contain', opacity: 0.92 }} />
+                style={{ height: 32, width: 'auto', maxWidth: mw, objectFit: 'contain', opacity: 0.92 }} />
             </div>
           ))}
         </div>

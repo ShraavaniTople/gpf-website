@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Modal from './components/Modal'
 import CheckoutModal from './components/CheckoutModal'
 import Navbar from './components/Navbar'
@@ -30,8 +30,11 @@ import AdminSendPassesPage from './pages/AdminSendPassesPage'
 import SharePage from './pages/SharePage'
 import SocialCardCTA from './components/SocialCardCTA'
 
+const SECTION_IDS = ['why-attend','agenda','hackathon','speakers','passes','sponsors-showcase','community-partners','faq']
+
 // ─── Home page ────────────────────────────────────────────────────────────────
 function HomePage() {
+  const location = useLocation()
   const [speakerModal, setSpeakerModal] = useState(false)
   const [nominateModal, setNominateModal] = useState(false)
   const [sponsorModal, setSponsorModal] = useState(false)
@@ -47,6 +50,18 @@ function HomePage() {
     window.addEventListener('mousemove', move)
     return () => window.removeEventListener('mousemove', move)
   }, [])
+
+  useEffect(() => {
+    const id = location.pathname.replace(/^\//, '')
+    if (!SECTION_IDS.includes(id)) return
+    const timer = setTimeout(() => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const top = el.getBoundingClientRect().top + window.scrollY - 90
+      window.scrollTo({ top, behavior: 'smooth' })
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [location.pathname])
 
   return (
     <>
