@@ -17,7 +17,7 @@ const venueBadge = (
   <div className="inline-flex items-center gap-2.5 w-fit"
     style={{ border: '1px solid rgba(245,158,11,.4)', borderRadius: 16, padding: '7px 14px', background: 'rgba(245,158,11,.10)' }}>
     <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: '#F59E0B' }} aria-hidden />
-    <span className="font-mono font-medium uppercase" style={{ color: '#F59E0B', fontSize: 11, letterSpacing: '0.14em', lineHeight: 1.5, whiteSpace: 'nowrap' }}>
+    <span className="font-mono font-medium uppercase" style={{ color: '#F59E0B', fontSize: 10, letterSpacing: '0.08em', lineHeight: 1.5 }}>
       RMZ Ecoworld, Bangalore &nbsp;·&nbsp; 25-26 Sept 2026
     </span>
   </div>
@@ -140,7 +140,7 @@ export default function Hero({ onSponsor }: HeroProps) {
       </div>
 
       {/* ── Partners strip — rest of logos ── */}
-      <div className="relative z-10 w-full px-6 pb-5 pt-2" style={{ marginTop: '-60px' }}>
+      <div className="partners-wrap relative z-10 w-full px-6 pb-5 pt-2">
         <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#52506A', textTransform: 'uppercase' }}>Our Partners</p>
         <div className="partners-strip flex items-center" style={{ gap: '0 28px', overflowX: 'auto', paddingBottom: 4 }}>
           {([
@@ -194,6 +194,7 @@ export default function Hero({ onSponsor }: HeroProps) {
         @media (min-width: 1024px) { .hero-section { padding-top: 118px; } }
         .partners-strip { scrollbar-width: none; }
         .partners-strip::-webkit-scrollbar { display: none; }
+        @media (min-width: 1024px) { .partners-wrap { margin-top: -60px; } }
         .film-track {
           display: flex;
           gap: 0.75rem;
