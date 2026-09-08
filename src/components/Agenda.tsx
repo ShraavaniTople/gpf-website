@@ -27,7 +27,7 @@ const ST: Record<SType, { label: string; color: string; bg: string }> = {
 }
 
 const DAY1: Slot[] = [
-  { start: '08:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }] },
+  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }] },
 
   { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'Welcome & Opening — The Great Product Festival',
       speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India', photo: '/speaker-swati.webp' }] }] },
@@ -41,7 +41,7 @@ const DAY1: Slot[] = [
   { start: '11:05', end: '11:25', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Building at the Frontlines of AI',
       speakers: [{ name: 'Sangeeta Bavi', role: 'Head of Digital Natives, Startups & Growth, Anthropic India', photo: '/speaker-sangeeta.webp' }] }] },
 
-  { start: '11:30', end: '12:10', sessions: [
+  { start: '11:30', end: '12:45', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'The Future of Enterprise Agents',
       speakers: [
         { name: 'Minakshi Khuntia', role: 'Senior Director, Product Management, Freshworks · Moderator', photo: '/speaker-minakshi.webp' },
@@ -62,7 +62,7 @@ const DAY1: Slot[] = [
 
   { start: '13:15', end: '14:15', sessions: [{ type: 'lunch', title: 'Lunch' }] },
 
-  { start: '14:15', end: '14:45', sessions: [
+  { start: '14:15', end: '15:30', sessions: [
     { type: 'keynote', venue: 'Toast Hall', title: 'Leveraging AI for Product Development',
       speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast', photo: '/speaker-rajat.webp' }] },
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'GTM for Product Teams',
@@ -107,7 +107,7 @@ const DAY1: Slot[] = [
 ]
 
 const DAY2: Slot[] = [
-  { start: '08:00', end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }] },
+  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Doors Open & Breakfast' }] },
 
   { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Day 2 Kickoff' }] },
 
@@ -125,7 +125,7 @@ const DAY2: Slot[] = [
       ] },
   ] },
 
-  { start: '10:45', end: '11:30', sessions: [
+  { start: '10:45', end: '12:00', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Voice AI Panel',
       detail: 'Murf.ai · OneInbox · SuperBryn · Vobiz',
       speakers: [
@@ -146,7 +146,7 @@ const DAY2: Slot[] = [
       speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI', photo: '/speaker-ekta.webp' }] },
   ] },
 
-  { start: '11:00', end: '11:30', sessions: [
+  { start: '11:00', end: '12:15', sessions: [
     { type: 'workshop', venue: 'Toast Hall', title: 'Vibe Code Your Product MVP with Google AI Studio' },
   ] },
 
