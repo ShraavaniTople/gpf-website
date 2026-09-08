@@ -15,6 +15,7 @@ const generalMembers = [
   { firstName: 'Deeksha',       lastName: 'Anand',        company: 'Google',          role: 'Senior Product Marketing Manager', email: 'deeksha.anand29@gmail.com' },
   { firstName: 'Mahi',          lastName: 'Monga',        company: 'Sprinklr',        role: 'AI Product Manager',               email: 'mahimonga04@gmail.com' },
   { firstName: 'Anchal',        lastName: 'Garg',         company: 'Arintra',         role: 'Senior AI Product Manager',        email: 'anchalgarg1995@gmail.com' },
+  { firstName: 'Shrinivas',     lastName: 'Chouraddi',    company: 'Valuecart',       role: 'VP',                                email: 'shrinivas@valuecart.in' },
 ]
 
 const premiumMembers = [
