@@ -46,13 +46,24 @@ const titleLines = [
 
 export default function Hero({ onSponsor }: HeroProps) {
   return (
-    <section className="relative overflow-hidden" style={{ background: '#05040C', paddingTop: '118px' }}>
+    <section className="relative overflow-hidden pt-[72px] lg:pt-[118px]" style={{ background: '#05040C' }}>
 
       {/* ── MOBILE hero ── */}
-      <div className="lg:hidden relative px-6 pt-8 pb-8"
+      <div className="lg:hidden relative px-6 pt-6 pb-8"
         style={{ background: 'radial-gradient(120% 80% at 80% 20%, rgba(124,58,237,.3) 0%, transparent 55%), radial-gradient(90% 60% at 10% 90%, rgba(245,158,11,.15) 0%, transparent 55%)' }}>
-        {/* 3 logos above badge */}
-        <div className="mb-3">{sponsorRow}</div>
+        {/* Sponsor row — nowrap scrollable on mobile */}
+        <div className="mb-3" style={{ overflowX: 'auto', scrollbarWidth: 'none' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'nowrap', minWidth: 'max-content' }}>
+            <span style={S}>Presented by</span>
+            <img src="/wip-logo.webp" alt="Women in Product India" style={{ height: 36, width: 36, objectFit: 'contain', borderRadius: '50%', flexShrink: 0 }} />
+            <div style={{ width: 1, height: 28, background: '#2A2840', flexShrink: 0 }} />
+            <span style={S}>Powered by</span>
+            <img src="/logos/freshworks-full.webp" alt="Freshworks" style={{ height: 18, width: 'auto', maxWidth: 110, objectFit: 'contain', opacity: 0.9, flexShrink: 0 }} />
+            <div style={{ width: 1, height: 28, background: '#2A2840', flexShrink: 0 }} />
+            <span style={S}>Co-powered by</span>
+            <img src="/logos/toast.webp" alt="Toast" style={{ height: 18, width: 'auto', maxWidth: 90, objectFit: 'contain', opacity: 0.9, flexShrink: 0 }} />
+          </div>
+        </div>
         {/* Venue badge */}
         <div className="mb-5">{venueBadge}</div>
         <h1 className="font-display font-extrabold leading-none mb-5"
