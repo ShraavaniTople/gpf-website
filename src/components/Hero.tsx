@@ -129,7 +129,7 @@ export default function Hero({ onSponsor }: HeroProps) {
       </div>
 
       {/* ── Partners strip — rest of logos ── */}
-      <div className="relative z-10 w-full px-6 py-5">
+      <div className="relative z-10 w-full px-6 pb-5 pt-2" style={{ marginTop: '-60px' }}>
         <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#52506A', textTransform: 'uppercase' }}>Our Partners</p>
         <div className="flex items-center justify-center flex-wrap" style={{ gap: '8px 32px' }}>
           {([
