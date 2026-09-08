@@ -34,7 +34,7 @@ const DAY1: Slot[] = [
 
   { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'The New Rules of Building Products & Companies',
       speakers: [
-        { name: 'Ryan', role: 'Freshworks', photo: '/speaker-ryan.webp' },
+        { name: 'Ryan', role: 'Freshworks' },
         { name: 'Murali Swaminathan', role: 'CTO, Freshworks', photo: '/speaker-murali.webp' },
       ] }] },
 
@@ -168,7 +168,7 @@ const DAY2: Slot[] = [
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Fundraising + VC Lab',
       speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
     { type: 'workshop', venue: 'Toast Training Room', title: 'Figma to Code',
-      speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP' }] },
+      speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP', photo: '/speaker-kushagra.jpg' }] },
     { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India (Invite Only)', detail: 'Voice is the new interface' },
     { type: 'panel', venue: 'Freshworks Hall', title: 'Beyond the Unicorn: VC Panel' },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG: Growth in High-Trust Markets',
