@@ -56,7 +56,7 @@ export default function Hero({ onSponsor }: HeroProps) {
         {/* Venue badge */}
         <div className="mb-5">{venueBadge}</div>
         <h1 className="font-display font-extrabold leading-none mb-5"
-          style={{ fontSize: 'clamp(40px,11vw,68px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
+          style={{ fontSize: 'clamp(52px,14vw,72px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
           {titleLines.map(({ text, cls, delay }) => (
             <span key={text} className="block" style={{ overflow: 'hidden' }}>
               <span className={`block ${cls}`} style={{ color: cls ? undefined : '#F0EEF8', opacity: 0, transform: 'translateY(105%)', animation: `heroLine .9s cubic-bezier(0.16,1,0.3,1) ${delay} forwards` }}>
@@ -131,19 +131,19 @@ export default function Hero({ onSponsor }: HeroProps) {
       {/* ── Partners strip — rest of logos ── */}
       <div className="relative z-10 w-full px-6 pb-5 pt-2" style={{ marginTop: '-60px' }}>
         <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#52506A', textTransform: 'uppercase' }}>Our Partners</p>
-        <div className="flex items-center justify-center flex-wrap" style={{ gap: '8px 32px' }}>
+        <div className="partners-strip flex items-center" style={{ gap: '0 28px', overflowX: 'auto', paddingBottom: 4 }}>
           {([
-            { src: '/logos/kdem.webp',            alt: 'KDEM',          mw: 100 },
-            { src: '/logos/databricks.webp',      alt: 'Databricks',    mw: 130 },
-            { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     mw: 130 },
-            { src: '/logos/sarvam.webp',          alt: 'Sarvam',        mw: 110 },
-            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    mw: 130 },
-            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', mw: 130 },
-            { src: '/logos/aws.webp',             alt: 'AWS',           mw: 70  },
+            { src: '/logos/kdem.webp',            alt: 'KDEM',          mw: 80  },
+            { src: '/logos/databricks.webp',      alt: 'Databricks',    mw: 110 },
+            { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     mw: 110 },
+            { src: '/logos/sarvam.webp',          alt: 'Sarvam',        mw: 90  },
+            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    mw: 110 },
+            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', mw: 110 },
+            { src: '/logos/aws.webp',             alt: 'AWS',           mw: 60  },
           ] as { src: string; alt: string; mw: number }[]).map(({ src, alt, mw }) => (
-            <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 40, flexShrink: 0 }}>
+            <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 36, flexShrink: 0 }}>
               <img src={src} alt={alt}
-                style={{ height: 32, width: 'auto', maxWidth: mw, objectFit: 'contain', opacity: 0.92 }} />
+                style={{ height: 22, width: 'auto', maxWidth: mw, objectFit: 'contain', opacity: 0.92 }} />
             </div>
           ))}
         </div>
@@ -179,6 +179,8 @@ export default function Hero({ onSponsor }: HeroProps) {
           from { transform: translateX(0) }
           to   { transform: translateX(-50%) }
         }
+        .partners-strip { scrollbar-width: none; }
+        .partners-strip::-webkit-scrollbar { display: none; }
         .film-track {
           display: flex;
           gap: 0.75rem;
