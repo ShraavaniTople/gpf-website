@@ -88,7 +88,7 @@ export default function Hero({ onSponsor }: HeroProps) {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-4 mb-3">
+        <div className="flex flex-col items-start gap-2 mb-3">
           <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
           <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>Limited passes · Grab yours now</p>
         </div>
