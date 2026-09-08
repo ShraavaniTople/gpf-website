@@ -90,14 +90,13 @@ export default function Hero({ onSponsor }: HeroProps) {
         <div aria-hidden className="absolute inset-x-0 top-0 z-10 pointer-events-none" style={{ height: '30px', background: 'linear-gradient(to bottom, #05040C 0%, transparent 100%)' }} />
         <div aria-hidden className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: '120px', background: 'linear-gradient(to top, #05040C 0%, rgba(5,4,12,.5) 60%, transparent 100%)' }} />
         <div className="absolute inset-0 z-20 pointer-events-none">
-          {/* Top content — exactly 12px from hero image top = right below navbar */}
           <div className="absolute top-3 left-0 right-0 pointer-events-auto">
             <div className="max-w-7xl mx-auto px-6">
               <div className="mb-4">{sponsorRow}</div>
               <div className="mb-4">{venueBadge}</div>
               <div className="w-[50%]">
                 <h1 className="font-display font-extrabold leading-none"
-                  style={{ fontSize: 'clamp(36px,5.5vw,78px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
+                  style={{ fontSize: 'clamp(40px,6vw,88px)', letterSpacing: '-0.045em', overflow: 'hidden' }}>
                   {titleLines.map(({ text, cls, delay }) => (
                     <span key={text} className="block" style={{ overflow: 'hidden' }}>
                       <span className={`block ${cls}`} style={{ color: cls ? undefined : '#F0EEF8', opacity: 0, transform: 'translateY(105%)', animation: `heroLine .9s cubic-bezier(0.16,1,0.3,1) ${delay} forwards` }}>
@@ -107,8 +106,7 @@ export default function Hero({ onSponsor }: HeroProps) {
                   ))}
                 </h1>
               </div>
-              {/* Theme badge — directly below title, no gap */}
-              <div className="mt-5" style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
+              <div className="mt-5 flex flex-col items-start gap-5" style={{ opacity: 0, animation: 'heroFade .9s ease .62s forwards' }}>
                 <div className="inline-flex items-center gap-4 px-5 py-3 rounded-xl"
                   style={{ background: 'linear-gradient(135deg, rgba(124,58,237,.1) 0%, rgba(245,158,11,.05) 100%)', border: '1px solid rgba(124,58,237,.2)', backdropFilter: 'blur(8px)' }}>
                   <div className="flex flex-col gap-0.5">
@@ -120,15 +118,10 @@ export default function Hero({ onSponsor }: HeroProps) {
                   <div className="w-[2px] h-8 rounded-full flex-shrink-0" style={{ background: 'linear-gradient(to bottom, #7C3AED, #F59E0B)' }} />
                   <p className="font-mono text-[9px] uppercase tracking-[.15em] leading-tight" style={{ color: '#52506A' }}>TGPF<br/>2026</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          {/* Bottom CTAs — pinned to bottom of hero */}
-          <div className="absolute bottom-7 left-0 right-0 pointer-events-auto">
-            <div className="max-w-7xl mx-auto px-6 flex flex-col items-start gap-2.5">
-              <div className="flex items-center gap-4">
-                <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
-                <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>Limited passes · Grab yours now</p>
+                <div className="flex items-center gap-4">
+                  <button onClick={() => go('passes')} className="btn-purple text-sm whitespace-nowrap" style={{ padding: '10px 18px' }}>Get Passes →</button>
+                  <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#F59E0B' }}>Limited passes · Grab yours now</p>
+                </div>
               </div>
             </div>
           </div>

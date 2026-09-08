@@ -13,6 +13,7 @@ const partners = [
   { name: 'Women in Tech India',   slug: 'women-in-tech-india', h: 96 },
   { name: 'Startups Life',         slug: 'startups-life',       h: 56 },
   { name: 'Unwind Ventures',       slug: 'unwind-ventures',     h: 120 },
+  { name: 'IncX',                  slug: 'incx',                h: 56 },
 ]
 
 function useVis(delay = 0) {
