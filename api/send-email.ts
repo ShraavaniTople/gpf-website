@@ -61,8 +61,8 @@ function buildConfirmationHtml(p: {
           <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:28px 32px 20px;">
             <tr>
               <td>
-                <p style="margin:0 0 4px;font-size:22px;font-weight:800;color:#1a0a40;letter-spacing:-0.03em;">Payment Confirmed ✓</p>
-                <p style="margin:0;font-size:14px;color:#6B7280;">Hi ${p.to_name.split(' ')[0]}, your pass for The Great Product Festival is confirmed. See you in Bangalore!</p>
+                <p style="margin:0 0 4px;font-size:22px;font-weight:800;color:#1a0a40;letter-spacing:-0.03em;">${p.amount === 'Complimentary' ? 'Pass Confirmed ✓' : 'Payment Confirmed ✓'}</p>
+                <p style="margin:0;font-size:14px;color:#6B7280;">Hi ${p.to_name.split(' ')[0]}, your ${p.amount === 'Complimentary' ? 'complimentary pass' : 'pass'} for The Great Product Festival is confirmed. See you in Bangalore!</p>
               </td>
             </tr>
           </table>
@@ -318,7 +318,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         from: fromAddress,
         to: [to_email],
         reply_to: 'hello@womeninproductindia.com',
-        subject: `Payment confirmed — your ${pass_type} for GPF 2026 🎉`,
+        subject: amount === 'Complimentary'
+          ? `Your complimentary ${pass_type} for GPF 2026 is confirmed ✓`
+          : `Payment confirmed — your ${pass_type} for GPF 2026 🎉`,
         html: buildConfirmationHtml({ to_name, company, pass_type, amount, payment_id, pass_number, event_date, event_city }),
       }),
       // Email 2 — visual ticket

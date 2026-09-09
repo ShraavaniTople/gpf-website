@@ -2,20 +2,45 @@ import { useState } from 'react'
 
 const WEB3FORMS_KEY = '05343d66-4685-49cf-ba57-e57dbf8a2bf1'
 
-const generalMembers = [
-  { firstName: 'Swathi',        lastName: 'Chirravuri',   company: 'Stealth Startup', role: 'AI Product Manager',               email: 'swathi.chirravuri@gmail.com' },
-  { firstName: 'Aditi',         lastName: 'Rajesh',       company: 'Hashfame',        role: 'Product Manager',                  email: 'Aditirajesh1234@gmail.com' },
-  { firstName: 'Priyadarshini', lastName: 'M',            company: 'SES Satellite',   role: 'Product Manager',                  email: 'priya1687@gmail.com' },
-  { firstName: 'Sonika',        lastName: 'Panghal',      company: 'Godrej Capital',  role: 'Product Manager MarTech',          email: 'Sonikap70@gmail.com' },
-  { firstName: 'Khyaati',       lastName: 'Jindal',       company: 'Apple',           role: 'AI Engineer',                      email: 'khyaatijindal@gmail.com' },
-  { firstName: 'Sangeetha',     lastName: 'Balakrishnan', company: 'Workday',         role: 'Product Manager',                  email: 'Sangeetha.balakrishnan.k@gmail.com' },
-  { firstName: 'Shubhodaye',    lastName: 'Hiremath',     company: 'Freelancer',      role: 'Software Tester',                  email: 'Shubhodaye@gmail.com' },
-  { firstName: 'Nidhi',         lastName: 'Bartakke',     company: 'Target',          role: 'Sr Data Analyst',                  email: 'nidhbartakke@gmail.com' },
-  { firstName: 'Vishwajeet',    lastName: 'Jonnada',      company: 'CGI',             role: 'Technical Product Owner',          email: 'jonnada.vishwajeet@gmail.com' },
-  { firstName: 'Deeksha',       lastName: 'Anand',        company: 'Google',          role: 'Senior Product Marketing Manager', email: 'deeksha.anand29@gmail.com' },
-  { firstName: 'Mahi',          lastName: 'Monga',        company: 'Sprinklr',        role: 'AI Product Manager',               email: 'mahimonga04@gmail.com' },
-  { firstName: 'Anchal',        lastName: 'Garg',         company: 'Arintra',         role: 'Senior AI Product Manager',        email: 'anchalgarg1995@gmail.com' },
-  { firstName: 'Shrinivas',     lastName: 'Chouraddi',    company: 'Valuecart',       role: 'VP',                                email: 'shrinivas@valuecart.in' },
+const generalMembers: { firstName: string; lastName: string; company: string; role: string; email: string; sentOn?: string }[] = [
+  // ── Batch 1 — sent 2026-09-08 ──────────────────────────────────────────────
+  { firstName: 'Swathi',        lastName: 'Chirravuri',   company: 'Stealth Startup', role: 'AI Product Manager',               email: 'swathi.chirravuri@gmail.com',          sentOn: '2026-09-08' },
+  { firstName: 'Aditi',         lastName: 'Rajesh',       company: 'Hashfame',        role: 'Product Manager',                  email: 'Aditirajesh1234@gmail.com',            sentOn: '2026-09-08' },
+  { firstName: 'Priyadarshini', lastName: 'M',            company: 'SES Satellite',   role: 'Product Manager',                  email: 'priya1687@gmail.com',                  sentOn: '2026-09-08' },
+  { firstName: 'Sonika',        lastName: 'Panghal',      company: 'Godrej Capital',  role: 'Product Manager MarTech',          email: 'Sonikap70@gmail.com',                  sentOn: '2026-09-08' },
+  { firstName: 'Khyaati',       lastName: 'Jindal',       company: 'Apple',           role: 'AI Engineer',                      email: 'khyaatijindal@gmail.com',              sentOn: '2026-09-08' },
+  { firstName: 'Sangeetha',     lastName: 'Balakrishnan', company: 'Workday',         role: 'Product Manager',                  email: 'Sangeetha.balakrishnan.k@gmail.com',   sentOn: '2026-09-08' },
+  { firstName: 'Shubhodaye',    lastName: 'Hiremath',     company: 'Freelancer',      role: 'Software Tester',                  email: 'Shubhodaye@gmail.com',                 sentOn: '2026-09-08' },
+  { firstName: 'Nidhi',         lastName: 'Bartakke',     company: 'Target',          role: 'Sr Data Analyst',                  email: 'nidhbartakke@gmail.com',               sentOn: '2026-09-08' },
+  { firstName: 'Vishwajeet',    lastName: 'Jonnada',      company: 'CGI',             role: 'Technical Product Owner',          email: 'jonnada.vishwajeet@gmail.com',         sentOn: '2026-09-08' },
+  { firstName: 'Deeksha',       lastName: 'Anand',        company: 'Google',          role: 'Senior Product Marketing Manager', email: 'deeksha.anand29@gmail.com',            sentOn: '2026-09-08' },
+  { firstName: 'Mahi',          lastName: 'Monga',        company: 'Sprinklr',        role: 'AI Product Manager',               email: 'mahimonga04@gmail.com',                sentOn: '2026-09-08' },
+  { firstName: 'Anchal',        lastName: 'Garg',         company: 'Arintra',         role: 'Senior AI Product Manager',        email: 'anchalgarg1995@gmail.com',             sentOn: '2026-09-08' },
+  { firstName: 'Shrinivas',     lastName: 'Chouraddi',    company: 'Valuecart',       role: 'VP',                               email: 'shrinivas@valuecart.in',               sentOn: '2026-09-08' },
+  // ── Batch 2 — form responses 2026-09-09 ────────────────────────────────────
+  { firstName: 'Chintan',            lastName: 'Shah',         company: 'Future AGI',          role: 'Product Manager',                  email: 'chintshah.91@gmail.com' },
+  { firstName: 'Saaniya',            lastName: 'Afreen',       company: 'Oneinbox',            role: 'Product Manager',                  email: 'saaniya@vibtree.com' },
+  { firstName: 'Sheetal',            lastName: 'Kale',         company: 'DataArt India',       role: 'Managing Director',                email: 'sheetal.kale@dataart.com' },
+  { firstName: 'Manoj',              lastName: 'Ponnusamy',    company: 'DataArt India',       role: 'Director, Account Management',     email: 'Manoj.ponnusamy@dataart.com' },
+  { firstName: 'Shahid',             lastName: 'Afrid',        company: 'RGMCET',              role: 'Student',                          email: '23091a32d4@rgmcet.edu.in' },
+  { firstName: 'Veena',              lastName: 'Godugu',       company: 'RGMCET',              role: 'Undergraduate Student',            email: '23091a32h9@rgmcet.edu.in' },
+  { firstName: 'Shaik',              lastName: 'Rehana',       company: 'RGMCET',              role: 'Student',                          email: '23091a32c1@rgmcet.edu.in' },
+  { firstName: 'Penchala Prasad',    lastName: 'P',            company: 'RGMCET',              role: 'Associate Professor',              email: 'prasadcseds@rgmcet.edu.in' },
+  { firstName: 'Vikram Chandra',     lastName: 'Gangavarapu',  company: 'RGMCET',              role: 'Assistant Professor',              email: 'vikramcseds@rgmcet.edu.in' },
+  { firstName: 'Anshuman',           lastName: 'Awasthi',      company: 'MBRDI',               role: 'Senior VP',                        email: 'anshuman.awasthi@mercedes-benz.com' },
+  { firstName: 'Nikhil',             lastName: 'Mankar',       company: 'BD',                  role: 'Lead Engineer, Medical Devices',   email: 'nikhilpmankar@gmail.com' },
+  { firstName: 'Priya',              lastName: 'Ahuja',        company: 'Independent',         role: 'Investor / VC',                    email: 'hi@priyaahuja.in' },
+  { firstName: 'Bhavik',             lastName: 'Kaul',         company: 'Ex-SuperMoney',       role: 'ex-CPO',                           email: 'kaulbhavik@gmail.com' },
+  { firstName: 'Sobhitha',           lastName: 'Neelanath',    company: 'Salesforce',          role: 'Senior Manager, Software Eng',     email: 'sneelanath@salesforce.com' },
+  { firstName: 'Nency',              lastName: 'Shah',         company: 'HealthEdge',          role: 'Product Manager',                  email: 'nency.shah@healthedge.com' },
+  { firstName: 'Ritik',              lastName: 'Gupta',        company: 'POP by Razorpay',     role: 'Design Engineer',                  email: 'gupta.ritik@popclub.co' },
+  { firstName: 'Rekha',              lastName: 'Poosala',      company: 'Dell',                role: 'Senior Engineering Manager',       email: 'rekha.poosala@gmail.com' },
+  { firstName: 'Sumit',              lastName: 'Dutta',        company: 'Unwind Ventures',     role: 'Managing Partner',                 email: 'sumit@unwindventures.com' },
+  { firstName: 'Vivek',              lastName: 'Bharadwaj',    company: 'Grab',                role: 'Group Product Manager',            email: 'vivek.bharadwaj@grabtaxi.com' },
+  { firstName: 'Subhadeep',          lastName: 'Mondal',       company: 'Kalaari Capital',     role: 'Venture Partner',                  email: 'subhadeep@kalaari.com' },
+  { firstName: 'Chanakya',           lastName: 'Varma',        company: 'DataArt',             role: 'Director & Growth Partner',        email: 'chanakya.varma@dataart.com' },
+  { firstName: 'Glory',              lastName: 'Michael',      company: 'DataArt',             role: 'Client Solutions Partner',         email: 'Glory.Michael@dataart.com' },
+  { firstName: 'Manish S',           lastName: 'Sugandhi',     company: 'Noon',                role: 'Product',                          email: 'manish@noon.design' },
 ]
 
 const premiumMembers = [
@@ -161,7 +186,7 @@ function MemberRow({ idx, name, role, company, email, passNumber, status, onSend
 }
 
 export default function AdminSendPassesPage() {
-  const [genStatuses,  setGenStatuses]  = useState<Status[]>(generalMembers.map(() => 'idle'))
+  const [genStatuses,  setGenStatuses]  = useState<Status[]>(generalMembers.map(m => m.sentOn ? 'sent' : 'idle'))
   const [premStatuses, setPremStatuses] = useState<Status[]>(premiumMembers.map(() => 'sent'))
   const [running, setRunning] = useState(false)
 
