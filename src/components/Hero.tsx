@@ -156,7 +156,7 @@ export default function Hero({ onSponsor }: HeroProps) {
       {/* ── Partners strip — rest of logos ── */}
       <div className="relative z-10 w-full px-6 pb-5 pt-2 lg:-mt-[60px]">
         <p className="font-mono text-center mb-4" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#52506A', textTransform: 'uppercase' }}>Our Partners</p>
-        <div className="partners-strip flex items-center" style={{ gap: '0 28px', overflowX: 'auto', paddingBottom: 4 }}>
+        <div className="flex items-center justify-center flex-wrap" style={{ gap: '14px 32px' }}>
           {([
             { src: '/logos/kdem.webp',            alt: 'KDEM',          mw: 80  },
             { src: '/logos/databricks.webp',      alt: 'Databricks',    mw: 110 },
@@ -166,7 +166,7 @@ export default function Hero({ onSponsor }: HeroProps) {
             { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', mw: 110 },
             { src: '/logos/aws.webp',             alt: 'AWS',           mw: 60  },
           ] as { src: string; alt: string; mw: number }[]).map(({ src, alt, mw }) => (
-            <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 36, flexShrink: 0 }}>
+            <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 36 }}>
               <img src={src} alt={alt}
                 style={{ height: 22, width: 'auto', maxWidth: mw, objectFit: 'contain', opacity: 0.92 }} />
             </div>
@@ -206,8 +206,6 @@ export default function Hero({ onSponsor }: HeroProps) {
         }
         .hero-section { padding-top: 68px; }
         @media (min-width: 1024px) { .hero-section { padding-top: 118px; } }
-        .partners-strip { scrollbar-width: none; }
-        .partners-strip::-webkit-scrollbar { display: none; }
         .film-track {
           display: flex;
           gap: 0.75rem;
