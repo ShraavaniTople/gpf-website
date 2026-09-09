@@ -61,15 +61,21 @@ export default function Hero({ onSponsor }: HeroProps) {
       {/* ── MOBILE hero ── */}
       <div className="lg:hidden relative px-6 pt-6 pb-8"
         style={{ background: 'radial-gradient(120% 80% at 80% 20%, rgba(124,58,237,.3) 0%, transparent 55%), radial-gradient(90% 60% at 10% 90%, rgba(245,158,11,.15) 0%, transparent 55%)' }}>
-        {/* Sponsor row — wraps to 2 lines on mobile so Toast is always visible */}
+        {/* Sponsor row — each label+logo grouped so they never split across lines */}
         <div className="mb-3">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px 12px', flexWrap: 'wrap' }}>
-            <span style={S}>Presented by</span>
-            <img src="/wip-logo.webp" alt="Women in Product India" style={{ height: 30, width: 30, objectFit: 'contain', borderRadius: '50%', flexShrink: 0 }} />
-            <span style={{ ...S, marginLeft: 4 }}>Powered by</span>
-            <img src="/logos/freshworks-full.webp" alt="Freshworks" style={{ height: 16, width: 'auto', maxWidth: 100, objectFit: 'contain', opacity: 0.9, flexShrink: 0 }} />
-            <span style={{ ...S, marginLeft: 4 }}>Co-powered by</span>
-            <img src="/logos/toast.webp" alt="Toast" style={{ height: 16, width: 'auto', maxWidth: 80, objectFit: 'contain', opacity: 0.9, flexShrink: 0 }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px 14px', flexWrap: 'wrap' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+              <span style={S}>Presented by</span>
+              <img src="/wip-logo.webp" alt="Women in Product India" style={{ height: 30, width: 30, objectFit: 'contain', borderRadius: '50%' }} />
+            </span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+              <span style={S}>Powered by</span>
+              <img src="/logos/freshworks-full.webp" alt="Freshworks" style={{ height: 16, width: 'auto', maxWidth: 100, objectFit: 'contain', opacity: 0.9 }} />
+            </span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+              <span style={S}>Co-powered by</span>
+              <img src="/logos/toast.webp" alt="Toast" style={{ height: 16, width: 'auto', maxWidth: 80, objectFit: 'contain', opacity: 0.9 }} />
+            </span>
           </div>
         </div>
         {/* Venue badge */}
