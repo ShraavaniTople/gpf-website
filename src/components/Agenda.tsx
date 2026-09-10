@@ -29,7 +29,7 @@ const ST: Record<SType, { label: string; color: string; bg: string }> = {
 const DAY1: Slot[] = [
   { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }] },
 
-  { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'Welcome & Opening — The Great Product Festival',
+  { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'The Great Product Festival: Welcoming Infinite Builders',
       speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India', photo: '/speaker-swati.webp' }], lumaUrl: 'https://luma.com/fg55tpa5' }] },
 
   { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'The New Rules of Building Products & Companies',
@@ -38,7 +38,7 @@ const DAY1: Slot[] = [
         { name: 'Murali Swaminathan', role: 'CTO, Freshworks', photo: '/speaker-murali.webp' },
       ], lumaUrl: 'https://luma.com/yl03y3pv' }] },
 
-  { start: '11:05', end: '11:25', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Building at the Frontlines of AI',
+  { start: '11:05', end: '11:25', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Building at the Frontlines of AI by Anthropic',
       speakers: [{ name: 'Sangeeta Bavi', role: 'Head of Digital Natives, Startups & Growth, Anthropic India', photo: '/speaker-sangeeta.webp' }], lumaUrl: 'https://luma.com/aox84swo' }] },
 
   { start: '11:30', end: '12:45', sessions: [
@@ -53,9 +53,9 @@ const DAY1: Slot[] = [
       speakers: [{ name: 'Adithi Sampath', role: 'VP of Product & Design, Stellantis', photo: '/speaker-adithi.jpg' }], lumaUrl: 'https://luma.com/oji1wt90' },
   ] },
 
-  { start: '12:15', end: '12:45', sessions: [
+  { start: '12:30', end: '12:45', sessions: [
     { type: 'showcase', venue: 'Freshworks Hall', title: 'Platform & Partner Showcase — Agent Studio, MCP & Partner Toolkits' },
-    { type: 'hackathon', title: 'Hackathon Kickoff — Tracks, Rubric & Logistics', lumaUrl: 'https://luma.com/rjtd89u2' },
+    { type: 'hackathon', title: 'The Great Agent Hackathon Kickoff', lumaUrl: 'https://luma.com/rjtd89u2' },
   ] },
 
   { start: '13:00', sessions: [], milestone: 'BUILD BEGINS — 24-hour build sprint starts. Hackathon teams move to build rooms.' },
@@ -63,7 +63,7 @@ const DAY1: Slot[] = [
   { start: '13:15', end: '14:15', sessions: [{ type: 'lunch', title: 'Lunch' }] },
 
   { start: '14:15', end: '15:30', sessions: [
-    { type: 'keynote', venue: 'Toast Hall', title: 'Leveraging AI for Product Development',
+    { type: 'keynote', venue: 'Toast Hall', title: 'Leveraging AI in Product Development',
       speakers: [{ name: 'Rajat Harlalka', role: 'Director of Product, Toast', photo: '/speaker-rajat.webp' }], lumaUrl: 'https://luma.com/q5cz7z40' },
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'GTM for Product Teams',
       speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google Play', photo: '/speaker-deeksha.webp' }], lumaUrl: 'https://luma.com/skrne75e' },
@@ -72,7 +72,7 @@ const DAY1: Slot[] = [
     { type: 'roundtable', venue: 'Freshworks Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)', lumaUrl: 'https://luma.com/4zmk4w95' },
   ] },
 
-  { start: '14:50', end: '15:35', sessions: [
+  { start: '14:40', end: '15:35', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Win Attention, Earn Habit: The Art of Consumer Product',
       speakers: [
         { name: 'Vaishnavi Devi', role: 'AVP of Product, Swiggy · Moderator', photo: '/speaker-vaishnavi.webp' },
@@ -80,21 +80,21 @@ const DAY1: Slot[] = [
         { name: 'Shivalik Sen', role: 'Associate Director of Product, Rapido', photo: '/speaker-shivalik.webp' },
         { name: 'Dipika Jaikishan', role: 'VP Special Projects, Pronto', photo: '/speaker-dipika.webp' },
       ], lumaUrl: 'https://luma.com/k5qk3dfj' },
-    { type: 'expert', venue: 'Toast Hall', title: 'GEO: How AI Search Is Rewriting Martech',
+    { type: 'expert', venue: 'Toast Hall', title: 'GEO: How AI search is rewriting martech',
       speakers: [
         { name: 'Ritika Chugh', role: 'Head of Product, Milestone', photo: '/speaker-ritika-new.webp' },
         { name: 'Sachin Jain', role: 'Senior Product Manager, Milestone', photo: '/speaker-sachin.jpg' },
       ], lumaUrl: 'https://luma.com/fsjo265d' },
   ] },
 
-  { start: '15:40', end: '16:15', sessions: [
+  { start: '15:30', end: '16:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
       speakers: [
         { name: 'Mansi Jain', role: 'COO, Glance', photo: '/speaker-mansi3.webp' },
         { name: 'Nitin Pulyani', role: 'SVP, Product, Cashfree Payments' },
         { name: 'Gagandeep', role: 'GM, Payments, Tata Digital · Moderator' },
       ], lumaUrl: 'https://luma.com/gomds4t6' },
-    { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo',
+    { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo by Nvidia',
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA', photo: '/speaker-usha.webp' }], lumaUrl: 'https://luma.com/xuy6z1qr' },
   ] },
 
@@ -116,7 +116,7 @@ const DAY2: Slot[] = [
   { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Day 2 Kickoff' }] },
 
   { start: '10:15', end: '10:40', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'Build for Bharat: AI for the Next Billion',
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Build for Bharat: How AI is being built for the next billion',
       speakers: [
         { name: 'Gaurav Aggarwal', role: 'Chief AI Scientist, Reliance Intelligence', photo: '/speaker-gaurav.jpg' },
         { name: 'Minakshi Khuntia', role: 'Senior Director, Product Management, Freshworks · Moderator', photo: '/speaker-minakshi.webp' },
@@ -130,23 +130,23 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '10:45', end: '12:00', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'Voice AI Panel',
+    { type: 'panel', venue: 'Freshworks Hall', title: 'The Next Interface is Voice',
       detail: 'Murf.ai · OneInbox · SuperBryn · Vobiz',
       speakers: [
         { name: 'Sahil Gupta', role: 'Head of Product, Murf AI', photo: '/speaker-sahil.jpg' },
-        { name: 'Jagriti', role: 'COO, OneInbox', photo: '/speaker-jagriti.webp' },
         { name: 'Nikkitha Shanker', role: 'Founder & CEO, SuperBryn', photo: '/speaker-nikkitha.webp' },
-        { name: 'Suman G', role: 'Founder, Vobiz', photo: '/speaker-suman2.webp' },
-      ] },
-    { type: 'panel', venue: 'Toast Hall', title: 'GCCs as Product Innovation Hubs',
+        { name: 'Suman G', role: 'Founder & CEO, Vobiz', photo: '/speaker-suman2.webp' },
+        { name: 'Jagriti Shreya', role: 'COO, OneInbox · Moderator', photo: '/speaker-jagriti2.webp' },
+      ], lumaUrl: 'https://luma.com/yvjjf00r' },
+    { type: 'panel', venue: 'Toast Hall', title: 'Global Capability Centres (GCCs) as Product Innovation Hubs',
       speakers: [
         { name: 'Sreya Sanyal', role: 'Product Lead, Ford · Moderator', photo: '/speaker-sreya.webp' },
         { name: 'Sheetal Kale', role: 'Managing Director, Head of DataArt India', photo: '/speaker-sheetal.webp' },
         { name: 'Roopa Jayaraman', role: 'Chief Product & Technology Officer, Odessa', photo: '/speaker-roopa.webp' },
         { name: 'Supriya Rao', role: 'Managing Director, ClearRoute', photo: '/speaker-supriya-new.webp' },
-      ] },
+      ], lumaUrl: 'https://luma.com/smt19jzz' },
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Build Your First AI Employee',
-      speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI', photo: '/speaker-ekta.webp' }] },
+      speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI', photo: '/speaker-ekta.webp' }], lumaUrl: 'https://luma.com/9rlo85os' },
   ] },
 
   { start: '11:00', end: '12:15', sessions: [
@@ -155,49 +155,59 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '11:35', end: '12:05', sessions: [
-    { type: 'expert', venue: 'Freshworks Hall', title: 'Demystifying AI Neo Cloud',
-      speakers: [{ name: 'Prashant Pandey', role: 'Global Head, Neysa', photo: '/speaker-prashant.webp' }] },
+    { type: 'expert', venue: 'Freshworks Hall', title: 'Demystifying AI Neo Cloud by Neysa',
+      speakers: [{ name: 'Prashant Pandey', role: 'Global Head, Neysa', photo: '/speaker-prashant.webp' }], lumaUrl: 'https://luma.com/4i8svj9o' },
     { type: 'expert', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World',
-      speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India', photo: '/speaker-anshuman.webp' }] },
+      speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India', photo: '/speaker-anshuman.webp' }], lumaUrl: 'https://luma.com/natgxuqk' },
+  ] },
+
+  { start: '12:00', end: '12:20', sessions: [
+    { type: 'expert', venue: 'Freshworks Hall', title: 'Karnataka Startup Policy 2025-30',
+      speakers: [{ name: 'Omar Saud', role: 'Program Manager, Startups & Innovation, Karnataka Digital Economy Mission', photo: '/speaker-omar.jpg' }], lumaUrl: 'https://luma.com/v6xyt83p' },
   ] },
 
   { start: '12:05', end: '12:20', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'Rethinking Data Center Efficiency for AI',
-      speakers: [{ name: 'Rekha Poosala', role: 'Engineering Leader, Dell', photo: '/speaker-rekha.webp' }] },
-    { type: 'expert', venue: 'Freshworks Hall', title: 'Karnataka Startup Policy 2025-30',
-      speakers: [{ name: 'Omar Saud', role: 'Program Manager, KDEM', photo: '/speaker-omar.jpg' }] },
+      speakers: [{ name: 'Rekha Poosala', role: 'Engineering Leader, Dell', photo: '/speaker-rekha.webp' }], lumaUrl: 'https://luma.com/49d1vmz6' },
+    { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Figma to Code',
+      speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP', photo: '/speaker-kushagra.jpg' }], lumaUrl: 'https://luma.com/zu8spy1t' },
   ] },
 
   { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }] },
 
-  { start: '14:00', end: '15:15', sessions: [
+  { start: '14:00', end: '14:30', sessions: [
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Fundraising + VC Lab',
-      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
-    { type: 'workshop', venue: 'Toast Training Room', title: 'Figma to Code',
-      speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP', photo: '/speaker-kushagra.jpg' }] },
-    { type: 'roundtable', venue: 'Toast Board Room', title: 'Building Global from India (Invite Only)', detail: 'Voice is the new interface' },
-    { type: 'panel', venue: 'Freshworks Hall', title: 'Beyond the Unicorn: VC Panel' },
-    { type: 'panel', venue: 'Toast Hall', title: 'PLG: Growth in High-Trust Markets',
+      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }], lumaUrl: 'https://luma.com/esxygov8' },
+  ] },
+
+  { start: '14:35', end: '15:30', sessions: [
+    { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
       speakers: [
-        { name: 'Vikas', role: 'CPO, Groww', photo: '/speaker-vikas.webp' },
+        { name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' },
+        { name: 'Amrit Raj', role: 'Co-Founder, Women in Product India · Moderator', photo: '/speaker-amrit.webp' },
+      ], lumaUrl: 'https://luma.com/pg0kz4cd' },
+    { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
+      speakers: [
         { name: 'Bhavik Kaul', role: 'CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
         { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu', photo: '/speaker-pulkit.webp' },
+        { name: 'Swati Dogra', role: 'VP, Product, MakeMyTrip' },
         { name: 'Ira Banerjee', role: 'Head of Clinical Product, Even Health · Moderator', photo: '/speaker-ira.jpg' },
-      ] },
+      ], lumaUrl: 'https://luma.com/q85l6i72' },
   ] },
 
-  { start: '15:20', end: '15:50', sessions: [
+  { start: '15:15', end: '16:00', sessions: [
+    { type: 'roundtable', venue: 'Toast Board Room', title: 'CXO Roundtable: Building Global from India (Invite Only)', lumaUrl: 'https://luma.com/fzpxkjpi' },
+  ] },
+
+  { start: '15:20', end: '16:00', sessions: [
     { type: 'hackathon', venue: 'Freshworks Hall', title: 'Hackathon Finalists Present — Top 4 Teams' },
     { type: 'expert', venue: 'Toast Hall', title: 'Designing Resilient AI for the Next Era of Commerce',
-      speakers: [{ name: 'Dharma Varahappian', role: 'Product Leader, eBay', photo: '/speaker-dharma2.webp' }] },
+      speakers: [{ name: 'Dharma Varahappian', role: 'Product Leader, eBay', photo: '/speaker-dharma2.webp' }], lumaUrl: 'https://luma.com/cqzpk8mw' },
+    { type: 'showcase', venue: 'Freshworks Hall', title: 'The Great Agent Showcase',
+      detail: 'Hackathon finalists demo live in front of India\'s top product leaders. Winners announced on stage.', lumaUrl: 'https://luma.com/f3d5wcol' },
   ] },
 
-  { start: '16:00', end: '16:30', sessions: [
-    { type: 'showcase', venue: 'Freshworks Hall', title: 'The Great Agent Showcase — Winners Announced & Award Ceremony',
-      detail: 'Hackathon finalists demo live in front of India\'s top product leaders. Winners announced on stage.' },
-  ] },
-
-  { start: '17:00', end: '18:00', sessions: [{ type: 'closing', title: 'TGPF Unplugged: Closing Jam Session' }] },
+  { start: '17:00', end: '18:00', sessions: [{ type: 'closing', title: 'TGPF Unplugged: Closing Jam Session', lumaUrl: 'https://luma.com/sla7zea0' }] },
 
 ]
 
