@@ -118,9 +118,10 @@ const DAY2: Slot[] = [
         { name: 'Gaurav Aggarwal', role: 'Chief AI Scientist, Reliance Intelligence', photo: '/speaker-gaurav.jpg' },
         { name: 'Amrit Raj', role: 'Co-Founder, WiP India · Moderator', photo: '/speaker-amrit.webp' },
       ], lumaUrl: 'https://luma.com/dhfgxj7p' },
-    { type: 'fireside', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
+    { type: 'panel', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [
         { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey', photo: '/speaker-neha.webp' },
+        { name: 'Radhika Yuvraj', role: 'Panelist' },
         { name: 'Mitasha Singh', role: 'Founder, All Things Talent · Moderator', photo: '/speaker-mitasha.webp' },
       ], lumaUrl: 'https://luma.com/18cc6fsm' },
   ] },
@@ -139,7 +140,6 @@ const DAY2: Slot[] = [
         { name: 'Sreya Sanyal', role: 'Product Lead, Ford · Moderator', photo: '/speaker-sreya.webp' },
         { name: 'Sheetal Kale', role: 'Managing Director, Head of DataArt India', photo: '/speaker-sheetal.webp' },
         { name: 'Roopa Jayaraman', role: 'Chief Product & Technology Officer, Odessa', photo: '/speaker-roopa.webp' },
-        { name: 'Abhishek Gupta', role: 'Partner & National Sector Leader, KPMG', photo: '/speaker-abhishek.webp' },
         { name: 'Supriya Rao', role: 'Managing Director, ClearRoute', photo: '/speaker-supriya-new.webp' },
       ] },
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Build Your First AI Employee',
@@ -147,7 +147,8 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '11:00', end: '12:15', sessions: [
-    { type: 'workshop', venue: 'Toast Hall', title: 'Vibe Code Your Product MVP with Google AI Studio', lumaUrl: 'https://luma.com/p20ecm65' },
+    { type: 'workshop', venue: 'Toast Hall', title: 'Vibe Code Your Product MVP with Google AI Studio',
+      speakers: [{ name: 'Vijeta Pai', role: 'Senior PM, Ex-Microsoft', photo: '/speaker-vijeta.jpg' }], lumaUrl: 'https://luma.com/p20ecm65' },
   ] },
 
   { start: '11:35', end: '12:05', sessions: [
