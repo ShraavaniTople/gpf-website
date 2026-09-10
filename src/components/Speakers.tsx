@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-interface Speaker { name: string; title: string; linkedin: string | null; photo: string; objectPos: string }
+interface Speaker { name: string; title: string; linkedin: string | null; photo: string | null; objectPos: string }
 interface Props { onApply: () => void; onNominate: () => void }
 
 const speakers: Speaker[] = [
@@ -52,6 +52,11 @@ const speakers: Speaker[] = [
   { name: 'Sahil Gupta', title: 'Head of Product, Murf AI', linkedin: 'https://www.linkedin.com/in/sahilsgupta/', photo: '/speaker-sahil.jpg', objectPos: '50% 15%' },
   { name: 'Gaurav Aggarwal', title: 'Chief AI Scientist, Reliance Intelligence', linkedin: 'https://www.linkedin.com/in/gauagg/', photo: '/speaker-gaurav.jpg', objectPos: '50% 15%' },
   { name: 'Vijeta Pai', title: 'Senior PM, Ex-Microsoft', linkedin: 'https://www.linkedin.com/in/vijetapai/', photo: '/speaker-vijeta.jpg', objectPos: '50% 15%' },
+  { name: 'Ira Banerjee', title: 'Head of Clinical Product, Even Health', linkedin: 'https://www.linkedin.com/in/ira-banerjee-637097110/', photo: '/speaker-ira.webp', objectPos: '50% 15%' },
+  { name: 'Nitin Pulyani', title: 'SVP, Product, Cashfree Payments', linkedin: null, photo: null, objectPos: '50% 15%' },
+  { name: 'Gagandeep', title: 'GM, Payments, Tata Digital', linkedin: 'https://www.linkedin.com/in/aroragagandeep/', photo: null, objectPos: '50% 15%' },
+  { name: 'Radhika Yuvraj', title: 'Director, Data, Credera', linkedin: null, photo: null, objectPos: '50% 15%' },
+  { name: 'Omar Saud', title: 'Program Manager, KDEM', linkedin: null, photo: '/speaker-omar.jpg', objectPos: '50% 15%' },
 ]
 
 function useVis(delay = 0) {
@@ -93,12 +98,15 @@ export default function Speakers({ onApply, onNominate }: Props) {
             const wrapStyle: React.CSSProperties = { position: 'relative', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 16, display: 'block' }
             const inner = (
               <>
-                <img src={s.photo} alt={s.name}
-                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ${isTba ? 'opacity-50' : 'cursor-pointer'}`}
-                  loading="lazy" decoding="async"
-                  style={{ objectPosition: s.objectPos }}
-                  onMouseEnter={e => { if (!isTba) e.currentTarget.style.transform = 'scale(1.06)' }}
-                  onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
+                {s.photo
+                  ? <img src={s.photo} alt={s.name}
+                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ${isTba ? 'opacity-50' : 'cursor-pointer'}`}
+                      loading="lazy" decoding="async"
+                      style={{ objectPosition: s.objectPos }}
+                      onMouseEnter={e => { if (!isTba) e.currentTarget.style.transform = 'scale(1.06)' }}
+                      onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
+                  : <div className="absolute inset-0 w-full h-full" style={{ background: '#1C1A32' }} />
+                }
                 <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,4,12,1) 0%, rgba(5,4,12,.7) 35%, rgba(5,4,12,.1) 60%, transparent 100%)' }} />
                 <div className="absolute bottom-0 left-0 right-0 px-4 pt-4 pb-5 z-10">
                   <p className="font-display font-bold leading-tight text-sm" style={{ color: '#F0EEF8' }}>{s.name}</p>

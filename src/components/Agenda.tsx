@@ -88,8 +88,12 @@ const DAY1: Slot[] = [
   ] },
 
   { start: '15:40', end: '16:15', sessions: [
-    { type: 'expert', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
-      speakers: [{ name: 'Mansi Jain', role: 'COO, Glance', photo: '/speaker-mansi3.webp' }], lumaUrl: 'https://luma.com/gomds4t6' },
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
+      speakers: [
+        { name: 'Mansi Jain', role: 'COO, Glance', photo: '/speaker-mansi3.webp' },
+        { name: 'Nitin Pulyani', role: 'SVP, Product, Cashfree Payments' },
+        { name: 'Gagandeep', role: 'GM, Payments, Tata Digital · Moderator' },
+      ], lumaUrl: 'https://luma.com/gomds4t6' },
     { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo',
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA', photo: '/speaker-usha.webp' }], lumaUrl: 'https://luma.com/xuy6z1qr' },
   ] },
@@ -114,14 +118,13 @@ const DAY2: Slot[] = [
   { start: '10:15', end: '10:40', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Build for Bharat: AI for the Next Billion',
       speakers: [
-        { name: 'Manikantha', role: 'Head of Product, Sarvam', photo: '/speaker-manikantha.webp' },
         { name: 'Gaurav Aggarwal', role: 'Chief AI Scientist, Reliance Intelligence', photo: '/speaker-gaurav.jpg' },
-        { name: 'Amrit Raj', role: 'Co-Founder, WiP India · Moderator', photo: '/speaker-amrit.webp' },
+        { name: 'Minakshi Khuntia', role: 'Senior Director, Product Management, Freshworks · Moderator', photo: '/speaker-minakshi.webp' },
       ], lumaUrl: 'https://luma.com/dhfgxj7p' },
     { type: 'panel', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [
         { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey', photo: '/speaker-neha.webp' },
-        { name: 'Radhika Yuvraj', role: 'Panelist' },
+        { name: 'Radhika Yuvraj', role: 'Director, Data, Credera' },
         { name: 'Mitasha Singh', role: 'Founder, All Things Talent · Moderator', photo: '/speaker-mitasha.webp' },
       ], lumaUrl: 'https://luma.com/18cc6fsm' },
   ] },
@@ -161,6 +164,8 @@ const DAY2: Slot[] = [
   { start: '12:05', end: '12:20', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'Rethinking Data Center Efficiency for AI',
       speakers: [{ name: 'Rekha Poosala', role: 'Engineering Leader, Dell', photo: '/speaker-rekha.webp' }] },
+    { type: 'expert', venue: 'Freshworks Hall', title: 'Karnataka Startup Policy 2025-30',
+      speakers: [{ name: 'Omar Saud', role: 'Program Manager, KDEM', photo: '/speaker-omar.jpg' }] },
   ] },
 
   { start: '13:00', end: '14:00', sessions: [{ type: 'lunch', title: 'Lunch' }] },
@@ -177,7 +182,7 @@ const DAY2: Slot[] = [
         { name: 'Vikas', role: 'CPO, Groww', photo: '/speaker-vikas.webp' },
         { name: 'Bhavik Kaul', role: 'CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
         { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu', photo: '/speaker-pulkit.webp' },
-        { name: 'Ira', role: 'EvenHealth', photo: '/speaker-ira.webp' },
+        { name: 'Ira Banerjee', role: 'Head of Clinical Product, Even Health · Moderator', photo: '/speaker-ira.webp' },
       ] },
   ] },
 
