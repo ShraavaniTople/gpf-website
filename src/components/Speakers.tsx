@@ -52,7 +52,7 @@ const speakers: Speaker[] = [
   { name: 'Sahil Gupta', title: 'Head of Product, Murf AI', linkedin: 'https://www.linkedin.com/in/sahilsgupta/', photo: '/speaker-sahil.jpg', objectPos: '50% 15%' },
   { name: 'Gaurav Aggarwal', title: 'Chief AI Scientist, Reliance Intelligence', linkedin: 'https://www.linkedin.com/in/gauagg/', photo: '/speaker-gaurav.jpg', objectPos: '50% 15%' },
   { name: 'Vijeta Pai', title: 'Senior PM, Ex-Microsoft', linkedin: 'https://www.linkedin.com/in/vijetapai/', photo: '/speaker-vijeta.jpg', objectPos: '50% 15%' },
-  { name: 'Ira Banerjee', title: 'Head of Clinical Product, Even Health', linkedin: 'https://www.linkedin.com/in/ira-banerjee-637097110/', photo: '/speaker-ira.webp', objectPos: '50% 15%' },
+  { name: 'Ira Banerjee', title: 'Head of Clinical Product, Even Health', linkedin: 'https://www.linkedin.com/in/ira-banerjee-637097110/', photo: '/speaker-ira.jpg', objectPos: '50% 15%' },
   { name: 'Nitin Pulyani', title: 'SVP, Product, Cashfree Payments', linkedin: null, photo: null, objectPos: '50% 15%' },
   { name: 'Gagandeep', title: 'GM, Payments, Tata Digital', linkedin: 'https://www.linkedin.com/in/aroragagandeep/', photo: null, objectPos: '50% 15%' },
   { name: 'Radhika Yuvraj', title: 'Director, Data, Credera', linkedin: null, photo: null, objectPos: '50% 15%' },
