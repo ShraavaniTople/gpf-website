@@ -55,7 +55,7 @@ const speakers: Speaker[] = [
   { name: 'Ira Banerjee', title: 'Head of Clinical Product, Even Health', linkedin: 'https://www.linkedin.com/in/ira-banerjee-637097110/', photo: '/speaker-ira.jpg', objectPos: '50% 15%' },
   { name: 'Nitin Pulyani', title: 'SVP, Product, Cashfree Payments', linkedin: null, photo: null, objectPos: '50% 15%' },
   { name: 'Gagandeep', title: 'GM, Payments, Tata Digital', linkedin: 'https://www.linkedin.com/in/aroragagandeep/', photo: null, objectPos: '50% 15%' },
-  { name: 'Radhika Yuvraj', title: 'Country Director, Women in Tech India', linkedin: null, photo: null, objectPos: '50% 15%' },
+  { name: 'Radhika Yuvraj', title: 'Country Director, Women in Tech India', linkedin: null, photo: '/speaker-radhika.jpg', objectPos: '50% 15%' },
   { name: 'Omar Saud', title: 'Program Manager, KDEM', linkedin: null, photo: '/speaker-omar.jpg', objectPos: '50% 15%' },
 ]
 
