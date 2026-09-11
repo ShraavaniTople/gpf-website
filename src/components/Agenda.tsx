@@ -190,7 +190,7 @@ const DAY2: Slot[] = [
       speakers: [
         { name: 'Bhavik Kaul', role: 'CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
         { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu', photo: '/speaker-pulkit.webp' },
-        { name: 'Swati Dogra', role: 'VP, Product, MakeMyTrip' },
+        { name: 'Vikas Bansal', role: 'CPO, Groww', photo: '/speaker-vikas.webp' },
         { name: 'Ira Banerjee', role: 'Head of Clinical Product, Even Health · Moderator', photo: '/speaker-ira.jpg' },
       ], lumaUrl: 'https://luma.com/q85l6i72' },
   ] },

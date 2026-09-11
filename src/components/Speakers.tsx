@@ -93,34 +93,30 @@ export default function Speakers({ onApply, onNominate }: Props) {
 
         {/* Speaker grid — 4 portrait cards */}
         <div ref={gridRef} className="sg grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
-          {speakers.map((s, i) => {
-            const isTba = false
-            const wrapStyle: React.CSSProperties = { position: 'relative', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 16, display: 'block' }
-            const inner = (
-              <>
-                {s.photo
-                  ? <img src={s.photo} alt={s.name}
-                      className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ${isTba ? 'opacity-50' : 'cursor-pointer'}`}
-                      loading="lazy" decoding="async"
-                      style={{ objectPosition: s.objectPos }}
-                      onMouseEnter={e => { if (!isTba) e.currentTarget.style.transform = 'scale(1.06)' }}
-                      onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
-                  : <div className="absolute inset-0 w-full h-full" style={{ background: '#1C1A32' }} />
-                }
-                <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,4,12,1) 0%, rgba(5,4,12,.7) 35%, rgba(5,4,12,.1) 60%, transparent 100%)' }} />
-                <div className="absolute bottom-0 left-0 right-0 px-4 pt-4 pb-5 z-10">
-                  <p className="font-display font-bold leading-tight text-sm" style={{ color: '#F0EEF8' }}>{s.name}</p>
-                  <p className="text-[11px] mt-1 font-medium leading-snug" style={{ color: isTba ? '#52506A' : '#F59E0B' }}>{s.title}</p>
-                  {s.linkedin && (
-                    <p className="text-[10px] mt-1.5 font-mono" style={{ color: '#7C3AED' }}>View LinkedIn</p>
-                  )}
-                </div>
-              </>
-            )
-            return s.linkedin
-              ? <a key={i} href={s.linkedin} target="_blank" rel="noopener noreferrer" style={wrapStyle}>{inner}</a>
-              : <div key={i} style={wrapStyle}>{inner}</div>
-          })}
+          {speakers.map((s, i) => (
+            <div key={i} style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden', borderRadius: 16 }}>
+              {s.photo
+                ? <img src={s.photo} alt={s.name}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms]"
+                    loading="lazy" decoding="async"
+                    style={{ objectPosition: s.objectPos }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.06)' }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)' }} />
+                : <div className="absolute inset-0 w-full h-full" style={{ background: '#1C1A32' }} />
+              }
+              <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(5,4,12,1) 0%, rgba(5,4,12,.7) 35%, rgba(5,4,12,.1) 60%, transparent 100%)' }} />
+              <div className="absolute bottom-0 left-0 right-0 px-4 pt-4 pb-5 z-10">
+                <p className="font-display font-bold leading-tight text-sm" style={{ color: '#F0EEF8' }}>{s.name}</p>
+                <p className="text-[11px] mt-1 font-medium leading-snug" style={{ color: '#F59E0B' }}>{s.title}</p>
+                {s.linkedin && (
+                  <a href={s.linkedin} target="_blank" rel="noopener noreferrer"
+                    className="text-[10px] mt-1.5 font-mono" style={{ color: '#7C3AED', display: 'block' }}>
+                    View LinkedIn
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
 
         <p className="text-center text-sm italic mb-14" style={{ color: '#52506A' }}>
