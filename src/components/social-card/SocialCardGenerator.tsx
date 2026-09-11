@@ -216,14 +216,15 @@ export default function SocialCardGenerator() {
 
           {/* Role */}
           <Field label="I am a…">
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 8 }}>
               {ROLES.map(r => (
                 <button
                   key={r.id}
                   onClick={() => { setRoleId(r.id); setCaptionIdx(0); removePhoto(); setTitleTouched(false) }}
                   style={{
-                    padding: '6px 14px', borderRadius: 9999, fontSize: 13,
-                    fontFamily: 'Inter, sans-serif', cursor: 'pointer',
+                    padding: '10px 16px', borderRadius: 12, fontSize: 14,
+                    fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600,
+                    cursor: 'pointer', textAlign: 'center',
                     border: roleId === r.id ? '1.5px solid #7C3AED' : '1.5px solid #2A2748',
                     background: roleId === r.id ? 'rgba(124,58,237,0.2)' : 'rgba(28,26,50,.6)',
                     color: roleId === r.id ? '#A78BFA' : '#6B7280',

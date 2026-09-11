@@ -372,7 +372,7 @@ async function renderHero(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   const BADGE_TOP = LOGO_Y + LOGO_H + 78
   const BADGE_H = 52
   const BADGE_BTM = BADGE_TOP + BADGE_H
-  const badgeTxt = opts.role.label.toUpperCase()
+  const badgeTxt = opts.role.chip
 
   ctx.font = font(22, 400, 'JetBrains Mono')
   const badgeW = ctx.measureText(badgeTxt).width + 52
@@ -507,7 +507,7 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
   // ── Role label ───────────────────────────────────────────────────────────────
   const ROLE_Y = 44 + 72 + 88
   ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = t.hex
-  ctx.fillText(`— ${opts.role.label.toUpperCase()}`, TX, ROLE_Y)
+  ctx.fillText(`— ${opts.role.chip}`, TX, ROLE_Y)
 
   // ── Name ──────────────────────────────────────────────────────────────────────
   const NAME_BASELINE_MIN = ROLE_Y + 24 + 116 * 0.72 + 24
@@ -700,7 +700,7 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   // Role chip in role accent colour
   cursor += 12
   ctx.font = font(21, 400, 'JetBrains Mono')
-  const chipTxt = opts.role.label.toUpperCase()
+  const chipTxt = opts.role.chip
   const chipW = ctx.measureText(chipTxt).width + 56
   const chipX = cx - chipW / 2
   ctx.fillStyle = ac(r, g, b, 0.2); roundRect(ctx, chipX, cursor, chipW, 48, 24); ctx.fill()

@@ -15,6 +15,7 @@ export type DesignId = 'hero' | 'editorial' | 'festival'
 export interface Role {
   id: RoleId
   label: string
+  chip: string            // personalized text shown on the card
   hasPhoto: boolean       // true = personal photo; false = logo
   lockedDesign?: DesignId // if set, design picker is hidden and this design is used
   titleRequired?: boolean // if true, title field is marked required
@@ -25,6 +26,7 @@ export const ROLES: Role[] = [
   {
     id: 'attendee',
     label: 'Attendee',
+    chip: "I'M ATTENDING",
     hasPhoto: true,
     lockedDesign: 'hero',
     captions: [
@@ -35,6 +37,7 @@ export const ROLES: Role[] = [
   {
     id: 'speaker',
     label: 'Speaker',
+    chip: "I'M SPEAKING",
     hasPhoto: true,
     lockedDesign: 'festival',
     titleRequired: true,
@@ -46,6 +49,7 @@ export const ROLES: Role[] = [
   {
     id: 'mentor',
     label: 'Mentor',
+    chip: "I'M MENTORING",
     hasPhoto: true,
     lockedDesign: 'festival',
     titleRequired: true,
@@ -57,6 +61,7 @@ export const ROLES: Role[] = [
   {
     id: 'judge',
     label: 'Judge',
+    chip: "I'M JUDGING",
     hasPhoto: true,
     lockedDesign: 'festival',
     titleRequired: true,
@@ -68,6 +73,7 @@ export const ROLES: Role[] = [
   {
     id: 'sponsor',
     label: 'Sponsor',
+    chip: "WE'RE SPONSORING",
     hasPhoto: false,
     captions: [
       `Proud to sponsor ${EVENT.name} 2026 — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
@@ -77,6 +83,7 @@ export const ROLES: Role[] = [
   {
     id: 'community-partner',
     label: 'Community Partner',
+    chip: "WE'RE A PARTNER",
     hasPhoto: false,
     lockedDesign: 'editorial',
     captions: [
@@ -87,6 +94,7 @@ export const ROLES: Role[] = [
   {
     id: 'organizer',
     label: 'Organizer',
+    chip: "I'M ORGANIZING",
     hasPhoto: true,
     lockedDesign: 'festival',
     titleRequired: true,
