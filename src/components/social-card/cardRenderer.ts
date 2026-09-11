@@ -137,40 +137,57 @@ async function drawWipLogo(ctx: CanvasRenderingContext2D, rightX: number, y: num
   } catch { /* silent */ }
 }
 
-async function drawPartnerStrip(ctx: CanvasRenderingContext2D, cx: number, y: number) {
-  const LOGO_H = 38
-  const GAP = 64
+// Freshworks + Toast in the card header (centered between GPF and WIP logos)
+async function drawHeaderSponsors(ctx: CanvasRenderingContext2D, cx: number, y: number) {
+  const LOGO_H = 28
+  const GAP = 56
   const srcs = ['/logos/freshworks-full.webp', '/logos/toast.webp']
   const imgs = await Promise.all(srcs.map(s => loadImg(s).catch(() => null)))
   const widths = imgs.map(img => img ? Math.round((img.width / img.height) * LOGO_H) : 0)
-  const totalW = widths.reduce((a, b) => a + b, 0) + GAP * (imgs.filter(Boolean).length - 1)
+  const validCount = imgs.filter(img => img !== null).length
+  const totalW = widths.reduce((a, b) => a + b, 0) + GAP * Math.max(0, validCount - 1)
 
-  // Separator line
   ctx.save()
-  const sep = ctx.createLinearGradient(cx - 180, 0, cx + 180, 0)
-  sep.addColorStop(0, 'rgba(60,56,90,0)'); sep.addColorStop(0.5, 'rgba(60,56,90,0.6)'); sep.addColorStop(1, 'rgba(60,56,90,0)')
-  ctx.fillStyle = sep; ctx.fillRect(cx - 180, y, 360, 1)
-  ctx.restore()
-
-  // Label
-  ctx.save()
-  ctx.font = font(15, 400, 'JetBrains Mono')
+  ctx.font = font(11, 400, 'JetBrains Mono')
   ctx.fillStyle = '#2D2B45'
   ctx.textAlign = 'center'
-  ctx.fillText('CO-POWERED BY', cx, y + 22)
-  ctx.restore()
+  ctx.fillText('CO-POWERED BY', cx, y)
 
-  // Logos — all same height, natural width
+  ctx.globalAlpha = 0.86
   let x = cx - totalW / 2
   for (let i = 0; i < imgs.length; i++) {
     const img = imgs[i]
     if (!img || widths[i] === 0) continue
-    ctx.save()
-    ctx.globalAlpha = 0.88
-    ctx.drawImage(img, x, y + 32, widths[i], LOGO_H)
-    ctx.restore()
+    ctx.drawImage(img, x, y + 10, widths[i], LOGO_H)
     x += widths[i] + GAP
   }
+  ctx.restore()
+}
+
+// Anthropic + Databricks at the bottom of Hero and Editorial cards
+async function drawBottomPartners(ctx: CanvasRenderingContext2D, cx: number, y: number) {
+  const LOGO_H = 22
+  const GAP = 64
+  const srcs = ['/logos/anthropic-v2.webp', '/logos/databricks.webp']
+  const imgs = await Promise.all(srcs.map(s => loadImg(s).catch(() => null)))
+  const widths = imgs.map(img => img ? Math.round((img.width / img.height) * LOGO_H) : 0)
+  const validCount = imgs.filter(img => img !== null).length
+  const totalW = widths.reduce((a, b) => a + b, 0) + GAP * Math.max(0, validCount - 1)
+
+  ctx.save()
+  const sep = ctx.createLinearGradient(cx - 220, 0, cx + 220, 0)
+  sep.addColorStop(0, 'rgba(60,56,90,0)'); sep.addColorStop(0.5, 'rgba(60,56,90,0.45)'); sep.addColorStop(1, 'rgba(60,56,90,0)')
+  ctx.fillStyle = sep; ctx.fillRect(cx - 220, y, 440, 1)
+
+  ctx.globalAlpha = 0.72
+  let x = cx - totalW / 2
+  for (let i = 0; i < imgs.length; i++) {
+    const img = imgs[i]
+    if (!img || widths[i] === 0) continue
+    ctx.drawImage(img, x, y + 10, widths[i], LOGO_H)
+    x += widths[i] + GAP
+  }
+  ctx.restore()
 }
 
 async function drawRoundedPhoto(
@@ -342,16 +359,17 @@ async function renderHero(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   const textMaxW = FX - PAD - 44
 
   // ── Header ────────────────────────────────────────────────────────────────────
-  const hdGrad = ctx.createLinearGradient(0, 0, 0, 148)
-  hdGrad.addColorStop(0, 'rgba(5,4,12,0.78)'); hdGrad.addColorStop(1, 'rgba(5,4,12,0)')
-  ctx.fillStyle = hdGrad; ctx.fillRect(0, 0, W, 148)
+  const hdGrad = ctx.createLinearGradient(0, 0, 0, 172)
+  hdGrad.addColorStop(0, 'rgba(5,4,12,0.82)'); hdGrad.addColorStop(1, 'rgba(5,4,12,0)')
+  ctx.fillStyle = hdGrad; ctx.fillRect(0, 0, W, 172)
 
-  const LOGO_H = 96, WIP_H = 80, LOGO_Y = 44
+  const LOGO_H = 72, WIP_H = 60, LOGO_Y = 44
   await drawGpfLogo(ctx, PAD, LOGO_Y, LOGO_H)
   await drawWipLogo(ctx, W - PAD, LOGO_Y + (LOGO_H - WIP_H) / 2, WIP_H)
+  await drawHeaderSponsors(ctx, W / 2, LOGO_Y + LOGO_H + 6)
 
   // ── Role badge ────────────────────────────────────────────────────────────────
-  const BADGE_TOP = LOGO_Y + LOGO_H + 44
+  const BADGE_TOP = LOGO_Y + LOGO_H + 78
   const BADGE_H = 52
   const BADGE_BTM = BADGE_TOP + BADGE_H
   const badgeTxt = opts.role.label.toUpperCase()
@@ -391,13 +409,13 @@ async function renderHero(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   ctx.font = font(26, 400, 'Inter'); ctx.fillStyle = '#9490AD'
   ctx.fillText(EVENT.city, PAD, DIVIDER_Y + 96)
 
-  // ── Partner logos ─────────────────────────────────────────────────────────────
-  await drawPartnerStrip(ctx, W / 2, height - 148)
+  // ── Bottom partners ───────────────────────────────────────────────────────────
+  await drawBottomPartners(ctx, W / 2, height - 136)
 
   // ── Footer ────────────────────────────────────────────────────────────────────
   ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = '#3A3856'
-  ctx.fillText(EVENT.hashtag, PAD, height - 52)
-  ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, height - 52); ctx.textAlign = 'left'
+  ctx.fillText(EVENT.hashtag, PAD, height - 46)
+  ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, height - 46); ctx.textAlign = 'left'
 
   const bar = ctx.createLinearGradient(0, 0, W, 0)
   bar.addColorStop(0, t.bar[0]); bar.addColorStop(0.5, t.bar[1]); bar.addColorStop(1, t.bar[2])
@@ -432,7 +450,7 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
   // ── Photo / logo (top-right) ─────────────────────────────────────────────────
   const IMG_SIZE = opts.portrait ? 310 : 270
   const imgX = W - PAD - IMG_SIZE
-  const imgY = 48 + 72 + 16
+  const imgY = 44 + 72 + 28
 
   if (hasPhoto) {
     if (isPersonal) {
@@ -478,15 +496,16 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
   const textMaxW = imgX - TX - 40
 
   // ── Header ────────────────────────────────────────────────────────────────────
-  const hdGradE = ctx.createLinearGradient(0, 0, 0, 148)
-  hdGradE.addColorStop(0, 'rgba(7,5,26,0.85)'); hdGradE.addColorStop(1, 'rgba(7,5,26,0)')
-  ctx.fillStyle = hdGradE; ctx.fillRect(0, 0, W, 148)
+  const hdGradE = ctx.createLinearGradient(0, 0, 0, 172)
+  hdGradE.addColorStop(0, 'rgba(7,5,26,0.88)'); hdGradE.addColorStop(1, 'rgba(7,5,26,0)')
+  ctx.fillStyle = hdGradE; ctx.fillRect(0, 0, W, 172)
 
-  await drawGpfLogo(ctx, TX, 44, 96)
-  await drawWipLogo(ctx, W - PAD, 50, 80)
+  await drawGpfLogo(ctx, TX, 44, 72)
+  await drawWipLogo(ctx, W - PAD, 50, 60)
+  await drawHeaderSponsors(ctx, W / 2, 122)
 
   // ── Role label ───────────────────────────────────────────────────────────────
-  const ROLE_Y = 48 + 72 + 44
+  const ROLE_Y = 44 + 72 + 88
   ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = t.hex
   ctx.fillText(`— ${opts.role.label.toUpperCase()}`, TX, ROLE_Y)
 
@@ -538,13 +557,13 @@ async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOption
   ctx.font = font(23, 400, 'Inter'); ctx.fillStyle = '#9490AD'
   ctx.fillText(EVENT.city, TX + 20, BOX_Y + 108)
 
-  // ── Partner logos ─────────────────────────────────────────────────────────────
-  await drawPartnerStrip(ctx, W / 2, height - 148)
+  // ── Bottom partners ───────────────────────────────────────────────────────────
+  await drawBottomPartners(ctx, W / 2, height - 136)
 
   // ── Footer ────────────────────────────────────────────────────────────────────
   ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = '#2D2B45'
-  ctx.fillText(EVENT.hashtag, TX, height - 52)
-  ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, height - 52); ctx.textAlign = 'left'
+  ctx.fillText(EVENT.hashtag, TX, height - 46)
+  ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, height - 46); ctx.textAlign = 'left'
 
   // Bottom accent dot on strip uses role bar end colour
   ctx.fillStyle = t.bar[1]; ctx.fillRect(0, height - 6, 8, 6)
@@ -581,12 +600,13 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   }
 
   // ── Logos ─────────────────────────────────────────────────────────────────────
-  const hdGradF = ctx.createLinearGradient(0, 0, 0, 148)
-  hdGradF.addColorStop(0, 'rgba(5,4,12,0.75)'); hdGradF.addColorStop(1, 'rgba(5,4,12,0)')
-  ctx.fillStyle = hdGradF; ctx.fillRect(0, 0, W, 148)
+  const hdGradF = ctx.createLinearGradient(0, 0, 0, 172)
+  hdGradF.addColorStop(0, 'rgba(5,4,12,0.80)'); hdGradF.addColorStop(1, 'rgba(5,4,12,0)')
+  ctx.fillStyle = hdGradF; ctx.fillRect(0, 0, W, 172)
 
-  await drawGpfLogo(ctx, PAD, 44, 96)
-  await drawWipLogo(ctx, W - PAD, 50, 80)
+  await drawGpfLogo(ctx, PAD, 44, 72)
+  await drawWipLogo(ctx, W - PAD, 50, 60)
+  await drawHeaderSponsors(ctx, cx, 122)
 
   // ── Photo / logo zone ─────────────────────────────────────────────────────────
   const PHOTO_R = opts.portrait ? 248 : 220
@@ -695,12 +715,9 @@ async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions
   ctx.font = font(23, 400, 'Inter'); ctx.fillStyle = '#6B7280'
   ctx.fillText(EVENT.city, cx, cursor)
 
-  // ── Partner logos ─────────────────────────────────────────────────────────────
-  await drawPartnerStrip(ctx, cx, height - 148)
-
-  // ── Footer hashtag ────────────────────────────────────────────────────────────
+  // ── Footer ────────────────────────────────────────────────────────────────────
   ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = '#3A3856'
-  ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, cx, height - 52)
+  ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, cx, height - 46)
   ctx.textAlign = 'left'
 }
 
