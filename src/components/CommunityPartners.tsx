@@ -14,6 +14,7 @@ const partners = [
   { name: 'Startups Life',         slug: 'startups-life',       h: 56 },
   { name: 'Unwind Ventures',       slug: 'unwind-ventures',     h: 120 },
   { name: 'IncX',                  slug: 'incx',                h: 56 },
+  { name: 'Aspire for Her',        slug: 'aspire-for-her',      h: 64 },
 ]
 
 function useVis(delay = 0) {
