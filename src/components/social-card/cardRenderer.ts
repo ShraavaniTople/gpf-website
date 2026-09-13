@@ -20,7 +20,7 @@ export interface RenderOptions {
 const W            = 1080
 const PAD          = 64
 const TOP_BAR      = 6    // gradient bar at very top
-const LOGO_ZONE_H  = 124  // partner logos row height (below top bar)
+const LOGO_ZONE_H  = 152  // logo header zone height (below top bar)
 const BOT_BAR      = 6    // gradient bar at very bottom
 // Legacy - kept so TypeScript is happy; unified layout derives its own zones
 const HEADER_H = TOP_BAR + LOGO_ZONE_H + 2
@@ -317,26 +317,30 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
 
   // Header logos: TGPF left, WiP right — both on dark background
   const LOGO_CY_ROW = TOP_BAR + Math.round(LOGO_ZONE_H / 2)
-  const TGPF_H = P ? 96 : 80
-  const WIP_H  = P ? 64 : 54
+  const TGPF_H = P ? 114 : 96
+  const WIP_H  = P ? 80 : 68
 
-  try {
-    const gpfImg = await loadImg('/gpf-logo.png')
+  const [gpfImg, wipImg] = await Promise.all([
+    loadImg('/gpf-logo.png').catch(() => null),
+    loadImg('/wip-logo.png').catch(() => null),
+  ])
+  if (gpfImg) {
     const gpfW = Math.round((gpfImg.width / gpfImg.height) * TGPF_H)
     ctx.drawImage(gpfImg, PAD, Math.round(LOGO_CY_ROW - TGPF_H / 2), gpfW, TGPF_H)
-  } catch { /* silent */ }
-
-  try {
-    const wipImg = await loadImg('/wip-logo.png')
+  }
+  if (wipImg) {
     const wipW = Math.round((wipImg.width / wipImg.height) * WIP_H)
     ctx.drawImage(wipImg, W - PAD - wipW, Math.round(LOGO_CY_ROW - WIP_H / 2), wipW, WIP_H)
-  } catch { /* silent */ }
+  }
+
+  // Subtle separator
+  ctx.fillStyle = 'rgba(255,255,255,0.08)'; ctx.fillRect(0, TOP_BAR + LOGO_ZONE_H, W, 1)
 
   const BODY_TOP = TOP_BAR + LOGO_ZONE_H + 2
 
   // Radial glow wash in body
-  const PHOTO_R  = P ? 250 : 178
-  const PHOTO_CY = BODY_TOP + (P ? 56 : 48) + PHOTO_R
+  const PHOTO_R  = P ? 268 : 210
+  const PHOTO_CY = BODY_TOP + (P ? 48 : 36) + PHOTO_R
 
   const wash = ctx.createRadialGradient(cx, PHOTO_CY, 0, cx, PHOTO_CY, W * 0.72)
   wash.addColorStop(0, ac(r, g, b, 0.14)); wash.addColorStop(1, ac(r, g, b, 0))
