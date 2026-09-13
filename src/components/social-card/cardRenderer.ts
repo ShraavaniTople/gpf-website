@@ -315,22 +315,33 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   gBar.addColorStop(0, t.bar[0]); gBar.addColorStop(0.5, t.bar[1]); gBar.addColorStop(1, t.bar[2])
   ctx.fillStyle = gBar; ctx.fillRect(0, 0, W, TOP_BAR)
 
-  // Header logos: TGPF left, WiP right — both on dark background
+  // Header logos: TGPF left, WiP right — white pill chips on dark background
   const LOGO_CY_ROW = TOP_BAR + Math.round(LOGO_ZONE_H / 2)
-  const TGPF_H = P ? 114 : 96
-  const WIP_H  = P ? 80 : 68
+  const TGPF_H = P ? 108 : 90
+  const WIP_H  = P ? 78 : 66
+  const PILL_PX = 18  // horizontal padding inside pill
+  const PILL_PY = 12  // vertical padding inside pill
+  const PILL_R  = 16  // corner radius
 
   const [gpfImg, wipImg] = await Promise.all([
     loadImg('/gpf-logo.png').catch(() => null),
     loadImg('/wip-logo.png').catch(() => null),
   ])
+
   if (gpfImg) {
     const gpfW = Math.round((gpfImg.width / gpfImg.height) * TGPF_H)
-    ctx.drawImage(gpfImg, PAD, Math.round(LOGO_CY_ROW - TGPF_H / 2), gpfW, TGPF_H)
+    const px = PAD, py = Math.round(LOGO_CY_ROW - TGPF_H / 2)
+    roundRect(ctx, px - PILL_PX, py - PILL_PY, gpfW + PILL_PX * 2, TGPF_H + PILL_PY * 2, PILL_R)
+    ctx.fillStyle = '#FFFFFF'; ctx.fill()
+    ctx.drawImage(gpfImg, px, py, gpfW, TGPF_H)
   }
+
   if (wipImg) {
     const wipW = Math.round((wipImg.width / wipImg.height) * WIP_H)
-    ctx.drawImage(wipImg, W - PAD - wipW, Math.round(LOGO_CY_ROW - WIP_H / 2), wipW, WIP_H)
+    const px = W - PAD - wipW, py = Math.round(LOGO_CY_ROW - WIP_H / 2)
+    roundRect(ctx, px - PILL_PX, py - PILL_PY, wipW + PILL_PX * 2, WIP_H + PILL_PY * 2, PILL_R)
+    ctx.fillStyle = '#FFFFFF'; ctx.fill()
+    ctx.drawImage(wipImg, px, py, wipW, WIP_H)
   }
 
   // Subtle separator
