@@ -7,7 +7,7 @@ const speakers: Speaker[] = [
   // Row 1
   { name: 'Sangeeta Bavi', title: 'Head of Digital Natives, Startups & Growth, Anthropic India', linkedin: 'https://www.linkedin.com/in/sangeetabavi/', photo: '/speaker-sangeeta.webp', objectPos: '50% 15%' },
   { name: 'Murali Swaminathan', title: 'CTO, Freshworks', linkedin: 'https://www.linkedin.com/in/muraliswaminathan', photo: '/speaker-murali.webp', objectPos: '50% 15%' },
-  { name: 'Ryan Manning', title: 'CPO, Freshworks', linkedin: 'https://www.linkedin.com/in/rpmanning2/', photo: '/speaker-ryan.jpg', objectPos: '50% 15%' },
+  { name: 'Ryan Manning', title: 'CPTO, Freshworks', linkedin: 'https://www.linkedin.com/in/rpmanning2/', photo: '/speaker-ryan.jpg', objectPos: '50% 15%' },
   { name: 'Swati Awasthi', title: 'Founder, Women in Product India', linkedin: 'https://www.linkedin.com/in/swati-awasthi/', photo: '/speaker-swati.webp', objectPos: '50% 20%' },
   // Row 2
   { name: 'Lalitha Ramani K', title: 'GM, Google Maps', linkedin: 'https://www.linkedin.com/in/lalitha-ramani-k-b863462/', photo: '/speaker-lalitha2.webp', objectPos: '50% 10%' },

@@ -34,7 +34,7 @@ const DAY1: Slot[] = [
 
   { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'The New Rules of Building Products & Companies',
       speakers: [
-        { name: 'Ryan Manning', role: 'CPO, Freshworks', photo: '/speaker-ryan.jpg' },
+        { name: 'Ryan Manning', role: 'CPTO, Freshworks', photo: '/speaker-ryan.jpg' },
         { name: 'Murali Swaminathan', role: 'CTO, Freshworks', photo: '/speaker-murali.webp' },
       ], lumaUrl: 'https://luma.com/yl03y3pv' }] },
 
