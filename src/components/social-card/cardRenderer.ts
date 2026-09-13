@@ -315,9 +315,17 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   gBar.addColorStop(0, t.bar[0]); gBar.addColorStop(0.5, t.bar[1]); gBar.addColorStop(1, t.bar[2])
   ctx.fillStyle = gBar; ctx.fillRect(0, 0, W, TOP_BAR)
 
-  // WiP logo top-right on dark background
+  // Header logos: TGPF left, WiP right — both on dark background
   const LOGO_CY_ROW = TOP_BAR + Math.round(LOGO_ZONE_H / 2)
-  const WIP_H = P ? 48 : 40
+  const TGPF_H = P ? 96 : 80
+  const WIP_H  = P ? 64 : 54
+
+  try {
+    const gpfImg = await loadImg('/gpf-logo.png')
+    const gpfW = Math.round((gpfImg.width / gpfImg.height) * TGPF_H)
+    ctx.drawImage(gpfImg, PAD, Math.round(LOGO_CY_ROW - TGPF_H / 2), gpfW, TGPF_H)
+  } catch { /* silent */ }
+
   try {
     const wipImg = await loadImg('/wip-logo.png')
     const wipW = Math.round((wipImg.width / wipImg.height) * WIP_H)
@@ -388,19 +396,6 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   } else {
     y += P ? 20 : 14
   }
-
-  // TGPF logo (centred brand focal point)
-  y += P ? 20 : 16
-  const TGPF_SZ = P ? 160 : 128
-  try {
-    const gpf = await loadImg('/gpf-logo.png')
-    const gpfW = Math.round((gpf.width / gpf.height) * TGPF_SZ)
-    ctx.drawImage(gpf, Math.round(cx - gpfW / 2), y, gpfW, TGPF_SZ)
-  } catch {
-    ctx.font = font(34, 700); ctx.fillStyle = '#7C3AED'
-    ctx.fillText('TGPF 2026', cx, y + Math.round(TGPF_SZ * 0.65))
-  }
-  y += TGPF_SZ
 
   // Role badge
   y += P ? 18 : 14
