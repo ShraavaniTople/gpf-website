@@ -74,9 +74,9 @@ function buildCombinedHtml(p: {
           <tr>
             <td valign="top" style="padding-bottom:20px;">
               <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Event</p>
-              <p style="margin:0;font-size:14px;color:#4B5563;line-height:1.6;">${p.event_date}<br/>${p.event_city} · 2 Days · 4 Tracks · 500+ Attendees</p>
+              <p style="margin:0;font-size:14px;color:#4B5563;line-height:1.6;">${p.event_date}<br/>${p.event_city}<br/>2 Days · 4 Tracks · 500+ Attendees</p>
             </td>
-            ${p.amount && p.amount !== 'Complimentary' ? `<td valign="top" align="right" style="padding-bottom:20px;">
+            ${p.amount && p.amount !== 'Complimentary' && p.amount !== '0' && Number(p.amount) !== 0 ? `<td valign="top" align="right" style="padding-bottom:20px;">
               <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Amount Paid</p>
               <p style="margin:0;font-size:24px;font-weight:800;color:#1a0a40;">₹${p.amount}</p>
             </td>` : '<td></td>'}
@@ -130,7 +130,7 @@ function buildCombinedHtml(p: {
               <p style="margin:0 0 16px;font-size:12px;font-weight:700;color:#fff;line-height:1.4;">25–26<br/>Sept 2026</p>
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;"><tr><td height="1" style="border-top:1px dashed #3D3B55;"></td></tr></table>
               <p style="margin:0 0 4px;font-family:monospace;font-size:8px;color:#6B63A0;letter-spacing:0.18em;text-transform:uppercase;">Venue</p>
-              <p style="margin:0;font-size:12px;font-weight:700;color:#fff;line-height:1.4;">Bangalore<br/>India</p>
+              <p style="margin:0;font-size:11px;font-weight:700;color:#fff;line-height:1.4;">${p.event_city.replace(', ', ',<br/>')}</p>
             </td>
           </tr>
           <tr>
