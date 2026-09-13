@@ -41,6 +41,7 @@ const generalMembers: { firstName: string; lastName: string; company: string; ro
   { firstName: 'Chanakya',           lastName: 'Varma',        company: 'DataArt',             role: 'Director & Growth Partner',        email: 'chanakya.varma@dataart.com' },
   { firstName: 'Glory',              lastName: 'Michael',      company: 'DataArt',             role: 'Client Solutions Partner',         email: 'Glory.Michael@dataart.com' },
   { firstName: 'Manish S',           lastName: 'Sugandhi',     company: 'Noon',                role: 'Product',                          email: 'manish@noon.design' },
+  { firstName: 'Neha',               lastName: 'Nadiger',       company: 'Unimad',              role: 'Product Manager',                  email: 'nehanadigerwork@gmail.com',         sentOn: '2026-09-13' },
 ]
 
 const premiumMembers = [
