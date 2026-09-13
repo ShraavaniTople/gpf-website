@@ -75,6 +75,10 @@ function buildCombinedHtml(p: {
         <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
           <tr>
             <td style="padding:0 12px 10px 0;font-size:18px;color:#7C3AED;vertical-align:top;line-height:1;">•</td>
+            <td style="padding-bottom:10px;font-size:13px;color:#4B5563;line-height:1.5;">Government-issued photo ID</td>
+          </tr>
+          <tr>
+            <td style="padding:0 12px 10px 0;font-size:18px;color:#7C3AED;vertical-align:top;line-height:1;">•</td>
             <td style="padding-bottom:10px;font-size:13px;color:#4B5563;line-height:1.5;">This email on your phone or printed</td>
           </tr>
           <tr>
@@ -111,8 +115,8 @@ function buildCombinedHtml(p: {
             <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">🗓️ RSVP on Luma</p>
             <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Lock in your spot and stay updated with the latest speakers, schedule, and event details.</p>
             <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="background:#16A34A;border-radius:8px;">
-                <a href="https://luma.com/thegreatproductfestival" style="display:block;font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;padding:10px 24px;">RSVP ON LUMA →</a>
+              <td style="background:#16A34A;border-radius:8px;padding:10px 24px;">
+                <a href="https://luma.com/thegreatproductfestival" style="font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;display:inline-block;">RSVP ON LUMA →</a>
               </td>
             </tr></table>
             <p style="margin:10px 0 0;font-size:11px;color:#9CA3AF;">Direct link: <a href="https://luma.com/thegreatproductfestival" style="color:#16A34A;text-decoration:none;">luma.com/thegreatproductfestival</a></p>
@@ -125,8 +129,8 @@ function buildCombinedHtml(p: {
             <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">📸 Create Your Social Card</p>
             <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Show the world you're attending TGPF 2026! Generate your personalised card and share it on LinkedIn, Twitter, or Instagram.</p>
             <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="background:#7C3AED;border-radius:8px;">
-                <a href="https://www.thegreatproductfestival.com/share" style="display:block;font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;padding:10px 24px;">CREATE YOUR SOCIAL CARD →</a>
+              <td style="background:#7C3AED;border-radius:8px;padding:10px 24px;">
+                <a href="https://www.thegreatproductfestival.com/share" style="font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;display:inline-block;">CREATE YOUR SOCIAL CARD →</a>
               </td>
             </tr></table>
             <p style="margin:10px 0 0;font-size:11px;color:#9CA3AF;">Direct link: <a href="https://www.thegreatproductfestival.com/share" style="color:#7C3AED;text-decoration:none;">thegreatproductfestival.com/share</a></p>
