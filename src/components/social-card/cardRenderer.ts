@@ -315,32 +315,25 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   gBar.addColorStop(0, t.bar[0]); gBar.addColorStop(0.5, t.bar[1]); gBar.addColorStop(1, t.bar[2])
   ctx.fillStyle = gBar; ctx.fillRect(0, 0, W, TOP_BAR)
 
-  // White panel for logo zone so all partner logos are clearly visible
+  // White panel for logo zone
   ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, TOP_BAR, W, LOGO_ZONE_H)
 
-  // Partner logos row (WIP · Freshworks · Toast)
-  // Each logo fits inside MAX_H x MAX_W; whichever limit hits first wins.
-  const MAX_LOGO_H  = P ? 68 : 58
-  const MAX_LOGO_W  = P ? 200 : 170
-  const LOGO_CY_ROW = TOP_BAR + Math.round(LOGO_ZONE_H * 0.68)
-  const partnerSrcs = ['/wip-logo.png', '/logos/freshworks-logo.png', '/logos/toast.webp']
-  const partnerImgs = await Promise.all(partnerSrcs.map(s => loadImg(s).catch(() => null)))
-  const partnerDims = partnerImgs.map((img) => {
-    if (!img) return { w: 0, h: 0 }
-    const ratio = img.width / img.height
-    let lw = Math.round(MAX_LOGO_H * ratio), lh = MAX_LOGO_H
-    if (lw > MAX_LOGO_W) { lw = MAX_LOGO_W; lh = Math.round(MAX_LOGO_W / ratio) }
-    return { w: lw, h: lh }
-  })
-  const totalPartnerW = partnerDims.reduce((s, d) => s + d.w, 0)
-  const partnerGap    = Math.round((W - 2 * PAD - totalPartnerW) / (partnerDims.length + 1))
-  let px = PAD + partnerGap
-  for (let i = 0; i < partnerSrcs.length; i++) {
-    const { w, h } = partnerDims[i]
-    if (partnerImgs[i] && w > 0)
-      ctx.drawImage(partnerImgs[i]!, px, Math.round(LOGO_CY_ROW - h / 2), w, h)
-    px += w + partnerGap
-  }
+  // Header logos: TGPF logo (left) + WiP logo (right)
+  const LOGO_CY_ROW = TOP_BAR + Math.round(LOGO_ZONE_H / 2)
+  const TGPF_H = P ? 82 : 70
+  const WIP_H  = P ? 50 : 42
+
+  try {
+    const gpfImg = await loadImg('/gpf-logo.png')
+    const gpfW = Math.round((gpfImg.width / gpfImg.height) * TGPF_H)
+    ctx.drawImage(gpfImg, PAD, Math.round(LOGO_CY_ROW - TGPF_H / 2), gpfW, TGPF_H)
+  } catch { /* silent */ }
+
+  try {
+    const wipImg = await loadImg('/wip-logo.png')
+    const wipW = Math.round((wipImg.width / wipImg.height) * WIP_H)
+    ctx.drawImage(wipImg, W - PAD - wipW, Math.round(LOGO_CY_ROW - WIP_H / 2), wipW, WIP_H)
+  } catch { /* silent */ }
 
   // Separator between white logo zone and dark body
   ctx.fillStyle = '#1A1733'; ctx.fillRect(0, TOP_BAR + LOGO_ZONE_H, W, 2)
