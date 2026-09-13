@@ -113,7 +113,7 @@ function buildCombinedHtml(p: {
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;margin-bottom:16px;">
           <tr><td style="padding:20px 24px;">
             <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">🗓️ RSVP on Luma</p>
-            <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Lock in your spot and stay updated with the latest speakers, schedule, and event details.</p>
+            <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Lock in your spot for the workshops and sessions via Luma.</p>
             <table cellpadding="0" cellspacing="0" border="0"><tr>
               <td style="background:#16A34A;border-radius:8px;padding:10px 24px;">
                 <a href="https://luma.com/thegreatproductfestival" style="font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;display:inline-block;">RSVP ON LUMA →</a>
