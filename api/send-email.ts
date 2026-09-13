@@ -63,49 +63,49 @@ function buildCombinedHtml(p: {
         <p style="margin:0 0 24px;font-size:13px;color:#6B7280;">Amount paid: <strong style="color:#1a0a40;">₹${p.amount}</strong></p>` : ''}
 
         <!-- Pass number -->
-        <p style="margin:0 0 28px;font-family:monospace;font-size:11px;color:#9CA3AF;letter-spacing:0.06em;">PASS #${p.pass_number}</p>
+        <p style="margin:0 0 14px;font-family:monospace;font-size:11px;color:#9CA3AF;letter-spacing:0.06em;">PASS #${p.pass_number}</p>
 
         <!-- Divider -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
           <tr><td height="1" style="background:#DDD6FE;"></td></tr>
         </table>
 
         <!-- What to Bring -->
-        <p style="margin:0 0 14px;font-size:13px;font-weight:700;color:#1a0a40;letter-spacing:0.08em;text-transform:uppercase;">What to Bring</p>
-        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+        <p style="margin:0 0 8px;font-size:13px;font-weight:700;color:#1a0a40;letter-spacing:0.08em;text-transform:uppercase;">What to Bring</p>
+        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
           <tr>
-            <td style="padding:0 12px 10px 0;font-size:18px;color:#7C3AED;vertical-align:top;line-height:1;">•</td>
-            <td style="padding-bottom:10px;font-size:13px;color:#4B5563;line-height:1.5;">Government-issued photo ID</td>
+            <td style="padding:0 10px 5px 0;font-size:15px;color:#7C3AED;vertical-align:top;line-height:1.5;">•</td>
+            <td style="padding-bottom:5px;font-size:13px;color:#4B5563;line-height:1.5;">Government-issued photo ID</td>
           </tr>
           <tr>
-            <td style="padding:0 12px 10px 0;font-size:18px;color:#7C3AED;vertical-align:top;line-height:1;">•</td>
-            <td style="padding-bottom:10px;font-size:13px;color:#4B5563;line-height:1.5;">This email on your phone or printed</td>
+            <td style="padding:0 10px 5px 0;font-size:15px;color:#7C3AED;vertical-align:top;line-height:1.5;">•</td>
+            <td style="padding-bottom:5px;font-size:13px;color:#4B5563;line-height:1.5;">This email on your phone or printed</td>
           </tr>
           <tr>
-            <td style="padding:0 12px 0 0;font-size:18px;color:#7C3AED;vertical-align:top;line-height:1;">•</td>
+            <td style="padding:0 10px 0 0;font-size:15px;color:#7C3AED;vertical-align:top;line-height:1.5;">•</td>
             <td style="font-size:13px;color:#4B5563;line-height:1.5;">Business cards and good energy</td>
           </tr>
         </table>
 
         <!-- Terms and Conditions -->
-        <p style="margin:0 0 14px;font-size:13px;font-weight:700;color:#1a0a40;letter-spacing:0.08em;text-transform:uppercase;">Terms and Conditions</p>
-        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+        <p style="margin:0 0 8px;font-size:13px;font-weight:700;color:#1a0a40;letter-spacing:0.08em;text-transform:uppercase;">Terms and Conditions</p>
+        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:14px;">
           <tr>
-            <td style="padding:0 10px 8px 0;font-size:12px;color:#9CA3AF;vertical-align:top;font-weight:600;">1.</td>
-            <td style="padding-bottom:8px;font-size:12px;color:#6B7280;line-height:1.6;">This pass is valid solely for the registered attendee.</td>
+            <td style="padding:0 10px 5px 0;font-size:12px;color:#9CA3AF;vertical-align:top;font-weight:600;">1.</td>
+            <td style="padding-bottom:5px;font-size:12px;color:#6B7280;line-height:1.5;">This pass is valid solely for the registered attendee.</td>
           </tr>
           <tr>
-            <td style="padding:0 10px 8px 0;font-size:12px;color:#9CA3AF;vertical-align:top;font-weight:600;">2.</td>
-            <td style="padding-bottom:8px;font-size:12px;color:#6B7280;line-height:1.6;">Passes are non-refundable but transferable up to 14 days before the event.</td>
+            <td style="padding:0 10px 5px 0;font-size:12px;color:#9CA3AF;vertical-align:top;font-weight:600;">2.</td>
+            <td style="padding-bottom:5px;font-size:12px;color:#6B7280;line-height:1.5;">Passes are non-refundable but transferable up to 14 days before the event.</td>
           </tr>
           <tr>
             <td style="padding:0 10px 0 0;font-size:12px;color:#9CA3AF;vertical-align:top;font-weight:600;">3.</td>
-            <td style="font-size:12px;color:#6B7280;line-height:1.6;">By attending, you consent to photography and video recording for event and promotional purposes.</td>
+            <td style="font-size:12px;color:#6B7280;line-height:1.5;">By attending, you consent to photography and video recording for event and promotional purposes.</td>
           </tr>
         </table>
 
         <!-- Divider -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:14px;">
           <tr><td height="1" style="background:#DDD6FE;"></td></tr>
         </table>
 
