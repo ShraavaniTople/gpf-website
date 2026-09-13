@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const WEB3FORMS_KEY = '05343d66-4685-49cf-ba57-e57dbf8a2bf1'
 
-const generalMembers: { firstName: string; lastName: string; company: string; role: string; email: string; sentOn?: string }[] = [
+const generalMembers: { firstName: string; lastName: string; company: string; role: string; email: string; sentOn?: string; passType?: string }[] = [
   // ── Batch 1 — sent 2026-09-08 ──────────────────────────────────────────────
   { firstName: 'Swathi',        lastName: 'Chirravuri',   company: 'Stealth Startup', role: 'AI Product Manager',               email: 'swathi.chirravuri@gmail.com',          sentOn: '2026-09-08' },
   { firstName: 'Aditi',         lastName: 'Rajesh',       company: 'Hashfame',        role: 'Product Manager',                  email: 'Aditirajesh1234@gmail.com',            sentOn: '2026-09-08' },
@@ -42,6 +42,33 @@ const generalMembers: { firstName: string; lastName: string; company: string; ro
   { firstName: 'Glory',              lastName: 'Michael',      company: 'DataArt',             role: 'Client Solutions Partner',         email: 'Glory.Michael@dataart.com' },
   { firstName: 'Manish S',           lastName: 'Sugandhi',     company: 'Noon',                role: 'Product',                          email: 'manish@noon.design' },
   { firstName: 'Neha',               lastName: 'Nadiger',       company: 'Unimad',              role: 'Product Manager',                  email: 'nehanadigerwork@gmail.com',         sentOn: '2026-09-13' },
+  // ── Batch 3 — form responses 2026-09-09 to 2026-09-12 ──────────────────────
+  { firstName: 'Suganthi',           lastName: 'Arumugam',      company: 'LSEG',                role: 'Product Leader / Product Manager', email: 'suganthi.arumugam@lseg.com',        sentOn: '2026-09-13' },
+  { firstName: 'Abhinav',            lastName: 'Gandotra',      company: 'Microsoft',           role: 'Senior AI PM',                     email: 'agandotra@microsoft.com',           sentOn: '2026-09-13' },
+  { firstName: 'Sanil',              lastName: 'Bhatte',        company: 'JP Morgan Chase',     role: 'VP Product Design Lead',           email: 'Sanil.bhatte@jpmorgan.com',         sentOn: '2026-09-13' },
+  { firstName: 'Swapnil',            lastName: 'Agrawal',       company: 'KPMG',                role: 'Associate Director',               email: 'swapnilagrawal1@kpmg.com',          sentOn: '2026-09-13' },
+  { firstName: 'Yuti',               lastName: 'Agrawal',       company: 'CitiusTech',          role: 'Technical Sr. Lead/Specialist',    email: 'Yuti.nangliya@citiustech.com',      sentOn: '2026-09-13' },
+  { firstName: 'Neha',               lastName: 'Gupta',         company: 'Microsoft',           role: 'Partner PM',                       email: 'GARGNEHA@microsoft.com',            sentOn: '2026-09-13' },
+  { firstName: 'Devanshi',           lastName: 'Choudhary',     company: 'Walmart',             role: 'Director of Engineering',          email: 'devanshi.choudhary@walmart.com',    sentOn: '2026-09-13' },
+  { firstName: 'Manju',              lastName: 'Bhagtani',      company: 'Microsoft',           role: 'Software Engineer 2',              email: 'mbhagtani@microsoft.com',           sentOn: '2026-09-13' },
+  { firstName: 'Vijeta',             lastName: 'Pai',           company: 'Lumitia',             role: 'Cloud and AI Advisor',             email: 'Vijetapai90@gmail.com',             sentOn: '2026-09-13', passType: 'VIP Pass' },
+  { firstName: 'Kavya',              lastName: 'Joseph',        company: 'Microsoft',           role: 'Senior Product Manager Lead',      email: 'kavyajoseph@microsoft.com',         sentOn: '2026-09-13' },
+  { firstName: 'Pranay',             lastName: 'Bansal',        company: 'JPMC',                role: 'VP UX',                            email: 'pranay.bansal@jpmorgan.com',        sentOn: '2026-09-13' },
+  { firstName: 'Gautam',             lastName: 'Mahesh',        company: 'Paytm',               role: 'AVP of Product',                   email: 'gautam.mahesh@paytm.com',           sentOn: '2026-09-13' },
+  { firstName: 'Ankit',              lastName: 'Ambasht',       company: 'TCS',                 role: 'Product Manager',                  email: 'ankit.ambasht@tcs.com',             sentOn: '2026-09-13' },
+  { firstName: 'Pallavi',            lastName: 'Ghadyalpatil',  company: 'Nuvika Technologies', role: 'Director Growth and Delivery',     email: 'pallavi@nuvikatech.com',            sentOn: '2026-09-13' },
+  { firstName: 'Prasen',             lastName: 'Ghadyalpatil',  company: 'Nuvika Technologies', role: 'Intern',                           email: 'prasen@nuvikatech.com',             sentOn: '2026-09-13' },
+  { firstName: 'Ashish',             lastName: 'Goyal',         company: 'ThriveX Studios',     role: 'Co Founder',                       email: 'ashisharsh2022@gmail.com',          sentOn: '2026-09-13' },
+  { firstName: 'Viha Shomikha',      lastName: 'A S',           company: 'Autumn Tech Worx',    role: 'Associate Project Manager',        email: 'viha@weareautumn.com',              sentOn: '2026-09-13' },
+  { firstName: 'Nikhil',             lastName: 'Sharma',        company: 'Athenahealth',        role: 'Sr Product Manager',               email: 'Snikhil@athenahealth.com',          sentOn: '2026-09-13' },
+  { firstName: 'Nisha',              lastName: 'Chandrasekaran',company: 'Previously Intuit',   role: 'Senior Product Designer',          email: 'nishac0506@gmail.com',              sentOn: '2026-09-13' },
+  { firstName: 'Smriti',             lastName: 'Chawla',        company: 'PMM Lens',            role: 'Product Marketing Consultant',     email: 'smritic.1607@gmail.com',            sentOn: '2026-09-13' },
+  { firstName: 'Darshan',            lastName: 'Krishna N',     company: 'JLL Technologies',    role: 'Data Analyst',                     email: 'darshan.krishna@jll.com',           sentOn: '2026-09-13' },
+  { firstName: 'Dipayan',            lastName: 'Ghatak',        company: 'Walmart',             role: 'Senior Manager',                   email: 'dipayan.ghatak@walmart.com',        sentOn: '2026-09-13' },
+  { firstName: 'Krishna N',          lastName: 'Mehta',         company: 'Visa Inc',            role: 'Senior Software Engineer',         email: 'krimehta@visa.com',                 sentOn: '2026-09-13' },
+  { firstName: 'Mudrika',            lastName: 'C',             company: 'Google',              role: 'Product Manager',                  email: 'mudrika@google.com',                sentOn: '2026-09-13' },
+  { firstName: 'Reetika',            lastName: 'Choudhary',     company: 'Walmart Global Tech', role: 'Senior Manager Product Management',email: 'Reetika.Choudhary@walmart.com',     sentOn: '2026-09-13' },
+  { firstName: 'Rakhi',              lastName: 'Sharma',        company: 'House of Manthan',    role: 'Creator and Founder',              email: 'rakhi.ptr@gmail.com',               sentOn: '2026-09-13' },
 ]
 
 const premiumMembers = [
@@ -57,6 +84,15 @@ const premiumMembers = [
 function genGeneralPassNumber(email: string) {
   const hash = [...email].reduce((acc, c) => (acc * 31 + c.charCodeAt(0)) & 0xFFFFFF, 0)
   return `GPF26-G-${hash.toString(16).toUpperCase().padStart(6, '0')}`
+}
+
+function genVIPPassNumber(email: string) {
+  const hash = [...email].reduce((acc, c) => (acc * 31 + c.charCodeAt(0)) & 0xFFFFFF, 0)
+  return `GPF26-V-${hash.toString(16).toUpperCase().padStart(6, '0')}`
+}
+
+function getPassNumber(m: typeof generalMembers[0]) {
+  return m.passType === 'VIP Pass' ? genVIPPassNumber(m.email) : genGeneralPassNumber(m.email)
 }
 
 function genPremiumPassNumber(paymentId: string) {
@@ -88,7 +124,8 @@ async function recordInWeb3Forms(m: typeof generalMembers[0], passNumber: string
 
 async function sendGeneralPass(m: typeof generalMembers[0]): Promise<boolean> {
   const name       = `${m.firstName} ${m.lastName}`
-  const passNumber = genGeneralPassNumber(m.email)
+  const passType   = m.passType || 'General Pass'
+  const passNumber = getPassNumber(m)
   try {
     const res = await fetch('/api/send-email', {
       method: 'POST',
@@ -97,7 +134,7 @@ async function sendGeneralPass(m: typeof generalMembers[0]): Promise<boolean> {
         to_email:    m.email,
         to_name:     name,
         company:     m.company,
-        pass_type:   'General Pass',
+        pass_type:   passType,
         amount:      'Complimentary',
         payment_id:  'COMP-CORE-TEAM',
         pass_number: passNumber,
@@ -251,7 +288,7 @@ export default function AdminSendPassesPage() {
                 idx={i}
                 name={`${m.firstName} ${m.lastName}`}
                 role={m.role} company={m.company} email={m.email}
-                passNumber={genGeneralPassNumber(m.email)}
+                passNumber={getPassNumber(m)}
                 status={genStatuses[i]}
                 onSend={() => handleGenOne(i)}
                 running={running}
