@@ -1,5 +1,5 @@
 /**
- * Social Card Renderer — Canvas-based, all client-side
+ * Social Card Renderer - Canvas-based, all client-side
  * All-white background · logo header · partner footer strip
  * Three designs: Hero, Editorial, Festival
  * Output: 1080×1080 (square) or 1080×1350 (portrait)
@@ -22,13 +22,13 @@ const PAD          = 64
 const TOP_BAR      = 6    // gradient bar at very top
 const LOGO_ZONE_H  = 124  // partner logos row height (below top bar)
 const BOT_BAR      = 6    // gradient bar at very bottom
-// Legacy — kept so TypeScript is happy; unified layout derives its own zones
+// Legacy - kept so TypeScript is happy; unified layout derives its own zones
 const HEADER_H = TOP_BAR + LOGO_ZONE_H + 2
 const FOOTER_H = 0
 
 function H(portrait?: boolean) { return portrait ? 1350 : 1080 }
 
-// ── Role theme ─────────────────────────────────────────────────────────────────
+// Role theme
 interface T {
   r: number; g: number; b: number
   hex: string
@@ -53,7 +53,7 @@ function getTheme(id: RoleId): T {
   return map[id]
 }
 
-// ── Helpers ────────────────────────────────────────────────────────────────────
+// Helpers
 function font(
   size: number,
   weight: 700 | 600 | 400,
@@ -117,7 +117,7 @@ async function drawGpfLogo(ctx: CanvasRenderingContext2D, x: number, y: number, 
 async function drawWipLogo(ctx: CanvasRenderingContext2D, rightX: number, cy: number, h: number) {
   try {
     const img = await loadImg('/wip-logo.png')
-    // WIP logo is a purple circle — shows fine directly on white
+    // WIP logo is a purple circle - shows fine directly on white
     const logoW = Math.round((img.width / img.height) * h)
     ctx.drawImage(img, rightX - logoW, cy - h / 2, logoW, h)
   } catch {
@@ -126,14 +126,14 @@ async function drawWipLogo(ctx: CanvasRenderingContext2D, rightX: number, cy: nu
   }
 }
 
-// ── Shared header ──────────────────────────────────────────────────────────────
+// Shared header
 async function drawHeader(ctx: CanvasRenderingContext2D, t: T) {
   // Top gradient bar
   const topBar = ctx.createLinearGradient(0, 0, W, 0)
   topBar.addColorStop(0, t.bar[0]); topBar.addColorStop(0.5, t.bar[1]); topBar.addColorStop(1, t.bar[2])
   ctx.fillStyle = topBar; ctx.fillRect(0, 0, W, TOP_BAR)
 
-  // TGPF logo — centred and large so it reads as the focus of the header
+  // TGPF logo - centred and large so it reads as the focus of the header
   const LOGO_H = 150
   const LOGO_CY = TOP_BAR + Math.round((HEADER_H - TOP_BAR - 2) / 2)
 
@@ -150,7 +150,7 @@ async function drawHeader(ctx: CanvasRenderingContext2D, t: T) {
   ctx.fillStyle = '#E5E7EB'; ctx.fillRect(0, HEADER_H - 2, W, 2)
 }
 
-// ── Shared footer — 2 sponsor columns matching website pattern ─────────────────
+// Shared footer - 2 sponsor columns matching website pattern
 async function drawFooter(ctx: CanvasRenderingContext2D, t: T, height: number, centerText = false) {
   const stripY = height - FOOTER_H
   const STRIP_H = FOOTER_H - BOT_BAR
@@ -159,7 +159,7 @@ async function drawFooter(ctx: CanvasRenderingContext2D, t: T, height: number, c
   ctx.fillStyle = '#F7F7F9'; ctx.fillRect(0, stripY, W, STRIP_H)
   ctx.fillStyle = '#E5E7EB'; ctx.fillRect(0, stripY, W, 1)
 
-  // ── 3 logos in one row: WIP · Freshworks · Toast ────────────────────────────
+  // 3 logos in one row: WIP · Freshworks · Toast
   const logoSrcs = ['/wip-logo.png', '/logos/freshworks-logo.png', '/logos/toast.webp']
 
   // Same height for all logos → perfect horizontal alignment
@@ -189,7 +189,7 @@ async function drawFooter(ctx: CanvasRenderingContext2D, t: T, height: number, c
   }
   ctx.restore()
 
-  // ── Hashtag + URL ─────────────────────────────────────────────────────────────
+  // Hashtag + URL
   ctx.font = font(14, 400, 'JetBrains Mono'); ctx.fillStyle = '#B0B7C3'
   const HASH_Y = LOGO_CY + Math.ceil(LOGO_H / 2) + 24
   if (centerText) {
@@ -201,13 +201,13 @@ async function drawFooter(ctx: CanvasRenderingContext2D, t: T, height: number, c
     ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, HASH_Y); ctx.textAlign = 'left'
   }
 
-  // ── Bottom gradient bar ───────────────────────────────────────────────────────
+  // Bottom gradient bar
   const botBar = ctx.createLinearGradient(0, 0, W, 0)
   botBar.addColorStop(0, t.bar[0]); botBar.addColorStop(0.5, t.bar[1]); botBar.addColorStop(1, t.bar[2])
   ctx.fillStyle = botBar; ctx.fillRect(0, height - BOT_BAR, W, BOT_BAR)
 }
 
-// ── Photo helpers ──────────────────────────────────────────────────────────────
+// Photo helpers
 async function drawRoundedPhoto(
   ctx: CanvasRenderingContext2D, src: string,
   x: number, y: number, w: number, h: number, r: number,
@@ -284,10 +284,8 @@ function drawBadge(ctx: CanvasRenderingContext2D, text: string, x: number, y: nu
   ctx.fillStyle = '#FFFFFF'; ctx.fillText(text, x + 24, y + 28)
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// UNIFIED — same layout for every role
+// UNIFIED - same layout for every role
 // Top: partner logos row  →  photo  →  name  →  TGPF logo  →  badge  →  date/venue
-// ─────────────────────────────────────────────────────────────────────────────
 async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   const height     = H(opts.portrait)
   const P          = !!opts.portrait
@@ -297,29 +295,40 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   const hasPhoto   = !!opts.photo
   const cx         = W / 2
 
-  // ── White background ─────────────────────────────────────────────────────────
-  ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, W, height)
+  // Dark gradient background
+  const bg = ctx.createLinearGradient(0, 0, W, height)
+  bg.addColorStop(0, '#0C0A1E'); bg.addColorStop(1, '#05040C')
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, height)
 
-  // ── Top gradient bar ──────────────────────────────────────────────────────────
+  // Role-coloured orb top-right
+  const o1 = ctx.createRadialGradient(W * 0.9, height * 0.1, 0, W * 0.9, height * 0.1, W * 0.72)
+  o1.addColorStop(0, ac(r, g, b, 0.38)); o1.addColorStop(1, ac(r, g, b, 0))
+  ctx.fillStyle = o1; ctx.fillRect(0, 0, W, height)
+
+  // Amber orb bottom-left
+  const o2 = ctx.createRadialGradient(W * 0.06, height * 0.92, 0, W * 0.06, height * 0.92, W * 0.52)
+  o2.addColorStop(0, 'rgba(245,158,11,0.18)'); o2.addColorStop(1, 'rgba(245,158,11,0)')
+  ctx.fillStyle = o2; ctx.fillRect(0, 0, W, height)
+
+  // Top gradient bar
   const gBar = ctx.createLinearGradient(0, 0, W, 0)
   gBar.addColorStop(0, t.bar[0]); gBar.addColorStop(0.5, t.bar[1]); gBar.addColorStop(1, t.bar[2])
   ctx.fillStyle = gBar; ctx.fillRect(0, 0, W, TOP_BAR)
 
-  // ── Partner logos row (WIP · Freshworks · Toast) ─────────────────────────────
-  // Each logo fits inside MAX_H × MAX_W; whichever limit is hit first wins.
-  // This naturally makes Freshworks and Toast the same width (both are wider than MAX_W).
+  // White panel for logo zone so all partner logos are clearly visible
+  ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, TOP_BAR, W, LOGO_ZONE_H)
+
+  // Partner logos row (WIP · Freshworks · Toast)
+  // Each logo fits inside MAX_H x MAX_W; whichever limit hits first wins.
   const MAX_LOGO_H  = P ? 68 : 58
   const MAX_LOGO_W  = P ? 200 : 170
-  // Center the row so there's more breathing room below logos than above
   const LOGO_CY_ROW = TOP_BAR + Math.round(LOGO_ZONE_H * 0.68)
   const partnerSrcs = ['/wip-logo.png', '/logos/freshworks-logo.png', '/logos/toast.webp']
   const partnerImgs = await Promise.all(partnerSrcs.map(s => loadImg(s).catch(() => null)))
   const partnerDims = partnerImgs.map((img) => {
     if (!img) return { w: 0, h: 0 }
     const ratio = img.width / img.height
-    // Try fitting by height first
     let lw = Math.round(MAX_LOGO_H * ratio), lh = MAX_LOGO_H
-    // If too wide, scale down to fit width
     if (lw > MAX_LOGO_W) { lw = MAX_LOGO_W; lh = Math.round(MAX_LOGO_W / ratio) }
     return { w: lw, h: lh }
   })
@@ -333,64 +342,75 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
     px += w + partnerGap
   }
 
-  // Separator below logo row
-  ctx.fillStyle = '#E5E7EB'; ctx.fillRect(0, TOP_BAR + LOGO_ZONE_H, W, 2)
+  // Separator between white logo zone and dark body
+  ctx.fillStyle = '#1A1733'; ctx.fillRect(0, TOP_BAR + LOGO_ZONE_H, W, 2)
 
   const BODY_TOP = TOP_BAR + LOGO_ZONE_H + 2
 
-  // ── Subtle radial wash + concentric rings ─────────────────────────────────────
+  // Radial glow wash in body
   const PHOTO_R  = P ? 250 : 178
   const PHOTO_CY = BODY_TOP + (P ? 56 : 48) + PHOTO_R
 
   const wash = ctx.createRadialGradient(cx, PHOTO_CY, 0, cx, PHOTO_CY, W * 0.72)
-  wash.addColorStop(0, ac(r, g, b, 0.08)); wash.addColorStop(1, ac(r, g, b, 0))
+  wash.addColorStop(0, ac(r, g, b, 0.14)); wash.addColorStop(1, ac(r, g, b, 0))
   ctx.fillStyle = wash; ctx.fillRect(0, BODY_TOP, W, height - BODY_TOP - BOT_BAR)
 
-  // ── Photo / Org logo ──────────────────────────────────────────────────────────
+  // Photo / Org logo
   if (isPersonal) {
-    if (hasPhoto)
+    if (hasPhoto) {
       await drawCirclePhoto(ctx, opts.photo!, cx, PHOTO_CY, PHOTO_R, r, g, b)
-    else
-      drawPlaceholder(ctx, cx - PHOTO_R, PHOTO_CY - PHOTO_R, PHOTO_R * 2, PHOTO_R * 2, PHOTO_R, '+ ADD PHOTO', t, true)
+    } else {
+      ctx.fillStyle = ac(r, g, b, 0.12)
+      ctx.beginPath(); ctx.arc(cx, PHOTO_CY, PHOTO_R, 0, Math.PI * 2); ctx.fill()
+      ctx.save(); ctx.setLineDash([12, 7])
+      ctx.strokeStyle = ac(r, g, b, 0.4); ctx.lineWidth = 2
+      ctx.beginPath(); ctx.arc(cx, PHOTO_CY, PHOTO_R, 0, Math.PI * 2); ctx.stroke(); ctx.restore()
+      ctx.font = font(16, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '99'
+      ctx.textAlign = 'center'; ctx.fillText('+ ADD PHOTO', cx, PHOTO_CY + PHOTO_R + 28); ctx.textAlign = 'left'
+    }
   } else {
     const bw = Math.round(PHOTO_R * 2.1), bh = Math.round(PHOTO_R * 1.35)
     const bx = cx - bw / 2, by = PHOTO_CY - bh / 2
     if (hasPhoto) {
-      ctx.fillStyle = '#F3F4F6'; roundRect(ctx, bx, by, bw, bh, 20); ctx.fill()
-      ctx.strokeStyle = ac(r, g, b, 0.22); ctx.lineWidth = 1.5
+      ctx.fillStyle = ac(r, g, b, 0.12); roundRect(ctx, bx, by, bw, bh, 20); ctx.fill()
+      ctx.strokeStyle = ac(r, g, b, 0.3); ctx.lineWidth = 1.5
       roundRect(ctx, bx, by, bw, bh, 20); ctx.stroke()
       await drawOrgLogo(ctx, opts.photo!, cx, PHOTO_CY, Math.min(bw * 0.68, bh * 0.65))
     } else {
-      drawPlaceholder(ctx, bx, by, bw, bh, 20, '+ ADD LOGO', t)
+      ctx.fillStyle = ac(r, g, b, 0.1); roundRect(ctx, bx, by, bw, bh, 20); ctx.fill()
+      ctx.save(); ctx.setLineDash([12, 7])
+      ctx.strokeStyle = ac(r, g, b, 0.35); ctx.lineWidth = 2
+      roundRect(ctx, bx, by, bw, bh, 20); ctx.stroke(); ctx.restore()
+      ctx.font = font(16, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '99'
+      ctx.textAlign = 'center'; ctx.fillText('+ ADD LOGO', cx, by + bh - 28); ctx.textAlign = 'left'
     }
   }
 
-  // y tracks the TOP of the next element to draw
   let y = PHOTO_CY + PHOTO_R
   ctx.textAlign = 'center'
 
-  // ── Name ──────────────────────────────────────────────────────────────────────
+  // Name
   y += P ? 36 : 28
   const displayName = opts.name.trim() || (isPersonal ? 'Your Name' : 'Your Organisation')
   const NAME_SZ = P ? 72 : 56
   const { lines: nameLines, size: nameSz } = fitName(ctx, displayName, W - PAD * 3, NAME_SZ, 2)
   const nLineH  = nameSz * 1.12
-  ctx.font = font(nameSz, 700); ctx.fillStyle = '#0F0E1A'
+  ctx.font = font(nameSz, 700); ctx.fillStyle = '#F0EEF8'
   nameLines.forEach((ln, i) => ctx.fillText(ln, cx, y + Math.round(nameSz * 0.72) + i * nLineH))
   y += nameSz * nameLines.length + Math.round(nameSz * 0.12) * (nameLines.length - 1)
 
-  // ── Title / tagline ───────────────────────────────────────────────────────────
+  // Title / tagline
   const TITLE_SZ = P ? 26 : 22
   if (opts.title.trim()) {
     y += P ? 18 : 14
-    ctx.font = font(TITLE_SZ, 400, 'Inter'); ctx.fillStyle = '#6B7280'
+    ctx.font = font(TITLE_SZ, 400, 'Inter'); ctx.fillStyle = '#9490AD'
     ctx.fillText(opts.title.trim(), cx, y + Math.round(TITLE_SZ * 0.72))
     y += TITLE_SZ + (P ? 22 : 18)
   } else {
     y += P ? 20 : 14
   }
 
-  // ── TGPF logo (centred, the brand focal point) ─────────────────────────────────
+  // TGPF logo (centred brand focal point)
   y += P ? 20 : 16
   const TGPF_SZ = P ? 160 : 128
   try {
@@ -403,7 +423,7 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   }
   y += TGPF_SZ
 
-  // ── Role badge ────────────────────────────────────────────────────────────────
+  // Role badge
   y += P ? 18 : 14
   const BADGE_FONT = P ? 20 : 18
   ctx.font = font(BADGE_FONT, 400, 'JetBrains Mono')
@@ -415,7 +435,7 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   ctx.fillStyle = '#FFFFFF'; ctx.fillText(chipTxt, cx, y + 30)
   y += BADGE_H
 
-  // ── Gradient divider ──────────────────────────────────────────────────────────
+  // Gradient divider
   y += P ? 26 : 20
   const divW = P ? 380 : 300
   const divG  = ctx.createLinearGradient(cx - divW / 2, 0, cx + divW / 2, 0)
@@ -423,26 +443,26 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   ctx.fillStyle = divG; ctx.fillRect(cx - divW / 2, y, divW, 3)
   y += 3
 
-  // ── Date ─────────────────────────────────────────────────────────────────────
+  // Date
   const DATE_SZ = P ? 36 : 32
   y += P ? 28 : 24
   ctx.font = font(DATE_SZ, 700); ctx.fillStyle = '#F59E0B'
   ctx.fillText(EVENT.dates, cx, y + Math.round(DATE_SZ * 0.72))
   y += DATE_SZ
 
-  // ── Venue ─────────────────────────────────────────────────────────────────────
+  // Venue
   const VENUE_SZ = P ? 26 : 22
   y += P ? 16 : 14
-  ctx.font = font(VENUE_SZ, 400, 'Inter'); ctx.fillStyle = '#6B7280'
+  ctx.font = font(VENUE_SZ, 400, 'Inter'); ctx.fillStyle = '#9490AD'
   ctx.fillText(EVENT.city, cx, y + Math.round(VENUE_SZ * 0.72))
   y += VENUE_SZ
 
-  // ── Hashtag + URL (small, bottom of card) ────────────────────────────────────
+  // Hashtag + URL
   y += P ? 32 : 26
-  ctx.font = font(14, 400, 'JetBrains Mono'); ctx.fillStyle = '#C8C8C8'
+  ctx.font = font(14, 400, 'JetBrains Mono'); ctx.fillStyle = '#3A3856'
   ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, cx, y + 10)
 
-  // ── Bottom gradient bar ───────────────────────────────────────────────────────
+  // Bottom gradient bar
   const botG = ctx.createLinearGradient(0, 0, W, 0)
   botG.addColorStop(0, t.bar[0]); botG.addColorStop(0.5, t.bar[1]); botG.addColorStop(1, t.bar[2])
   ctx.fillStyle = botG; ctx.fillRect(0, height - BOT_BAR, W, BOT_BAR)
@@ -454,23 +474,17 @@ async function renderHero(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   return renderUnified(ctx, opts)
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 // EDITORIAL
-// ─────────────────────────────────────────────────────────────────────────────
 async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   return renderUnified(ctx, opts)
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 // FESTIVAL
-// ─────────────────────────────────────────────────────────────────────────────
 async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
   return renderUnified(ctx, opts)
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
 // Main export
-// ─────────────────────────────────────────────────────────────────────────────
 export async function renderCard(opts: RenderOptions): Promise<void> {
   const { canvas, design, portrait } = opts
   const height = H(portrait)
