@@ -315,28 +315,14 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   gBar.addColorStop(0, t.bar[0]); gBar.addColorStop(0.5, t.bar[1]); gBar.addColorStop(1, t.bar[2])
   ctx.fillStyle = gBar; ctx.fillRect(0, 0, W, TOP_BAR)
 
-  // White panel for logo zone
-  ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, TOP_BAR, W, LOGO_ZONE_H)
-
-  // Header logos: TGPF logo (left) + WiP logo (right)
+  // WiP logo top-right on dark background
   const LOGO_CY_ROW = TOP_BAR + Math.round(LOGO_ZONE_H / 2)
-  const TGPF_H = P ? 82 : 70
-  const WIP_H  = P ? 50 : 42
-
-  try {
-    const gpfImg = await loadImg('/gpf-logo.png')
-    const gpfW = Math.round((gpfImg.width / gpfImg.height) * TGPF_H)
-    ctx.drawImage(gpfImg, PAD, Math.round(LOGO_CY_ROW - TGPF_H / 2), gpfW, TGPF_H)
-  } catch { /* silent */ }
-
+  const WIP_H = P ? 48 : 40
   try {
     const wipImg = await loadImg('/wip-logo.png')
     const wipW = Math.round((wipImg.width / wipImg.height) * WIP_H)
     ctx.drawImage(wipImg, W - PAD - wipW, Math.round(LOGO_CY_ROW - WIP_H / 2), wipW, WIP_H)
   } catch { /* silent */ }
-
-  // Separator between white logo zone and dark body
-  ctx.fillStyle = '#1A1733'; ctx.fillRect(0, TOP_BAR + LOGO_ZONE_H, W, 2)
 
   const BODY_TOP = TOP_BAR + LOGO_ZONE_H + 2
 
