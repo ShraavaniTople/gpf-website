@@ -3,33 +3,16 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const TIER_COLOR: Record<string, string> = {
-  VIP:     '#B45309',
-  Premium: '#7C3AED',
-  General: '#7C3AED',
-}
-const TIER_ACCENT_BG: Record<string, string> = {
-  VIP:     '#FEF3C7',
-  Premium: '#EDE9FE',
-  General: '#EDE9FE',
-}
-const TIER_BORDER: Record<string, string> = {
-  VIP:     '#FDE68A',
-  Premium: '#DDD6FE',
-  General: '#DDD6FE',
-}
-
-// Single combined email: confirmation + ticket + Luma RSVP + social card CTA
 function buildCombinedHtml(p: {
   to_name: string; company: string; pass_type: string
   amount: string; payment_id: string; pass_number: string
   event_date: string; event_city: string
 }) {
-  const tier      = p.pass_type.replace(' Pass', '')
-  const color     = TIER_COLOR[tier]     || '#7C3AED'
-  const accentBg  = TIER_ACCENT_BG[tier] || '#EDE9FE'
-  const border    = TIER_BORDER[tier]    || '#DDD6FE'
-  const firstName = p.to_name.split(' ')[0]
+  const tier       = p.pass_type.replace(' Pass', '')
+  const isVIP      = tier === 'VIP'
+  const passLabel  = isVIP ? 'Season Pass · VIP' : p.pass_type
+  const firstName  = p.to_name.split(' ')[0]
+  const isPaid     = p.amount && p.amount !== 'Complimentary' && p.amount !== '0' && Number(p.amount) !== 0
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -39,114 +22,94 @@ function buildCombinedHtml(p: {
   <tr><td align="center">
     <table width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%;">
 
-      <!-- Logos -->
-      <tr><td style="padding-bottom:24px;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-          <td><img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="The Great Product Festival" height="40" style="display:block;"/></td>
-          <td align="right"><img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="Women in Product India" width="36" height="36" style="display:block;border-radius:50%;"/></td>
-        </tr></table>
+      <!-- Dark header -->
+      <tr><td style="background:#16125A;border-radius:16px 16px 0 0;padding:32px 36px 28px;">
+        <p style="margin:0 0 10px;font-family:monospace;font-size:10px;color:#A78BFA;letter-spacing:0.2em;text-transform:uppercase;">WOMEN IN PRODUCT INDIA PRESENTS</p>
+        <p style="margin:0;font-size:26px;font-weight:800;color:#FFFFFF;letter-spacing:-0.02em;line-height:1.2;">The Great Product Festival 2026</p>
       </td></tr>
 
-      <!-- Confirmation card -->
-      <tr><td style="background:#FFFFFF;border:1px solid #E5E7EB;border-radius:16px;overflow:hidden;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-          <tr><td height="4" style="background:${color};border-radius:16px 16px 0 0;"></td></tr>
-        </table>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:28px 32px 20px;"><tr><td>
-          <p style="margin:0 0 4px;font-size:22px;font-weight:800;color:#1a0a40;letter-spacing:-0.03em;">${p.amount === 'Complimentary' ? 'Pass Confirmed ✓' : 'Payment Confirmed ✓'}</p>
-          <p style="margin:0;font-size:14px;color:#6B7280;">Hi ${firstName}, your ${p.pass_type} for The Great Product Festival is confirmed. See you in Bangalore!</p>
-        </td></tr></table>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:0 32px;"><tr><td height="1" style="background:#F3F4F6;"></td></tr></table>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:24px 32px;">
-          <tr>
-            <td width="50%" valign="top" style="padding-bottom:20px;">
-              <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Attendee</p>
-              <p style="margin:0;font-size:15px;font-weight:700;color:#1a0a40;">${p.to_name}</p>
-              ${p.company && p.company !== '—' ? `<p style="margin:2px 0 0;font-size:13px;color:#6B7280;">${p.company}</p>` : ''}
-            </td>
-            <td width="50%" valign="top" align="right" style="padding-bottom:20px;">
-              <p style="margin:0 0 6px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Pass Type</p>
-              <table cellpadding="0" cellspacing="0" border="0" style="margin-left:auto;background:${color};border-radius:6px;padding:5px 14px;">
-                <tr><td style="font-family:monospace;font-size:11px;font-weight:700;color:#FFFFFF;letter-spacing:0.1em;">${p.pass_type.toUpperCase()}</td></tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td valign="top" style="padding-bottom:20px;">
-              <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Event</p>
-              <p style="margin:0;font-size:14px;color:#4B5563;line-height:1.6;">${p.event_date}<br/>${p.event_city}<br/>2 Days · 4 Tracks · 500+ Attendees</p>
-            </td>
-            ${p.amount && p.amount !== 'Complimentary' && p.amount !== '0' && Number(p.amount) !== 0 ? `<td valign="top" align="right" style="padding-bottom:20px;">
-              <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Amount Paid</p>
-              <p style="margin:0;font-size:24px;font-weight:800;color:#1a0a40;">₹${p.amount}</p>
-            </td>` : '<td></td>'}
-          </tr>
-        </table>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:0 32px;"><tr><td height="1" style="border-top:2px dashed #E5E7EB;"></td></tr></table>
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:20px 32px 28px;"><tr><td>
-          <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#9CA3AF;letter-spacing:0.15em;text-transform:uppercase;">Pass Number</p>
-          <p style="margin:0 0 10px;font-family:monospace;font-size:13px;color:${color};font-weight:600;">${p.pass_number}</p>
-          <p style="margin:0;font-family:monospace;font-size:10px;color:#9CA3AF;">Payment ID: ${p.payment_id}</p>
-        </td></tr></table>
+      <!-- Confirmation banner -->
+      <tr><td style="background:#5B21B6;padding:24px 36px;">
+        <p style="margin:0 0 6px;font-family:monospace;font-size:10px;color:#C4B5FD;letter-spacing:0.2em;text-transform:uppercase;">REGISTRATION CONFIRMED</p>
+        <p style="margin:0;font-size:38px;font-weight:800;color:#FFFFFF;letter-spacing:-0.03em;line-height:1.1;">You're in!</p>
       </td></tr>
 
-      <!-- Visual ticket -->
-      <tr><td style="padding:20px 0 0;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#16112B;border-radius:16px;overflow:hidden;">
+      <!-- Main content card -->
+      <tr><td style="background:#F5F3FF;border-radius:0 0 16px 16px;padding:32px 36px;">
+
+        <!-- Attendee name -->
+        <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#D97706;letter-spacing:0.18em;text-transform:uppercase;">ATTENDEE</p>
+        <p style="margin:0 0 28px;font-size:24px;font-weight:800;color:#1a0a40;">${p.to_name}</p>
+
+        <!-- Pass Type + Venue row -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
           <tr>
-            <td width="70%" height="5" style="background:${color};"></td>
-            <td width="2%"  height="5" style="background:#2A2748;"></td>
-            <td width="28%" height="5" style="background:#A78BFA;"></td>
-          </tr>
-          <tr>
-            <td valign="top" width="70%" style="padding:22px 24px;border-right:2px dashed #3D3B55;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;"><tr>
-                <td valign="middle"><img src="https://www.thegreatproductfestival.com/gpf-logo.png" alt="GPF 2026" height="30" style="display:block;"/></td>
-                <td valign="middle" align="right"><img src="https://www.thegreatproductfestival.com/wip-logo.png" alt="WiP India" height="30" style="display:block;"/></td>
-              </tr></table>
-              <p style="margin:0 0 4px;font-family:monospace;font-size:9px;color:#6B63A0;letter-spacing:0.2em;text-transform:uppercase;">${p.pass_type.replace(' Pass','').toUpperCase()} PASS</p>
-              <p style="margin:0 0 4px;font-size:28px;font-weight:900;color:#ffffff;letter-spacing:-0.03em;line-height:1.1;">${p.to_name}</p>
-              ${p.company && p.company !== '—' ? `<p style="margin:0 0 18px;font-size:12px;color:#A78BFA;">${p.company}</p>` : '<p style="margin:0 0 18px;"></p>'}
-              <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;"><tr>
-                <td width="3" height="24" style="background:#fff;"></td><td width="2" height="24" style="background:#16112B;"></td>
-                <td width="1" height="24" style="background:#fff;"></td><td width="3" height="24" style="background:#16112B;"></td>
-                <td width="2" height="24" style="background:#fff;"></td><td width="1" height="24" style="background:#16112B;"></td>
-                <td width="3" height="24" style="background:#fff;"></td><td width="2" height="24" style="background:#16112B;"></td>
-                <td width="1" height="24" style="background:#fff;"></td><td width="2" height="24" style="background:#16112B;"></td>
-                <td width="4" height="24" style="background:#fff;"></td><td width="1" height="24" style="background:#16112B;"></td>
-                <td width="1" height="24" style="background:#fff;"></td><td width="3" height="24" style="background:#16112B;"></td>
-                <td width="2" height="24" style="background:#fff;"></td><td width="1" height="24" style="background:#16112B;"></td>
-                <td width="3" height="24" style="background:#fff;"></td><td width="2" height="24" style="background:#16112B;"></td>
-                <td width="1" height="24" style="background:#fff;"></td><td width="4" height="24" style="background:#16112B;"></td>
-                <td width="2" height="24" style="background:#fff;"></td>
-              </tr></table>
-              <p style="margin:0;font-family:monospace;font-size:10px;color:#6B63A0;letter-spacing:0.12em;text-transform:uppercase;">25–26 SEPT 2026 &nbsp;·&nbsp; BANGALORE, INDIA</p>
+            <td width="40%" valign="top" style="padding-right:16px;">
+              <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#D97706;letter-spacing:0.18em;text-transform:uppercase;">PASS TYPE</p>
+              <p style="margin:0;font-size:15px;font-weight:700;color:#5B21B6;">${passLabel}</p>
             </td>
-            <td valign="top" width="28%" style="background:#1E1840;padding:22px 16px;text-align:center;">
-              <p style="margin:0 0 6px;font-family:monospace;font-size:8px;color:#6B63A0;letter-spacing:0.18em;text-transform:uppercase;">Pass No.</p>
-              <p style="margin:0 0 20px;font-family:monospace;font-size:11px;font-weight:700;color:#A78BFA;word-break:break-all;">${p.pass_number}</p>
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;"><tr><td height="1" style="border-top:1px dashed #3D3B55;"></td></tr></table>
-              <p style="margin:0 0 4px;font-family:monospace;font-size:8px;color:#6B63A0;letter-spacing:0.18em;text-transform:uppercase;">Date</p>
-              <p style="margin:0 0 16px;font-size:12px;font-weight:700;color:#fff;line-height:1.4;">25–26<br/>Sept 2026</p>
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;"><tr><td height="1" style="border-top:1px dashed #3D3B55;"></td></tr></table>
-              <p style="margin:0 0 4px;font-family:monospace;font-size:8px;color:#6B63A0;letter-spacing:0.18em;text-transform:uppercase;">Venue</p>
-              <p style="margin:0;font-size:11px;font-weight:700;color:#fff;line-height:1.4;">${p.event_city.replace(', ', ',<br/>')}</p>
+            <td width="60%" valign="top">
+              <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#D97706;letter-spacing:0.18em;text-transform:uppercase;">VENUE</p>
+              <p style="margin:0;font-size:14px;color:#1a0a40;line-height:1.6;">Freshworks<br/>RMZ Ecoworld, Bangalore</p>
             </td>
-          </tr>
-          <tr>
-            <td width="70%" height="4" style="background:${color};"></td>
-            <td width="2%"  height="4" style="background:#2A2748;"></td>
-            <td width="28%" height="4" style="background:#A78BFA;"></td>
           </tr>
         </table>
-      </td></tr>
 
-      <!-- RSVP on Luma -->
-      <tr><td style="padding:16px 0 0;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;overflow:hidden;">
+        <!-- Date -->
+        <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#D97706;letter-spacing:0.18em;text-transform:uppercase;">DATE</p>
+        <p style="margin:0 0 ${isPaid ? '12px' : '24px'};font-size:15px;font-weight:700;color:#1a0a40;">September 25–26, 2026</p>
+
+        ${isPaid ? `<!-- Amount paid -->
+        <p style="margin:0 0 24px;font-size:13px;color:#6B7280;">Amount paid: <strong style="color:#1a0a40;">₹${p.amount}</strong></p>` : ''}
+
+        <!-- Pass number -->
+        <p style="margin:0 0 28px;font-family:monospace;font-size:11px;color:#9CA3AF;letter-spacing:0.06em;">PASS #${p.pass_number}</p>
+
+        <!-- Divider -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+          <tr><td height="1" style="background:#DDD6FE;"></td></tr>
+        </table>
+
+        <!-- What to Bring -->
+        <p style="margin:0 0 14px;font-size:13px;font-weight:700;color:#1a0a40;letter-spacing:0.08em;text-transform:uppercase;">What to Bring</p>
+        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+          <tr>
+            <td style="padding:0 12px 10px 0;font-size:18px;color:#7C3AED;vertical-align:top;line-height:1;">•</td>
+            <td style="padding-bottom:10px;font-size:13px;color:#4B5563;line-height:1.5;">This email on your phone or printed</td>
+          </tr>
+          <tr>
+            <td style="padding:0 12px 0 0;font-size:18px;color:#7C3AED;vertical-align:top;line-height:1;">•</td>
+            <td style="font-size:13px;color:#4B5563;line-height:1.5;">Business cards and good energy</td>
+          </tr>
+        </table>
+
+        <!-- Terms and Conditions -->
+        <p style="margin:0 0 14px;font-size:13px;font-weight:700;color:#1a0a40;letter-spacing:0.08em;text-transform:uppercase;">Terms and Conditions</p>
+        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
+          <tr>
+            <td style="padding:0 10px 8px 0;font-size:12px;color:#9CA3AF;vertical-align:top;font-weight:600;">1.</td>
+            <td style="padding-bottom:8px;font-size:12px;color:#6B7280;line-height:1.6;">This pass is valid solely for the registered attendee.</td>
+          </tr>
+          <tr>
+            <td style="padding:0 10px 8px 0;font-size:12px;color:#9CA3AF;vertical-align:top;font-weight:600;">2.</td>
+            <td style="padding-bottom:8px;font-size:12px;color:#6B7280;line-height:1.6;">Passes are non-refundable but transferable up to 14 days before the event.</td>
+          </tr>
+          <tr>
+            <td style="padding:0 10px 0 0;font-size:12px;color:#9CA3AF;vertical-align:top;font-weight:600;">3.</td>
+            <td style="font-size:12px;color:#6B7280;line-height:1.6;">By attending, you consent to photography and video recording for event and promotional purposes.</td>
+          </tr>
+        </table>
+
+        <!-- Divider -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+          <tr><td height="1" style="background:#DDD6FE;"></td></tr>
+        </table>
+
+        <!-- RSVP on Luma -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;margin-bottom:16px;">
           <tr><td style="padding:20px 24px;">
             <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">🗓️ RSVP on Luma</p>
-            <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Lock in your spot! RSVP on Luma so we can keep you updated with the latest schedule, speakers, and event details.</p>
+            <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Lock in your spot and stay updated with the latest speakers, schedule, and event details.</p>
             <table cellpadding="0" cellspacing="0" border="0"><tr>
               <td style="background:#16A34A;border-radius:8px;">
                 <a href="https://luma.com/thegreatproductfestival" style="display:block;font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;padding:10px 24px;">RSVP ON LUMA →</a>
@@ -155,38 +118,32 @@ function buildCombinedHtml(p: {
             <p style="margin:10px 0 0;font-size:11px;color:#9CA3AF;">Direct link: <a href="https://luma.com/thegreatproductfestival" style="color:#16A34A;text-decoration:none;">luma.com/thegreatproductfestival</a></p>
           </td></tr>
         </table>
-      </td></tr>
 
-      <!-- Social card CTA -->
-      <tr><td style="padding:16px 0 0;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${accentBg};border:1px solid ${border};border-radius:12px;overflow:hidden;">
+        <!-- Social Card CTA -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#EDE9FE;border:1px solid #DDD6FE;border-radius:12px;margin-bottom:24px;">
           <tr><td style="padding:20px 24px;">
             <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">📸 Create Your Social Card</p>
-            <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Show the world you're attending TGPF 2026! Generate a personalised card in seconds and share it on LinkedIn, Twitter, or Instagram.</p>
+            <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Show the world you're attending TGPF 2026! Generate your personalised card and share it on LinkedIn, Twitter, or Instagram.</p>
             <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="background:${color};border-radius:8px;">
+              <td style="background:#7C3AED;border-radius:8px;">
                 <a href="https://www.thegreatproductfestival.com/share" style="display:block;font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;padding:10px 24px;">CREATE YOUR SOCIAL CARD →</a>
               </td>
             </tr></table>
-            <p style="margin:10px 0 0;font-size:11px;color:#9CA3AF;">Direct link: <a href="https://www.thegreatproductfestival.com/share" style="color:${color};text-decoration:none;">thegreatproductfestival.com/share</a></p>
+            <p style="margin:10px 0 0;font-size:11px;color:#9CA3AF;">Direct link: <a href="https://www.thegreatproductfestival.com/share" style="color:#7C3AED;text-decoration:none;">thegreatproductfestival.com/share</a></p>
           </td></tr>
         </table>
-      </td></tr>
 
-      <!-- Check-in notice -->
-      <tr><td style="padding:16px 0 0;">
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:16px 20px;">
-          <tr><td style="font-size:13px;color:#92400E;line-height:1.6;">
-            📲 <strong>A separate check-in ticket will be sent closer to the event.</strong>
-            Please use that QR code for entry at the venue.
+        <!-- Check-in notice -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;margin-bottom:24px;">
+          <tr><td style="padding:14px 20px;font-size:13px;color:#92400E;line-height:1.6;">
+            📲 <strong>A separate check-in ticket will be sent closer to the event.</strong> Please use that QR code for entry at the venue.
           </td></tr>
         </table>
-      </td></tr>
 
-      <!-- Footer -->
-      <tr><td style="padding:24px 0 0;text-align:center;">
-        <p style="margin:0 0 6px;font-size:12px;color:#9CA3AF;">Questions? <a href="mailto:hello@womeninproductindia.com" style="color:${color};text-decoration:none;">hello@womeninproductindia.com</a></p>
-        <p style="margin:0;font-size:11px;color:#D1D5DB;">Passes are non-refundable but transferable up to 14 days before the event.</p>
+        <!-- Footer -->
+        <p style="margin:0 0 4px;text-align:center;font-size:12px;color:#9CA3AF;">Questions? <a href="mailto:hello@womeninproductindia.com" style="color:#7C3AED;text-decoration:none;">hello@womeninproductindia.com</a></p>
+        <p style="margin:0;text-align:center;font-size:11px;color:#C4B5FD;">Women in Product India · The Great Product Festival 2026</p>
+
       </td></tr>
 
     </table>
@@ -215,7 +172,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (!to_email || !to_name || !pass_number) return res.status(400).json({ error: 'Missing required fields' })
 
-  const fromAddress = process.env.RESEND_FROM_EMAIL ?? 'GPF 2026 <tickets@thegreatproductfestival.com>'
+  const fromAddress = process.env.RESEND_FROM_EMAIL ?? 'TGPF 2026 <tickets@thegreatproductfestival.com>'
+  const tier = (pass_type || '').replace(' Pass', '')
+  const isPaid = amount && amount !== 'Complimentary' && amount !== '0' && Number(amount) !== 0
 
   try {
     await Promise.all([
@@ -223,9 +182,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         from:     fromAddress,
         to:       [to_email],
         reply_to: 'hello@womeninproductindia.com',
-        subject:  amount === 'Complimentary'
-          ? `Your ${pass_type} for GPF 2026 is confirmed ✓`
-          : `Payment confirmed — your ${pass_type} for GPF 2026 🎉`,
+        subject:  isPaid
+          ? `Payment confirmed — your ${pass_type} for GPF 2026 🎉`
+          : `Your ${pass_type} for GPF 2026 is confirmed ✓`,
         html: buildCombinedHtml({ to_name, company, pass_type, amount, payment_id, pass_number, event_date, event_city }),
       }),
       logToSheets('Tickets', {
