@@ -91,8 +91,8 @@ const DAY1: Slot[] = [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
       speakers: [
         { name: 'Mansi Jain', role: 'COO, Glance', photo: '/speaker-mansi3.webp' },
-        { name: 'Nitin Pulyani', role: 'SVP, Product, Cashfree Payments' },
-        { name: 'Gagandeep', role: 'GM, Payments, Tata Digital · Moderator' },
+        { name: 'Nitin Pulyani', role: 'SVP, Product, Cashfree Payments', photo: '/speaker-nitin.jpg' },
+        { name: 'Gagandeep', role: 'GM, Payments, Tata Digital · Moderator', photo: '/speaker-gagandeep.jpg' },
       ], lumaUrl: 'https://luma.com/gomds4t6' },
     { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo by Nvidia',
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA', photo: '/speaker-usha.webp' }], lumaUrl: 'https://luma.com/xuy6z1qr' },
@@ -124,7 +124,7 @@ const DAY2: Slot[] = [
     { type: 'panel', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [
         { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey', photo: '/speaker-neha.webp' },
-        { name: 'Radhika Yuvraj', role: 'Director, Data, Credera' },
+        { name: 'Radhika Yuvraj', role: 'Director, Data, Credera', photo: '/speaker-radhika.jpg' },
         { name: 'Mitasha Singh', role: 'Founder, All Things Talent · Moderator', photo: '/speaker-mitasha.webp' },
       ], lumaUrl: 'https://luma.com/18cc6fsm' },
   ] },
