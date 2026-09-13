@@ -3,7 +3,7 @@ import { useState } from 'react'
 const WEB3FORMS_KEY = '05343d66-4685-49cf-ba57-e57dbf8a2bf1'
 
 const generalMembers: { firstName: string; lastName: string; company: string; role: string; email: string; sentOn?: string; passType?: string }[] = [
-  // ── Batch 1 — sent 2026-09-08 ──────────────────────────────────────────────
+  // Batch 1 - sent 2026-09-08
   { firstName: 'Swathi',        lastName: 'Chirravuri',   company: 'Stealth Startup', role: 'AI Product Manager',               email: 'swathi.chirravuri@gmail.com',          sentOn: '2026-09-08' },
   { firstName: 'Aditi',         lastName: 'Rajesh',       company: 'Hashfame',        role: 'Product Manager',                  email: 'Aditirajesh1234@gmail.com',            sentOn: '2026-09-08' },
   { firstName: 'Priyadarshini', lastName: 'M',            company: 'SES Satellite',   role: 'Product Manager',                  email: 'priya1687@gmail.com',                  sentOn: '2026-09-08' },
@@ -17,32 +17,32 @@ const generalMembers: { firstName: string; lastName: string; company: string; ro
   { firstName: 'Mahi',          lastName: 'Monga',        company: 'Sprinklr',        role: 'AI Product Manager',               email: 'mahimonga04@gmail.com',                sentOn: '2026-09-08' },
   { firstName: 'Anchal',        lastName: 'Garg',         company: 'Arintra',         role: 'Senior AI Product Manager',        email: 'anchalgarg1995@gmail.com',             sentOn: '2026-09-08' },
   { firstName: 'Shrinivas',     lastName: 'Chouraddi',    company: 'Valuecart',       role: 'VP',                               email: 'shrinivas@valuecart.in',               sentOn: '2026-09-08' },
-  // ── Batch 2 — form responses 2026-09-09 ────────────────────────────────────
-  { firstName: 'Chintan',            lastName: 'Shah',         company: 'Future AGI',          role: 'Product Manager',                  email: 'chintshah.91@gmail.com' },
-  { firstName: 'Saaniya',            lastName: 'Afreen',       company: 'Oneinbox',            role: 'Product Manager',                  email: 'saaniya@vibtree.com' },
-  { firstName: 'Sheetal',            lastName: 'Kale',         company: 'DataArt India',       role: 'Managing Director',                email: 'sheetal.kale@dataart.com' },
-  { firstName: 'Manoj',              lastName: 'Ponnusamy',    company: 'DataArt India',       role: 'Director, Account Management',     email: 'Manoj.ponnusamy@dataart.com' },
+  // Batch 2 - sent 2026-09-13
+  { firstName: 'Chintan',            lastName: 'Shah',         company: 'Future AGI',          role: 'Product Manager',                  email: 'chintshah.91@gmail.com',            sentOn: '2026-09-13' },
+  { firstName: 'Saaniya',            lastName: 'Afreen',       company: 'Oneinbox',            role: 'Product Manager',                  email: 'saaniya@vibtree.com',               sentOn: '2026-09-13' },
+  { firstName: 'Sheetal',            lastName: 'Kale',         company: 'DataArt India',       role: 'Managing Director',                email: 'sheetal.kale@dataart.com',          sentOn: '2026-09-13' },
+  { firstName: 'Manoj',              lastName: 'Ponnusamy',    company: 'DataArt India',       role: 'Director, Account Management',     email: 'Manoj.ponnusamy@dataart.com',       sentOn: '2026-09-13' },
   { firstName: 'Shahid',             lastName: 'Afrid',        company: 'RGMCET',              role: 'Student',                          email: '23091a32d4@rgmcet.edu.in',          sentOn: '2026-09-13' },
   { firstName: 'Veena',              lastName: 'Godugu',       company: 'RGMCET',              role: 'Undergraduate Student',            email: '23091a32h9@rgmcet.edu.in',          sentOn: '2026-09-13' },
   { firstName: 'Shaik',              lastName: 'Rehana',       company: 'RGMCET',              role: 'Student',                          email: '23091a32c1@rgmcet.edu.in',          sentOn: '2026-09-13' },
   { firstName: 'Penchala Prasad',    lastName: 'P',            company: 'RGMCET',              role: 'Associate Professor',              email: 'prasadcseds@rgmcet.edu.in',         sentOn: '2026-09-13' },
   { firstName: 'Vikram Chandra',     lastName: 'Gangavarapu',  company: 'RGMCET',              role: 'Assistant Professor',              email: 'vikramcseds@rgmcet.edu.in',         sentOn: '2026-09-13' },
-  { firstName: 'Anshuman',           lastName: 'Awasthi',      company: 'MBRDI',               role: 'Senior VP',                        email: 'anshuman.awasthi@mercedes-benz.com' },
-  { firstName: 'Nikhil',             lastName: 'Mankar',       company: 'BD',                  role: 'Lead Engineer, Medical Devices',   email: 'nikhilpmankar@gmail.com' },
-  { firstName: 'Priya',              lastName: 'Ahuja',        company: 'Independent',         role: 'Investor / VC',                    email: 'hi@priyaahuja.in' },
-  { firstName: 'Bhavik',             lastName: 'Kaul',         company: 'Ex-SuperMoney',       role: 'ex-CPO',                           email: 'kaulbhavik@gmail.com' },
-  { firstName: 'Sobhitha',           lastName: 'Neelanath',    company: 'Salesforce',          role: 'Senior Manager, Software Eng',     email: 'sneelanath@salesforce.com' },
-  { firstName: 'Nency',              lastName: 'Shah',         company: 'HealthEdge',          role: 'Product Manager',                  email: 'nency.shah@healthedge.com' },
-  { firstName: 'Ritik',              lastName: 'Gupta',        company: 'POP by Razorpay',     role: 'Design Engineer',                  email: 'gupta.ritik@popclub.co' },
-  { firstName: 'Rekha',              lastName: 'Poosala',      company: 'Dell',                role: 'Senior Engineering Manager',       email: 'rekha.poosala@gmail.com' },
-  { firstName: 'Sumit',              lastName: 'Dutta',        company: 'Unwind Ventures',     role: 'Managing Partner',                 email: 'sumit@unwindventures.com' },
-  { firstName: 'Vivek',              lastName: 'Bharadwaj',    company: 'Grab',                role: 'Group Product Manager',            email: 'vivek.bharadwaj@grabtaxi.com' },
-  { firstName: 'Subhadeep',          lastName: 'Mondal',       company: 'Kalaari Capital',     role: 'Venture Partner',                  email: 'subhadeep@kalaari.com' },
-  { firstName: 'Chanakya',           lastName: 'Varma',        company: 'DataArt',             role: 'Director & Growth Partner',        email: 'chanakya.varma@dataart.com' },
-  { firstName: 'Glory',              lastName: 'Michael',      company: 'DataArt',             role: 'Client Solutions Partner',         email: 'Glory.Michael@dataart.com' },
-  { firstName: 'Manish S',           lastName: 'Sugandhi',     company: 'Noon',                role: 'Product',                          email: 'manish@noon.design' },
+  { firstName: 'Anshuman',           lastName: 'Awasthi',      company: 'MBRDI',               role: 'Senior VP',                        email: 'anshuman.awasthi@mercedes-benz.com', sentOn: '2026-09-13' },
+  { firstName: 'Nikhil',             lastName: 'Mankar',       company: 'BD',                  role: 'Lead Engineer, Medical Devices',   email: 'nikhilpmankar@gmail.com',           sentOn: '2026-09-13' },
+  { firstName: 'Priya',              lastName: 'Ahuja',        company: 'Independent',         role: 'Investor / VC',                    email: 'hi@priyaahuja.in',                  sentOn: '2026-09-13' },
+  { firstName: 'Bhavik',             lastName: 'Kaul',         company: 'Ex-SuperMoney',       role: 'ex-CPO',                           email: 'kaulbhavik@gmail.com',              sentOn: '2026-09-13' },
+  { firstName: 'Sobhitha',           lastName: 'Neelanath',    company: 'Salesforce',          role: 'Senior Manager, Software Eng',     email: 'sneelanath@salesforce.com',         sentOn: '2026-09-13' },
+  { firstName: 'Nency',              lastName: 'Shah',         company: 'HealthEdge',          role: 'Product Manager',                  email: 'nency.shah@healthedge.com',         sentOn: '2026-09-13' },
+  { firstName: 'Ritik',              lastName: 'Gupta',        company: 'POP by Razorpay',     role: 'Design Engineer',                  email: 'gupta.ritik@popclub.co',            sentOn: '2026-09-13' },
+  { firstName: 'Rekha',              lastName: 'Poosala',      company: 'Dell',                role: 'Senior Engineering Manager',       email: 'rekha.poosala@gmail.com',           sentOn: '2026-09-13' },
+  { firstName: 'Sumit',              lastName: 'Dutta',        company: 'Unwind Ventures',     role: 'Managing Partner',                 email: 'sumit@unwindventures.com',          sentOn: '2026-09-13' },
+  { firstName: 'Vivek',              lastName: 'Bharadwaj',    company: 'Grab',                role: 'Group Product Manager',            email: 'vivek.bharadwaj@grabtaxi.com',      sentOn: '2026-09-13' },
+  { firstName: 'Subhadeep',          lastName: 'Mondal',       company: 'Kalaari Capital',     role: 'Venture Partner',                  email: 'subhadeep@kalaari.com',             sentOn: '2026-09-13' },
+  { firstName: 'Chanakya',           lastName: 'Varma',        company: 'DataArt',             role: 'Director & Growth Partner',        email: 'chanakya.varma@dataart.com',        sentOn: '2026-09-13' },
+  { firstName: 'Glory',              lastName: 'Michael',      company: 'DataArt',             role: 'Client Solutions Partner',         email: 'Glory.Michael@dataart.com',         sentOn: '2026-09-13' },
+  { firstName: 'Manish S',           lastName: 'Sugandhi',     company: 'Noon',                role: 'Product',                          email: 'manish@noon.design',                sentOn: '2026-09-13' },
   { firstName: 'Neha',               lastName: 'Nadiger',       company: 'Unimad',              role: 'Product Manager',                  email: 'nehanadigerwork@gmail.com',         sentOn: '2026-09-13' },
-  // ── Batch 3 — form responses 2026-09-09 to 2026-09-12 ──────────────────────
+  // Batch 3 - sent 2026-09-13
   { firstName: 'Suganthi',           lastName: 'Arumugam',      company: 'LSEG',                role: 'Product Leader / Product Manager', email: 'suganthi.arumugam@lseg.com',        sentOn: '2026-09-13' },
   { firstName: 'Abhinav',            lastName: 'Gandotra',      company: 'Microsoft',           role: 'Senior AI PM',                     email: 'agandotra@microsoft.com',           sentOn: '2026-09-13' },
   { firstName: 'Sanil',              lastName: 'Bhatte',        company: 'JP Morgan Chase',     role: 'VP Product Design Lead',           email: 'Sanil.bhatte@jpmorgan.com',         sentOn: '2026-09-13' },
@@ -72,12 +72,12 @@ const generalMembers: { firstName: string; lastName: string; company: string; ro
 ]
 
 const premiumMembers = [
-  // WiP India community members — Accelerate tier
+  // WiP India community members - Accelerate tier
   { firstName: 'Madhushree',      lastName: '',            company: 'Mastercard',               role: '',                                    email: 'findmadhu.roy@gmail.com',       paymentId: 'XCOMPWIP001', sentOn: '2026-08-12' },
   { firstName: 'Sheethal Ann',    lastName: 'George',      company: 'Adobe',                    role: '',                                    email: 'sheethalg@gmail.com',           paymentId: 'XCOMPWIP002', sentOn: '2026-08-12' },
   { firstName: 'Lavanya',         lastName: 'Karunakaran', company: 'Light And Wonder iGaming', role: 'Deputy Director, Product Management', email: 'lavanya.karunakaran@gmail.com', paymentId: 'XCOMPWIP003', sentOn: '2026-08-12' },
   { firstName: 'Sai Keerthana',   lastName: 'Srinivasan',  company: 'Docusign',                 role: 'Lead Product Designer',               email: 'ssai.keerthana@gmail.com',      paymentId: 'XCOMPWIP004', sentOn: '2026-08-12' },
-  // WiP India community members — Advance tier
+  // WiP India community members - Advance tier
   { firstName: 'Swati',           lastName: 'Sharma',      company: 'Ellucian India',           role: 'Senior Product Manager',              email: 'swati.sharma8621@gmail.com',    paymentId: 'XCOMPWIP005', sentOn: '2026-08-12' },
 ]
 

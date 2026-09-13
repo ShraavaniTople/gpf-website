@@ -1,5 +1,6 @@
 /**
  * Social Card Renderer — Canvas-based, all client-side
+ * All-white background · logo header · partner footer strip
  * Three designs: Hero, Editorial, Festival
  * Output: 1080×1080 (square) or 1080×1350 (portrait)
  */
@@ -16,18 +17,23 @@ export interface RenderOptions {
   portrait?: boolean
 }
 
-const W = 1080
-const PAD = 68
+const W            = 1080
+const PAD          = 64
+const TOP_BAR      = 6    // gradient bar at very top
+const LOGO_ZONE_H  = 124  // partner logos row height (below top bar)
+const BOT_BAR      = 6    // gradient bar at very bottom
+// Legacy — kept so TypeScript is happy; unified layout derives its own zones
+const HEADER_H = TOP_BAR + LOGO_ZONE_H + 2
+const FOOTER_H = 0
 
 function H(portrait?: boolean) { return portrait ? 1350 : 1080 }
 
-// ── Role theme ────────────────────────────────────────────────────────────────
+// ── Role theme ─────────────────────────────────────────────────────────────────
 interface T {
-  r: number; g: number; b: number  // accent RGB
-  hex: string                       // accent hex
-  light: string                     // lighter shade hex
-  bar: [string, string, string]     // bottom bar gradient stops
-  watermark: string                 // large bg decorative text
+  r: number; g: number; b: number
+  hex: string
+  light: string
+  bar: [string, string, string]
 }
 
 function ac(r: number, g: number, b: number, a: number) {
@@ -36,39 +42,18 @@ function ac(r: number, g: number, b: number, a: number) {
 
 function getTheme(id: RoleId): T {
   const map: Record<RoleId, T> = {
-    attendee: {
-      r: 124, g: 58,  b: 237, hex: '#7C3AED', light: '#A78BFA',
-      bar: ['#7C3AED', '#A78BFA', '#F59E0B'], watermark: '2026',
-    },
-    speaker: {
-      r: 161, g: 98,  b: 7,   hex: '#A16207', light: '#FCD34D',
-      bar: ['#B45309', '#F59E0B', '#FEF3C7'], watermark: 'STAGE',
-    },
-    mentor: {
-      r: 20,  g: 184, b: 166, hex: '#14B8A6', light: '#5EEAD4',
-      bar: ['#0F766E', '#14B8A6', '#CCFBF1'], watermark: 'MENTOR',
-    },
-    judge: {
-      r: 234, g: 88,  b: 12,  hex: '#EA580C', light: '#FB923C',
-      bar: ['#C2410C', '#EA580C', '#FED7AA'], watermark: 'JUDGE',
-    },
-    sponsor: {
-      r: 29,  g: 78,  b: 216, hex: '#1D4ED8', light: '#93C5FD',
-      bar: ['#1D4ED8', '#60A5FA', '#BFDBFE'], watermark: '2026',
-    },
-    'community-partner': {
-      r: 6,   g: 95,  b: 70,  hex: '#065F46', light: '#6EE7B7',
-      bar: ['#065F46', '#059669', '#D1FAE5'], watermark: 'COMM',
-    },
-    organizer: {
-      r: 190, g: 24,  b: 93,  hex: '#BE185D', light: '#F472B6',
-      bar: ['#9D174D', '#EC4899', '#FDF2F8'], watermark: 'TEAM',
-    },
+    attendee:            { r: 124, g: 58,  b: 237, hex: '#7C3AED', light: '#A78BFA', bar: ['#7C3AED', '#A78BFA', '#F59E0B'] },
+    speaker:             { r: 161, g: 98,  b: 7,   hex: '#A16207', light: '#FCD34D', bar: ['#B45309', '#F59E0B', '#FEF3C7'] },
+    mentor:              { r: 20,  g: 184, b: 166, hex: '#0D9488', light: '#5EEAD4', bar: ['#0F766E', '#14B8A6', '#CCFBF1'] },
+    judge:               { r: 234, g: 88,  b: 12,  hex: '#EA580C', light: '#FB923C', bar: ['#C2410C', '#EA580C', '#FED7AA'] },
+    sponsor:             { r: 29,  g: 78,  b: 216, hex: '#1D4ED8', light: '#93C5FD', bar: ['#1D4ED8', '#60A5FA', '#BFDBFE'] },
+    'community-partner': { r: 6,   g: 95,  b: 70,  hex: '#065F46', light: '#6EE7B7', bar: ['#065F46', '#059669', '#D1FAE5'] },
+    organizer:           { r: 190, g: 24,  b: 93,  hex: '#BE185D', light: '#F472B6', bar: ['#9D174D', '#EC4899', '#FDF2F8'] },
   }
   return map[id]
 }
 
-// ── Text helpers ──────────────────────────────────────────────────────────────
+// ── Helpers ────────────────────────────────────────────────────────────────────
 function font(
   size: number,
   weight: 700 | 600 | 400,
@@ -91,105 +76,138 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, maxW: number): st
 }
 
 function fitName(
-  ctx: CanvasRenderingContext2D,
-  text: string,
-  maxW: number,
-  startSize: number,
-  maxLines = 3,
+  ctx: CanvasRenderingContext2D, text: string, maxW: number, startSize: number, maxLines = 3,
 ): { lines: string[]; size: number } {
   let size = startSize
   ctx.font = font(size, 700)
   let lines = wrapText(ctx, text, maxW)
   while ((lines.length > maxLines || lines.some(l => ctx.measureText(l).width > maxW)) && size > 48) {
-    size -= 6
-    ctx.font = font(size, 700)
-    lines = wrapText(ctx, text, maxW)
+    size -= 6; ctx.font = font(size, 700); lines = wrapText(ctx, text, maxW)
   }
   return { lines, size }
 }
 
-// ── Image loaders ─────────────────────────────────────────────────────────────
 function loadImg(src: string): Promise<HTMLImageElement> {
   return new Promise((res, rej) => {
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.onload = () => res(img)
-    img.onerror = rej
-    img.src = src
+    const img = new Image(); img.crossOrigin = 'anonymous'
+    img.onload = () => res(img); img.onerror = rej; img.src = src
   })
 }
+
+function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
+  ctx.beginPath()
+  ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y)
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r); ctx.lineTo(x + w, y + h - r)
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h); ctx.lineTo(x + r, y + h)
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r); ctx.lineTo(x, y + r)
+  ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath()
+}
+
 
 async function drawGpfLogo(ctx: CanvasRenderingContext2D, x: number, y: number, h: number) {
   try {
     const img = await loadImg('/gpf-logo.png')
     ctx.drawImage(img, x, y, (img.width / img.height) * h, h)
   } catch {
-    ctx.font = font(28, 700); ctx.fillStyle = '#A78BFA'
+    ctx.font = font(28, 700); ctx.fillStyle = '#7C3AED'
     ctx.fillText('TGPF 2026', x, y + h * 0.7)
   }
 }
 
-async function drawWipLogo(ctx: CanvasRenderingContext2D, rightX: number, y: number, h: number) {
+async function drawWipLogo(ctx: CanvasRenderingContext2D, rightX: number, cy: number, h: number) {
   try {
     const img = await loadImg('/wip-logo.png')
-    const w = (img.width / img.height) * h
-    ctx.drawImage(img, rightX - w, y, w, h)
-  } catch { /* silent */ }
+    // WIP logo is a purple circle — shows fine directly on white
+    const logoW = Math.round((img.width / img.height) * h)
+    ctx.drawImage(img, rightX - logoW, cy - h / 2, logoW, h)
+  } catch {
+    ctx.font = font(22, 700); ctx.fillStyle = '#7C3AED'
+    ctx.textAlign = 'right'; ctx.fillText('WiP', rightX, cy + 8); ctx.textAlign = 'left'
+  }
 }
 
-// Freshworks + Toast in the card header (centered between GPF and WIP logos)
-async function drawHeaderSponsors(ctx: CanvasRenderingContext2D, cx: number, y: number) {
-  const LOGO_H = 28
-  const GAP = 56
-  const srcs = ['/logos/freshworks-full.webp', '/logos/toast.webp']
-  const imgs = await Promise.all(srcs.map(s => loadImg(s).catch(() => null)))
-  const widths = imgs.map(img => img ? Math.round((img.width / img.height) * LOGO_H) : 0)
-  const validCount = imgs.filter(img => img !== null).length
-  const totalW = widths.reduce((a, b) => a + b, 0) + GAP * Math.max(0, validCount - 1)
+// ── Shared header ──────────────────────────────────────────────────────────────
+async function drawHeader(ctx: CanvasRenderingContext2D, t: T) {
+  // Top gradient bar
+  const topBar = ctx.createLinearGradient(0, 0, W, 0)
+  topBar.addColorStop(0, t.bar[0]); topBar.addColorStop(0.5, t.bar[1]); topBar.addColorStop(1, t.bar[2])
+  ctx.fillStyle = topBar; ctx.fillRect(0, 0, W, TOP_BAR)
+
+  // TGPF logo — centred and large so it reads as the focus of the header
+  const LOGO_H = 150
+  const LOGO_CY = TOP_BAR + Math.round((HEADER_H - TOP_BAR - 2) / 2)
+
+  try {
+    const gpf = await loadImg('/gpf-logo.png')
+    const gpfW = Math.round((gpf.width / gpf.height) * LOGO_H)
+    ctx.drawImage(gpf, Math.round(W / 2 - gpfW / 2), LOGO_CY - LOGO_H / 2, gpfW, LOGO_H)
+  } catch {
+    ctx.font = font(36, 700); ctx.fillStyle = '#7C3AED'
+    ctx.textAlign = 'center'; ctx.fillText('TGPF 2026', W / 2, LOGO_CY + 12); ctx.textAlign = 'left'
+  }
+
+  // Thin separator between header and body
+  ctx.fillStyle = '#E5E7EB'; ctx.fillRect(0, HEADER_H - 2, W, 2)
+}
+
+// ── Shared footer — 2 sponsor columns matching website pattern ─────────────────
+async function drawFooter(ctx: CanvasRenderingContext2D, t: T, height: number, centerText = false) {
+  const stripY = height - FOOTER_H
+  const STRIP_H = FOOTER_H - BOT_BAR
+
+  // Light gray strip + separator
+  ctx.fillStyle = '#F7F7F9'; ctx.fillRect(0, stripY, W, STRIP_H)
+  ctx.fillStyle = '#E5E7EB'; ctx.fillRect(0, stripY, W, 1)
+
+  // ── 3 logos in one row: WIP · Freshworks · Toast ────────────────────────────
+  const logoSrcs = ['/wip-logo.png', '/logos/freshworks-logo.png', '/logos/toast.webp']
+
+  // Same height for all logos → perfect horizontal alignment
+  const LOGO_H = 52
+  const LOGO_CY = stripY + 66
+
+  const imgs = await Promise.all(logoSrcs.map(s => loadImg(s).catch(() => null)))
+
+  const dims = imgs.map(img => {
+    if (!img) return { w: 0, h: 0 }
+    return { w: Math.round((img.width / img.height) * LOGO_H), h: LOGO_H }
+  })
+
+  // Equal gaps between logos and equal outer margins
+  const totalLogoW = dims.reduce((sum, d) => sum + d.w, 0)
+  const gap = Math.round((W - 2 * PAD - totalLogoW) / (dims.length + 1))
 
   ctx.save()
-  ctx.font = font(11, 400, 'JetBrains Mono')
-  ctx.fillStyle = '#2D2B45'
-  ctx.textAlign = 'center'
-  ctx.fillText('CO-POWERED BY', cx, y)
-
-  ctx.globalAlpha = 0.86
-  let x = cx - totalW / 2
-  for (let i = 0; i < imgs.length; i++) {
+  let drawX = PAD + gap
+  for (let i = 0; i < logoSrcs.length; i++) {
     const img = imgs[i]
-    if (!img || widths[i] === 0) continue
-    ctx.drawImage(img, x, y + 10, widths[i], LOGO_H)
-    x += widths[i] + GAP
+    const { w, h } = dims[i]
+    if (img && w > 0) {
+      ctx.drawImage(img, drawX, Math.round(LOGO_CY - h / 2), w, h)
+    }
+    drawX += w + gap
   }
   ctx.restore()
-}
 
-// Anthropic + Databricks at the bottom of Hero and Editorial cards
-async function drawBottomPartners(ctx: CanvasRenderingContext2D, cx: number, y: number) {
-  const LOGO_H = 22
-  const GAP = 64
-  const srcs = ['/logos/anthropic-v2.webp', '/logos/databricks.webp']
-  const imgs = await Promise.all(srcs.map(s => loadImg(s).catch(() => null)))
-  const widths = imgs.map(img => img ? Math.round((img.width / img.height) * LOGO_H) : 0)
-  const validCount = imgs.filter(img => img !== null).length
-  const totalW = widths.reduce((a, b) => a + b, 0) + GAP * Math.max(0, validCount - 1)
-
-  ctx.save()
-  const sep = ctx.createLinearGradient(cx - 220, 0, cx + 220, 0)
-  sep.addColorStop(0, 'rgba(60,56,90,0)'); sep.addColorStop(0.5, 'rgba(60,56,90,0.45)'); sep.addColorStop(1, 'rgba(60,56,90,0)')
-  ctx.fillStyle = sep; ctx.fillRect(cx - 220, y, 440, 1)
-
-  ctx.globalAlpha = 0.72
-  let x = cx - totalW / 2
-  for (let i = 0; i < imgs.length; i++) {
-    const img = imgs[i]
-    if (!img || widths[i] === 0) continue
-    ctx.drawImage(img, x, y + 10, widths[i], LOGO_H)
-    x += widths[i] + GAP
+  // ── Hashtag + URL ─────────────────────────────────────────────────────────────
+  ctx.font = font(14, 400, 'JetBrains Mono'); ctx.fillStyle = '#B0B7C3'
+  const HASH_Y = LOGO_CY + Math.ceil(LOGO_H / 2) + 24
+  if (centerText) {
+    ctx.textAlign = 'center'
+    ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, W / 2, HASH_Y)
+    ctx.textAlign = 'left'
+  } else {
+    ctx.fillText(EVENT.hashtag, PAD, HASH_Y)
+    ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, HASH_Y); ctx.textAlign = 'left'
   }
-  ctx.restore()
+
+  // ── Bottom gradient bar ───────────────────────────────────────────────────────
+  const botBar = ctx.createLinearGradient(0, 0, W, 0)
+  botBar.addColorStop(0, t.bar[0]); botBar.addColorStop(0.5, t.bar[1]); botBar.addColorStop(1, t.bar[2])
+  ctx.fillStyle = botBar; ctx.fillRect(0, height - BOT_BAR, W, BOT_BAR)
 }
 
+// ── Photo helpers ──────────────────────────────────────────────────────────────
 async function drawRoundedPhoto(
   ctx: CanvasRenderingContext2D, src: string,
   x: number, y: number, w: number, h: number, r: number,
@@ -197,15 +215,11 @@ async function drawRoundedPhoto(
 ) {
   try {
     const img = await loadImg(src)
+    ctx.save(); roundRect(ctx, x, y, w, h, r); ctx.clip(); ctx.drawImage(img, x, y, w, h); ctx.restore()
     ctx.save()
-    roundRect(ctx, x, y, w, h, r); ctx.clip()
-    ctx.drawImage(img, x, y, w, h)
-    ctx.restore()
-    ctx.save()
-    ctx.shadowColor = ac(tr, tg, tb, 0.55); ctx.shadowBlur = 24
-    ctx.strokeStyle = ac(tr, tg, tb, 0.75); ctx.lineWidth = 3
-    roundRect(ctx, x, y, w, h, r); ctx.stroke()
-    ctx.restore()
+    ctx.shadowColor = ac(tr, tg, tb, 0.3); ctx.shadowBlur = 20
+    ctx.strokeStyle = ac(tr, tg, tb, 0.5); ctx.lineWidth = 3
+    roundRect(ctx, x, y, w, h, r); ctx.stroke(); ctx.restore()
   } catch { /* no photo */ }
 }
 
@@ -216,21 +230,17 @@ async function drawCirclePhoto(
 ) {
   try {
     const img = await loadImg(src)
+    ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip()
+    ctx.drawImage(img, cx - r, cy - r, r * 2, r * 2); ctx.restore()
     ctx.save()
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip()
-    ctx.drawImage(img, cx - r, cy - r, r * 2, r * 2)
-    ctx.restore()
-    ctx.save()
-    ctx.shadowColor = ac(tr, tg, tb, 0.55); ctx.shadowBlur = 20
+    ctx.shadowColor = ac(tr, tg, tb, 0.3); ctx.shadowBlur = 18
     ctx.beginPath(); ctx.arc(cx, cy, r + 2, 0, Math.PI * 2)
-    ctx.strokeStyle = ac(tr, tg, tb, 0.75); ctx.lineWidth = 4; ctx.stroke()
-    ctx.restore()
+    ctx.strokeStyle = ac(tr, tg, tb, 0.55); ctx.lineWidth = 4; ctx.stroke(); ctx.restore()
   } catch { /* no photo */ }
 }
 
 async function drawOrgLogo(
-  ctx: CanvasRenderingContext2D, src: string,
-  cx: number, cy: number, maxSize: number,
+  ctx: CanvasRenderingContext2D, src: string, cx: number, cy: number, maxSize: number,
 ) {
   try {
     const img = await loadImg(src)
@@ -241,484 +251,221 @@ async function drawOrgLogo(
   } catch { /* silent */ }
 }
 
-function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
-  ctx.beginPath()
-  ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y)
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r)
-  ctx.lineTo(x + w, y + h - r)
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h)
-  ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r)
-  ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y)
-  ctx.closePath()
+// Placeholder box or circle when no photo/logo is uploaded
+function drawPlaceholder(
+  ctx: CanvasRenderingContext2D,
+  x: number, y: number, w: number, h: number, r: number,
+  label: string, t: T, circle = false,
+) {
+  if (circle) {
+    const cx = x + w / 2, cy = y + h / 2, cr = Math.min(w, h) / 2
+    ctx.fillStyle = '#F3F4F6'; ctx.beginPath(); ctx.arc(cx, cy, cr, 0, Math.PI * 2); ctx.fill()
+    ctx.save(); ctx.setLineDash([12, 7])
+    ctx.strokeStyle = ac(t.r, t.g, t.b, 0.3); ctx.lineWidth = 2
+    ctx.beginPath(); ctx.arc(cx, cy, cr, 0, Math.PI * 2); ctx.stroke(); ctx.restore()
+    ctx.font = font(16, 400, 'JetBrains Mono'); ctx.fillStyle = '#9CA3AF'
+    ctx.textAlign = 'center'; ctx.fillText(label, cx, cy + cr + 28); ctx.textAlign = 'left'
+  } else {
+    ctx.fillStyle = '#F3F4F6'; roundRect(ctx, x, y, w, h, r); ctx.fill()
+    ctx.save(); ctx.setLineDash([12, 7])
+    ctx.strokeStyle = ac(t.r, t.g, t.b, 0.3); ctx.lineWidth = 2
+    roundRect(ctx, x, y, w, h, r); ctx.stroke(); ctx.restore()
+    ctx.font = font(16, 400, 'JetBrains Mono'); ctx.fillStyle = '#9CA3AF'
+    ctx.textAlign = 'center'; ctx.fillText(label, x + w / 2, y + h - 28); ctx.textAlign = 'left'
+  }
+}
+
+// Solid-fill badge pill (role colour, white text)
+function drawBadge(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, t: T) {
+  ctx.font = font(19, 400, 'JetBrains Mono')
+  const bw = ctx.measureText(text).width + 48
+  roundRect(ctx, x, y, bw, 44, 22)
+  ctx.fillStyle = t.hex; ctx.fill()
+  ctx.fillStyle = '#FFFFFF'; ctx.fillText(text, x + 24, y + 28)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// HERO
+// UNIFIED — same layout for every role
+// Top: partner logos row  →  photo  →  name  →  TGPF logo  →  badge  →  date/venue
 // ─────────────────────────────────────────────────────────────────────────────
-async function renderHero(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
-  const height = H(opts.portrait)
-  const hasPhoto = !!opts.photo
-  const isPersonal = opts.role.hasPhoto
-  const t = getTheme(opts.role.id)
+async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
+  const height     = H(opts.portrait)
+  const P          = !!opts.portrait
+  const t          = getTheme(opts.role.id)
   const { r, g, b } = t
+  const isPersonal = opts.role.hasPhoto
+  const hasPhoto   = !!opts.photo
+  const cx         = W / 2
 
-  // ── Background ──────────────────────────────────────────────────────────────
-  const bg = ctx.createLinearGradient(0, 0, W, height)
-  bg.addColorStop(0, '#0C0A1E'); bg.addColorStop(1, '#05040C')
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, height)
+  // ── White background ─────────────────────────────────────────────────────────
+  ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, W, height)
 
-  // Role-coloured top-right orb
-  const o1 = ctx.createRadialGradient(W * 0.9, height * 0.08, 0, W * 0.9, height * 0.08, W * 0.72)
-  o1.addColorStop(0, ac(r, g, b, 0.42)); o1.addColorStop(1, ac(r, g, b, 0))
-  ctx.fillStyle = o1; ctx.fillRect(0, 0, W, height)
+  // ── Top gradient bar ──────────────────────────────────────────────────────────
+  const gBar = ctx.createLinearGradient(0, 0, W, 0)
+  gBar.addColorStop(0, t.bar[0]); gBar.addColorStop(0.5, t.bar[1]); gBar.addColorStop(1, t.bar[2])
+  ctx.fillStyle = gBar; ctx.fillRect(0, 0, W, TOP_BAR)
 
-  // Amber bottom-left orb (event branding, fixed)
-  const o2 = ctx.createRadialGradient(W * 0.06, height * 0.92, 0, W * 0.06, height * 0.92, W * 0.52)
-  o2.addColorStop(0, 'rgba(245,158,11,0.2)'); o2.addColorStop(1, 'rgba(245,158,11,0)')
-  ctx.fillStyle = o2; ctx.fillRect(0, 0, W, height)
-
-  // Grid tinted by role
-  ctx.strokeStyle = ac(r, g, b, 0.07); ctx.lineWidth = 1
-  for (let x = 0; x <= W; x += 90) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke() }
-  for (let y = 0; y <= height; y += 90) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke() }
-
-  // Role-specific watermark text
-  ctx.font = font(t.watermark.length > 4 ? 200 : 320, 700)
-  ctx.fillStyle = ac(r, g, b, 0.05)
-  ctx.textAlign = 'center'
-  ctx.fillText(t.watermark, W / 2, height * 0.72)
-  ctx.textAlign = 'left'
-
-  // ── Photo / logo zone (right side) ───────────────────────────────────────────
-  const FW = opts.portrait ? 420 : 460
-  const FH = FW
-  const FR = 32
-  const FX = W - PAD - FW
-  const FY = 224
-  const FCX = FX + FW / 2
-  const FCY = FY + FH / 2
-
-  const gp = ctx.createRadialGradient(FCX, FCY, 0, FCX, FCY, FW * 0.85)
-  gp.addColorStop(0, ac(r, g, b, 0.16)); gp.addColorStop(1, ac(r, g, b, 0))
-  ctx.fillStyle = gp; ctx.fillRect(0, 0, W, height)
-
-  if (hasPhoto && isPersonal) {
-    await drawRoundedPhoto(ctx, opts.photo!, FX, FY, FW, FH, FR, r, g, b)
-
-  } else if (hasPhoto && !isPersonal) {
-    ctx.fillStyle = 'rgba(5,4,12,0.55)'
-    roundRect(ctx, FX, FY, FW, FH, FR); ctx.fill()
-    ctx.strokeStyle = ac(r, g, b, 0.35); ctx.lineWidth = 2
-    roundRect(ctx, FX, FY, FW, FH, FR); ctx.stroke()
-    await drawOrgLogo(ctx, opts.photo!, FCX, FCY, FW * 0.72)
-
-  } else if (isPersonal) {
-    // Photo placeholder
-    const fg = ctx.createLinearGradient(FX, FY, FX, FY + FH)
-    fg.addColorStop(0, ac(r, g, b, 0.09)); fg.addColorStop(1, ac(r, g, b, 0.03))
-    ctx.fillStyle = fg; roundRect(ctx, FX, FY, FW, FH, FR); ctx.fill()
-    ctx.save()
-    ctx.shadowColor = ac(r, g, b, 0.35); ctx.shadowBlur = 14
-    ctx.setLineDash([20, 11])
-    ctx.strokeStyle = t.light + 'AA'; ctx.lineWidth = 2.5
-    roundRect(ctx, FX, FY, FW, FH, FR); ctx.stroke()
-    ctx.restore()
-    for (const [dx, dy] of [[FX+FR,FY+FR],[FX+FW-FR,FY+FR],[FX+FR,FY+FH-FR],[FX+FW-FR,FY+FH-FR]]) {
-      ctx.beginPath(); ctx.arc(dx as number, dy as number, 5, 0, Math.PI*2)
-      ctx.fillStyle = t.light + '77'; ctx.fill()
-    }
-    ctx.fillStyle = ac(r, g, b, 0.22)
-    ctx.beginPath(); ctx.arc(FCX, FCY - FH*0.14, FW*0.16, 0, Math.PI*2); ctx.fill()
-    ctx.beginPath(); ctx.arc(FCX, FCY + FH*0.36, FW*0.30, Math.PI, 0); ctx.fill()
-    ctx.font = font(22, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '80'
-    ctx.textAlign = 'center'; ctx.fillText('+ ADD PHOTO', FCX, FY+FH-30); ctx.textAlign = 'left'
-
-  } else {
-    // Logo placeholder
-    const fg = ctx.createLinearGradient(FX, FY, FX, FY+FH)
-    fg.addColorStop(0, ac(r, g, b, 0.08)); fg.addColorStop(1, ac(r, g, b, 0.02))
-    ctx.fillStyle = fg; roundRect(ctx, FX, FY, FW, FH, FR); ctx.fill()
-    ctx.save()
-    ctx.shadowColor = ac(r, g, b, 0.28); ctx.shadowBlur = 12
-    ctx.setLineDash([20, 11])
-    ctx.strokeStyle = t.light + '88'; ctx.lineWidth = 2.5
-    roundRect(ctx, FX, FY, FW, FH, FR); ctx.stroke()
-    ctx.restore()
-    for (const [dx, dy] of [[FX+FR,FY+FR],[FX+FW-FR,FY+FR],[FX+FR,FY+FH-FR],[FX+FW-FR,FY+FH-FR]]) {
-      ctx.beginPath(); ctx.arc(dx as number, dy as number, 5, 0, Math.PI*2)
-      ctx.fillStyle = t.light + '66'; ctx.fill()
-    }
-    const iw = FW*0.46, ih = FH*0.28, ix = FCX-iw/2, iy = FCY-ih/2-20
-    roundRect(ctx, ix, iy, iw, ih, 10)
-    ctx.fillStyle = ac(r, g, b, 0.18); ctx.fill()
-    ctx.strokeStyle = ac(r, g, b, 0.35); ctx.lineWidth = 2; ctx.stroke()
-    ctx.font = font(22, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '80'
-    ctx.textAlign = 'center'; ctx.fillText('+ ADD LOGO', FCX, FY+FH-30); ctx.textAlign = 'left'
+  // ── Partner logos row (WIP · Freshworks · Toast) ─────────────────────────────
+  // Each logo fits inside MAX_H × MAX_W; whichever limit is hit first wins.
+  // This naturally makes Freshworks and Toast the same width (both are wider than MAX_W).
+  const MAX_LOGO_H  = P ? 68 : 58
+  const MAX_LOGO_W  = P ? 200 : 170
+  // Center the row so there's more breathing room below logos than above
+  const LOGO_CY_ROW = TOP_BAR + Math.round(LOGO_ZONE_H * 0.68)
+  const partnerSrcs = ['/wip-logo.png', '/logos/freshworks-logo.png', '/logos/toast.webp']
+  const partnerImgs = await Promise.all(partnerSrcs.map(s => loadImg(s).catch(() => null)))
+  const partnerDims = partnerImgs.map((img) => {
+    if (!img) return { w: 0, h: 0 }
+    const ratio = img.width / img.height
+    // Try fitting by height first
+    let lw = Math.round(MAX_LOGO_H * ratio), lh = MAX_LOGO_H
+    // If too wide, scale down to fit width
+    if (lw > MAX_LOGO_W) { lw = MAX_LOGO_W; lh = Math.round(MAX_LOGO_W / ratio) }
+    return { w: lw, h: lh }
+  })
+  const totalPartnerW = partnerDims.reduce((s, d) => s + d.w, 0)
+  const partnerGap    = Math.round((W - 2 * PAD - totalPartnerW) / (partnerDims.length + 1))
+  let px = PAD + partnerGap
+  for (let i = 0; i < partnerSrcs.length; i++) {
+    const { w, h } = partnerDims[i]
+    if (partnerImgs[i] && w > 0)
+      ctx.drawImage(partnerImgs[i]!, px, Math.round(LOGO_CY_ROW - h / 2), w, h)
+    px += w + partnerGap
   }
 
-  const textMaxW = FX - PAD - 44
+  // Separator below logo row
+  ctx.fillStyle = '#E5E7EB'; ctx.fillRect(0, TOP_BAR + LOGO_ZONE_H, W, 2)
 
-  // ── Header ────────────────────────────────────────────────────────────────────
-  const hdGrad = ctx.createLinearGradient(0, 0, 0, 172)
-  hdGrad.addColorStop(0, 'rgba(5,4,12,0.82)'); hdGrad.addColorStop(1, 'rgba(5,4,12,0)')
-  ctx.fillStyle = hdGrad; ctx.fillRect(0, 0, W, 172)
+  const BODY_TOP = TOP_BAR + LOGO_ZONE_H + 2
 
-  const LOGO_H = 72, WIP_H = 60, LOGO_Y = 44
-  await drawGpfLogo(ctx, PAD, LOGO_Y, LOGO_H)
-  await drawWipLogo(ctx, W - PAD, LOGO_Y + (LOGO_H - WIP_H) / 2, WIP_H)
-  await drawHeaderSponsors(ctx, W / 2, LOGO_Y + LOGO_H + 6)
+  // ── Subtle radial wash + concentric rings ─────────────────────────────────────
+  const PHOTO_R  = P ? 250 : 178
+  const PHOTO_CY = BODY_TOP + (P ? 56 : 48) + PHOTO_R
 
-  // ── Role badge ────────────────────────────────────────────────────────────────
-  const BADGE_TOP = LOGO_Y + LOGO_H + 78
-  const BADGE_H = 52
-  const BADGE_BTM = BADGE_TOP + BADGE_H
-  const badgeTxt = opts.role.chip
+  const wash = ctx.createRadialGradient(cx, PHOTO_CY, 0, cx, PHOTO_CY, W * 0.72)
+  wash.addColorStop(0, ac(r, g, b, 0.08)); wash.addColorStop(1, ac(r, g, b, 0))
+  ctx.fillStyle = wash; ctx.fillRect(0, BODY_TOP, W, height - BODY_TOP - BOT_BAR)
 
-  ctx.font = font(22, 400, 'JetBrains Mono')
-  const badgeW = ctx.measureText(badgeTxt).width + 52
-  ctx.fillStyle = ac(r, g, b, 0.2); roundRect(ctx, PAD, BADGE_TOP, badgeW, BADGE_H, 26); ctx.fill()
-  ctx.strokeStyle = t.light + '99'; ctx.lineWidth = 1.5; roundRect(ctx, PAD, BADGE_TOP, badgeW, BADGE_H, 26); ctx.stroke()
-  ctx.fillStyle = t.light; ctx.fillText(badgeTxt, PAD + 26, BADGE_TOP + 33)
+  // ── Photo / Org logo ──────────────────────────────────────────────────────────
+  if (isPersonal) {
+    if (hasPhoto)
+      await drawCirclePhoto(ctx, opts.photo!, cx, PHOTO_CY, PHOTO_R, r, g, b)
+    else
+      drawPlaceholder(ctx, cx - PHOTO_R, PHOTO_CY - PHOTO_R, PHOTO_R * 2, PHOTO_R * 2, PHOTO_R, '+ ADD PHOTO', t, true)
+  } else {
+    const bw = Math.round(PHOTO_R * 2.1), bh = Math.round(PHOTO_R * 1.35)
+    const bx = cx - bw / 2, by = PHOTO_CY - bh / 2
+    if (hasPhoto) {
+      ctx.fillStyle = '#F3F4F6'; roundRect(ctx, bx, by, bw, bh, 20); ctx.fill()
+      ctx.strokeStyle = ac(r, g, b, 0.22); ctx.lineWidth = 1.5
+      roundRect(ctx, bx, by, bw, bh, 20); ctx.stroke()
+      await drawOrgLogo(ctx, opts.photo!, cx, PHOTO_CY, Math.min(bw * 0.68, bh * 0.65))
+    } else {
+      drawPlaceholder(ctx, bx, by, bw, bh, 20, '+ ADD LOGO', t)
+    }
+  }
+
+  // y tracks the TOP of the next element to draw
+  let y = PHOTO_CY + PHOTO_R
+  ctx.textAlign = 'center'
 
   // ── Name ──────────────────────────────────────────────────────────────────────
-  const NAME_BASELINE_MIN = 390
+  y += P ? 36 : 28
   const displayName = opts.name.trim() || (isPersonal ? 'Your Name' : 'Your Organisation')
-  const { lines: nameLines, size: nameFontSize } = fitName(ctx, displayName, textMaxW, 144, 3)
-  const lineH = nameFontSize * 1.12
-  const capHeight = nameFontSize * 0.72
-  const nameBaseline = Math.max(NAME_BASELINE_MIN, BADGE_BTM + capHeight + 30)
+  const NAME_SZ = P ? 72 : 56
+  const { lines: nameLines, size: nameSz } = fitName(ctx, displayName, W - PAD * 3, NAME_SZ, 2)
+  const nLineH  = nameSz * 1.12
+  ctx.font = font(nameSz, 700); ctx.fillStyle = '#0F0E1A'
+  nameLines.forEach((ln, i) => ctx.fillText(ln, cx, y + Math.round(nameSz * 0.72) + i * nLineH))
+  y += nameSz * nameLines.length + Math.round(nameSz * 0.12) * (nameLines.length - 1)
 
-  ctx.font = font(nameFontSize, 700); ctx.fillStyle = '#F0EEF8'
-  nameLines.forEach((line, i) => ctx.fillText(line, PAD, nameBaseline + i * lineH))
-  let cursor = nameBaseline + nameLines.length * lineH
-
+  // ── Title / tagline ───────────────────────────────────────────────────────────
+  const TITLE_SZ = P ? 26 : 22
   if (opts.title.trim()) {
-    cursor += 28
-    ctx.font = font(30, 400, 'Inter'); ctx.fillStyle = '#6B7280'
-    ctx.fillText(opts.title.trim(), PAD, cursor); cursor += 30
+    y += P ? 18 : 14
+    ctx.font = font(TITLE_SZ, 400, 'Inter'); ctx.fillStyle = '#6B7280'
+    ctx.fillText(opts.title.trim(), cx, y + Math.round(TITLE_SZ * 0.72))
+    y += TITLE_SZ + (P ? 22 : 18)
+  } else {
+    y += P ? 20 : 14
   }
 
-  // ── Divider + event block ─────────────────────────────────────────────────────
-  const DIVIDER_Y = Math.round(height * 0.74)
-  const divGrad = ctx.createLinearGradient(PAD, 0, PAD + 260, 0)
-  divGrad.addColorStop(0, t.hex); divGrad.addColorStop(1, ac(r, g, b, 0))
-  ctx.fillStyle = divGrad; ctx.fillRect(PAD, DIVIDER_Y, 260, 3)
+  // ── TGPF logo (centred, the brand focal point) ─────────────────────────────────
+  y += P ? 20 : 16
+  const TGPF_SZ = P ? 160 : 128
+  try {
+    const gpf = await loadImg('/gpf-logo.png')
+    const gpfW = Math.round((gpf.width / gpf.height) * TGPF_SZ)
+    ctx.drawImage(gpf, Math.round(cx - gpfW / 2), y, gpfW, TGPF_SZ)
+  } catch {
+    ctx.font = font(34, 700); ctx.fillStyle = '#7C3AED'
+    ctx.fillText('TGPF 2026', cx, y + Math.round(TGPF_SZ * 0.65))
+  }
+  y += TGPF_SZ
 
-  ctx.font = font(34, 700); ctx.fillStyle = '#F59E0B'
-  ctx.fillText(EVENT.dates, PAD, DIVIDER_Y + 58)
-  ctx.font = font(26, 400, 'Inter'); ctx.fillStyle = '#9490AD'
-  ctx.fillText(EVENT.city, PAD, DIVIDER_Y + 96)
+  // ── Role badge ────────────────────────────────────────────────────────────────
+  y += P ? 18 : 14
+  const BADGE_FONT = P ? 20 : 18
+  ctx.font = font(BADGE_FONT, 400, 'JetBrains Mono')
+  const chipTxt = opts.role.chip
+  const chipPx  = ctx.measureText(chipTxt).width + 52
+  const BADGE_H = 46
+  roundRect(ctx, cx - chipPx / 2, y, chipPx, BADGE_H, 23)
+  ctx.fillStyle = t.hex; ctx.fill()
+  ctx.fillStyle = '#FFFFFF'; ctx.fillText(chipTxt, cx, y + 30)
+  y += BADGE_H
 
-  // ── Bottom partners ───────────────────────────────────────────────────────────
-  await drawBottomPartners(ctx, W / 2, height - 136)
+  // ── Gradient divider ──────────────────────────────────────────────────────────
+  y += P ? 26 : 20
+  const divW = P ? 380 : 300
+  const divG  = ctx.createLinearGradient(cx - divW / 2, 0, cx + divW / 2, 0)
+  divG.addColorStop(0, ac(r, g, b, 0)); divG.addColorStop(0.5, t.hex); divG.addColorStop(1, ac(r, g, b, 0))
+  ctx.fillStyle = divG; ctx.fillRect(cx - divW / 2, y, divW, 3)
+  y += 3
 
-  // ── Footer ────────────────────────────────────────────────────────────────────
-  ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = '#3A3856'
-  ctx.fillText(EVENT.hashtag, PAD, height - 46)
-  ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, height - 46); ctx.textAlign = 'left'
+  // ── Date ─────────────────────────────────────────────────────────────────────
+  const DATE_SZ = P ? 36 : 32
+  y += P ? 28 : 24
+  ctx.font = font(DATE_SZ, 700); ctx.fillStyle = '#F59E0B'
+  ctx.fillText(EVENT.dates, cx, y + Math.round(DATE_SZ * 0.72))
+  y += DATE_SZ
 
-  const bar = ctx.createLinearGradient(0, 0, W, 0)
-  bar.addColorStop(0, t.bar[0]); bar.addColorStop(0.5, t.bar[1]); bar.addColorStop(1, t.bar[2])
-  ctx.fillStyle = bar; ctx.fillRect(0, height - 6, W, 6)
+  // ── Venue ─────────────────────────────────────────────────────────────────────
+  const VENUE_SZ = P ? 26 : 22
+  y += P ? 16 : 14
+  ctx.font = font(VENUE_SZ, 400, 'Inter'); ctx.fillStyle = '#6B7280'
+  ctx.fillText(EVENT.city, cx, y + Math.round(VENUE_SZ * 0.72))
+  y += VENUE_SZ
+
+  // ── Hashtag + URL (small, bottom of card) ────────────────────────────────────
+  y += P ? 32 : 26
+  ctx.font = font(14, 400, 'JetBrains Mono'); ctx.fillStyle = '#C8C8C8'
+  ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, cx, y + 10)
+
+  // ── Bottom gradient bar ───────────────────────────────────────────────────────
+  const botG = ctx.createLinearGradient(0, 0, W, 0)
+  botG.addColorStop(0, t.bar[0]); botG.addColorStop(0.5, t.bar[1]); botG.addColorStop(1, t.bar[2])
+  ctx.fillStyle = botG; ctx.fillRect(0, height - BOT_BAR, W, BOT_BAR)
+
+  ctx.textAlign = 'left'
+}
+
+async function renderHero(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
+  return renderUnified(ctx, opts)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // EDITORIAL
 // ─────────────────────────────────────────────────────────────────────────────
 async function renderEditorial(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
-  const height = H(opts.portrait)
-  const hasPhoto = !!opts.photo
-  const isPersonal = opts.role.hasPhoto
-  const TX = PAD + 20
-  const t = getTheme(opts.role.id)
-  const { r, g, b } = t
-
-  // ── Background ──────────────────────────────────────────────────────────────
-  ctx.fillStyle = '#07051A'; ctx.fillRect(0, 0, W, height)
-
-  // Dot texture tinted by role
-  ctx.fillStyle = ac(r, g, b, 0.028)
-  for (let x = 40; x < W; x += 30) for (let y = 30; y < height; y += 30) {
-    ctx.beginPath(); ctx.arc(x, y, 1.2, 0, Math.PI * 2); ctx.fill()
-  }
-
-  // Left color strip: role accent → role light
-  const strip = ctx.createLinearGradient(0, 0, 0, height)
-  strip.addColorStop(0, t.hex); strip.addColorStop(1, t.light)
-  ctx.fillStyle = strip; ctx.fillRect(0, 0, 8, height)
-
-  // ── Photo / logo (top-right) ─────────────────────────────────────────────────
-  const IMG_SIZE = opts.portrait ? 310 : 270
-  const imgX = W - PAD - IMG_SIZE
-  const imgY = 44 + 72 + 28
-
-  if (hasPhoto) {
-    if (isPersonal) {
-      ctx.save()
-      roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.clip()
-      const img = await loadImg(opts.photo!).catch(() => null)
-      if (img) ctx.drawImage(img, imgX, imgY, IMG_SIZE, IMG_SIZE)
-      ctx.restore()
-      ctx.strokeStyle = ac(r, g, b, 0.55); ctx.lineWidth = 2.5
-      roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.stroke()
-    } else {
-      ctx.fillStyle = ac(r, g, b, 0.05)
-      roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.fill()
-      ctx.strokeStyle = ac(r, g, b, 0.2); ctx.lineWidth = 1.5
-      roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.stroke()
-      await drawOrgLogo(ctx, opts.photo!, imgX + IMG_SIZE / 2, imgY + IMG_SIZE / 2, IMG_SIZE * 0.72)
-    }
-  } else {
-    ctx.save()
-    ctx.setLineDash([14, 8])
-    ctx.strokeStyle = ac(r, g, b, 0.35); ctx.lineWidth = 2.5
-    roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.stroke()
-    ctx.restore()
-    ctx.fillStyle = ac(r, g, b, 0.04)
-    roundRect(ctx, imgX, imgY, IMG_SIZE, IMG_SIZE, 18); ctx.fill()
-    const pcx = imgX + IMG_SIZE / 2, pcy = imgY + IMG_SIZE / 2
-    ctx.fillStyle = ac(r, g, b, 0.2)
-    if (isPersonal) {
-      ctx.beginPath(); ctx.arc(pcx, pcy - IMG_SIZE*0.16, IMG_SIZE*0.17, 0, Math.PI*2); ctx.fill()
-      ctx.beginPath(); ctx.arc(pcx, pcy + IMG_SIZE*0.42, IMG_SIZE*0.33, Math.PI, 0); ctx.fill()
-    } else {
-      const iw = IMG_SIZE*0.56, ih = IMG_SIZE*0.34, ix = pcx-iw/2, iy = pcy-ih/2-12
-      roundRect(ctx, ix, iy, iw, ih, 8)
-      ctx.fillStyle = ac(r, g, b, 0.18); ctx.fill()
-      ctx.strokeStyle = ac(r, g, b, 0.35); ctx.lineWidth = 2; ctx.stroke()
-    }
-    ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '77'
-    ctx.textAlign = 'center'
-    ctx.fillText(isPersonal ? 'YOUR PHOTO' : 'YOUR LOGO', pcx, imgY + IMG_SIZE + 40)
-    ctx.textAlign = 'left'
-  }
-
-  const textMaxW = imgX - TX - 40
-
-  // ── Header ────────────────────────────────────────────────────────────────────
-  const hdGradE = ctx.createLinearGradient(0, 0, 0, 172)
-  hdGradE.addColorStop(0, 'rgba(7,5,26,0.88)'); hdGradE.addColorStop(1, 'rgba(7,5,26,0)')
-  ctx.fillStyle = hdGradE; ctx.fillRect(0, 0, W, 172)
-
-  await drawGpfLogo(ctx, TX, 44, 72)
-  await drawWipLogo(ctx, W - PAD, 50, 60)
-  await drawHeaderSponsors(ctx, W / 2, 122)
-
-  // ── Role label ───────────────────────────────────────────────────────────────
-  const ROLE_Y = 44 + 72 + 88
-  ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = t.hex
-  ctx.fillText(`— ${opts.role.chip}`, TX, ROLE_Y)
-
-  // ── Name ──────────────────────────────────────────────────────────────────────
-  const NAME_BASELINE_MIN = ROLE_Y + 24 + 116 * 0.72 + 24
-  const displayName = opts.name.trim() || (isPersonal ? 'Your Name' : 'Your Organisation')
-  const { lines: nameLines, size: nameFontSize } = fitName(ctx, displayName, textMaxW, 116, 3)
-  const lineH = nameFontSize * 1.1
-  const capH = nameFontSize * 0.72
-  const nameBaseline = Math.max(NAME_BASELINE_MIN, ROLE_Y + capH + 36)
-
-  nameLines.forEach((line, i) => {
-    if (i === nameLines.length - 1) {
-      // last word in accent light colour
-      const words = line.split(' '); let x = TX
-      words.forEach((word, wi) => {
-        ctx.font = font(nameFontSize, 700)
-        ctx.fillStyle = wi === words.length - 1 ? t.light : '#F0EEF8'
-        ctx.fillText(word, x, nameBaseline + i * lineH)
-        x += ctx.measureText(word + ' ').width
-      })
-    } else {
-      ctx.font = font(nameFontSize, 700); ctx.fillStyle = '#F0EEF8'
-      ctx.fillText(line, TX, nameBaseline + i * lineH)
-    }
-  })
-  let cursor = nameBaseline + nameLines.length * lineH
-
-  if (opts.title.trim()) {
-    cursor += 24
-    ctx.font = font(28, 400, 'Inter'); ctx.fillStyle = '#52506A'
-    ctx.fillText(opts.title.trim(), TX, cursor); cursor += 30
-  }
-
-  // ── Event info box ────────────────────────────────────────────────────────────
-  const BOX_Y = Math.round(height * 0.73)
-  const BOX_W = Math.min(textMaxW, 480)
-  const BOX_H = 128
-
-  ctx.fillStyle = ac(r, g, b, 0.07)
-  roundRect(ctx, TX, BOX_Y, BOX_W, BOX_H, 14); ctx.fill()
-  ctx.strokeStyle = ac(r, g, b, 0.2); ctx.lineWidth = 1.5
-  roundRect(ctx, TX, BOX_Y, BOX_W, BOX_H, 14); ctx.stroke()
-
-  ctx.font = font(16, 400, 'JetBrains Mono'); ctx.fillStyle = t.hex
-  ctx.fillText('WHEN & WHERE', TX + 20, BOX_Y + 30)
-  ctx.font = font(32, 700); ctx.fillStyle = '#F59E0B'
-  ctx.fillText(EVENT.dates, TX + 20, BOX_Y + 72)
-  ctx.font = font(23, 400, 'Inter'); ctx.fillStyle = '#9490AD'
-  ctx.fillText(EVENT.city, TX + 20, BOX_Y + 108)
-
-  // ── Bottom partners ───────────────────────────────────────────────────────────
-  await drawBottomPartners(ctx, W / 2, height - 136)
-
-  // ── Footer ────────────────────────────────────────────────────────────────────
-  ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = '#2D2B45'
-  ctx.fillText(EVENT.hashtag, TX, height - 46)
-  ctx.textAlign = 'right'; ctx.fillText(EVENT.url, W - PAD, height - 46); ctx.textAlign = 'left'
-
-  // Bottom accent dot on strip uses role bar end colour
-  ctx.fillStyle = t.bar[1]; ctx.fillRect(0, height - 6, 8, 6)
+  return renderUnified(ctx, opts)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // FESTIVAL
 // ─────────────────────────────────────────────────────────────────────────────
 async function renderFestival(ctx: CanvasRenderingContext2D, opts: RenderOptions) {
-  const height = H(opts.portrait)
-  const hasPhoto = !!opts.photo
-  const isPersonal = opts.role.hasPhoto
-  const cx = W / 2
-  const t = getTheme(opts.role.id)
-  const { r, g, b } = t
-
-  // ── Background ──────────────────────────────────────────────────────────────
-  ctx.fillStyle = '#05040C'; ctx.fillRect(0, 0, W, height)
-
-  // Role-coloured central orb
-  const g1 = ctx.createRadialGradient(cx, height * 0.4, 0, cx, height * 0.4, W * 0.9)
-  g1.addColorStop(0, ac(r, g, b, 0.28)); g1.addColorStop(0.65, ac(r, g, b, 0.06)); g1.addColorStop(1, ac(r, g, b, 0))
-  ctx.fillStyle = g1; ctx.fillRect(0, 0, W, height)
-
-  // Amber bottom orb (event branding)
-  const g2 = ctx.createRadialGradient(cx, height * 0.88, 0, cx, height * 0.88, W * 0.5)
-  g2.addColorStop(0, 'rgba(245,158,11,0.2)'); g2.addColorStop(1, 'rgba(245,158,11,0)')
-  ctx.fillStyle = g2; ctx.fillRect(0, 0, W, height)
-
-  // Role-coloured concentric rings
-  ctx.strokeStyle = ac(r, g, b, 0.12); ctx.lineWidth = 1.5
-  for (const rr of [140, 260, 390, 530]) {
-    ctx.beginPath(); ctx.arc(cx, height * 0.4, rr, 0, Math.PI * 2); ctx.stroke()
-  }
-
-  // ── Logos ─────────────────────────────────────────────────────────────────────
-  const hdGradF = ctx.createLinearGradient(0, 0, 0, 172)
-  hdGradF.addColorStop(0, 'rgba(5,4,12,0.80)'); hdGradF.addColorStop(1, 'rgba(5,4,12,0)')
-  ctx.fillStyle = hdGradF; ctx.fillRect(0, 0, W, 172)
-
-  await drawGpfLogo(ctx, PAD, 44, 72)
-  await drawWipLogo(ctx, W - PAD, 50, 60)
-  await drawHeaderSponsors(ctx, cx, 122)
-
-  // ── Photo / logo zone ─────────────────────────────────────────────────────────
-  const PHOTO_R = opts.portrait ? 248 : 220
-  const PHOTO_CY = height * 0.355
-
-  const ORG_BW = opts.portrait ? 580 : 520
-  const ORG_BH = opts.portrait ? 300 : 270
-  const ORG_BR = 20
-  const ORG_BX = cx - ORG_BW / 2
-  const ORG_BY = PHOTO_CY - ORG_BH / 2
-
-  let TEXT_START: number
-
-  if (!isPersonal) {
-    if (hasPhoto) {
-      const gp = ctx.createRadialGradient(cx, PHOTO_CY, 0, cx, PHOTO_CY, 420)
-      gp.addColorStop(0, ac(r, g, b, 0.25)); gp.addColorStop(1, ac(r, g, b, 0))
-      ctx.fillStyle = gp; ctx.fillRect(0, 0, W, height)
-
-      ctx.fillStyle = 'rgba(5,4,12,0.55)'
-      roundRect(ctx, ORG_BX, ORG_BY, ORG_BW, ORG_BH, ORG_BR); ctx.fill()
-      ctx.save()
-      ctx.shadowColor = ac(r, g, b, 0.35); ctx.shadowBlur = 18
-      ctx.strokeStyle = ac(r, g, b, 0.45); ctx.lineWidth = 2
-      roundRect(ctx, ORG_BX, ORG_BY, ORG_BW, ORG_BH, ORG_BR); ctx.stroke()
-      ctx.restore()
-      await drawOrgLogo(ctx, opts.photo!, cx, PHOTO_CY, Math.min(ORG_BW * 0.72, ORG_BH * 0.68))
-    } else {
-      ctx.fillStyle = ac(r, g, b, 0.05)
-      roundRect(ctx, ORG_BX, ORG_BY, ORG_BW, ORG_BH, ORG_BR); ctx.fill()
-      ctx.save()
-      ctx.setLineDash([16, 9])
-      ctx.strokeStyle = t.light + '70'; ctx.lineWidth = 2
-      roundRect(ctx, ORG_BX, ORG_BY, ORG_BW, ORG_BH, ORG_BR); ctx.stroke()
-      ctx.restore()
-      const iw = ORG_BW*0.34, ih = ORG_BH*0.38, ix = cx-iw/2, iy = PHOTO_CY-ih/2-16
-      roundRect(ctx, ix, iy, iw, ih, 8)
-      ctx.fillStyle = ac(r, g, b, 0.14); ctx.fill()
-      ctx.strokeStyle = ac(r, g, b, 0.3); ctx.lineWidth = 1.5; ctx.stroke()
-      ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '7A'
-      ctx.textAlign = 'center'; ctx.fillText('+ ADD LOGO', cx, ORG_BY + ORG_BH - 24)
-    }
-    TEXT_START = PHOTO_CY + ORG_BH / 2 + 56
-
-  } else {
-    if (hasPhoto) {
-      const gp = ctx.createRadialGradient(cx, PHOTO_CY, PHOTO_R*0.4, cx, PHOTO_CY, PHOTO_R*1.6)
-      gp.addColorStop(0, ac(r, g, b, 0.38)); gp.addColorStop(1, ac(r, g, b, 0))
-      ctx.fillStyle = gp; ctx.fillRect(0, 0, W, height)
-      await drawCirclePhoto(ctx, opts.photo!, cx, PHOTO_CY, PHOTO_R, r, g, b)
-    } else {
-      ctx.fillStyle = ac(r, g, b, 0.06)
-      ctx.beginPath(); ctx.arc(cx, PHOTO_CY, PHOTO_R, 0, Math.PI*2); ctx.fill()
-      ctx.save()
-      ctx.setLineDash([18, 10])
-      ctx.strokeStyle = t.light + '77'; ctx.lineWidth = 2.5
-      ctx.beginPath(); ctx.arc(cx, PHOTO_CY, PHOTO_R, 0, Math.PI*2); ctx.stroke()
-      ctx.restore()
-      ctx.fillStyle = ac(r, g, b, 0.22)
-      ctx.beginPath(); ctx.arc(cx, PHOTO_CY - PHOTO_R*0.2, PHOTO_R*0.32, 0, Math.PI*2); ctx.fill()
-      ctx.beginPath(); ctx.arc(cx, PHOTO_CY + PHOTO_R*0.62, PHOTO_R*0.52, Math.PI, 0); ctx.fill()
-      ctx.font = font(20, 400, 'JetBrains Mono'); ctx.fillStyle = t.light + '80'
-      ctx.textAlign = 'center'; ctx.fillText('+ ADD PHOTO', cx, PHOTO_CY + PHOTO_R + 34)
-    }
-    TEXT_START = height * 0.62
-  }
-
-  // ── Text block ────────────────────────────────────────────────────────────────
-  ctx.textAlign = 'center'
-
-  ctx.font = font(18, 400, 'JetBrains Mono'); ctx.fillStyle = '#52506A'
-  ctx.fillText(EVENT.name.toUpperCase(), cx, TEXT_START)
-
-  const displayName = opts.name.trim() || (isPersonal ? 'Your Name' : 'Your Organisation')
-  const { lines: nameLines, size: nameFontSize } = fitName(ctx, displayName, W - PAD * 2.5, 90, 2)
-  const lineH = nameFontSize * 1.12
-  const capH = nameFontSize * 0.72
-  const nameY = TEXT_START + capH + 12
-
-  ctx.font = font(nameFontSize, 700); ctx.fillStyle = '#F0EEF8'
-  nameLines.forEach((line, i) => ctx.fillText(line, cx, nameY + i * lineH))
-  // Advance from last line's baseline by descenders + gap (not a full lineH, which leaves a dead zone)
-  let cursor = nameY + (nameLines.length - 1) * lineH + Math.round(nameFontSize * 0.28) + 36
-
-  if (opts.title.trim()) {
-    cursor += 14
-    ctx.font = font(26, 400, 'Inter'); ctx.fillStyle = '#6B7280'
-    ctx.fillText(opts.title.trim(), cx, cursor); cursor += 22
-  }
-
-  // Role chip in role accent colour
-  cursor += 12
-  ctx.font = font(21, 400, 'JetBrains Mono')
-  const chipTxt = opts.role.chip
-  const chipW = ctx.measureText(chipTxt).width + 56
-  const chipX = cx - chipW / 2
-  ctx.fillStyle = ac(r, g, b, 0.2); roundRect(ctx, chipX, cursor, chipW, 48, 24); ctx.fill()
-  ctx.strokeStyle = t.light + '99'; ctx.lineWidth = 1.5; roundRect(ctx, chipX, cursor, chipW, 48, 24); ctx.stroke()
-  ctx.fillStyle = t.light; ctx.fillText(chipTxt, cx, cursor + 31)
-  cursor += 48
-
-  cursor += 40
-  ctx.font = font(30, 600); ctx.fillStyle = '#F59E0B'
-  ctx.fillText(EVENT.dates, cx, cursor)
-  cursor += 46
-  ctx.font = font(23, 400, 'Inter'); ctx.fillStyle = '#6B7280'
-  ctx.fillText(EVENT.city, cx, cursor)
-
-  // ── Footer ────────────────────────────────────────────────────────────────────
-  ctx.font = font(19, 400, 'JetBrains Mono'); ctx.fillStyle = '#3A3856'
-  ctx.fillText(`${EVENT.hashtag}  ·  ${EVENT.url}`, cx, height - 46)
-  ctx.textAlign = 'left'
+  return renderUnified(ctx, opts)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

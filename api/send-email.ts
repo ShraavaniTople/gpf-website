@@ -19,7 +19,7 @@ const TIER_BORDER: Record<string, string> = {
   General: '#DDD6FE',
 }
 
-// ── Single combined email: confirmation + ticket + social card CTA ─────────────
+// Single combined email: confirmation + ticket + Luma RSVP + social card CTA
 function buildCombinedHtml(p: {
   to_name: string; company: string; pass_type: string
   amount: string; payment_id: string; pass_number: string
@@ -47,7 +47,7 @@ function buildCombinedHtml(p: {
         </tr></table>
       </td></tr>
 
-      <!-- ── Confirmation card ── -->
+      <!-- Confirmation card -->
       <tr><td style="background:#FFFFFF;border:1px solid #E5E7EB;border-radius:16px;overflow:hidden;">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
           <tr><td height="4" style="background:${color};border-radius:16px 16px 0 0;"></td></tr>
@@ -90,7 +90,7 @@ function buildCombinedHtml(p: {
         </td></tr></table>
       </td></tr>
 
-      <!-- ── Visual ticket ── -->
+      <!-- Visual ticket -->
       <tr><td style="padding:20px 0 0;">
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#16112B;border-radius:16px;overflow:hidden;">
           <tr>
@@ -141,7 +141,23 @@ function buildCombinedHtml(p: {
         </table>
       </td></tr>
 
-      <!-- ── Social card CTA ── -->
+      <!-- RSVP on Luma -->
+      <tr><td style="padding:16px 0 0;">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;overflow:hidden;">
+          <tr><td style="padding:20px 24px;">
+            <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">🗓️ RSVP on Luma</p>
+            <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Lock in your spot! RSVP on Luma so we can keep you updated with the latest schedule, speakers, and event details.</p>
+            <table cellpadding="0" cellspacing="0" border="0"><tr>
+              <td style="background:#16A34A;border-radius:8px;">
+                <a href="https://luma.com/thegreatproductfestival" style="display:block;font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;padding:10px 24px;">RSVP ON LUMA →</a>
+              </td>
+            </tr></table>
+            <p style="margin:10px 0 0;font-size:11px;color:#9CA3AF;">Direct link: <a href="https://luma.com/thegreatproductfestival" style="color:#16A34A;text-decoration:none;">luma.com/thegreatproductfestival</a></p>
+          </td></tr>
+        </table>
+      </td></tr>
+
+      <!-- Social card CTA -->
       <tr><td style="padding:16px 0 0;">
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${accentBg};border:1px solid ${border};border-radius:12px;overflow:hidden;">
           <tr><td style="padding:20px 24px;">
