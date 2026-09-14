@@ -116,11 +116,11 @@ const DAY2: Slot[] = [
   { start: '10:00', end: '10:15', sessions: [{ type: 'opening', title: 'Welcome & Day 2 Kickoff' }] },
 
   { start: '10:15', end: '10:40', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'Build for Bharat: How AI is being built for the next billion',
+    { type: 'fireside', venue: 'Freshworks Hall', title: 'The Next Big Bet: What Will India Build Next?',
       speakers: [
-        { name: 'Gaurav Aggarwal', role: 'Chief AI Scientist, Reliance Intelligence', photo: '/speaker-gaurav.jpg' },
-        { name: 'Minakshi Khuntia', role: 'Senior Director, Product Management, Freshworks · Moderator', photo: '/speaker-minakshi.webp' },
-      ], lumaUrl: 'https://luma.com/dhfgxj7p' },
+        { name: 'Poorvi Vijay', role: 'AI Investor, Elevation Capital', photo: '/speaker-poorvi.webp' },
+        { name: 'Amrit Raj', role: 'Co-Founder, Women in Product India', photo: '/speaker-amrit.webp' },
+      ], lumaUrl: 'https://luma.com/pg0kz4cd' },
     { type: 'panel', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [
         { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey', photo: '/speaker-neha.webp' },
@@ -181,11 +181,6 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '14:35', end: '15:30', sessions: [
-    { type: 'fireside', venue: 'Freshworks Hall', title: 'The Next Big Bet: What Will India Build Next?',
-      speakers: [
-        { name: 'Poorvi Vijay', role: 'AI Investor, Elevation Capital', photo: '/speaker-poorvi.webp' },
-        { name: 'Amrit Raj', role: 'Co-Founder, Women in Product India', photo: '/speaker-amrit.webp' },
-      ], lumaUrl: 'https://luma.com/pg0kz4cd' },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
       speakers: [
         { name: 'Bhavik Kaul', role: 'CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
