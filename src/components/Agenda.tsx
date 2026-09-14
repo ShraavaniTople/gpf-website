@@ -183,7 +183,7 @@ const DAY2: Slot[] = [
   { start: '14:35', end: '15:30', sessions: [
     { type: 'fireside', venue: 'Freshworks Hall', title: 'The Next Big Bet: What Will India Build Next?',
       speakers: [
-        { name: 'Poorvi Vijay', role: 'Elevation Capital', photo: null },
+        { name: 'Poorvi Vijay', role: 'Elevation Capital' },
         { name: 'Amrit Raj', role: 'Co-Founder, Women in Product India', photo: '/speaker-amrit.webp' },
       ], lumaUrl: 'https://luma.com/pg0kz4cd' },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
