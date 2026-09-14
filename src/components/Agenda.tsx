@@ -181,10 +181,10 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '14:35', end: '15:30', sessions: [
-    { type: 'panel', venue: 'Freshworks Hall', title: 'VC Panel',
+    { type: 'fireside', venue: 'Freshworks Hall', title: 'The Next Big Bet: What Will India Build Next?',
       speakers: [
-        { name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' },
-        { name: 'Amrit Raj', role: 'Co-Founder, Women in Product India · Moderator', photo: '/speaker-amrit.webp' },
+        { name: 'Poorvi Vijay', role: 'Elevation Capital', photo: null },
+        { name: 'Amrit Raj', role: 'Co-Founder, Women in Product India', photo: '/speaker-amrit.webp' },
       ], lumaUrl: 'https://luma.com/pg0kz4cd' },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
       speakers: [
@@ -304,7 +304,7 @@ function SessionCard({ session }: { session: Session }) {
         </p>
       )}
       <TypeBadge type={session.type} />
-      <h3 className="font-display font-semibold mt-3 leading-snug flex-1"
+      <h3 className="font-display font-semibold mt-3 leading-snug"
         style={{ fontSize: 'clamp(14px,1.5vw,17px)', color: '#ECEAF8', letterSpacing: '-0.02em' }}>
         {session.title}
       </h3>
