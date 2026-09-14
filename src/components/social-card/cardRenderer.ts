@@ -106,7 +106,7 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
 
 async function drawGpfLogo(ctx: CanvasRenderingContext2D, x: number, y: number, h: number) {
   try {
-    const img = await loadImg('/gpf-logo.png')
+    const img = await loadImg('/gpf-logo-v2.png')
     ctx.drawImage(img, x, y, (img.width / img.height) * h, h)
   } catch {
     ctx.font = font(28, 700); ctx.fillStyle = '#7C3AED'
@@ -138,7 +138,7 @@ async function drawHeader(ctx: CanvasRenderingContext2D, t: T) {
   const LOGO_CY = TOP_BAR + Math.round((HEADER_H - TOP_BAR - 2) / 2)
 
   try {
-    const gpf = await loadImg('/gpf-logo.png')
+    const gpf = await loadImg('/gpf-logo-v2.png')
     const gpfW = Math.round((gpf.width / gpf.height) * LOGO_H)
     ctx.drawImage(gpf, Math.round(W / 2 - gpfW / 2), LOGO_CY - LOGO_H / 2, gpfW, LOGO_H)
   } catch {
@@ -321,7 +321,7 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   const WIP_H  = P ? 116 : 100
 
   const [gpfImg, wipImg] = await Promise.all([
-    loadImg('/gpf-logo.png').catch(() => null),
+    loadImg('/gpf-logo-v2.png').catch(() => null),
     loadImg('/wip-logo.png').catch(() => null),
   ])
 
