@@ -396,7 +396,7 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   const TITLE_SZ = P ? 26 : 22
   if (opts.title.trim()) {
     y += P ? 18 : 14
-    ctx.font = font(TITLE_SZ, 400, 'Inter'); ctx.fillStyle = '#E8E6F4'
+    ctx.font = font(TITLE_SZ, 400, 'Inter'); ctx.fillStyle = '#FFFFFF'
     ctx.fillText(opts.title.trim(), cx, y + Math.round(TITLE_SZ * 0.72))
     y += TITLE_SZ + (P ? 22 : 18)
   } else {
@@ -433,7 +433,7 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
   // Venue
   const VENUE_SZ = P ? 26 : 22
   y += P ? 16 : 14
-  ctx.font = font(VENUE_SZ, 400, 'Inter'); ctx.fillStyle = '#E8E6F4'
+  ctx.font = font(VENUE_SZ, 400, 'Inter'); ctx.fillStyle = '#FFFFFF'
   ctx.fillText(EVENT.city, cx, y + Math.round(VENUE_SZ * 0.72))
   y += VENUE_SZ
 
