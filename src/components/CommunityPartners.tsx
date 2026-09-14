@@ -1,21 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 
 const partners = [
-  { name: 'AI House',               slug: 'ai-house',          h: 48 },
-  { name: 'AIC Mumbai',             slug: 'aic-mumbai',        h: 56 },
+  { name: 'AI House',               slug: 'ai-house' },
+  { name: 'AIC Mumbai',             slug: 'aic-mumbai' },
   { name: 'AnitaB.org',            slug: 'anita-b' },
-  { name: 'Coding Ninjas',         slug: 'coding-ninjas',     h: 80 },
+  { name: 'Coding Ninjas',         slug: 'coding-ninjas' },
   { name: 'FFDG Mumbai',           slug: 'ffdg-mumbai' },
-  { name: 'FOF Mumbai',            slug: 'fof-mumbai',        h: 64 },
+  { name: 'FOF Mumbai',            slug: 'fof-mumbai' },
   { name: 'Founder Startup House', slug: 'founder-startup-house' },
-  { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai',  h: 64 },
+  { name: 'GDG Cloud Mumbai',      slug: 'gdg-cloud-mumbai' },
   { name: 'HerKey',                slug: 'herkey' },
-  { name: 'Women in Tech India',   slug: 'women-in-tech-india', h: 96 },
-  { name: 'Startups Life',         slug: 'startups-life',       h: 56 },
-  { name: 'Unwind Ventures',       slug: 'unwind-ventures',     h: 120 },
-  { name: 'IncX',                  slug: 'incx',                h: 56 },
-  { name: 'Aspire for Her',        slug: 'aspire-for-her',      h: 64 },
-  { name: 'HSRFC',                 slug: 'hsrfc',               h: 64 },
+  { name: 'Women in Tech India',   slug: 'women-in-tech-india' },
+  { name: 'Startups Life',         slug: 'startups-life' },
+  { name: 'Unwind Ventures',       slug: 'unwind-ventures' },
+  { name: 'IncX',                  slug: 'incx' },
+  { name: 'Aspire for Her',        slug: 'aspire-for-her' },
+  { name: 'HSRFC',                 slug: 'hsrfc' },
+  { name: 'AWFK',                  slug: 'awfk' },
 ]
 
 function useVis(delay = 0) {
@@ -31,7 +32,7 @@ function useVis(delay = 0) {
   return ref
 }
 
-function PartnerLogo({ name, slug, h = 40 }: { name: string; slug: string; h?: number }) {
+function PartnerLogo({ name, slug }: { name: string; slug: string }) {
   const [tried, setTried] = useState<'webp' | 'png' | 'svg' | 'failed'>('webp')
 
   const src = tried === 'webp' ? `/community/${slug}.webp` : tried === 'png' ? `/community/${slug}.png` : `/community/${slug}.svg`
@@ -45,14 +46,14 @@ function PartnerLogo({ name, slug, h = 40 }: { name: string; slug: string; h?: n
   return (
     <div
       className="flex items-center justify-center rounded-2xl"
-      style={{ background: '#0E0C22', border: '1px solid #1C1A32', padding: '16px 12px', minHeight: 88 }}
+      style={{ background: '#0E0C22', border: '1px solid #1C1A32', padding: '20px 16px', height: 108 }}
     >
       {tried !== 'failed' ? (
         <img
           src={src}
           alt={name}
           onError={handleError}
-          style={{ height: 'auto', maxHeight: h, width: 'auto', maxWidth: '100%', objectFit: 'contain', opacity: 0.9 }}
+          style={{ maxHeight: 64, maxWidth: '85%', width: 'auto', height: 'auto', objectFit: 'contain', opacity: 0.9 }}
         />
       ) : (
         <span className="font-display font-semibold text-sm text-center" style={{ color: '#6B7280', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
