@@ -41,6 +41,7 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   INCX25:     { label: 'IncX community · 25% off', pct: 25 },
   ACCIO25:    { label: 'Accio community · 25% off', pct: 25 },
   AFH25:      { label: 'Aspire for Her community · 25% off', pct: 25 },
+  HSRFC25:    { label: 'HSR Founders Club community · 25% off', pct: 25 },
   // Group discount — 40% off, requires 3+ passes
   GROUP40:    { label: 'Group discount · 40% off', pct: 40, minQty: 3 },
   // Full comp
