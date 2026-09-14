@@ -20,7 +20,7 @@ export interface RenderOptions {
 const W            = 1080
 const PAD          = 64
 const TOP_BAR      = 6    // gradient bar at very top
-const LOGO_ZONE_H  = 152  // logo header zone height (below top bar)
+const LOGO_ZONE_H  = 196  // logo header zone height (below top bar)
 const BOT_BAR      = 6    // gradient bar at very bottom
 // Legacy - kept so TypeScript is happy; unified layout derives its own zones
 const HEADER_H = TOP_BAR + LOGO_ZONE_H + 2
@@ -317,8 +317,8 @@ async function renderUnified(ctx: CanvasRenderingContext2D, opts: RenderOptions)
 
   // Header logos: TGPF left, WiP right — directly on dark background
   const LOGO_CY_ROW = TOP_BAR + Math.round(LOGO_ZONE_H / 2)
-  const TGPF_H = P ? 108 : 90
-  const WIP_H  = P ? 78 : 66
+  const TGPF_H = P ? 148 : 128
+  const WIP_H  = P ? 116 : 100
 
   const [gpfImg, wipImg] = await Promise.all([
     loadImg('/gpf-logo.png').catch(() => null),
