@@ -300,6 +300,149 @@ function buildReceiptHtml(p: {
 </html>`
 }
 
+function buildCorporateInvoiceHtml(p: {
+  attendee_name: string; attendee_email: string; attendee_phone: string; attendee_role: string
+  bill_to_company: string; bill_to_address: string; gst_number: string
+  pass_type: string; qty: number; amount: string
+  payment_id: string; pass_number: string; is_unpaid: boolean
+}) {
+  const total = Number(p.amount) || 0
+  const unitPrice = p.qty > 1 ? Math.round(total / p.qty) : total
+  const now = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })
+  const invoiceNo = 'TGPF-INV-' + p.pass_number
+
+  const statusBadge = p.is_unpaid
+    ? '<p style="margin:0 0 8px;background:#FEF3C7;border-radius:14px;padding:7px 16px;font-size:13px;font-weight:700;color:#92400E;text-align:right;">&#9203; PAYMENT DUE</p>'
+    + '<p style="margin:0;font-size:12px;color:#475569;text-align:right;">Awaiting payment</p>'
+    : '<p style="margin:0 0 8px;background:#DCFCE7;border-radius:14px;padding:7px 16px;font-size:13px;font-weight:700;color:#15803D;text-align:right;">&#10003; PAID</p>'
+    + '<p style="margin:4px 0 2px;font-size:12px;color:#475569;text-align:right;">Via: <strong style="color:#1E1B4B;">Razorpay</strong></p>'
+    + '<p style="margin:0;font-size:12px;color:#475569;text-align:right;">Currency: <strong style="color:#1E1B4B;">INR</strong></p>'
+
+  const paymentIdRow = p.is_unpaid
+    ? '<p style="margin:0 0 2px;font-size:10px;color:#64748B;">Payment ID: <strong style="color:#92400E;">Pending</strong></p>'
+    : '<p style="margin:0 0 2px;font-size:10px;color:#64748B;">Payment ID:</p><p style="margin:0;font-size:10px;font-weight:700;color:#1E1B4B;font-family:monospace;word-break:break-all;">' + p.payment_id + '</p>'
+
+  const totalRow = p.is_unpaid
+    ? '<td align="right" style="padding:14px 10px;font-size:17px;font-weight:800;color:#92400E;">&#8377;' + total.toLocaleString('en-IN') + ' DUE</td>'
+    : '<td align="right" style="padding:14px 10px;font-size:17px;font-weight:800;color:#5B21B6;">&#8377;' + total.toLocaleString('en-IN') + '</td>'
+
+  const roleRow   = p.attendee_role  ? '<p style="margin:0 0 2px;font-size:12px;color:#475569;">' + p.attendee_role  + '</p>' : ''
+  const phoneRow  = p.attendee_phone ? '<p style="margin:0;font-size:12px;color:#475569;">'        + p.attendee_phone + '</p>' : ''
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Invoice — TGPF 2026</title></head>
+<body style="margin:0;padding:0;background:#F1F5F9;font-family:'Helvetica Neue',Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F1F5F9;padding:32px 12px;">
+<tr><td align="center">
+<table cellpadding="0" cellspacing="0" border="0" style="max-width:580px;width:100%;background:#FFFFFF;border-radius:4px;border:1px solid #E2E8F0;">
+
+  <tr><td height="6" style="background:linear-gradient(90deg,#7C3AED,#A78BFA,#F59E0B);border-radius:4px 4px 0 0;"></td></tr>
+
+  <!-- Header -->
+  <tr><td style="padding:28px 32px 20px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td valign="top" width="50%">
+        <p style="margin:0 0 2px;font-size:16px;font-weight:800;color:#1E1B4B;">Women in Product India</p>
+        <p style="margin:0 0 1px;font-size:11px;color:#64748B;">The Great Product Festival 2026</p>
+        <p style="margin:0;font-size:11px;color:#64748B;">hello@womeninproductindia.com</p>
+      </td>
+      <td valign="top" align="right" width="50%" style="padding-left:12px;">
+        <p style="margin:0 0 4px;font-size:20px;font-weight:800;color:#1E1B4B;">INVOICE</p>
+        <p style="margin:0 0 2px;font-size:10px;color:#64748B;">Invoice No:</p>
+        <p style="margin:0 0 4px;font-size:10px;font-weight:700;color:#1E1B4B;font-family:monospace;word-break:break-all;">${invoiceNo}</p>
+        <p style="margin:0 0 4px;font-size:10px;color:#64748B;">Date: <strong style="color:#1E1B4B;">${now}</strong></p>
+        ${paymentIdRow}
+      </td>
+    </tr></table>
+  </td></tr>
+
+  <tr><td style="padding:0 32px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="1" style="background:#E2E8F0;"></td></tr></table></td></tr>
+
+  <!-- Billed To + Status -->
+  <tr><td style="padding:20px 32px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td valign="top" width="55%" style="padding-right:16px;">
+        <p style="margin:0 0 8px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Billed To</p>
+        <p style="margin:0 0 3px;font-size:14px;font-weight:700;color:#1E1B4B;">${p.bill_to_company}</p>
+        <p style="margin:0 0 6px;font-size:11px;color:#475569;line-height:1.6;">${p.bill_to_address.replace(/,\s*/g, ',<br/>')}</p>
+        <p style="margin:0;font-size:11px;color:#475569;">GST: <strong style="color:#1E1B4B;font-family:monospace;">${p.gst_number}</strong></p>
+      </td>
+      <td valign="top" width="45%" style="padding-left:4px;">
+        <p style="margin:0 0 8px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Payment Status</p>
+        ${statusBadge}
+      </td>
+    </tr></table>
+  </td></tr>
+
+  <!-- Attendee -->
+  <tr><td style="padding:0 32px 20px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F8FAFC;border-radius:8px;padding:14px 16px;">
+      <tr><td>
+        <p style="margin:0 0 6px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Attendee</p>
+        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#1E1B4B;">${p.attendee_name}</p>
+        ${roleRow}
+        <p style="margin:0 0 2px;font-size:12px;color:#475569;word-break:break-all;">${p.attendee_email}</p>
+        ${phoneRow}
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <tr><td style="padding:0 32px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="1" style="background:#E2E8F0;"></td></tr></table></td></tr>
+
+  <!-- Line items -->
+  <tr><td style="padding:0 32px 20px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+      <tr style="background:#F8FAFC;">
+        <td width="50%" style="padding:9px 10px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Item</td>
+        <td width="10%" align="center" style="padding:9px 6px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Qty</td>
+        <td width="18%" align="right" style="padding:9px 6px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Rate</td>
+        <td width="22%" align="right" style="padding:9px 10px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Amount</td>
+      </tr>
+      <tr>
+        <td valign="top" style="padding:14px 10px 10px;border-bottom:1px solid #F1F5F9;">
+          <p style="margin:0 0 3px;font-size:13px;font-weight:600;color:#1E1B4B;">${p.pass_type}</p>
+          <p style="margin:0 0 2px;font-size:10px;color:#94A3B8;">The Great Product Festival 2026</p>
+          <p style="margin:0 0 2px;font-size:10px;color:#94A3B8;">25&ndash;26 Sept 2026 &middot; Freshworks, Bangalore</p>
+          <p style="margin:0;font-size:10px;color:#94A3B8;word-break:break-all;">Pass: ${p.pass_number}</p>
+        </td>
+        <td align="center" valign="top" style="padding:14px 6px 10px;font-size:13px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${p.qty}</td>
+        <td align="right" valign="top" style="padding:14px 6px 10px;font-size:13px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">&#8377;${unitPrice.toLocaleString('en-IN')}</td>
+        <td align="right" valign="top" style="padding:14px 10px 10px;font-size:13px;font-weight:600;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">&#8377;${total.toLocaleString('en-IN')}</td>
+      </tr>
+      <tr>
+        <td colspan="3" align="right" style="padding:10px 6px 3px;font-size:11px;color:#64748B;">Subtotal</td>
+        <td align="right" style="padding:10px 10px 3px;font-size:11px;color:#1E1B4B;">&#8377;${total.toLocaleString('en-IN')}</td>
+      </tr>
+      <tr>
+        <td colspan="3" align="right" style="padding:3px 6px 10px;font-size:11px;color:#64748B;">GST</td>
+        <td align="right" style="padding:3px 10px 10px;font-size:11px;color:#1E1B4B;">Inclusive</td>
+      </tr>
+      <tr style="background:#F5F3FF;">
+        <td colspan="3" align="right" style="padding:14px 6px;font-size:13px;font-weight:700;color:#1E1B4B;">${p.is_unpaid ? 'Amount Due' : 'Total Paid'}</td>
+        ${totalRow}
+      </tr>
+    </table>
+  </td></tr>
+
+  <tr><td style="padding:0 32px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="1" style="background:#E2E8F0;"></td></tr></table></td></tr>
+
+  <tr><td style="padding:20px 32px 28px;">
+    <p style="margin:0 0 3px;font-size:10px;color:#94A3B8;">Issued by: Women in Product India</p>
+    <p style="margin:0 0 3px;font-size:10px;color:#94A3B8;">Event: The Great Product Festival 2026</p>
+    <p style="margin:0 0 10px;font-size:10px;color:#94A3B8;">Contact: hello@womeninproductindia.com</p>
+    <p style="margin:0;font-size:10px;color:#CBD5E1;">This is an official invoice. Please retain for your records.</p>
+  </td></tr>
+
+  <tr><td height="6" style="background:linear-gradient(90deg,#7C3AED,#A78BFA,#F59E0B);border-radius:0 0 4px 4px;"></td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>`
+}
+
 async function logToSheets(sheet: string, data: Record<string, string>) {
   const url = process.env.SHEETS_WEBHOOK
   if (!url) return
@@ -315,9 +458,48 @@ async function logToSheets(sheet: string, data: Record<string, string>) {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
-  const { to_email, to_name, company, role, phone, pass_type, amount, payment_id, pass_number, event_date, event_city, qty, discount_code } = req.body
+  const {
+    to_email, to_name, company, role, phone, pass_type, amount, payment_id, pass_number,
+    event_date, event_city, qty, discount_code,
+    invoice_only, bill_to_company, bill_to_address, gst_number, is_unpaid,
+  } = req.body
 
   if (!to_email || !to_name || !pass_number) return res.status(400).json({ error: 'Missing required fields' })
+
+  // Corporate invoice-only mode (no pass email, billed to company)
+  if (invoice_only) {
+    const fromAddress = process.env.RESEND_FROM_EMAIL ?? 'TGPF 2026 <tickets@thegreatproductfestival.com>'
+    const subject = is_unpaid
+      ? `Invoice — TGPF 2026 Premium Pass [${pass_number}] — Payment Due`
+      : `Invoice — TGPF 2026 Premium Pass [${pass_number}]`
+    try {
+      await resend.emails.send({
+        from:     fromAddress,
+        to:       [to_email],
+        reply_to: 'hello@womeninproductindia.com',
+        subject,
+        html: buildCorporateInvoiceHtml({
+          attendee_name:  to_name,
+          attendee_email: to_email,
+          attendee_phone: phone || '',
+          attendee_role:  role  || '',
+          bill_to_company: bill_to_company || company || '',
+          bill_to_address: bill_to_address || '',
+          gst_number:      gst_number     || '',
+          pass_type,
+          qty:       Number(qty) || 1,
+          amount:    amount || '0',
+          payment_id: payment_id || '',
+          pass_number,
+          is_unpaid: !!is_unpaid,
+        }),
+      })
+      return res.status(200).json({ ok: true })
+    } catch (err) {
+      console.error('Invoice email error:', err)
+      return res.status(500).json({ error: 'Failed to send invoice' })
+    }
+  }
 
   const fromAddress = process.env.RESEND_FROM_EMAIL ?? 'TGPF 2026 <tickets@thegreatproductfestival.com>'
   const isPaid = amount && amount !== 'Complimentary' && amount !== '0' && Number(amount) !== 0
