@@ -44,6 +44,7 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   HSRFC25:    { label: 'HSR Founders Club community · 25% off', pct: 25 },
   AWFK25:     { label: 'AWFK community · 25% off', pct: 25 },
   WIBD25:     { label: 'Women in Big Data India · 25% off', pct: 25 },
+  TBC25:      { label: 'The Builders Club community · 25% off', pct: 25 },
   // Group discount — 40% off, requires 3+ passes
   GROUP40:    { label: 'Group discount · 40% off', pct: 40, minQty: 3 },
   // Full comp
