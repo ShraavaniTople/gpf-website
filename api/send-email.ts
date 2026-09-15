@@ -327,9 +327,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       from:     fromAddress,
       to:       [to_email],
       reply_to: 'hello@womeninproductindia.com',
-      subject:  isPaid
-        ? `Payment confirmed — your ${pass_type} for GPF 2026 🎉`
-        : `Your ${pass_type} for GPF 2026 is confirmed ✓`,
+      subject:  `You're in! Your ${pass_type} for TGPF 2026 is confirmed`,
       html: buildCombinedHtml({ to_name, company, pass_type, amount, payment_id, pass_number, event_date, event_city }),
     }),
     logToSheets('Tickets', {
@@ -349,9 +347,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       from:     fromAddress,
       to:       [to_email],
       reply_to: 'hello@womeninproductindia.com',
-      subject:  isPaid
-        ? `Your payment receipt — TGPF 2026 (${pass_number})`
-        : `Your pass confirmation receipt — TGPF 2026 (${pass_number})`,
+      subject:  `Invoice & Receipt — TGPF 2026 [${pass_number}]`,
       html: buildReceiptHtml({
         to_name, to_email,
         phone:         phone || '',
