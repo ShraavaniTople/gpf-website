@@ -162,7 +162,8 @@ function buildReceiptHtml(p: {
   pass_type: string; qty: number; amount: string; payment_id: string
   pass_number: string; discount_code: string
 }) {
-  const total = Number(p.amount) || 0
+  const isComp = !p.amount || p.amount === 'Complimentary' || p.amount === '0' || Number(p.amount) === 0
+  const total = isComp ? 0 : Number(p.amount)
   const unitPrice = p.qty > 1 ? Math.round(total / p.qty) : total
   const now = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })
   const receiptNo = `TGPF-RCP-${p.pass_number}`
@@ -212,12 +213,16 @@ function buildReceiptHtml(p: {
       <td valign="top" width="45%" align="right">
         <p style="margin:0 0 10px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Payment Status</p>
         <table cellpadding="0" cellspacing="0" border="0" align="right">
-          <tr><td style="background:#DCFCE7;border-radius:20px;padding:6px 18px;">
-            <p style="margin:0;font-size:13px;font-weight:700;color:#15803D;">✓ &nbsp;PAID</p>
-          </td></tr>
+          ${isComp
+            ? `<tr><td style="background:#EFF6FF;border-radius:20px;padding:6px 18px;"><p style="margin:0;font-size:13px;font-weight:700;color:#1D4ED8;">✓ &nbsp;CONFIRMED</p></td></tr>`
+            : `<tr><td style="background:#DCFCE7;border-radius:20px;padding:6px 18px;"><p style="margin:0;font-size:13px;font-weight:700;color:#15803D;">✓ &nbsp;PAID</p></td></tr>`
+          }
         </table>
-        <p style="margin:14px 0 2px;font-size:12px;color:#475569;">Via: <strong style="color:#1E1B4B;">Razorpay</strong></p>
-        <p style="margin:0;font-size:12px;color:#475569;">Currency: <strong style="color:#1E1B4B;">INR</strong></p>
+        ${isComp
+          ? `<p style="margin:14px 0 0;font-size:12px;color:#475569;">Type: <strong style="color:#1E1B4B;">Complimentary</strong></p>`
+          : `<p style="margin:14px 0 2px;font-size:12px;color:#475569;">Via: <strong style="color:#1E1B4B;">Razorpay</strong></p>
+        <p style="margin:0;font-size:12px;color:#475569;">Currency: <strong style="color:#1E1B4B;">INR</strong></p>`
+        }
       </td>
     </tr></table>
   </td></tr>
@@ -240,20 +245,20 @@ function buildReceiptHtml(p: {
           <p style="margin:2px 0 0;font-size:11px;color:#94A3B8;">Pass No: ${p.pass_number}</p>
         </td>
         <td align="center" style="padding:16px 14px 12px;font-size:14px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${p.qty}</td>
-        <td align="right" style="padding:16px 14px 12px;font-size:14px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">₹${unitPrice.toLocaleString('en-IN')}</td>
-        <td align="right" style="padding:16px 14px 12px;font-size:14px;font-weight:600;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">₹${total.toLocaleString('en-IN')}</td>
+        <td align="right" style="padding:16px 14px 12px;font-size:14px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${isComp ? '—' : '₹' + unitPrice.toLocaleString('en-IN')}</td>
+        <td align="right" style="padding:16px 14px 12px;font-size:14px;font-weight:600;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${isComp ? 'Complimentary' : '₹' + total.toLocaleString('en-IN')}</td>
       </tr>
       ${p.discount_code ? `<tr>
         <td colspan="3" style="padding:8px 14px;font-size:12px;color:#16A34A;border-bottom:1px solid #F1F5F9;">Discount Code: ${p.discount_code}</td>
         <td align="right" style="padding:8px 14px;font-size:12px;color:#16A34A;border-bottom:1px solid #F1F5F9;">Applied</td>
       </tr>` : ''}
       <!-- Subtotal -->
-      <tr><td colspan="3" align="right" style="padding:12px 14px 4px;font-size:12px;color:#64748B;">Subtotal</td><td align="right" style="padding:12px 14px 4px;font-size:12px;color:#1E1B4B;">₹${total.toLocaleString('en-IN')}</td></tr>
-      <tr><td colspan="3" align="right" style="padding:4px 14px;font-size:12px;color:#64748B;">Tax</td><td align="right" style="padding:4px 14px;font-size:12px;color:#1E1B4B;">Inclusive</td></tr>
+      <tr><td colspan="3" align="right" style="padding:12px 14px 4px;font-size:12px;color:#64748B;">Subtotal</td><td align="right" style="padding:12px 14px 4px;font-size:12px;color:#1E1B4B;">${isComp ? 'Complimentary' : '₹' + total.toLocaleString('en-IN')}</td></tr>
+      <tr><td colspan="3" align="right" style="padding:4px 14px;font-size:12px;color:#64748B;">Tax</td><td align="right" style="padding:4px 14px;font-size:12px;color:#1E1B4B;">${isComp ? '—' : 'Inclusive'}</td></tr>
       <!-- Total -->
       <tr style="background:#F5F3FF;">
-        <td colspan="3" align="right" style="padding:14px 14px;font-size:14px;font-weight:700;color:#1E1B4B;">Total Paid</td>
-        <td align="right" style="padding:14px 14px;font-size:20px;font-weight:800;color:#5B21B6;">₹${total.toLocaleString('en-IN')}</td>
+        <td colspan="3" align="right" style="padding:14px 14px;font-size:14px;font-weight:700;color:#1E1B4B;">${isComp ? 'Total' : 'Total Paid'}</td>
+        <td align="right" style="padding:14px 14px;font-size:20px;font-weight:800;color:#5B21B6;">${isComp ? 'Complimentary' : '₹' + total.toLocaleString('en-IN')}</td>
       </tr>
     </table>
   </td></tr>
@@ -329,28 +334,28 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }),
   ]
 
-  if (isPaid) {
-    emails.push(
-      resend.emails.send({
-        from:     fromAddress,
-        to:       [to_email],
-        reply_to: 'hello@womeninproductindia.com',
-        subject:  `Your payment receipt — TGPF 2026 (${pass_number})`,
-        html: buildReceiptHtml({
-          to_name, to_email,
-          phone:         phone || '',
-          company:       company || '—',
-          role:          role || '',
-          pass_type,
-          qty:           Number(qty) || 1,
-          amount,
-          payment_id,
-          pass_number,
-          discount_code: discount_code || '',
-        }),
-      })
-    )
-  }
+  emails.push(
+    resend.emails.send({
+      from:     fromAddress,
+      to:       [to_email],
+      reply_to: 'hello@womeninproductindia.com',
+      subject:  isPaid
+        ? `Your payment receipt — TGPF 2026 (${pass_number})`
+        : `Your pass confirmation receipt — TGPF 2026 (${pass_number})`,
+      html: buildReceiptHtml({
+        to_name, to_email,
+        phone:         phone || '',
+        company:       company || '—',
+        role:          role || '',
+        pass_type,
+        qty:           Number(qty) || 1,
+        amount:        amount || '0',
+        payment_id,
+        pass_number,
+        discount_code: discount_code || '',
+      }),
+    })
+  )
 
   try {
     await Promise.all(emails)
