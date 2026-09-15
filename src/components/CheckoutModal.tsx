@@ -64,23 +64,28 @@ function loadRazorpay(): Promise<boolean> {
 
 // ─── Send confirmation email to buyer ────────────────────────────────────────
 async function sendConfirmationEmail(params: {
-  name: string; email: string; company: string
+  name: string; email: string; phone?: string; company: string; role?: string
   tierName: string; amount: string; paymentId: string; passNumber: string
+  qty?: number; discountCode?: string
 }) {
   try {
     await fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        to_email:    params.email,
-        to_name:     params.name,
-        company:     params.company || '—',
-        pass_type:   params.tierName + ' Pass',
-        amount:      params.amount,
-        payment_id:  params.paymentId,
-        pass_number: params.passNumber,
-        event_date:  '25-26 Sept 2026',
-        event_city:  'RMZ Ecoworld, Bangalore',
+        to_email:       params.email,
+        to_name:        params.name,
+        phone:          params.phone || '',
+        company:        params.company || '—',
+        role:           params.role || '',
+        pass_type:      params.tierName + ' Pass',
+        amount:         params.amount,
+        payment_id:     params.paymentId,
+        pass_number:    params.passNumber,
+        event_date:     '25-26 Sept 2026',
+        event_city:     'RMZ Ecoworld, Bangalore',
+        qty:            params.qty || 1,
+        discount_code:  params.discountCode || '',
       }),
     })
   } catch { /* email failure is silent — pass is shown on screen */ }
@@ -416,11 +421,11 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       setPaymentId(pid)
       setSuccess(true)
       setPaying(false)
-      const sent = await sendConfirmationEmail({ name: fullName, email: details.email, company: details.company, tierName, amount: amountStr, paymentId: pid, passNumber: pn })
+      const sent = await sendConfirmationEmail({ name: fullName, email: details.email, phone: details.phone, company: details.company, role: details.role, tierName, amount: amountStr, paymentId: pid, passNumber: pn, qty, discountCode: applied?.code || '' })
       if (sent !== undefined) setEmailSent(true)
       for (let i = 0; i < memberDetails.length; i++) {
         const m = memberDetails[i]
-        await sendConfirmationEmail({ name: `${m.firstName} ${m.lastName}`, email: m.email, company: m.company, tierName, amount: amountStr, paymentId: pid, passNumber: `${pn}-${i + 2}` })
+        await sendConfirmationEmail({ name: `${m.firstName} ${m.lastName}`, email: m.email, phone: m.phone, company: m.company, role: m.role, tierName, amount: amountStr, paymentId: pid, passNumber: `${pn}-${i + 2}`, qty: 1, discountCode: applied?.code || '' })
       }
       const memberSummary = memberDetails.map((m, i) => `Member ${i + 2}: ${m.firstName} ${m.lastName} | ${m.email} | ${m.phone} | ${m.company} | ${m.role} | ${m.linkedin}`).join('\n')
       submitPassToWeb3Forms({ name: fullName, email: details.email, phone: details.phone, company: details.company, role: details.role, linkedin: details.linkedin, tierName, qty, amount: amountStr, paymentId: pid, passNumber: pn, discountCode: applied?.code || '', consentToShare: consent, memberSummary })
@@ -451,11 +456,11 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
         setPaymentId(pid)
         setSuccess(true)
         setPaying(false)
-        const sent = await sendConfirmationEmail({ name: fullName, email: details.email, company: details.company, tierName, amount: amountStr, paymentId: pid, passNumber: pn })
+        const sent = await sendConfirmationEmail({ name: fullName, email: details.email, phone: details.phone, company: details.company, role: details.role, tierName, amount: amountStr, paymentId: pid, passNumber: pn, qty, discountCode: applied?.code || '' })
         if (sent !== undefined) setEmailSent(true)
         for (let i = 0; i < memberDetails.length; i++) {
           const m = memberDetails[i]
-          await sendConfirmationEmail({ name: `${m.firstName} ${m.lastName}`, email: m.email, company: m.company, tierName, amount: amountStr, paymentId: pid, passNumber: `${pn}-${i + 2}` })
+          await sendConfirmationEmail({ name: `${m.firstName} ${m.lastName}`, email: m.email, phone: m.phone, company: m.company, role: m.role, tierName, amount: amountStr, paymentId: pid, passNumber: `${pn}-${i + 2}`, qty: 1, discountCode: applied?.code || '' })
         }
         const memberSummary = memberDetails.map((m, i) => `Member ${i + 2}: ${m.firstName} ${m.lastName} | ${m.email} | ${m.phone} | ${m.company} | ${m.role} | ${m.linkedin}`).join('\n')
         submitPassToWeb3Forms({ name: fullName, email: details.email, phone: details.phone, company: details.company, role: details.role, linkedin: details.linkedin, tierName, qty, amount: amountStr, paymentId: pid, passNumber: pn, discountCode: applied?.code || '', consentToShare: consent, memberSummary })
