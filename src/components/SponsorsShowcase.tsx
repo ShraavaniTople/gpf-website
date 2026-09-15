@@ -34,7 +34,7 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Presented by</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
               <img src="/wip-logo.webp" alt="Women in Product India"
-                style={{ height: 72, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
+                style={{ height: 56, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
 
@@ -43,7 +43,7 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Powered by</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
               <img src="/logos/freshworks-full.webp" alt="Freshworks"
-                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
+                style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
 
@@ -52,7 +52,7 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-powered by</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
               <img src="/logos/toast.webp" alt="Toast"
-                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
+                style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
 
@@ -61,47 +61,47 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Associate partner</p>
             <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
               <img src="/logos/databricks.webp" alt="Databricks"
-                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
+                style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
           </div>
 
-          {/* Strategic partner — KDEM */}
-          <div className="flex flex-col items-center gap-2 w-full">
-            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Strategic partner</p>
-            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
-              <img src="/logos/kdem.webp" alt="Karnataka Digital Economy Mission"
-                style={{ height: 72, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
-            </div>
-          </div>
-
-          {/* Gifting partner — Lamhenow */}
-          <div className="flex flex-col items-center gap-2 w-full">
-            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Gifting partner</p>
-            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
-              <img src="/logos/lamhenow.webp" alt="Lamhenow"
-                style={{ height: 52, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
-            </div>
-          </div>
-
-          {/* Supported by — all hackathon partners */}
+          {/* Supported by — hackathon partners */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
               {[
-                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 32 },
-                { src: '/logos/anthropic-v2.webp',       alt: 'Anthropic',     h: 28 },
-                { src: '/logos/aws.webp',             alt: 'AWS',           h: 36 },
-                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 28 },
-                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 22 },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 52 },
-              ].map(({ src, alt, h, f }: { src: string; alt: string; h: number; f?: string }) => (
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam' },
+                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic' },
+                { src: '/logos/aws.webp',             alt: 'AWS' },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments' },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs' },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz' },
+              ].map(({ src, alt }) => (
                 <div key={alt} className="flex items-center justify-center rounded-2xl px-4 py-5"
                   style={{ background: '#0E0C22', border: '1px solid #1C1A32' }}>
                   <img src={src} alt={alt}
-                    style={{ display: 'block', height: h, width: 'auto', maxWidth: '100%', objectFit: 'contain', filter: f }} />
+                    style={{ display: 'block', height: 28, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Strategic + Gifting + Snacking partners — one row */}
+          <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
+            {[
+              { label: 'Strategic partner', src: '/logos/kdem.webp',      alt: 'Karnataka Digital Economy Mission', h: 44 },
+              { label: 'Gifting partner',   src: '/logos/lamhenow.webp',  alt: 'Lamhenow',                         h: 32 },
+              { label: 'Snacking partner',  src: '/logos/brb.png',        alt: 'BRB',                              h: 44 },
+            ].map(({ label, src, alt, h }) => (
+              <div key={alt} className="flex flex-col items-center gap-2">
+                <p className="font-mono text-[10px] uppercase tracking-[.18em] text-center" style={{ color: '#52506A' }}>{label}</p>
+                <div className="flex items-center justify-center rounded-2xl px-4 py-5 w-full"
+                  style={{ background: '#0E0C22', border: '1px solid #1C1A32' }}>
+                  <img src={src} alt={alt}
+                    style={{ display: 'block', height: h, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>
