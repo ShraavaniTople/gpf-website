@@ -17,7 +17,7 @@ const partners = [
   { name: 'Aspire for Her',        slug: 'aspire-for-her-v2' },
   { name: 'HSRFC',                 slug: 'hsrfc' },
   { name: 'AWFK',                  slug: 'awfk' },
-  { name: 'Women in Big Data India', slug: 'women-in-big-data-v2' },
+  { name: 'Women in Big Data India', slug: 'women-in-big-data-v2', circleBg: true },
   { name: 'The Builders Club',       slug: 'builders-club' },
 ]
 
@@ -34,7 +34,7 @@ function useVis(delay = 0) {
   return ref
 }
 
-function PartnerLogo({ name, slug }: { name: string; slug: string }) {
+function PartnerLogo({ name, slug, circleBg }: { name: string; slug: string; circleBg?: boolean }) {
   const [tried, setTried] = useState<'webp' | 'png' | 'svg' | 'failed'>('webp')
 
   const src = tried === 'webp' ? `/community/${slug}.webp` : tried === 'png' ? `/community/${slug}.png` : `/community/${slug}.svg`
@@ -48,15 +48,36 @@ function PartnerLogo({ name, slug }: { name: string; slug: string }) {
   return (
     <div
       className="flex items-center justify-center rounded-2xl"
-      style={{ background: '#0E0C22', border: '1px solid #1C1A32', padding: '20px 16px', height: 108 }}
+      style={{ background: '#0E0C22', border: '1px solid #1C1A32', padding: '16px', height: 108 }}
     >
       {tried !== 'failed' ? (
-        <img
-          src={src}
-          alt={name}
-          onError={handleError}
-          style={{ height: 56, width: 'auto', maxWidth: '100%', objectFit: 'contain', opacity: 0.9 }}
-        />
+        circleBg ? (
+          <div style={{
+            background: '#FFFFFF',
+            borderRadius: '50%',
+            width: 76,
+            height: 76,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+            flexShrink: 0,
+          }}>
+            <img
+              src={src}
+              alt={name}
+              onError={handleError}
+              style={{ width: 76, height: 76, objectFit: 'contain' }}
+            />
+          </div>
+        ) : (
+          <img
+            src={src}
+            alt={name}
+            onError={handleError}
+            style={{ height: 64, width: 'auto', maxWidth: '100%', objectFit: 'contain', opacity: 0.9 }}
+          />
+        )
       ) : (
         <span className="font-display font-semibold text-sm text-center" style={{ color: '#6B7280', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
           {name}
