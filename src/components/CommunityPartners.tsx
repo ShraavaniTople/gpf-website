@@ -14,10 +14,10 @@ const partners = [
   { name: 'Startups Life',         slug: 'startups-life' },
   { name: 'Unwind Ventures',       slug: 'unwind-ventures' },
   { name: 'IncX',                  slug: 'incx' },
-  { name: 'Aspire for Her',        slug: 'aspire-for-her' },
+  { name: 'Aspire for Her',        slug: 'aspire-for-her-v2' },
   { name: 'HSRFC',                 slug: 'hsrfc' },
   { name: 'AWFK',                  slug: 'awfk' },
-  { name: 'Women in Big Data India', slug: 'women-in-big-data' },
+  { name: 'Women in Big Data India', slug: 'women-in-big-data-v2' },
   { name: 'The Builders Club',       slug: 'builders-club' },
 ]
 
@@ -55,7 +55,7 @@ function PartnerLogo({ name, slug }: { name: string; slug: string }) {
           src={src}
           alt={name}
           onError={handleError}
-          style={{ maxHeight: 64, maxWidth: '85%', width: 'auto', height: 'auto', objectFit: 'contain', opacity: 0.9 }}
+          style={{ height: 56, width: 'auto', maxWidth: '100%', objectFit: 'contain', opacity: 0.9 }}
         />
       ) : (
         <span className="font-display font-semibold text-sm text-center" style={{ color: '#6B7280', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
