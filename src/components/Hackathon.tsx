@@ -68,7 +68,7 @@ export default function Hackathon() {
               {[
                 { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 28, f: undefined },
                 { src: '/logos/anthropic-v2.webp',       alt: 'Anthropic',     h: 24, f: undefined },
-                { src: '/logos/aws.webp',             alt: 'AWS',           h: 32, f: undefined },
+                { src: '/logos/aws-v3.png',             alt: 'AWS',           h: 32, f: undefined },
                 { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 26, f: undefined },
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 20, f: undefined },
                 { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 28, f: undefined },
