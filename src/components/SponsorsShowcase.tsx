@@ -15,14 +15,12 @@ function useVis(delay = 0) {
 
 const cardStyle = { background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }
 
-// Shared style for the hackathon "supported by" grid — constrains both axes so
-// wide text logos and compact icon logos all occupy similar visual area.
+// Fixed box for every hackathon grid logo — all logos sit in the same 140×36 area,
+// object-fit:contain scales each one to fill it without distortion.
 const gridLogoStyle: React.CSSProperties = {
   display: 'block',
-  width: 'auto',
-  height: 'auto',
-  maxHeight: 30,
-  maxWidth: '80%',
+  width: 140,
+  height: 36,
   objectFit: 'contain',
 }
 
