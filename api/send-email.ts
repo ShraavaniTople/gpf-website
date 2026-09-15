@@ -162,125 +162,121 @@ function buildReceiptHtml(p: {
   pass_type: string; qty: number; amount: string; payment_id: string
   pass_number: string; discount_code: string
 }) {
-  const isPaid = p.amount && p.amount !== '0' && Number(p.amount) !== 0
+  const total = Number(p.amount) || 0
+  const unitPrice = p.qty > 1 ? Math.round(total / p.qty) : total
   const now = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })
-  const receiptNo = `TGPF-${p.pass_number}`
-  const unitPrice = isPaid ? Math.round(Number(p.amount) / p.qty) : 0
-  const total = isPaid ? Number(p.amount) : 0
+  const receiptNo = `TGPF-RCP-${p.pass_number}`
 
   return `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Receipt — TGPF 2026</title></head>
-<body style="margin:0;padding:0;background:#F3F4F6;font-family:'Helvetica Neue',Arial,sans-serif;">
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F3F4F6;padding:40px 16px;">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Payment Receipt — TGPF 2026</title></head>
+<body style="margin:0;padding:0;background:#F1F5F9;font-family:'Helvetica Neue',Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F1F5F9;padding:40px 16px;">
 <tr><td align="center">
-<table width="580" cellpadding="0" cellspacing="0" border="0" style="max-width:580px;width:100%;background:#FFFFFF;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#FFFFFF;border-radius:4px;border:1px solid #E2E8F0;">
 
-  <!-- Header -->
-  <tr><td style="background:#16125A;padding:28px 36px 24px;">
-    <p style="margin:0 0 4px;font-family:monospace;font-size:10px;color:#A78BFA;letter-spacing:0.2em;text-transform:uppercase;">Women in Product India Presents</p>
-    <p style="margin:0;font-size:22px;font-weight:800;color:#FFFFFF;letter-spacing:-0.02em;">The Great Product Festival 2026</p>
-    <p style="margin:6px 0 0;font-size:13px;color:#A78BFA;">25–26 September 2026 · Freshworks, RMZ Ecoworld, Bangalore</p>
-  </td></tr>
+  <!-- Top accent bar -->
+  <tr><td height="6" style="background:linear-gradient(90deg,#7C3AED,#A78BFA,#F59E0B);border-radius:4px 4px 0 0;"></td></tr>
 
-  <!-- Receipt title bar -->
-  <tr><td style="background:#5B21B6;padding:16px 36px;">
+  <!-- Header: Issuer info left, Receipt details right -->
+  <tr><td style="padding:32px 40px 24px;">
     <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-      <td><p style="margin:0;font-size:20px;font-weight:800;color:#FFFFFF;letter-spacing:-0.02em;">Payment Receipt</p></td>
-      <td align="right" valign="middle">
-        <p style="margin:0;font-family:monospace;font-size:11px;color:#C4B5FD;">${receiptNo}</p>
-        <p style="margin:4px 0 0;font-family:monospace;font-size:11px;color:#C4B5FD;">${now}</p>
+      <td valign="top" width="55%">
+        <p style="margin:0 0 2px;font-size:18px;font-weight:800;color:#1E1B4B;letter-spacing:-0.02em;">Women in Product India</p>
+        <p style="margin:0 0 1px;font-size:12px;color:#64748B;">The Great Product Festival 2026</p>
+        <p style="margin:0;font-size:12px;color:#64748B;">hello@womeninproductindia.com</p>
+      </td>
+      <td valign="top" align="right" width="45%">
+        <p style="margin:0 0 4px;font-size:22px;font-weight:800;color:#1E1B4B;letter-spacing:-0.02em;">RECEIPT</p>
+        <p style="margin:0 0 2px;font-size:11px;color:#64748B;">Receipt No: <strong style="color:#1E1B4B;font-family:monospace;">${receiptNo}</strong></p>
+        <p style="margin:0 0 2px;font-size:11px;color:#64748B;">Date: <strong style="color:#1E1B4B;">${now}</strong></p>
+        <p style="margin:0;font-size:11px;color:#64748B;">Payment ID: <strong style="color:#1E1B4B;font-family:monospace;">${p.payment_id}</strong></p>
       </td>
     </tr></table>
   </td></tr>
 
-  <!-- Body -->
-  <tr><td style="padding:32px 36px;">
+  <!-- Divider -->
+  <tr><td style="padding:0 40px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="1" style="background:#E2E8F0;"></td></tr></table></td></tr>
 
-    <!-- Billed To + Payment Info side by side -->
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
-      <tr>
-        <td width="52%" valign="top" style="padding-right:20px;">
-          <p style="margin:0 0 10px;font-size:11px;font-weight:700;color:#9CA3AF;letter-spacing:0.12em;text-transform:uppercase;">Billed To</p>
-          <p style="margin:0 0 4px;font-size:16px;font-weight:700;color:#1a0a40;">${p.to_name}</p>
-          ${p.role ? `<p style="margin:0 0 3px;font-size:13px;color:#6B7280;">${p.role}</p>` : ''}
-          ${p.company ? `<p style="margin:0 0 3px;font-size:13px;color:#6B7280;">${p.company}</p>` : ''}
-          <p style="margin:0 0 3px;font-size:13px;color:#6B7280;">${p.to_email}</p>
-          ${p.phone ? `<p style="margin:0;font-size:13px;color:#6B7280;">${p.phone}</p>` : ''}
-        </td>
-        <td width="48%" valign="top">
-          <p style="margin:0 0 10px;font-size:11px;font-weight:700;color:#9CA3AF;letter-spacing:0.12em;text-transform:uppercase;">Payment Info</p>
-          <table cellpadding="0" cellspacing="0" border="0">
-            <tr>
-              <td style="font-size:12px;color:#9CA3AF;padding-bottom:4px;padding-right:12px;">Payment ID</td>
-              <td style="font-size:12px;font-weight:600;color:#1a0a40;padding-bottom:4px;font-family:monospace;">${p.payment_id || '—'}</td>
-            </tr>
-            <tr>
-              <td style="font-size:12px;color:#9CA3AF;padding-bottom:4px;padding-right:12px;">Method</td>
-              <td style="font-size:12px;font-weight:600;color:#1a0a40;padding-bottom:4px;">Razorpay</td>
-            </tr>
-            <tr>
-              <td style="font-size:12px;color:#9CA3AF;padding-right:12px;">Status</td>
-              <td style="font-size:12px;font-weight:700;color:#16A34A;">Paid ✓</td>
-            </tr>
-          </table>
-        </td>
+  <!-- Billed To + Payment Status -->
+  <tr><td style="padding:24px 40px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td valign="top" width="55%" style="padding-right:20px;">
+        <p style="margin:0 0 10px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Billed To</p>
+        <p style="margin:0 0 3px;font-size:15px;font-weight:700;color:#1E1B4B;">${p.to_name}</p>
+        ${p.role    ? `<p style="margin:0 0 2px;font-size:12px;color:#475569;">${p.role}</p>` : ''}
+        ${p.company ? `<p style="margin:0 0 2px;font-size:12px;color:#475569;">${p.company}</p>` : ''}
+        <p style="margin:0 0 2px;font-size:12px;color:#475569;">${p.to_email}</p>
+        ${p.phone   ? `<p style="margin:0;font-size:12px;color:#475569;">${p.phone}</p>` : ''}
+      </td>
+      <td valign="top" width="45%" align="right">
+        <p style="margin:0 0 10px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Payment Status</p>
+        <table cellpadding="0" cellspacing="0" border="0" align="right">
+          <tr><td style="background:#DCFCE7;border-radius:20px;padding:6px 18px;">
+            <p style="margin:0;font-size:13px;font-weight:700;color:#15803D;">✓ &nbsp;PAID</p>
+          </td></tr>
+        </table>
+        <p style="margin:14px 0 2px;font-size:12px;color:#475569;">Via: <strong style="color:#1E1B4B;">Razorpay</strong></p>
+        <p style="margin:0;font-size:12px;color:#475569;">Currency: <strong style="color:#1E1B4B;">INR</strong></p>
+      </td>
+    </tr></table>
+  </td></tr>
+
+  <!-- Line items -->
+  <tr><td style="padding:0 40px 24px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      <!-- Header row -->
+      <tr style="background:#F8FAFC;">
+        <td style="padding:10px 14px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Item</td>
+        <td align="center" style="padding:10px 14px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Qty</td>
+        <td align="right" style="padding:10px 14px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Rate</td>
+        <td align="right" style="padding:10px 14px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Amount</td>
       </tr>
-    </table>
-
-    <!-- Divider -->
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;"><tr><td height="1" style="background:#E5E7EB;"></td></tr></table>
-
-    <!-- Line items table -->
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
-      <tr style="background:#F5F3FF;">
-        <td style="padding:10px 14px;font-size:11px;font-weight:700;color:#6B7280;letter-spacing:0.1em;text-transform:uppercase;border-radius:6px 0 0 6px;">Description</td>
-        <td align="center" style="padding:10px 14px;font-size:11px;font-weight:700;color:#6B7280;letter-spacing:0.1em;text-transform:uppercase;">Qty</td>
-        <td align="right" style="padding:10px 14px;font-size:11px;font-weight:700;color:#6B7280;letter-spacing:0.1em;text-transform:uppercase;">Unit Price</td>
-        <td align="right" style="padding:10px 14px;font-size:11px;font-weight:700;color:#6B7280;letter-spacing:0.1em;text-transform:uppercase;border-radius:0 6px 6px 0;">Amount</td>
-      </tr>
+      <!-- Item row -->
       <tr>
-        <td style="padding:14px 14px 10px;">
-          <p style="margin:0;font-size:14px;font-weight:600;color:#1a0a40;">${p.pass_type}</p>
-          <p style="margin:3px 0 0;font-size:12px;color:#9CA3AF;">The Great Product Festival 2026 · Pass #${p.pass_number}</p>
+        <td style="padding:16px 14px 12px;border-bottom:1px solid #F1F5F9;">
+          <p style="margin:0 0 2px;font-size:14px;font-weight:600;color:#1E1B4B;">${p.pass_type} — The Great Product Festival 2026</p>
+          <p style="margin:0;font-size:11px;color:#94A3B8;">Event: 25–26 Sept 2026 · Freshworks, RMZ Ecoworld, Bangalore</p>
+          <p style="margin:2px 0 0;font-size:11px;color:#94A3B8;">Pass No: ${p.pass_number}</p>
         </td>
-        <td align="center" style="padding:14px 14px 10px;font-size:14px;color:#1a0a40;">${p.qty}</td>
-        <td align="right" style="padding:14px 14px 10px;font-size:14px;color:#1a0a40;">${isPaid ? `₹${unitPrice.toLocaleString('en-IN')}` : 'Complimentary'}</td>
-        <td align="right" style="padding:14px 14px 10px;font-size:14px;font-weight:600;color:#1a0a40;">${isPaid ? `₹${total.toLocaleString('en-IN')}` : '—'}</td>
+        <td align="center" style="padding:16px 14px 12px;font-size:14px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${p.qty}</td>
+        <td align="right" style="padding:16px 14px 12px;font-size:14px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">₹${unitPrice.toLocaleString('en-IN')}</td>
+        <td align="right" style="padding:16px 14px 12px;font-size:14px;font-weight:600;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">₹${total.toLocaleString('en-IN')}</td>
       </tr>
       ${p.discount_code ? `<tr>
-        <td colspan="3" style="padding:4px 14px 10px;font-size:12px;color:#16A34A;">Discount applied: ${p.discount_code}</td>
-        <td align="right" style="padding:4px 14px 10px;font-size:12px;color:#16A34A;">—</td>
+        <td colspan="3" style="padding:8px 14px;font-size:12px;color:#16A34A;border-bottom:1px solid #F1F5F9;">Discount Code: ${p.discount_code}</td>
+        <td align="right" style="padding:8px 14px;font-size:12px;color:#16A34A;border-bottom:1px solid #F1F5F9;">Applied</td>
       </tr>` : ''}
-    </table>
-
-    <!-- Divider -->
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;"><tr><td height="1" style="background:#E5E7EB;"></td></tr></table>
-
-    <!-- Total -->
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px;">
-      <tr>
-        <td style="font-size:15px;font-weight:700;color:#1a0a40;">Total Paid</td>
-        <td align="right" style="font-size:22px;font-weight:800;color:#5B21B6;">${isPaid ? `₹${total.toLocaleString('en-IN')}` : 'Complimentary'}</td>
+      <!-- Subtotal -->
+      <tr><td colspan="3" align="right" style="padding:12px 14px 4px;font-size:12px;color:#64748B;">Subtotal</td><td align="right" style="padding:12px 14px 4px;font-size:12px;color:#1E1B4B;">₹${total.toLocaleString('en-IN')}</td></tr>
+      <tr><td colspan="3" align="right" style="padding:4px 14px;font-size:12px;color:#64748B;">Tax</td><td align="right" style="padding:4px 14px;font-size:12px;color:#1E1B4B;">Inclusive</td></tr>
+      <!-- Total -->
+      <tr style="background:#F5F3FF;">
+        <td colspan="3" align="right" style="padding:14px 14px;font-size:14px;font-weight:700;color:#1E1B4B;">Total Paid</td>
+        <td align="right" style="padding:14px 14px;font-size:20px;font-weight:800;color:#5B21B6;">₹${total.toLocaleString('en-IN')}</td>
       </tr>
-      ${isPaid ? `<tr><td colspan="2" align="right" style="padding-top:4px;font-size:11px;color:#9CA3AF;">Inclusive of all applicable taxes</td></tr>` : ''}
     </table>
-
-    <!-- Divider -->
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;"><tr><td height="1" style="background:#E5E7EB;"></td></tr></table>
-
-    <!-- Note -->
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F5F3FF;border-radius:10px;margin-bottom:24px;">
-      <tr><td style="padding:16px 20px;font-size:12px;color:#6B7280;line-height:1.6;">
-        This receipt serves as confirmation of your pass purchase for The Great Product Festival 2026. Please retain it for your records. A separate check-in ticket will be sent closer to the event.
-      </td></tr>
-    </table>
-
-    <!-- Footer -->
-    <p style="margin:0 0 4px;text-align:center;font-size:12px;color:#9CA3AF;">Questions? <a href="mailto:hello@womeninproductindia.com" style="color:#7C3AED;text-decoration:none;">hello@womeninproductindia.com</a></p>
-    <p style="margin:0;text-align:center;font-size:11px;color:#C4B5FD;">Women in Product India · The Great Product Festival 2026</p>
-
   </td></tr>
+
+  <!-- Divider -->
+  <tr><td style="padding:0 40px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="1" style="background:#E2E8F0;"></td></tr></table></td></tr>
+
+  <!-- Footer -->
+  <tr><td style="padding:24px 40px 32px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td valign="top" width="60%">
+        <p style="margin:0 0 3px;font-size:11px;color:#94A3B8;">Issued by: Women in Product India</p>
+        <p style="margin:0 0 3px;font-size:11px;color:#94A3B8;">Event: The Great Product Festival 2026</p>
+        <p style="margin:0;font-size:11px;color:#94A3B8;">Contact: hello@womeninproductindia.com</p>
+      </td>
+      <td valign="top" align="right" width="40%">
+        <p style="margin:0;font-size:10px;color:#CBD5E1;line-height:1.6;">This is a valid proof of payment.<br/>Please retain for your records.</p>
+      </td>
+    </tr></table>
+  </td></tr>
+
+  <!-- Bottom accent bar -->
+  <tr><td height="6" style="background:linear-gradient(90deg,#7C3AED,#A78BFA,#F59E0B);border-radius:0 0 4px 4px;"></td></tr>
 
 </table>
 </td></tr>

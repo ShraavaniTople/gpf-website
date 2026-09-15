@@ -18,6 +18,7 @@ const partners = [
   { name: 'HSRFC',                 slug: 'hsrfc' },
   { name: 'AWFK',                  slug: 'awfk' },
   { name: 'Women in Big Data India', slug: 'women-in-big-data' },
+  { name: 'The Builders Club',       slug: 'builders-club' },
 ]
 
 function useVis(delay = 0) {
