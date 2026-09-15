@@ -60,7 +60,7 @@ function buildCombinedHtml(p: {
         <p style="margin:0 0 ${isPaid ? '12px' : '24px'};font-size:15px;font-weight:700;color:#1a0a40;">September 25–26, 2026</p>
 
         ${isPaid ? `<!-- Amount paid -->
-        <p style="margin:0 0 24px;font-size:13px;color:#6B7280;">Amount paid: <strong style="color:#1a0a40;">₹${p.amount}</strong></p>` : ''}
+        <p style="margin:0 0 24px;font-size:13px;color:#6B7280;">Amount paid: <strong style="color:#1a0a40;">&#8377;${p.amount}</strong></p>` : ''}
 
         <!-- Pass number -->
         <p style="margin:0 0 14px;font-family:monospace;font-size:11px;color:#9CA3AF;letter-spacing:0.06em;">PASS #${p.pass_number}</p>
@@ -74,15 +74,15 @@ function buildCombinedHtml(p: {
         <p style="margin:0 0 8px;font-size:13px;font-weight:700;color:#1a0a40;letter-spacing:0.08em;text-transform:uppercase;">What to Bring</p>
         <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:12px;">
           <tr>
-            <td style="padding:0 10px 5px 0;font-size:15px;color:#7C3AED;vertical-align:top;line-height:1.5;">•</td>
+            <td style="padding:0 10px 5px 0;font-size:15px;color:#7C3AED;vertical-align:top;line-height:1.5;">&#8226;</td>
             <td style="padding-bottom:5px;font-size:13px;color:#4B5563;line-height:1.5;">Government-issued photo ID</td>
           </tr>
           <tr>
-            <td style="padding:0 10px 5px 0;font-size:15px;color:#7C3AED;vertical-align:top;line-height:1.5;">•</td>
+            <td style="padding:0 10px 5px 0;font-size:15px;color:#7C3AED;vertical-align:top;line-height:1.5;">&#8226;</td>
             <td style="padding-bottom:5px;font-size:13px;color:#4B5563;line-height:1.5;">This email on your phone or printed</td>
           </tr>
           <tr>
-            <td style="padding:0 10px 0 0;font-size:15px;color:#7C3AED;vertical-align:top;line-height:1.5;">•</td>
+            <td style="padding:0 10px 0 0;font-size:15px;color:#7C3AED;vertical-align:top;line-height:1.5;">&#8226;</td>
             <td style="font-size:13px;color:#4B5563;line-height:1.5;">Business cards and good energy</td>
           </tr>
         </table>
@@ -112,11 +112,11 @@ function buildCombinedHtml(p: {
         <!-- RSVP on Luma -->
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;margin-bottom:16px;">
           <tr><td style="padding:20px 24px;">
-            <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">🗓️ RSVP on Luma</p>
+            <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">RSVP on Luma</p>
             <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Lock in your spot for the workshops and sessions via Luma.</p>
             <table cellpadding="0" cellspacing="0" border="0"><tr>
               <td style="background:#16A34A;border-radius:8px;padding:10px 24px;">
-                <a href="https://luma.com/thegreatproductfestival" style="font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;display:inline-block;">RSVP ON LUMA →</a>
+                <a href="https://luma.com/thegreatproductfestival" style="font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;display:inline-block;">RSVP ON LUMA</a>
               </td>
             </tr></table>
             <p style="margin:10px 0 0;font-size:11px;color:#9CA3AF;">Direct link: <a href="https://luma.com/thegreatproductfestival" style="color:#16A34A;text-decoration:none;">luma.com/thegreatproductfestival</a></p>
@@ -126,11 +126,11 @@ function buildCombinedHtml(p: {
         <!-- Social Card CTA -->
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#EDE9FE;border:1px solid #DDD6FE;border-radius:12px;margin-bottom:24px;">
           <tr><td style="padding:20px 24px;">
-            <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">📸 Create Your Social Card</p>
+            <p style="margin:0 0 6px;font-size:15px;font-weight:700;color:#1a0a40;">Create Your Social Card</p>
             <p style="margin:0 0 14px;font-size:13px;color:#4B5563;line-height:1.5;">Show the world you're attending TGPF 2026! Generate your personalised card and share it on LinkedIn, Twitter, or Instagram.</p>
             <table cellpadding="0" cellspacing="0" border="0"><tr>
               <td style="background:#7C3AED;border-radius:8px;padding:10px 24px;">
-                <a href="https://www.thegreatproductfestival.com/share" style="font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;display:inline-block;">CREATE YOUR SOCIAL CARD →</a>
+                <a href="https://www.thegreatproductfestival.com/share" style="font-family:monospace;font-size:12px;font-weight:700;color:#FFFFFF;text-decoration:none;letter-spacing:0.08em;display:inline-block;">CREATE YOUR SOCIAL CARD</a>
               </td>
             </tr></table>
             <p style="margin:10px 0 0;font-size:11px;color:#9CA3AF;">Direct link: <a href="https://www.thegreatproductfestival.com/share" style="color:#7C3AED;text-decoration:none;">thegreatproductfestival.com/share</a></p>
@@ -140,7 +140,7 @@ function buildCombinedHtml(p: {
         <!-- Check-in notice -->
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;margin-bottom:24px;">
           <tr><td style="padding:14px 20px;font-size:13px;color:#92400E;line-height:1.6;">
-            📲 <strong>A separate check-in ticket will be sent closer to the event.</strong> Please use that QR code for entry at the venue.
+            <strong>A separate check-in ticket will be sent closer to the event.</strong> Please use that QR code for entry at the venue.
           </td></tr>
         </table>
 
@@ -166,118 +166,128 @@ function buildReceiptHtml(p: {
   const total = isComp ? 0 : Number(p.amount)
   const unitPrice = p.qty > 1 ? Math.round(total / p.qty) : total
   const now = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })
-  const receiptNo = `TGPF-RCP-${p.pass_number}`
+  const receiptNo = 'TGPF-RCP-' + p.pass_number
+
+  // Build payment status block without nested template literals (avoids mobile wrapping issues)
+  const paymentStatusBlock = isComp
+    ? '<p style="margin:0 0 8px;background:#EFF6FF;border-radius:14px;padding:7px 16px;font-size:13px;font-weight:700;color:#1D4ED8;text-align:right;">&#10003; CONFIRMED</p>'
+    + '<p style="margin:0;font-size:12px;color:#475569;text-align:right;">Complimentary</p>'
+    : '<p style="margin:0 0 8px;background:#DCFCE7;border-radius:14px;padding:7px 16px;font-size:13px;font-weight:700;color:#15803D;text-align:right;">&#10003; PAID</p>'
+    + '<p style="margin:4px 0 2px;font-size:12px;color:#475569;text-align:right;">Via: <strong style="color:#1E1B4B;">Razorpay</strong></p>'
+    + '<p style="margin:0;font-size:12px;color:#475569;text-align:right;">Currency: <strong style="color:#1E1B4B;">INR</strong></p>'
+
+  const amountDisplay = isComp ? 'Complimentary' : '&#8377;' + total.toLocaleString('en-IN')
+  const rateDisplay   = isComp ? '&mdash;' : '&#8377;' + unitPrice.toLocaleString('en-IN')
+  const subtotalDisplay = amountDisplay
+  const taxDisplay    = isComp ? '&mdash;' : 'Inclusive'
+  const totalLabel    = isComp ? 'Total' : 'Total Paid'
+  const discountRow   = p.discount_code
+    ? '<tr><td colspan="3" style="padding:8px 12px;font-size:12px;color:#16A34A;border-bottom:1px solid #F1F5F9;">Discount: ' + p.discount_code + '</td><td align="right" style="padding:8px 12px;font-size:12px;color:#16A34A;border-bottom:1px solid #F1F5F9;">Applied</td></tr>'
+    : ''
+  const roleRow    = p.role    ? '<p style="margin:0 0 2px;font-size:12px;color:#475569;">' + p.role + '</p>'    : ''
+  const companyRow = p.company ? '<p style="margin:0 0 2px;font-size:12px;color:#475569;">' + p.company + '</p>' : ''
+  const phoneRow   = p.phone   ? '<p style="margin:0;font-size:12px;color:#475569;">'        + p.phone   + '</p>' : ''
 
   return `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Payment Receipt — TGPF 2026</title></head>
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Receipt — TGPF 2026</title></head>
 <body style="margin:0;padding:0;background:#F1F5F9;font-family:'Helvetica Neue',Arial,sans-serif;">
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F1F5F9;padding:40px 16px;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F1F5F9;padding:32px 12px;">
 <tr><td align="center">
-<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#FFFFFF;border-radius:4px;border:1px solid #E2E8F0;">
+<table cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%;background:#FFFFFF;border-radius:4px;border:1px solid #E2E8F0;">
 
   <!-- Top accent bar -->
   <tr><td height="6" style="background:linear-gradient(90deg,#7C3AED,#A78BFA,#F59E0B);border-radius:4px 4px 0 0;"></td></tr>
 
-  <!-- Header: Issuer info left, Receipt details right -->
-  <tr><td style="padding:32px 40px 24px;">
+  <!-- Header -->
+  <tr><td style="padding:28px 32px 20px;">
     <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-      <td valign="top" width="55%">
-        <p style="margin:0 0 2px;font-size:18px;font-weight:800;color:#1E1B4B;letter-spacing:-0.02em;">Women in Product India</p>
-        <p style="margin:0 0 1px;font-size:12px;color:#64748B;">The Great Product Festival 2026</p>
-        <p style="margin:0;font-size:12px;color:#64748B;">hello@womeninproductindia.com</p>
+      <td valign="top" width="50%">
+        <p style="margin:0 0 2px;font-size:16px;font-weight:800;color:#1E1B4B;">Women in Product India</p>
+        <p style="margin:0 0 1px;font-size:11px;color:#64748B;">The Great Product Festival 2026</p>
+        <p style="margin:0;font-size:11px;color:#64748B;">hello@womeninproductindia.com</p>
       </td>
-      <td valign="top" align="right" width="45%">
-        <p style="margin:0 0 4px;font-size:22px;font-weight:800;color:#1E1B4B;letter-spacing:-0.02em;">RECEIPT</p>
-        <p style="margin:0 0 2px;font-size:11px;color:#64748B;">Receipt No: <strong style="color:#1E1B4B;font-family:monospace;">${receiptNo}</strong></p>
-        <p style="margin:0 0 2px;font-size:11px;color:#64748B;">Date: <strong style="color:#1E1B4B;">${now}</strong></p>
-        <p style="margin:0;font-size:11px;color:#64748B;">Payment ID: <strong style="color:#1E1B4B;font-family:monospace;">${p.payment_id}</strong></p>
+      <td valign="top" align="right" width="50%" style="padding-left:12px;">
+        <p style="margin:0 0 6px;font-size:20px;font-weight:800;color:#1E1B4B;">RECEIPT</p>
+        <p style="margin:0 0 2px;font-size:10px;color:#64748B;">Receipt No:</p>
+        <p style="margin:0 0 4px;font-size:10px;font-weight:700;color:#1E1B4B;font-family:monospace;word-break:break-all;">${receiptNo}</p>
+        <p style="margin:0 0 2px;font-size:10px;color:#64748B;">Date: <strong style="color:#1E1B4B;">${now}</strong></p>
+        <p style="margin:0 0 2px;font-size:10px;color:#64748B;">Payment ID:</p>
+        <p style="margin:0;font-size:10px;font-weight:700;color:#1E1B4B;font-family:monospace;word-break:break-all;">${p.payment_id}</p>
       </td>
     </tr></table>
   </td></tr>
 
   <!-- Divider -->
-  <tr><td style="padding:0 40px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="1" style="background:#E2E8F0;"></td></tr></table></td></tr>
+  <tr><td style="padding:0 32px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="1" style="background:#E2E8F0;"></td></tr></table></td></tr>
 
   <!-- Billed To + Payment Status -->
-  <tr><td style="padding:24px 40px;">
+  <tr><td style="padding:20px 32px;">
     <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-      <td valign="top" width="55%" style="padding-right:20px;">
-        <p style="margin:0 0 10px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Billed To</p>
-        <p style="margin:0 0 3px;font-size:15px;font-weight:700;color:#1E1B4B;">${p.to_name}</p>
-        ${p.role    ? `<p style="margin:0 0 2px;font-size:12px;color:#475569;">${p.role}</p>` : ''}
-        ${p.company ? `<p style="margin:0 0 2px;font-size:12px;color:#475569;">${p.company}</p>` : ''}
-        <p style="margin:0 0 2px;font-size:12px;color:#475569;">${p.to_email}</p>
-        ${p.phone   ? `<p style="margin:0;font-size:12px;color:#475569;">${p.phone}</p>` : ''}
+      <td valign="top" width="52%" style="padding-right:16px;">
+        <p style="margin:0 0 8px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Billed To</p>
+        <p style="margin:0 0 3px;font-size:14px;font-weight:700;color:#1E1B4B;">${p.to_name}</p>
+        ${roleRow}
+        ${companyRow}
+        <p style="margin:0 0 2px;font-size:12px;color:#475569;word-break:break-all;">${p.to_email}</p>
+        ${phoneRow}
       </td>
-      <td valign="top" width="45%" align="right">
-        <p style="margin:0 0 10px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Payment Status</p>
-        <table cellpadding="0" cellspacing="0" border="0" align="right">
-          ${isComp
-            ? `<tr><td style="background:#EFF6FF;border-radius:20px;padding:6px 18px;"><p style="margin:0;font-size:13px;font-weight:700;color:#1D4ED8;">✓ &nbsp;CONFIRMED</p></td></tr>`
-            : `<tr><td style="background:#DCFCE7;border-radius:20px;padding:6px 18px;"><p style="margin:0;font-size:13px;font-weight:700;color:#15803D;">✓ &nbsp;PAID</p></td></tr>`
-          }
-        </table>
-        ${isComp
-          ? `<p style="margin:14px 0 0;font-size:12px;color:#475569;">Type: <strong style="color:#1E1B4B;">Complimentary</strong></p>`
-          : `<p style="margin:14px 0 2px;font-size:12px;color:#475569;">Via: <strong style="color:#1E1B4B;">Razorpay</strong></p>
-        <p style="margin:0;font-size:12px;color:#475569;">Currency: <strong style="color:#1E1B4B;">INR</strong></p>`
-        }
+      <td valign="top" width="48%" style="padding-left:4px;">
+        <p style="margin:0 0 8px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Payment Status</p>
+        ${paymentStatusBlock}
       </td>
     </tr></table>
   </td></tr>
 
   <!-- Line items -->
-  <tr><td style="padding:0 40px 24px;">
-    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr><td style="padding:0 32px 20px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
       <!-- Header row -->
       <tr style="background:#F8FAFC;">
-        <td style="padding:10px 14px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Item</td>
-        <td align="center" style="padding:10px 14px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Qty</td>
-        <td align="right" style="padding:10px 14px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Rate</td>
-        <td align="right" style="padding:10px 14px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Amount</td>
+        <td width="50%" style="padding:9px 10px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Item</td>
+        <td width="10%" align="center" style="padding:9px 6px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Qty</td>
+        <td width="15%" align="right" style="padding:9px 6px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Rate</td>
+        <td width="25%" align="right" style="padding:9px 10px;font-size:10px;font-weight:700;color:#64748B;letter-spacing:0.1em;text-transform:uppercase;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">Amount</td>
       </tr>
       <!-- Item row -->
       <tr>
-        <td style="padding:16px 14px 12px;border-bottom:1px solid #F1F5F9;">
-          <p style="margin:0 0 2px;font-size:14px;font-weight:600;color:#1E1B4B;">${p.pass_type} — The Great Product Festival 2026</p>
-          <p style="margin:0;font-size:11px;color:#94A3B8;">Event: 25–26 Sept 2026 · Freshworks, RMZ Ecoworld, Bangalore</p>
-          <p style="margin:2px 0 0;font-size:11px;color:#94A3B8;">Pass No: ${p.pass_number}</p>
+        <td valign="top" style="padding:14px 10px 10px;border-bottom:1px solid #F1F5F9;">
+          <p style="margin:0 0 3px;font-size:13px;font-weight:600;color:#1E1B4B;">${p.pass_type}</p>
+          <p style="margin:0 0 2px;font-size:10px;color:#94A3B8;">The Great Product Festival 2026</p>
+          <p style="margin:0 0 2px;font-size:10px;color:#94A3B8;">25&ndash;26 Sept 2026 &middot; Freshworks, Bangalore</p>
+          <p style="margin:0;font-size:10px;color:#94A3B8;word-break:break-all;">Pass: ${p.pass_number}</p>
         </td>
-        <td align="center" style="padding:16px 14px 12px;font-size:14px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${p.qty}</td>
-        <td align="right" style="padding:16px 14px 12px;font-size:14px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${isComp ? '—' : '₹' + unitPrice.toLocaleString('en-IN')}</td>
-        <td align="right" style="padding:16px 14px 12px;font-size:14px;font-weight:600;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${isComp ? 'Complimentary' : '₹' + total.toLocaleString('en-IN')}</td>
+        <td align="center" valign="top" style="padding:14px 6px 10px;font-size:13px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${p.qty}</td>
+        <td align="right" valign="top" style="padding:14px 6px 10px;font-size:13px;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${rateDisplay}</td>
+        <td align="right" valign="top" style="padding:14px 10px 10px;font-size:13px;font-weight:600;color:#1E1B4B;border-bottom:1px solid #F1F5F9;">${amountDisplay}</td>
       </tr>
-      ${p.discount_code ? `<tr>
-        <td colspan="3" style="padding:8px 14px;font-size:12px;color:#16A34A;border-bottom:1px solid #F1F5F9;">Discount Code: ${p.discount_code}</td>
-        <td align="right" style="padding:8px 14px;font-size:12px;color:#16A34A;border-bottom:1px solid #F1F5F9;">Applied</td>
-      </tr>` : ''}
+      ${discountRow}
       <!-- Subtotal -->
-      <tr><td colspan="3" align="right" style="padding:12px 14px 4px;font-size:12px;color:#64748B;">Subtotal</td><td align="right" style="padding:12px 14px 4px;font-size:12px;color:#1E1B4B;">${isComp ? 'Complimentary' : '₹' + total.toLocaleString('en-IN')}</td></tr>
-      <tr><td colspan="3" align="right" style="padding:4px 14px;font-size:12px;color:#64748B;">Tax</td><td align="right" style="padding:4px 14px;font-size:12px;color:#1E1B4B;">${isComp ? '—' : 'Inclusive'}</td></tr>
+      <tr>
+        <td colspan="3" align="right" style="padding:10px 6px 3px;font-size:11px;color:#64748B;">Subtotal</td>
+        <td align="right" style="padding:10px 10px 3px;font-size:11px;color:#1E1B4B;">${subtotalDisplay}</td>
+      </tr>
+      <tr>
+        <td colspan="3" align="right" style="padding:3px 6px 10px;font-size:11px;color:#64748B;">Tax</td>
+        <td align="right" style="padding:3px 10px 10px;font-size:11px;color:#1E1B4B;">${taxDisplay}</td>
+      </tr>
       <!-- Total -->
       <tr style="background:#F5F3FF;">
-        <td colspan="3" align="right" style="padding:14px 14px;font-size:14px;font-weight:700;color:#1E1B4B;">${isComp ? 'Total' : 'Total Paid'}</td>
-        <td align="right" style="padding:14px 14px;font-size:20px;font-weight:800;color:#5B21B6;">${isComp ? 'Complimentary' : '₹' + total.toLocaleString('en-IN')}</td>
+        <td colspan="3" align="right" style="padding:14px 6px;font-size:13px;font-weight:700;color:#1E1B4B;">${totalLabel}</td>
+        <td align="right" style="padding:14px 10px;font-size:17px;font-weight:800;color:#5B21B6;">${amountDisplay}</td>
       </tr>
     </table>
   </td></tr>
 
   <!-- Divider -->
-  <tr><td style="padding:0 40px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="1" style="background:#E2E8F0;"></td></tr></table></td></tr>
+  <tr><td style="padding:0 32px;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td height="1" style="background:#E2E8F0;"></td></tr></table></td></tr>
 
   <!-- Footer -->
-  <tr><td style="padding:24px 40px 32px;">
-    <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-      <td valign="top" width="60%">
-        <p style="margin:0 0 3px;font-size:11px;color:#94A3B8;">Issued by: Women in Product India</p>
-        <p style="margin:0 0 3px;font-size:11px;color:#94A3B8;">Event: The Great Product Festival 2026</p>
-        <p style="margin:0;font-size:11px;color:#94A3B8;">Contact: hello@womeninproductindia.com</p>
-      </td>
-      <td valign="top" align="right" width="40%">
-        <p style="margin:0;font-size:10px;color:#CBD5E1;line-height:1.6;">This is a valid proof of payment.<br/>Please retain for your records.</p>
-      </td>
-    </tr></table>
+  <tr><td style="padding:20px 32px 28px;">
+    <p style="margin:0 0 3px;font-size:10px;color:#94A3B8;">Issued by: Women in Product India</p>
+    <p style="margin:0 0 3px;font-size:10px;color:#94A3B8;">Event: The Great Product Festival 2026</p>
+    <p style="margin:0 0 10px;font-size:10px;color:#94A3B8;">Contact: hello@womeninproductindia.com</p>
+    <p style="margin:0;font-size:10px;color:#CBD5E1;">This is a valid proof of registration. Please retain for your records.</p>
   </td></tr>
 
   <!-- Bottom accent bar -->
