@@ -53,7 +53,7 @@ const speakers: Speaker[] = [
   { name: 'Dharma Varahappian', title: 'Product Leader, eBay', linkedin: 'https://www.linkedin.com/in/dharmav/', photo: '/speaker-dharma2.webp', objectPos: '50% 15%' },
   { name: 'Adithi Sampath', title: 'VP of Product & Design, Stellantis', linkedin: 'https://www.linkedin.com/in/adithisampath/', photo: '/speaker-adithi.jpg', objectPos: '50% 15%' },
   { name: 'Sahil Gupta', title: 'Head of Product, Murf AI', linkedin: 'https://www.linkedin.com/in/sahilsgupta/', photo: '/speaker-sahil.jpg', objectPos: '50% 15%' },
-  { name: 'Vijeta Pai', title: 'Senior PM, Ex-Microsoft', linkedin: 'https://www.linkedin.com/in/vijetapai/', photo: '/speaker-vijeta.webp', objectPos: '50% 15%' },
+  { name: 'Vijeta Pai', title: 'Senior PM, Ex-Microsoft', linkedin: 'https://www.linkedin.com/in/vijetapai/', photo: '/speaker-vijeta.webp', objectPos: '50% 5%' },
   { name: 'Ira Banerjee', title: 'Head of Clinical Product, Even Health', linkedin: 'https://www.linkedin.com/in/ira-banerjee-637097110/', photo: '/speaker-ira.jpg', objectPos: '50% 15%' },
   { name: 'Nitin Pulyani', title: 'SVP, Product, Cashfree Payments', linkedin: 'https://www.linkedin.com/in/nitinpulyani/', photo: '/speaker-nitin.jpg', objectPos: '50% 15%' },
   { name: 'Gagandeep', title: 'GM, Payments, Tata Digital', linkedin: 'https://www.linkedin.com/in/aroragagandeep/', photo: '/speaker-gagandeep.jpg', objectPos: '50% 15%' },
