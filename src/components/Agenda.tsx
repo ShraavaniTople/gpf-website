@@ -130,7 +130,7 @@ const DAY2: Slot[] = [
     { type: 'panel', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [
         { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey', photo: '/speaker-neha.webp' },
-        { name: 'Radhika Yuvraj', role: 'Country Director, Women in Tech India', photo: '/speaker-radhika.jpg' },
+        { name: 'Radhika Yuvraj', role: 'Country Director', photo: '/speaker-radhika.jpg' },
         { name: 'Mitasha Singh', role: 'Founder, All Things Talent · Moderator', photo: '/speaker-mitasha.webp' },
       ], lumaUrl: 'https://luma.com/18cc6fsm' },
   ] },
