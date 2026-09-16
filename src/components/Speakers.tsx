@@ -15,7 +15,10 @@ const speakers: Speaker[] = [
   { name: 'Mansi Jain', title: 'COO, Glance', linkedin: 'https://www.linkedin.com/in/mansi-jain-39b51728/', photo: '/speaker-mansi3.webp', objectPos: '50% 15%' },
   { name: 'Pulkit Jain', title: 'Co-Founder & CPO, Vedantu', linkedin: 'https://www.linkedin.com/in/jainpulkit/', photo: '/speaker-pulkit.webp', objectPos: '50% 20%' },
   // Row 3
-  { name: 'Prashant Pandey', title: 'Head of Global, Neysa', linkedin: 'https://www.linkedin.com/in/prashantpandeyofficial/', photo: '/speaker-prashant.webp', objectPos: '50% 15%' },
+  { name: 'Shalini Dayanidhi', title: 'Moderator', linkedin: 'https://www.linkedin.com/in/shalini-dayanidhi/', photo: '/speaker-shalini-d.webp', objectPos: '50% 15%' },
+  { name: 'Kruti Raiyani',    title: 'General Partner, 247VC', linkedin: 'https://www.linkedin.com/in/kruti-raiyani/', photo: '/speaker-kruti.webp', objectPos: '50% 15%' },
+  { name: 'Jivesh Madan',     title: 'Partner, Shastra VC', linkedin: 'https://www.linkedin.com/in/jiveshmadan/', photo: '/speaker-jivesh.webp', objectPos: '50% 15%' },
+  { name: 'Vishy Puthukode',  title: 'Investor', linkedin: 'https://www.linkedin.com/in/viswanathan-vishy-puthukode-4b133a37/', photo: '/speaker-vishy.webp', objectPos: '50% 15%' },
   { name: 'Usha Rengaraju', title: 'AI Technologist, NVIDIA', linkedin: 'https://www.linkedin.com/in/usha-rengaraju/', photo: '/speaker-usha.webp', objectPos: '50% 15%' },
   { name: 'Aditya Singh', title: 'VP, Product & India Site Head, Salesforce', linkedin: 'https://www.linkedin.com/in/adityas76', photo: '/speaker-aditya.webp', objectPos: '50% 15%' },
   { name: 'Seema Kumar', title: 'Director, Field Engineering, Databricks', linkedin: 'https://www.linkedin.com/in/seemapkumar/', photo: '/speaker-seema.webp', objectPos: '50% 15%' },

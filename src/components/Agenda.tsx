@@ -155,8 +155,6 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '11:35', end: '12:05', sessions: [
-    { type: 'expert', venue: 'Freshworks Hall', title: 'Demystifying AI Neo Cloud by Neysa',
-      speakers: [{ name: 'Prashant Pandey', role: 'Global Head, Neysa', photo: '/speaker-prashant.webp' }], lumaUrl: 'https://luma.com/4i8svj9o' },
     { type: 'expert', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World',
       speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India', photo: '/speaker-anshuman.webp' }], lumaUrl: 'https://luma.com/natgxuqk' },
   ] },
@@ -181,6 +179,12 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '14:35', end: '15:30', sessions: [
+    { type: 'panel', venue: 'Freshworks Hall', title: 'Building Companies That Matter: A VC Perspective',
+      speakers: [
+        { name: 'Kruti Raiyani',  role: 'General Partner, 247VC', photo: '/speaker-kruti.webp' },
+        { name: 'Jivesh Madan',   role: 'Partner, Shastra VC',    photo: '/speaker-jivesh.webp' },
+        { name: 'Shalini Dayanidhi', role: 'Moderator',           photo: '/speaker-shalini-d.webp' },
+      ] },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
       speakers: [
         { name: 'Bhavik Kaul', role: 'CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
