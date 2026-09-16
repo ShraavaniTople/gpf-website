@@ -6,7 +6,7 @@ type SType = 'registration' | 'opening' | 'keynote' | 'panel' | 'workshop'
            | 'showcase' | 'roundtable' | 'hackathon'
 
 type Speaker = { name: string; role: string; photo?: string }
-type Session = { type: SType; venue?: string; title: string; detail?: string; speakers?: Speaker[]; lumaUrl?: string }
+type Session = { type: SType; venue?: string; title: string; topic?: string; detail?: string; speakers?: Speaker[]; lumaUrl?: string }
 type Slot    = { start: string; end?: string; sessions: Session[]; milestone?: string }
 
 const ST: Record<SType, { label: string; color: string; bg: string }> = {
@@ -69,7 +69,7 @@ const DAY1: Slot[] = [
       speakers: [{ name: 'Deeksha Anand', role: 'Senior PMM, Google Play', photo: '/speaker-deeksha.webp' }], lumaUrl: 'https://luma.com/skrne75e' },
     { type: 'workshop', venue: 'Toast Training Room', title: 'AI Evals for Product Teams',
       speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI', photo: '/speaker-tanay.webp' }], lumaUrl: 'https://luma.com/8zn9qd6x' },
-    { type: 'roundtable', venue: 'Freshworks Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)', detail: 'ROI on Intelligence', lumaUrl: 'https://luma.com/4zmk4w95' },
+    { type: 'roundtable', venue: 'Freshworks Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)', topic: 'ROI on Intelligence', lumaUrl: 'https://luma.com/4zmk4w95' },
   ] },
 
   { start: '14:50', end: '15:35', sessions: [
@@ -324,8 +324,11 @@ function SessionCard({ session }: { session: Session }) {
         style={{ fontSize: 'clamp(14px,1.5vw,17px)', color: '#ECEAF8', letterSpacing: '-0.02em' }}>
         {session.title}
       </h3>
+      {session.topic && (
+        <p className="text-xs font-semibold mt-1.5" style={{ color: '#A78BFA' }}>{session.topic}</p>
+      )}
       {session.detail && (
-        <p className="text-xs font-semibold mt-1.5 leading-relaxed" style={{ color: '#A78BFA' }}>{session.detail}</p>
+        <p className="text-xs mt-1.5 leading-relaxed" style={{ color: '#52506A' }}>{session.detail}</p>
       )}
       {session.speakers && session.speakers.length > 0 && (
         <SpeakerList speakers={session.speakers} />
