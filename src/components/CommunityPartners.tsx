@@ -15,7 +15,7 @@ const partners = [
   { name: 'Unwind Ventures',       slug: 'unwind-ventures-v2' },
   { name: 'IncX',                  slug: 'incx' },
   { name: 'Aspire for Her',        slug: 'aspire-for-her-v2' },
-  { name: 'HSRFC',                 slug: 'hsrfc' },
+  { name: 'HSRFC',                 slug: 'hsrfc-v2' },
   { name: 'AWFK',                  slug: 'awfk' },
   { name: 'Women in Big Data India', slug: 'women-in-big-data-v3' },
   { name: 'The Builders Club',       slug: 'builders-club' },
