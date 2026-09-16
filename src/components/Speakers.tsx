@@ -60,6 +60,7 @@ const speakers: Speaker[] = [
   { name: 'Radhika Yuvraj', title: 'Country Director', linkedin: 'https://www.linkedin.com/in/riyen21/', photo: '/speaker-radhika.jpg', objectPos: '50% 15%' },
   { name: 'Omar Saud', title: 'Program Manager, KDEM', linkedin: 'https://www.linkedin.com/in/omar-saud-09943753/', photo: '/speaker-omar.jpg', objectPos: '50% 15%' },
   { name: 'Poorvi Vijay', title: 'AI Investor, Elevation Capital', linkedin: 'https://www.linkedin.com/in/poorvi-vijay-4503b042/', photo: '/speaker-poorvi.webp', objectPos: '50% 15%' },
+  { name: 'Rishabh Golchha', title: 'Managing Partner', linkedin: 'https://www.linkedin.com/in/rishabh-golchha/', photo: '/speaker-rishabh.webp', objectPos: '50% 15%' },
 ]
 
 function useVis(delay = 0) {
