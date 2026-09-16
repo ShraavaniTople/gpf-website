@@ -91,7 +91,7 @@ const DAY1: Slot[] = [
   ] },
 
   { start: '15:25', end: '15:50', sessions: [
-    { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo by Nvidia',
+    { type: 'showcase', venue: 'Toast Hall', title: 'Physical AI Demo by NVIDIA',
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA', photo: '/speaker-usha.webp' }], lumaUrl: 'https://luma.com/xuy6z1qr' },
   ] },
 
@@ -130,7 +130,7 @@ const DAY2: Slot[] = [
     { type: 'panel', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [
         { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey', photo: '/speaker-neha.webp' },
-        { name: 'Radhika Yuvraj', role: 'Director, Data, Credera', photo: '/speaker-radhika.jpg' },
+        { name: 'Radhika Yuvraj', role: 'Country Director, Women in Tech India', photo: '/speaker-radhika.jpg' },
         { name: 'Mitasha Singh', role: 'Founder, All Things Talent · Moderator', photo: '/speaker-mitasha.webp' },
       ], lumaUrl: 'https://luma.com/18cc6fsm' },
   ] },
@@ -150,7 +150,7 @@ const DAY2: Slot[] = [
     { type: 'panel', venue: 'Toast Hall', title: 'Global Capability Centres (GCCs) as Product Innovation Hubs',
       speakers: [
         { name: 'Sreya Sanyal', role: 'Product Lead, Ford · Moderator', photo: '/speaker-sreya.webp' },
-        { name: 'Sheetal Kale', role: 'Managing Director, Head of DataArt India', photo: '/speaker-sheetal.webp' },
+        { name: 'Sheetal Kale', role: 'Managing Director, Head of DataArt India', photo: '/speaker-sheetal2.webp' },
         { name: 'Roopa Jayaraman', role: 'Chief Product & Technology Officer, Odessa', photo: '/speaker-roopa.webp' },
         { name: 'Supriya Rao', role: 'Managing Director, ClearRoute', photo: '/speaker-supriya-new.webp' },
       ], lumaUrl: 'https://luma.com/smt19jzz' },
