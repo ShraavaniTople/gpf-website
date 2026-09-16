@@ -218,7 +218,7 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '16:00', end: '16:30', sessions: [
-    { type: 'showcase', title: 'Winner Announcement & Award Ceremony', lumaUrl: 'https://luma.com/f3d5wcol' },
+    { type: 'closing', title: 'Winner Announcement & Award Ceremony', lumaUrl: 'https://luma.com/f3d5wcol' },
   ] },
 
   { start: '16:30', end: '16:50', sessions: [{ type: 'closing', title: 'Closing Ceremony' }] },
