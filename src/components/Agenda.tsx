@@ -213,12 +213,12 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '15:40', end: '16:00', sessions: [
-    { type: 'hackathon', venue: 'Freshworks Hall', title: 'Hackathon Finalists Present — Top 4 Teams' },
+    { type: 'hackathon', venue: 'Freshworks Hall', title: 'Hackathon Finalists Present — Top 4 Teams',
+      detail: 'Hackathon finalists demo live in front of India\'s top product leaders.' },
   ] },
 
   { start: '16:00', end: '16:30', sessions: [
-    { type: 'showcase', title: 'Winner Announcement & Award Ceremony',
-      detail: 'Hackathon finalists demo live in front of India\'s top product leaders. Winners announced on stage.', lumaUrl: 'https://luma.com/f3d5wcol' },
+    { type: 'showcase', title: 'Winner Announcement & Award Ceremony', lumaUrl: 'https://luma.com/f3d5wcol' },
   ] },
 
   { start: '16:30', end: '16:50', sessions: [{ type: 'closing', title: 'Closing Ceremony' }] },
