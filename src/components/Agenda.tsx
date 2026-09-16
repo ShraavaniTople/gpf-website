@@ -325,7 +325,7 @@ function SessionCard({ session }: { session: Session }) {
         {session.title}
       </h3>
       {session.detail && (
-        <p className="text-xs mt-1.5 leading-relaxed" style={{ color: '#52506A' }}>{session.detail}</p>
+        <p className="text-xs font-semibold mt-1.5 leading-relaxed" style={{ color: '#A78BFA' }}>{session.detail}</p>
       )}
       {session.speakers && session.speakers.length > 0 && (
         <SpeakerList speakers={session.speakers} />
