@@ -124,10 +124,10 @@ export default function SponsorsShowcase() {
                 <img src="/logos/vaaniai.png" alt="Vaani AI"
                   style={{ display: 'block', height: 30, width: 'auto', maxWidth: '85%' }} />
               </div>
-              <div className="flex items-center justify-center rounded-2xl"
-                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80, overflow: 'hidden' }}>
+              <div className="flex items-center justify-center rounded-2xl px-4"
+                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
                 <img src="/logos/simplismart.png" alt="Simplismart"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                  style={{ display: 'block', height: 24, width: 'auto', maxWidth: '85%' }} />
               </div>
               <div className="flex items-center justify-center rounded-2xl px-4"
                 style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
