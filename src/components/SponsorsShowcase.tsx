@@ -115,6 +115,33 @@ export default function SponsorsShowcase() {
             ))}
           </div>
 
+          {/* Exhibiting Partners */}
+          <div className="flex flex-col items-center gap-2 w-full">
+            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Exhibiting Partners</p>
+            <div className="grid grid-cols-4 gap-4 w-full" style={{ maxWidth: 760 }}>
+              <div className="flex items-center justify-center rounded-2xl px-4"
+                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
+                <img src="/logos/vaaniai.png" alt="Vaani AI"
+                  style={{ display: 'block', height: 30, width: 'auto', maxWidth: '85%' }} />
+              </div>
+              <div className="flex items-center justify-center rounded-2xl"
+                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80, overflow: 'hidden' }}>
+                <img src="/logos/simplismart.png" alt="Simplismart"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+              </div>
+              <div className="flex items-center justify-center rounded-2xl px-4"
+                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
+                <img src="/logos/murf.svg" alt="Murf"
+                  style={{ display: 'block', height: 22, width: 'auto', maxWidth: '85%' }} />
+              </div>
+              <div className="flex items-center justify-center rounded-2xl px-4"
+                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
+                <img src="/logos/dataart.png" alt="DataArt"
+                  style={{ display: 'block', height: 26, width: 'auto', maxWidth: '85%' }} />
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
