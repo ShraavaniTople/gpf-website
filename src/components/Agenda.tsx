@@ -145,6 +145,7 @@ const DAY2: Slot[] = [
         { name: 'Sahil Gupta', role: 'Head of Product, Murf AI', photo: '/speaker-sahil.jpg' },
         { name: 'Nikkitha Shanker', role: 'Founder & CEO, SuperBryn', photo: '/speaker-nikkitha.webp' },
         { name: 'Suman G', role: 'Founder & CEO, Vobiz', photo: '/speaker-suman2.webp' },
+        { name: 'Devansh Ghatak', role: 'Co-founder & CTO, Simplismart', photo: null },
         { name: 'Jagriti Shreya', role: 'COO, OneInbox · Moderator', photo: '/speaker-jagriti2.webp' },
       ], lumaUrl: 'https://luma.com/yvjjf00r' },
   ] },
