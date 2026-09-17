@@ -197,7 +197,7 @@ const DAY2: Slot[] = [
         { name: 'Kruti Raiyani',     role: 'General Partner, 247VC', photo: '/speaker-kruti.webp' },
         { name: 'Jivesh Madan',      role: 'Partner, Shastra VC',    photo: '/speaker-jivesh.webp' },
         { name: 'Rishabh Golchha',   role: 'Managing Partner',       photo: '/speaker-rishabh.webp' },
-        { name: 'Shalini Dayanidhi', role: 'Moderator',              photo: '/speaker-shalini-d.webp' },
+        { name: 'Shalini Dayanidhi', role: 'Venture Partner, M Ventures · Moderator', photo: '/speaker-shalini-d.webp' },
       ] },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
       speakers: [
