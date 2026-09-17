@@ -106,7 +106,10 @@ const DAY1: Slot[] = [
 
   { start: '16:20', end: '16:50', sessions: [
     { type: 'fireside', venue: 'Freshworks Hall', title: 'From Bet to Breakthrough: 20 Years of Product Lessons',
-      speakers: [{ name: 'Lalitha Ramani K', role: 'GM, Google Maps', photo: '/speaker-lalitha2.webp' }], lumaUrl: 'https://luma.com/gp2g4sgn' },
+      speakers: [
+        { name: 'Lalitha Ramani K', role: 'GM, Google Maps', photo: '/speaker-lalitha2.webp' },
+        { name: 'Swati Awasthi', role: 'Founder, Women in Product India · Moderator', photo: '/speaker-swati.webp' },
+      ], lumaUrl: 'https://luma.com/gp2g4sgn' },
   ] },
 
   { start: '16:50', end: '17:00', sessions: [{ type: 'closing', title: 'Closing Notes — Day 1' }] },
