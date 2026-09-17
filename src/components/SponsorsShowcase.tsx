@@ -84,12 +84,12 @@ export default function SponsorsShowcase() {
                 { src: '/logos/aws-v3.png',           alt: 'AWS' },
                 { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments' },
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs' },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz' },
-              ].map(({ src, alt }) => (
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz', h: 48 },
+              ].map(({ src, alt, h }: { src: string; alt: string; h?: number }) => (
                 <div key={alt}
                   className="flex items-center justify-center rounded-2xl px-4"
                   style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
-                  <img src={src} alt={alt} style={gridLogoStyle} />
+                  <img src={src} alt={alt} style={h ? { ...gridLogoStyle, height: h } : gridLogoStyle} />
                 </div>
               ))}
             </div>
