@@ -13,7 +13,7 @@ function useVis(delay = 0) {
   return ref
 }
 
-const cardStyle = { background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 360 }
+const cardStyle = { background: '#0E0C22', border: '1px solid #1C1A32', width: '100%', maxWidth: 760 }
 
 // Fixed box for every hackathon grid logo — all logos sit in the same 140×36 area,
 // object-fit:contain scales each one to fill it without distortion.
@@ -119,26 +119,18 @@ export default function SponsorsShowcase() {
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Exhibiting Partners</p>
             <div className="grid grid-cols-4 gap-4 w-full" style={{ maxWidth: 760 }}>
-              <div className="flex items-center justify-center rounded-2xl px-4"
-                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
-                <img src="/logos/vaaniai.png" alt="Vaani AI"
-                  style={{ display: 'block', height: 30, width: 'auto', maxWidth: '85%' }} />
-              </div>
-              <div className="flex items-center justify-center rounded-2xl px-4"
-                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
-                <img src="/logos/simplismart-v2.png" alt="Simplismart"
-                  style={{ display: 'block', height: 24, width: 'auto', maxWidth: '85%' }} />
-              </div>
-              <div className="flex items-center justify-center rounded-2xl px-4"
-                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
-                <img src="/logos/murf.svg" alt="Murf"
-                  style={{ display: 'block', height: 22, width: 'auto', maxWidth: '85%' }} />
-              </div>
-              <div className="flex items-center justify-center rounded-2xl px-4"
-                style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
-                <img src="/logos/dataart.png" alt="DataArt"
-                  style={{ display: 'block', height: 26, width: 'auto', maxWidth: '85%' }} />
-              </div>
+              {[
+                { src: '/logos/vaaniai.png',        alt: 'Vaani AI' },
+                { src: '/logos/simplismart-v2.png', alt: 'Simplismart' },
+                { src: '/logos/murf.svg',            alt: 'Murf' },
+                { src: '/logos/dataart.png',         alt: 'DataArt' },
+              ].map(({ src, alt }) => (
+                <div key={alt} className="flex items-center justify-center rounded-2xl px-4"
+                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
+                  <img src={src} alt={alt}
+                    style={{ display: 'block', height: 26, width: 'auto', maxWidth: '85%' }} />
+                </div>
+              ))}
             </div>
           </div>
 
