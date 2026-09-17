@@ -170,7 +170,7 @@ const DAY2: Slot[] = [
       ], lumaUrl: 'https://luma.com/9rlo85os' },
     { type: 'workshop', title: 'Vibe Code Your Product MVP with Google AI Studio',
       speakers: [
-        { name: 'Vijeta Pai', role: 'Senior PM, Ex-Microsoft', photo: '/speaker-vijeta.webp' },
+        { name: 'Vijeta Pai', role: 'Cloud & AI Advisor, Lumitia', photo: '/speaker-vijeta.webp' },
       ] },
   ] },
 
