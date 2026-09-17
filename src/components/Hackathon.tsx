@@ -64,20 +64,20 @@ export default function Hackathon() {
           {/* Right: partner logos */}
           <div className="flex flex-col gap-3 flex-shrink-0">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Hackathon Partners</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px 20px', maxWidth: 460 }}>
-              {[
-                '/logos/freshworks-full.webp',
-                '/logos/sarvam.webp',
-                '/logos/anthropic-v2.webp',
-                '/logos/aws-v3.png',
-                '/logos/dodopayments.webp',
-                '/logos/elevenlabs-crop.webp',
-                '/logos/wispr.webp',
-                '/logos/vobiz.webp',
-              ].map(src => (
-                <div key={src} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 32 }}>
-                  <img src={src} alt=""
-                    style={{ maxHeight: 28, maxWidth: 100, width: 'auto', objectFit: 'contain', opacity: 0.9 }} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 108px)', gap: '14px 12px' }}>
+              {([
+                { src: '/logos/freshworks-full.webp', alt: 'Freshworks' },
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam' },
+                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic' },
+                { src: '/logos/aws-v3.png',           alt: 'AWS' },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments' },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs' },
+                { src: '/logos/wispr.webp',           alt: 'Wispr Flow' },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz' },
+              ] as { src: string; alt: string }[]).map(({ src, alt }) => (
+                <div key={src} style={{ width: 108, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src={src} alt={alt}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', opacity: 0.9 }} />
                 </div>
               ))}
             </div>
