@@ -95,6 +95,11 @@ const DAY1: Slot[] = [
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA', photo: '/speaker-usha.webp' }], lumaUrl: 'https://luma.com/xuy6z1qr' },
   ] },
 
+  { start: '15:55', end: '16:10', sessions: [
+    { type: 'showcase', venue: 'Toast Hall', title: 'The Voice Native Way of Building with AI',
+      speakers: [{ name: 'Rohan Kochhar', role: 'Growth & Partnerships Lead, Wispr Flow', photo: '/speaker-rohan.webp' }] },
+  ] },
+
   { start: '15:40', end: '16:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',
       speakers: [
@@ -216,11 +221,6 @@ const DAY2: Slot[] = [
   { start: '15:20', end: '15:50', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'Designing Resilient AI for the Next Era of Commerce',
       speakers: [{ name: 'Dharma Varahappian', role: 'Product Leader, eBay', photo: '/speaker-dharma2.webp' }], lumaUrl: 'https://luma.com/cqzpk8mw' },
-  ] },
-
-  { start: '15:55', end: '16:10', sessions: [
-    { type: 'showcase', venue: 'Toast Hall', title: 'The Voice Native Way of Building with AI',
-      speakers: [{ name: 'Rohan Kochhar', role: 'Growth & Partnerships Lead, Wispr Flow', photo: '/speaker-rohan.webp' }] },
   ] },
 
   { start: '15:40', end: '16:00', sessions: [
