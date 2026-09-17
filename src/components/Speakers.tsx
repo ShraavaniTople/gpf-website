@@ -70,7 +70,7 @@ const speakers: Speaker[] = [
   { name: 'Jivesh Madan', title: 'Partner, Shastra VC', linkedin: 'https://www.linkedin.com/in/jiveshmadan/', photo: '/speaker-jivesh.webp', objectPos: '50% 15%' },
   { name: 'Subhadeep Mondal', title: 'VC, Kalaari Capital', linkedin: 'https://www.linkedin.com/in/subhadeepmondal/', photo: '/speaker-subhadeep.webp', objectPos: '50% 15%' },
   // Row 14 — last row
-  { name: 'Shalini Dayanidhi', title: 'Moderator', linkedin: 'https://www.linkedin.com/in/shalini-dayanidhi/', photo: '/speaker-shalini-d.webp', objectPos: '50% 15%' },
+  { name: 'Shalini Dayanidhi', title: 'Venture Partner, M Ventures', linkedin: 'https://www.linkedin.com/in/shalini-dayanidhi/', photo: '/speaker-shalini-d.webp', objectPos: '50% 15%' },
   { name: 'Vishy Puthukode', title: 'Director of Product Management, Freshworks', linkedin: 'https://www.linkedin.com/in/viswanathan-vishy-puthukode-4b133a37/', photo: '/speaker-vishy.webp', objectPos: '50% 15%' },
   { name: 'Rohan Kochhar', title: 'Growth & Partnerships Lead, Wispr Flow', linkedin: 'https://www.linkedin.com/in/rohan-kochhar-93721115b/', photo: '/speaker-rohan.webp', objectPos: '50% 15%' },
   { name: 'Devansh Ghatak', title: 'Co-founder & CTO, Simplismart', linkedin: 'https://www.linkedin.com/in/devanshghatak/', photo: null, objectPos: '50% 15%' },
