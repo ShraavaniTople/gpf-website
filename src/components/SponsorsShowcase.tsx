@@ -79,18 +79,18 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
             <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
               {[
-                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 22 },
-                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     h: 22 },
-                { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 30 },
-                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 26 },
-                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 22 },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 60 },
-              ].map(({ src, alt, h }) => (
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 15, mw: 120 },
+                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     h: 16, mw: 130 },
+                { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 28, mw: 80  },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 28, mw: 150 },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 16, mw: 130 },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 56, mw: 160 },
+              ].map(({ src, alt, h, mw }) => (
                 <div key={alt}
                   className="flex items-center justify-center rounded-2xl px-4"
                   style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
                   <img src={src} alt={alt}
-                    style={{ display: 'block', height: h, width: 'auto', maxWidth: '85%', objectFit: 'contain' }} />
+                    style={{ display: 'block', height: h, width: 'auto', maxWidth: mw }} />
                 </div>
               ))}
             </div>
