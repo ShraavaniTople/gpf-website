@@ -84,7 +84,6 @@ export default function SponsorsShowcase() {
                 { src: '/logos/aws-v3.png',           alt: 'AWS' },
                 { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments' },
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs' },
-                { src: '/logos/wispr.webp',           alt: 'Wispr Flow',   h: 28 },
                 { src: '/logos/vobiz.webp',           alt: 'Vobiz',        h: 44 },
               ].map(({ src, alt, h }: { src: string; alt: string; h?: number }) => (
                 <div key={alt}
