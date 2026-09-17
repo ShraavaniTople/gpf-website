@@ -156,6 +156,7 @@ const DAY2: Slot[] = [
         { name: 'Sheetal Kale', role: 'Managing Director, Head of DataArt India', photo: '/speaker-sheetal2.webp' },
         { name: 'Roopa Jayaraman', role: 'Chief Product & Technology Officer, Odessa', photo: '/speaker-roopa.webp' },
         { name: 'Supriya Rao', role: 'Managing Director, ClearRoute', photo: '/speaker-supriya-new.webp' },
+        { name: 'Kavita Viswanath', role: 'SVP & Country Head, Toast', photo: '/speaker-kavita.webp' },
       ], lumaUrl: 'https://luma.com/smt19jzz' },
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Build Your First AI Employee',
       speakers: [
