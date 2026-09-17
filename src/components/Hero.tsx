@@ -159,20 +159,20 @@ export default function Hero({ onSponsor }: HeroProps) {
         <p className="font-mono text-center mb-3" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#52506A', textTransform: 'uppercase' }}>Our Partners</p>
         <div className="flex items-center justify-center flex-wrap mb-3" style={{ gap: '14px 32px' }}>
           {([
-            { src: '/logos/kdem.webp',            alt: 'KDEM',          mw: 90  },
-            { src: '/logos/databricks.webp',      alt: 'Databricks',    mw: 120 },
-            { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     mw: 120 },
-            { src: '/logos/sarvam.webp',          alt: 'Sarvam',        mw: 100 },
-            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    mw: 120 },
-            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', mw: 120 },
-            { src: '/logos/aws-v3.png',           alt: 'AWS',           mw: 70  },
-            { src: '/logos/wispr.webp',           alt: 'Wispr Flow',    mw: 110 },
-            { src: '/logos/vobiz.webp',           alt: 'Vobiz',         mw: 110 },
-            { src: '/logos/brb-icon.png',         alt: 'BRB',           mw: 40  },
-          ] as { src: string; alt: string; mw: number }[]).map(({ src, alt, mw }) => (
+            { src: '/logos/kdem.webp',            alt: 'KDEM',          mw: 90,  h: 26 },
+            { src: '/logos/databricks.webp',      alt: 'Databricks',    mw: 120, h: 26 },
+            { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     mw: 120, h: 26 },
+            { src: '/logos/sarvam.webp',          alt: 'Sarvam',        mw: 100, h: 26 },
+            { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    mw: 120, h: 26 },
+            { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', mw: 120, h: 26 },
+            { src: '/logos/aws-v3.png',           alt: 'AWS',           mw: 70,  h: 26 },
+            { src: '/logos/wispr.webp',           alt: 'Wispr Flow',    mw: 110, h: 26 },
+            { src: '/logos/vobiz.webp',           alt: 'Vobiz',         mw: 120, h: 34 },
+            { src: '/logos/brb-icon.png',         alt: 'BRB',           mw: 40,  h: 26 },
+          ] as { src: string; alt: string; mw: number; h: number }[]).map(({ src, alt, mw, h }) => (
             <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 36 }}>
               <img src={src} alt={alt}
-                style={{ height: 26, width: 'auto', maxWidth: mw, objectFit: 'contain', opacity: 0.92 }} />
+                style={{ height: h, width: 'auto', maxWidth: mw, objectFit: 'contain', opacity: 0.92 }} />
             </div>
           ))}
         </div>
