@@ -155,12 +155,6 @@ export default function Hero({ onSponsor }: HeroProps) {
 
       {/* ── Partners strip — rest of logos ── */}
       <div className="relative z-10 w-full px-6 pb-5 pt-2 lg:-mt-[60px]">
-        {/* Voice partner */}
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <span className="font-mono" style={{ fontSize: 9, letterSpacing: '0.18em', color: '#52506A', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Voice partner</span>
-          <div style={{ width: 1, height: 16, background: '#2A2840', flexShrink: 0 }} />
-          <img src="/logos/wispr.webp" alt="Wispr Flow" style={{ height: 18, width: 'auto', maxWidth: 100, objectFit: 'contain', opacity: 0.92 }} />
-        </div>
         {/* Main partners row */}
         <p className="font-mono text-center mb-3" style={{ fontSize: 10, letterSpacing: '0.22em', color: '#52506A', textTransform: 'uppercase' }}>Our Partners</p>
         <div className="flex items-center justify-center flex-wrap mb-3" style={{ gap: '14px 32px' }}>
@@ -173,6 +167,7 @@ export default function Hero({ onSponsor }: HeroProps) {
             { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', mw: 110 },
             { src: '/logos/aws-v3.png',           alt: 'AWS',           mw: 60  },
             { src: '/logos/vobiz.webp',           alt: 'Vobiz',         mw: 80  },
+            { src: '/logos/wispr.webp',           alt: 'Wispr Flow',    mw: 100 },
             { src: '/logos/brb-icon.png',         alt: 'BRB',           mw: 35  },
           ] as { src: string; alt: string; mw: number }[]).map(({ src, alt, mw }) => (
             <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 36 }}>
