@@ -162,7 +162,7 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '11:35', end: '12:05', sessions: [
-    { type: 'expert', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World',
+    { type: 'keynote', venue: 'Toast Hall', title: 'Physical AI: From Intelligence to the Real World',
       speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India', photo: '/speaker-anshuman.webp' }], lumaUrl: 'https://luma.com/natgxuqk' },
   ] },
 
