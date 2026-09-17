@@ -126,7 +126,7 @@ export default function SponsorsShowcase() {
               </div>
               <div className="flex items-center justify-center rounded-2xl px-4"
                 style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
-                <img src="/logos/simplismart.png" alt="Simplismart"
+                <img src="/logos/simplismart-v2.png" alt="Simplismart"
                   style={{ display: 'block', height: 24, width: 'auto', maxWidth: '85%' }} />
               </div>
               <div className="flex items-center justify-center rounded-2xl px-4"
