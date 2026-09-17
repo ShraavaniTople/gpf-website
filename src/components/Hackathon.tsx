@@ -66,11 +66,13 @@ export default function Hackathon() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Hackathon Partners</p>
             <div className="flex flex-wrap gap-x-6 gap-y-5 items-center" style={{ maxWidth: 420 }}>
               {[
+                { src: '/logos/freshworks-full.webp', alt: 'Freshworks',    h: 26, f: undefined },
                 { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 28, f: undefined },
-                { src: '/logos/anthropic-v2.webp',       alt: 'Anthropic',     h: 24, f: undefined },
-                { src: '/logos/aws-v3.png',             alt: 'AWS',           h: 32, f: undefined },
+                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     h: 24, f: undefined },
+                { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 32, f: undefined },
                 { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 26, f: undefined },
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 20, f: undefined },
+                { src: '/logos/wispr.webp',           alt: 'Wispr Flow',    h: 22, f: undefined },
                 { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 28, f: undefined },
               ].map(({ src, alt, h, f }: { src: string; alt: string; h: number; f?: string }) => (
                 <div key={alt} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
