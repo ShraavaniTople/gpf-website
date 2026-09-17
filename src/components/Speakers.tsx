@@ -61,7 +61,7 @@ const speakers: Speaker[] = [
   { name: 'Nitin Pulyani', title: 'SVP, Product, Cashfree Payments', linkedin: 'https://www.linkedin.com/in/nitinpulyani/', photo: '/speaker-nitin.jpg', objectPos: '50% 15%' },
   // Row 12
   { name: 'Gagandeep', title: 'GM, Payments, Tata Digital', linkedin: 'https://www.linkedin.com/in/aroragagandeep/', photo: '/speaker-gagandeep.jpg', objectPos: '50% 15%' },
-  { name: 'Radhika Yuvraj', title: 'Director, Data, Credera', linkedin: 'https://www.linkedin.com/in/riyen21/', photo: '/speaker-radhika.jpg', objectPos: '50% 15%' },
+  { name: 'Radhika Yuvraj', title: 'Country Director, Women in Tech India', linkedin: 'https://www.linkedin.com/in/riyen21/', photo: '/speaker-radhika.jpg', objectPos: '50% 15%' },
   { name: 'Omar Saud', title: 'Program Manager, KDEM', linkedin: 'https://www.linkedin.com/in/omar-saud-09943753/', photo: '/speaker-omar.jpg', objectPos: '50% 15%' },
   { name: 'Poorvi Vijay', title: 'Principal, Elevation Capital', linkedin: 'https://www.linkedin.com/in/poorvi-vijay-4503b042/', photo: '/speaker-poorvi.webp', objectPos: '50% 15%' },
   // Row 13 — VC row
