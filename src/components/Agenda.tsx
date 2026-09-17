@@ -47,7 +47,7 @@ const DAY1: Slot[] = [
         { name: 'Minakshi Khuntia', role: 'Senior Director, Product Management, Freshworks · Moderator', photo: '/speaker-minakshi.webp' },
         { name: 'Sreedhar Gade', role: 'Vice President, Engineering, Freshworks', photo: '/speaker-sreedhar.webp' },
         { name: 'Seema Kumar', role: 'Director, Field Engineering, Databricks', photo: '/speaker-seema.webp' },
-        { name: 'Aditya Singh', role: 'VP Product & India Site Head, Salesforce', photo: '/speaker-aditya.webp' },
+        { name: 'Aditya Singh', role: 'VP, Product & India Site Head, Salesforce', photo: '/speaker-aditya.webp' },
       ], lumaUrl: 'https://luma.com/i7e2i2fy' },
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Agentic Product Ideation',
       speakers: [{ name: 'Adithi Sampath', role: 'VP of Product & Design, Stellantis', photo: '/speaker-adithi.jpg' }], lumaUrl: 'https://luma.com/oji1wt90' },
@@ -190,7 +190,7 @@ const DAY2: Slot[] = [
 
   { start: '14:00', end: '15:15', sessions: [
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Fundraising + VC Lab',
-      speakers: [{ name: 'Subhadeep Mondal', role: 'VC, Kalaari Capital', photo: '/speaker-subhadeep.webp' }], lumaUrl: 'https://luma.com/esxygov8' },
+      speakers: [{ name: 'Subhadeep Mondal', role: 'Partner, Kalaari Capital', photo: '/speaker-subhadeep.webp' }], lumaUrl: 'https://luma.com/esxygov8' },
     { type: 'workshop', venue: 'Toast Hall', title: 'Figma to Code',
       speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP', photo: '/speaker-kushagra.jpg' }], lumaUrl: 'https://luma.com/zu8spy1t' },
     { type: 'roundtable', venue: 'Toast Board Room', title: 'CXO Roundtable: Building Global from India (Invite Only)', lumaUrl: 'https://luma.com/fzpxkjpi' },

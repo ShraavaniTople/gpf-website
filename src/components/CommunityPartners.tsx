@@ -20,7 +20,6 @@ const partners = [
   { name: 'Women in Big Data India', slug: 'women-in-big-data-v3' },
   { name: 'The Builders Club',       slug: 'builders-club' },
   { name: 'Accio',                   slug: 'accio' },
-  { name: 'Wispr Flow',              slug: 'wispr-flow' },
   { name: 'eChai',                   slug: 'echai' },
 ]
 
