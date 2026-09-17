@@ -218,6 +218,11 @@ const DAY2: Slot[] = [
       speakers: [{ name: 'Dharma Varahappian', role: 'Product Leader, eBay', photo: '/speaker-dharma2.webp' }], lumaUrl: 'https://luma.com/cqzpk8mw' },
   ] },
 
+  { start: '15:55', end: '16:10', sessions: [
+    { type: 'showcase', venue: 'Toast Hall', title: 'The Voice Native Way of Building with AI',
+      speakers: [{ name: 'Rohan Kochhar', role: 'Growth & Partnerships Lead, Wispr Flow', photo: '/speaker-rohan.webp' }] },
+  ] },
+
   { start: '15:40', end: '16:00', sessions: [
     { type: 'hackathon', venue: 'Freshworks Hall', title: 'Hackathon Finalists Present — Top 4 Teams',
       detail: 'Hackathon finalists demo live in front of India\'s top product leaders.' },
