@@ -95,10 +95,11 @@ export default function SponsorsShowcase() {
             </div>
           </div>
 
-          {/* Strategic + Gifting + Snacking partners — one row */}
-          <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
+          {/* Strategic + Voice + Gifting + Snacking partners — one row */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full" style={{ maxWidth: 760 }}>
             {[
               { label: 'Strategic partner', src: '/logos/kdem.webp',     alt: 'Karnataka Digital Economy Mission', h: 44 },
+              { label: 'Voice partner',     src: '/logos/wispr.webp',    alt: 'Wispr Flow',                       h: 28 },
               { label: 'Gifting partner',   src: '/logos/lamhenow.webp', alt: 'Lamhenow',                         h: 32 },
               { label: 'Snacking partner',  src: '/logos/brb.png',       alt: 'BRB',                              h: 44 },
             ].map(({ label, src, alt, h }) => (
