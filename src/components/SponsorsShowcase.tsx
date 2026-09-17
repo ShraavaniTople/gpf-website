@@ -77,19 +77,20 @@ export default function SponsorsShowcase() {
           {/* Supported by — hackathon partners */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 w-full" style={{ maxWidth: 1020 }}>
+            <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
               {[
-                { src: '/logos/sarvam.webp',          alt: 'Sarvam' },
-                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic' },
-                { src: '/logos/aws-v3.png',           alt: 'AWS' },
-                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments' },
-                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs' },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',        h: 56 },
-              ].map(({ src, alt, h }: { src: string; alt: string; h?: number }) => (
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 22 },
+                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     h: 22 },
+                { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 30 },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 26 },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 22 },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 60 },
+              ].map(({ src, alt, h }) => (
                 <div key={alt}
                   className="flex items-center justify-center rounded-2xl px-4"
                   style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
-                  <img src={src} alt={alt} style={h ? { ...gridLogoStyle, height: h } : gridLogoStyle} />
+                  <img src={src} alt={alt}
+                    style={{ display: 'block', height: h, width: 'auto', maxWidth: '85%', objectFit: 'contain' }} />
                 </div>
               ))}
             </div>
