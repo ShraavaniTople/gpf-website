@@ -64,20 +64,26 @@ export default function Hackathon() {
           {/* Right: partner logos */}
           <div className="flex flex-col gap-3 flex-shrink-0">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Hackathon Partners</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 108px)', gap: '14px 12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
               {([
-                { src: '/logos/freshworks-full.webp', alt: 'Freshworks' },
-                { src: '/logos/sarvam.webp',          alt: 'Sarvam' },
-                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic' },
-                { src: '/logos/aws-v3.png',           alt: 'AWS' },
-                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments' },
-                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs' },
-                { src: '/logos/wispr.webp',           alt: 'Wispr Flow' },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz' },
-              ] as { src: string; alt: string }[]).map(({ src, alt }) => (
-                <div key={src} style={{ width: 108, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={src} alt={alt}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', opacity: 0.9 }} />
+                [
+                  { src: '/logos/freshworks-full.webp', alt: 'Freshworks',    h: 24 },
+                  { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 22 },
+                  { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     h: 22 },
+                  { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 26 },
+                ],
+                [
+                  { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 24 },
+                  { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 20 },
+                  { src: '/logos/wispr.webp',           alt: 'Wispr Flow',    h: 24 },
+                  { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 44 },
+                ],
+              ] as { src: string; alt: string; h: number }[][]).map((row, ri) => (
+                <div key={ri} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
+                  {row.map(({ src, alt, h }) => (
+                    <img key={src} src={src} alt={alt}
+                      style={{ height: h, width: 'auto', maxWidth: 130, objectFit: 'contain', opacity: 0.9, flexShrink: 0 }} />
+                  ))}
                 </div>
               ))}
             </div>
