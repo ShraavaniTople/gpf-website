@@ -77,9 +77,8 @@ export default function SponsorsShowcase() {
           {/* Supported by — hackathon partners */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full" style={{ maxWidth: 1020 }}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 w-full" style={{ maxWidth: 1020 }}>
               {[
-                { src: '/logos/freshworks-full.webp', alt: 'Freshworks',   h: 32 },
                 { src: '/logos/sarvam.webp',          alt: 'Sarvam' },
                 { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic' },
                 { src: '/logos/aws-v3.png',           alt: 'AWS' },
