@@ -136,10 +136,6 @@ export default function Speakers({ onApply, onNominate }: Props) {
           ))}
         </div>
 
-        <p className="text-center text-sm italic mb-14" style={{ color: '#52506A' }}>
-          More exciting speakers joining the lineup soon.
-        </p>
-
         {/* CTAs */}
         <div ref={ctaRef} className="sr flex flex-wrap gap-4 justify-center">
           <button onClick={onApply} className="btn-purple text-sm">Apply to Speak</button>
