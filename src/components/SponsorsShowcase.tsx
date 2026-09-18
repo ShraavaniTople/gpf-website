@@ -103,24 +103,6 @@ export default function SponsorsShowcase() {
             </div>
           </div>
 
-          {/* Strategic + Gifting + Snacking partners — one row */}
-          <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
-            {[
-              { label: 'Strategic partner', src: '/logos/kdem.webp',     alt: 'Karnataka Digital Economy Mission', h: 44 },
-              { label: 'Gifting partner',   src: '/logos/lamhenow.webp', alt: 'Lamhenow',                         h: 32 },
-              { label: 'Snacking partner',  src: '/logos/brb.png',       alt: 'BRB',                              h: 44 },
-            ].map(({ label, src, alt, h }) => (
-              <div key={alt} className="flex flex-col items-center gap-2">
-                <p className="font-mono text-[10px] uppercase tracking-[.18em] text-center" style={{ color: '#52506A' }}>{label}</p>
-                <div className="flex items-center justify-center rounded-2xl px-4 w-full"
-                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
-                  <img src={src} alt={alt}
-                    style={{ display: 'block', height: h, width: 'auto', maxWidth: '80%', objectFit: 'contain' }} />
-                </div>
-              </div>
-            ))}
-          </div>
-
           {/* Exhibiting Partners */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Exhibiting Partners</p>
@@ -138,6 +120,24 @@ export default function SponsorsShowcase() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Strategic + Gifting + Snacking partners — one row */}
+          <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
+            {[
+              { label: 'Strategic partner', src: '/logos/kdem.webp',     alt: 'Karnataka Digital Economy Mission', h: 44 },
+              { label: 'Gifting partner',   src: '/logos/lamhenow.webp', alt: 'Lamhenow',                         h: 32 },
+              { label: 'Snacking partner',  src: '/logos/brb.png',       alt: 'BRB',                              h: 44 },
+            ].map(({ label, src, alt, h }) => (
+              <div key={alt} className="flex flex-col items-center gap-2">
+                <p className="font-mono text-[10px] uppercase tracking-[.18em] text-center" style={{ color: '#52506A' }}>{label}</p>
+                <div className="flex items-center justify-center rounded-2xl px-4 w-full"
+                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
+                  <img src={src} alt={alt}
+                    style={{ display: 'block', height: h, width: 'auto', maxWidth: '80%', objectFit: 'contain' }} />
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>
