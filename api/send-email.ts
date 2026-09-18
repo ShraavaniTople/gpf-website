@@ -12,7 +12,7 @@ function buildCombinedHtml(p: {
   const isVIP      = tier === 'VIP'
   const passLabel  = isVIP ? 'Season Pass · VIP' : p.pass_type
   const firstName  = p.to_name.split(' ')[0]
-  const isPaid     = p.amount && p.amount !== 'Complimentary' && p.amount !== '0' && Number(p.amount) !== 0
+  const isPaid     = p.amount && p.amount !== 'Complimentary' && p.amount !== '0' && Number(String(p.amount).replace(/,/g, '')) !== 0
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -162,8 +162,8 @@ function buildReceiptHtml(p: {
   pass_type: string; qty: number; amount: string; payment_id: string
   pass_number: string; discount_code: string
 }) {
-  const isComp = !p.amount || p.amount === 'Complimentary' || p.amount === '0' || Number(p.amount) === 0
-  const total = isComp ? 0 : Number(p.amount)
+  const isComp = !p.amount || p.amount === 'Complimentary' || p.amount === '0' || Number(String(p.amount).replace(/,/g, '')) === 0
+  const total = isComp ? 0 : Number(String(p.amount).replace(/,/g, ''))
   const unitPrice = p.qty > 1 ? Math.round(total / p.qty) : total
   const now = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })
   const receiptNo = 'TGPF-RCP-' + p.pass_number
@@ -306,7 +306,7 @@ function buildCorporateInvoiceHtml(p: {
   pass_type: string; qty: number; amount: string
   payment_id: string; pass_number: string; is_unpaid: boolean
 }) {
-  const total = Number(p.amount) || 0
+  const total = Number(String(p.amount).replace(/,/g, '')) || 0
   const unitPrice = p.qty > 1 ? Math.round(total / p.qty) : total
   const now = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })
   const invoiceNo = 'TGPF-INV-' + p.pass_number
@@ -502,7 +502,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const fromAddress = process.env.RESEND_FROM_EMAIL ?? 'TGPF 2026 <tickets@thegreatproductfestival.com>'
-  const isPaid = amount && amount !== 'Complimentary' && amount !== '0' && Number(amount) !== 0
+  const isPaid = amount && amount !== 'Complimentary' && amount !== '0' && Number(String(amount).replace(/,/g, '')) !== 0
 
   const emails: Promise<unknown>[] = [
     resend.emails.send({
