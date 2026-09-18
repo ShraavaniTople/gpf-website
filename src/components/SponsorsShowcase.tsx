@@ -41,7 +41,7 @@ export default function SponsorsShowcase() {
           {/* Presented by — WiP India */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Presented by</p>
-            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
+            <div className="flex items-center justify-center rounded-2xl px-6 sm:px-10 py-5" style={cardStyle}>
               <img src="/wip-logo.webp" alt="Women in Product India"
                 style={{ height: 56, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
@@ -50,7 +50,7 @@ export default function SponsorsShowcase() {
           {/* Powered by — Freshworks */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Powered by</p>
-            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
+            <div className="flex items-center justify-center rounded-2xl px-6 sm:px-10 py-5" style={cardStyle}>
               <img src="/logos/freshworks-full.webp" alt="Freshworks"
                 style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
@@ -59,7 +59,7 @@ export default function SponsorsShowcase() {
           {/* Co-powered by — Toast */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-powered by</p>
-            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
+            <div className="flex items-center justify-center rounded-2xl px-6 sm:px-10 py-5" style={cardStyle}>
               <img src="/logos/toast.webp" alt="Toast"
                 style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
@@ -68,7 +68,7 @@ export default function SponsorsShowcase() {
           {/* Associate partner — Databricks */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Associate partner</p>
-            <div className="flex items-center justify-center rounded-2xl px-10 py-5" style={cardStyle}>
+            <div className="flex items-center justify-center rounded-2xl px-6 sm:px-10 py-5" style={cardStyle}>
               <img src="/logos/databricks.webp" alt="Databricks"
                 style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
             </div>
@@ -77,20 +77,20 @@ export default function SponsorsShowcase() {
           {/* Supported by — hackathon partners */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
-            <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
               {[
-                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 15, mw: 120 },
-                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     h: 16, mw: 130 },
-                { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 28, mw: 80  },
-                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 28, mw: 150 },
-                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 16, mw: 130 },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 56, mw: 160 },
-              ].map(({ src, alt, h, mw }) => (
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 15 },
+                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     h: 16 },
+                { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 28 },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 28 },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 16 },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 56 },
+              ].map(({ src, alt, h }) => (
                 <div key={alt}
                   className="flex items-center justify-center rounded-2xl px-4"
                   style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
                   <img src={src} alt={alt}
-                    style={{ display: 'block', height: h, width: 'auto', maxWidth: mw }} />
+                    style={{ display: 'block', maxHeight: h, height: 'auto', width: 'auto', maxWidth: '80%' }} />
                 </div>
               ))}
             </div>
@@ -118,7 +118,7 @@ export default function SponsorsShowcase() {
           {/* Exhibiting Partners */}
           <div className="flex flex-col items-center gap-2 w-full">
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Exhibiting Partners</p>
-            <div className="grid grid-cols-4 gap-4 w-full" style={{ maxWidth: 760 }}>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full" style={{ maxWidth: 760 }}>
               {[
                 { src: '/logos/vaaniai.png',        alt: 'Vaani AI' },
                 { src: '/logos/simplismart-v2.png', alt: 'Simplismart' },
