@@ -67,7 +67,7 @@ export default function SponsorsShowcase() {
           {/* Associate partner + Voice partner — same row */}
           <div className="grid grid-cols-2 gap-4 w-full" style={{ maxWidth: 760 }}>
             {[
-              { label: 'Associate partner', src: '/logos/databricks.webp', alt: 'Databricks', h: 36 },
+              { label: 'Enterprise Intelligence partner', src: '/logos/databricks.webp', alt: 'Databricks', h: 36 },
               { label: 'Voice partner',     src: '/logos/wispr.webp',      alt: 'Wispr Flow', h: 26 },
             ].map(({ label, src, alt, h }) => (
               <div key={alt} className="flex flex-col items-center gap-2">
