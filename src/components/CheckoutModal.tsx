@@ -681,7 +681,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   // ── Step 1b: Additional members ────────────────────────────────────────────
   if (step === 'members') {
     const allMembersFilled = memberDetails.every(m =>
-      m.firstName.trim() && m.lastName.trim() && m.email.trim() && m.phone.trim() && m.company.trim() && m.role.trim()
+      m.firstName.trim() && m.lastName.trim() && m.email.trim() && m.phone.trim() && m.company.trim() && m.role.trim() && m.linkedin.trim()
     )
     function updateMember(i: number, field: string, val: string) {
       setMemberDetails(prev => prev.map((m, idx) => idx === i ? { ...m, [field]: val } : m))
@@ -724,7 +724,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
                 <input value={m.role} onChange={e => updateMember(i, 'role', e.target.value)} type="text" placeholder="Product Manager" className={inp} />
               </div>
               <div>
-                <label className={lbl}>LinkedIn Profile</label>
+                <label className={lbl}>LinkedIn Profile *</label>
                 <input value={m.linkedin} onChange={e => updateMember(i, 'linkedin', e.target.value)} type="url" placeholder="https://linkedin.com/in/..." className={inp} />
               </div>
             </div>
