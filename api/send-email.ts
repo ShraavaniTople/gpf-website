@@ -305,6 +305,7 @@ function buildCorporateInvoiceHtml(p: {
   bill_to_company: string; bill_to_address: string; gst_number: string
   pass_type: string; qty: number; amount: string
   payment_id: string; pass_number: string; is_unpaid: boolean
+  additional_members?: { name: string; email: string; role: string; phone: string }[]
 }) {
   const total = Number(String(p.amount).replace(/,/g, '')) || 0
   const unitPrice = p.qty > 1 ? Math.round(total / p.qty) : total
@@ -326,8 +327,19 @@ function buildCorporateInvoiceHtml(p: {
     ? '<td align="right" style="padding:14px 10px;font-size:17px;font-weight:800;color:#92400E;">&#8377;' + total.toLocaleString('en-IN') + ' DUE</td>'
     : '<td align="right" style="padding:14px 10px;font-size:17px;font-weight:800;color:#5B21B6;">&#8377;' + total.toLocaleString('en-IN') + '</td>'
 
-  const roleRow   = p.attendee_role  ? '<p style="margin:0 0 2px;font-size:12px;color:#475569;">' + p.attendee_role  + '</p>' : ''
-  const phoneRow  = p.attendee_phone ? '<p style="margin:0;font-size:12px;color:#475569;">'        + p.attendee_phone + '</p>' : ''
+  const allAttendees = [
+    { name: p.attendee_name, email: p.attendee_email, role: p.attendee_role, phone: p.attendee_phone },
+    ...(p.additional_members || []),
+  ]
+  const attendeesLabel = allAttendees.length > 1 ? `Attendees (${allAttendees.length})` : 'Attendee'
+  const attendeesHtml = allAttendees.map((m, i) =>
+    `<tr><td style="padding:${i > 0 ? '10px 0 0' : '0'};">`
+    + `<p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#1E1B4B;">${m.name}</p>`
+    + (m.role  ? `<p style="margin:0 0 2px;font-size:12px;color:#475569;">${m.role}</p>`          : '')
+    + `<p style="margin:0 0 2px;font-size:12px;color:#475569;word-break:break-all;">${m.email}</p>`
+    + (m.phone ? `<p style="margin:0;font-size:12px;color:#475569;">${m.phone}</p>`               : '')
+    + `</td></tr>`
+  ).join('')
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -375,16 +387,13 @@ function buildCorporateInvoiceHtml(p: {
     </tr></table>
   </td></tr>
 
-  <!-- Attendee -->
+  <!-- Attendee(s) -->
   <tr><td style="padding:0 32px 20px;">
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F8FAFC;border-radius:8px;padding:14px 16px;">
       <tr><td>
-        <p style="margin:0 0 6px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">Attendee</p>
-        <p style="margin:0 0 2px;font-size:13px;font-weight:700;color:#1E1B4B;">${p.attendee_name}</p>
-        ${roleRow}
-        <p style="margin:0 0 2px;font-size:12px;color:#475569;word-break:break-all;">${p.attendee_email}</p>
-        ${phoneRow}
+        <p style="margin:0 0 10px;font-size:10px;font-weight:700;color:#94A3B8;letter-spacing:0.14em;text-transform:uppercase;">${attendeesLabel}</p>
       </td></tr>
+      ${attendeesHtml}
     </table>
   </td></tr>
 
@@ -461,7 +470,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const {
     to_email, to_name, company, role, phone, pass_type, amount, payment_id, pass_number,
     event_date, event_city, qty, discount_code,
-    invoice_only, bill_to_company, bill_to_address, gst_number, is_unpaid,
+    invoice_only, bill_to_company, bill_to_address, gst_number, is_unpaid, additional_members,
   } = req.body
 
   if (!to_email || !to_name || !pass_number) return res.status(400).json({ error: 'Missing required fields' })
@@ -492,6 +501,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           payment_id: payment_id || '',
           pass_number,
           is_unpaid: !!is_unpaid,
+          additional_members: additional_members || [],
         }),
       })
       return res.status(200).json({ ok: true })
