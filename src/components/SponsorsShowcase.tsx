@@ -47,31 +47,38 @@ export default function SponsorsShowcase() {
             </div>
           </div>
 
-          {/* Powered by — Freshworks */}
-          <div className="flex flex-col items-center gap-2 w-full">
-            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Powered by</p>
-            <div className="flex items-center justify-center rounded-2xl px-6 sm:px-10 py-5" style={cardStyle}>
-              <img src="/logos/freshworks-full.webp" alt="Freshworks"
-                style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
-            </div>
+          {/* Powered by + Co-powered by — same row */}
+          <div className="grid grid-cols-2 gap-4 w-full" style={{ maxWidth: 760 }}>
+            {[
+              { label: 'Powered by',    src: '/logos/freshworks-full.webp', alt: 'Freshworks', h: 36 },
+              { label: 'Co-powered by', src: '/logos/toast.webp',           alt: 'Toast',      h: 36 },
+            ].map(({ label, src, alt, h }) => (
+              <div key={alt} className="flex flex-col items-center gap-2">
+                <p className="font-mono text-[10px] uppercase tracking-[.18em] text-center" style={{ color: '#52506A' }}>{label}</p>
+                <div className="flex items-center justify-center rounded-2xl px-4 w-full"
+                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
+                  <img src={src} alt={alt}
+                    style={{ display: 'block', maxHeight: h, height: 'auto', width: 'auto', maxWidth: '85%', objectFit: 'contain' }} />
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Co-powered by — Toast */}
-          <div className="flex flex-col items-center gap-2 w-full">
-            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Co-powered by</p>
-            <div className="flex items-center justify-center rounded-2xl px-6 sm:px-10 py-5" style={cardStyle}>
-              <img src="/logos/toast.webp" alt="Toast"
-                style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
-            </div>
-          </div>
-
-          {/* Associate partner — Databricks */}
-          <div className="flex flex-col items-center gap-2 w-full">
-            <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Associate partner</p>
-            <div className="flex items-center justify-center rounded-2xl px-6 sm:px-10 py-5" style={cardStyle}>
-              <img src="/logos/databricks.webp" alt="Databricks"
-                style={{ height: 40, width: 'auto', maxWidth: '100%', objectFit: 'contain' }} />
-            </div>
+          {/* Associate partner + Voice partner — same row */}
+          <div className="grid grid-cols-2 gap-4 w-full" style={{ maxWidth: 760 }}>
+            {[
+              { label: 'Associate partner', src: '/logos/databricks.webp', alt: 'Databricks', h: 36 },
+              { label: 'Voice partner',     src: '/logos/wispr.webp',      alt: 'Wispr Flow', h: 26 },
+            ].map(({ label, src, alt, h }) => (
+              <div key={alt} className="flex flex-col items-center gap-2">
+                <p className="font-mono text-[10px] uppercase tracking-[.18em] text-center" style={{ color: '#52506A' }}>{label}</p>
+                <div className="flex items-center justify-center rounded-2xl px-4 w-full"
+                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
+                  <img src={src} alt={alt}
+                    style={{ display: 'block', maxHeight: h, height: 'auto', width: 'auto', maxWidth: '85%', objectFit: 'contain' }} />
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Supported by — hackathon partners */}
@@ -84,7 +91,7 @@ export default function SponsorsShowcase() {
                 { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 28 },
                 { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 28 },
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 16 },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 56 },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 32 },
               ].map(({ src, alt, h }) => (
                 <div key={alt}
                   className="flex items-center justify-center rounded-2xl px-4"
@@ -96,11 +103,10 @@ export default function SponsorsShowcase() {
             </div>
           </div>
 
-          {/* Strategic + Voice + Gifting + Snacking partners — one row */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full" style={{ maxWidth: 760 }}>
+          {/* Strategic + Gifting + Snacking partners — one row */}
+          <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
             {[
               { label: 'Strategic partner', src: '/logos/kdem.webp',     alt: 'Karnataka Digital Economy Mission', h: 44 },
-              { label: 'Voice partner',     src: '/logos/wispr.webp',    alt: 'Wispr Flow',                       h: 28 },
               { label: 'Gifting partner',   src: '/logos/lamhenow.webp', alt: 'Lamhenow',                         h: 32 },
               { label: 'Snacking partner',  src: '/logos/brb.png',       alt: 'BRB',                              h: 44 },
             ].map(({ label, src, alt, h }) => (
