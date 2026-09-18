@@ -91,13 +91,13 @@ export default function SponsorsShowcase() {
                 { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 28 },
                 { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 28 },
                 { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 16 },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 32 },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 48 },
               ].map(({ src, alt, h }) => (
                 <div key={alt}
                   className="flex items-center justify-center rounded-2xl px-4"
                   style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
                   <img src={src} alt={alt}
-                    style={{ display: 'block', maxHeight: h, height: 'auto', width: 'auto', maxWidth: '80%' }} />
+                    style={{ display: 'block', maxHeight: h, height: 'auto', width: 'auto', maxWidth: '90%' }} />
                 </div>
               ))}
             </div>
