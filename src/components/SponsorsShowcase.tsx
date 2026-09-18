@@ -86,18 +86,18 @@ export default function SponsorsShowcase() {
             <p className="font-mono text-[10px] uppercase tracking-[.18em]" style={{ color: '#52506A' }}>Supported by</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
               {[
-                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 15 },
-                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     h: 16 },
-                { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 28 },
-                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 28 },
-                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 16 },
-                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 48 },
+                { src: '/logos/sarvam.webp',          alt: 'Sarvam',        h: 26 },
+                { src: '/logos/anthropic-v2.webp',    alt: 'Anthropic',     h: 26 },
+                { src: '/logos/aws-v3.png',           alt: 'AWS',           h: 42 },
+                { src: '/logos/dodopayments.webp',    alt: 'Dodo Payments', h: 26 },
+                { src: '/logos/elevenlabs-crop.webp', alt: 'ElevenLabs',    h: 26 },
+                { src: '/logos/vobiz.webp',           alt: 'Vobiz',         h: 36 },
               ].map(({ src, alt, h }) => (
                 <div key={alt}
                   className="flex items-center justify-center rounded-2xl px-4"
                   style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
                   <img src={src} alt={alt}
-                    style={{ display: 'block', maxHeight: h, height: 'auto', width: 'auto', maxWidth: '90%' }} />
+                    style={{ display: 'block', maxHeight: h, height: 'auto', width: 'auto', maxWidth: '85%' }} />
                 </div>
               ))}
             </div>
