@@ -202,7 +202,6 @@ const DAY2: Slot[] = [
   { start: '14:35', end: '15:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Building Companies That Matter: A VC Perspective',
       speakers: [
-        { name: 'Kruti Raiyani',     role: 'General Partner, 247VC', photo: '/speaker-kruti.webp' },
         { name: 'Jivesh Madan',      role: 'Partner, Shastra VC',    photo: '/speaker-jivesh.webp' },
         { name: 'Rishabh Golchha',   role: 'Managing Partner, Venture Catalysts',            photo: '/speaker-rishabh.webp' },
         { name: 'Shalini Dayanidhi', role: 'Investments, M Venture Partners · Moderator', photo: '/speaker-shalini-d.webp' },

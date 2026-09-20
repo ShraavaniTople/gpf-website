@@ -66,7 +66,6 @@ const speakers: Speaker[] = [
   { name: 'Poorvi Vijay', title: 'Principal, Elevation Capital', linkedin: 'https://www.linkedin.com/in/poorvi-vijay-4503b042/', photo: '/speaker-poorvi.webp', objectPos: '50% 15%' },
   // Row 13 — VC row
   { name: 'Rishabh Golchha', title: 'Managing Partner, Venture Catalysts', linkedin: 'https://www.linkedin.com/in/rishabh-golchha/', photo: '/speaker-rishabh.webp', objectPos: '50% 15%' },
-  { name: 'Kruti Raiyani', title: 'VC, 247VC', linkedin: 'https://www.linkedin.com/in/kruti-raiyani/', photo: '/speaker-kruti.webp', objectPos: '50% 15%' },
   { name: 'Jivesh Madan', title: 'VC, Shastra VC', linkedin: 'https://www.linkedin.com/in/jiveshmadan/', photo: '/speaker-jivesh.webp', objectPos: '50% 15%' },
   { name: 'Subhadeep Mondal', title: 'VC, Kalaari Capital', linkedin: 'https://www.linkedin.com/in/subhadeepmondal/', photo: '/speaker-subhadeep.webp', objectPos: '50% 15%' },
   // Row 14 — last row
