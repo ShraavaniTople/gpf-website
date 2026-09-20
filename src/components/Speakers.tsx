@@ -37,7 +37,7 @@ const speakers: Speaker[] = [
   // Row 7
   { name: 'Rajat Harlalka', title: 'Director of Product, Toast', linkedin: 'https://www.linkedin.com/in/rajatharlalka/', photo: '/speaker-rajat.webp', objectPos: '50% 15%' },
   { name: 'Deeksha Anand', title: 'PMM, Google', linkedin: 'https://www.linkedin.com/in/deekshaanand/', photo: '/speaker-deeksha.webp', objectPos: '50% 15%' },
-  { name: 'Bhavik Kaul', title: 'CPO, SuperMoney', linkedin: 'https://www.linkedin.com/in/kaulbhavik/', photo: '/speaker-bhavik.webp', objectPos: '50% 15%' },
+  { name: 'Bhavik Kaul', title: 'Ex-CPO, SuperMoney', linkedin: 'https://www.linkedin.com/in/kaulbhavik/', photo: '/speaker-bhavik.webp', objectPos: '50% 15%' },
   { name: 'Kushagra Swami', title: 'AI Product Designer, POP', linkedin: 'https://www.linkedin.com/in/kushagra-swami/', photo: '/speaker-kushagra.jpg', objectPos: '50% 15%' },
   // Row 8
   { name: 'Anshuman Awasthi', title: 'SVP, Mercedes-Benz Research & Development India', linkedin: 'https://in.linkedin.com/in/anshumanawasthi', photo: '/speaker-anshuman.webp', objectPos: '50% 15%' },

@@ -208,7 +208,7 @@ const DAY2: Slot[] = [
       ] },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
       speakers: [
-        { name: 'Bhavik Kaul', role: 'CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
+        { name: 'Bhavik Kaul', role: 'Ex-CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
         { name: 'Pulkit Jain', role: 'Co-Founder & CPO, Vedantu', photo: '/speaker-pulkit.webp' },
         { name: 'Vikas Bansal', role: 'CPO, Groww', photo: '/speaker-vikas.webp' },
         { name: 'Ira Banerjee', role: 'Head of Clinical Product, Even Health · Moderator', photo: '/speaker-ira.jpg' },
