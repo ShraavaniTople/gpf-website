@@ -418,6 +418,14 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   async function handlePay() {
     setPaying(true)
 
+    // Re-validate discount code tier restriction at payment time
+    if (applied?.onlyTier && tierName !== applied.onlyTier) {
+      setCodeErr(`This code is only valid for the ${applied.onlyTier} pass.`)
+      setApplied(null)
+      setPaying(false)
+      return
+    }
+
     // Free pass — bypass Razorpay entirely
     if (finalPrice === 0) {
       const pid      = `FREE-${Date.now()}`
