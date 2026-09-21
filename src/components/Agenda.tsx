@@ -134,7 +134,7 @@ const DAY2: Slot[] = [
       speakers: [
         { name: 'Poorvi Vijay', role: 'Principal, Elevation Capital', photo: '/speaker-poorvi.webp' },
         { name: 'Amrit Raj', role: 'CMO, Women in Product India', photo: '/speaker-amrit.webp' },
-      ], lumaUrl: 'https://luma.com/pg0kz4cd' },
+      ], lumaUrl: 'https://luma.com/dhfgxj7p' },
     { type: 'panel', venue: 'Toast Hall', title: 'Product × Community: Building for Belonging',
       speakers: [
         { name: 'Neha Bagaria', role: 'Founder & CEO, HerKey', photo: '/speaker-neha.webp' },
@@ -171,7 +171,7 @@ const DAY2: Slot[] = [
     { type: 'workshop', title: 'Vibe Code Your Product MVP with Google AI Studio',
       speakers: [
         { name: 'Vijeta Pai', role: 'Cloud & AI Advisor, Lumitia', photo: '/speaker-vijeta.webp' },
-      ] },
+      ], lumaUrl: 'https://luma.com/p20ecm65' },
   ] },
 
   { start: '11:35', end: '12:05', sessions: [
@@ -205,7 +205,7 @@ const DAY2: Slot[] = [
         { name: 'Jivesh Madan',      role: 'Partner, Shastra VC',    photo: '/speaker-jivesh.webp' },
         { name: 'Rishabh Golchha',   role: 'Managing Partner, Venture Catalysts',            photo: '/speaker-rishabh.webp' },
         { name: 'Shalini Dayanidhi', role: 'Investments, M Venture Partners · Moderator', photo: '/speaker-shalini-d.webp' },
-      ] },
+      ], lumaUrl: 'https://luma.com/pg0kz4cd' },
     { type: 'panel', venue: 'Toast Hall', title: 'PLG Panel: Growth in High-Trust Markets',
       speakers: [
         { name: 'Bhavik Kaul', role: 'Ex-CPO, SuperMoney', photo: '/speaker-bhavik.webp' },
