@@ -19,7 +19,7 @@ const TIERS: Record<string, { price: number; features: string[] }> = {
 }
 
 // ─── Discount codes ───────────────────────────────────────────────────────────
-const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number; minQty?: number }> = {
+const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: number; minQty?: number; onlyTier?: string }> = {
   WIPINDIA15: { label: 'WiP India member · 15% off', pct: 15 },
   PRODUCT25: { label: 'WiP India member · 25% off', pct: 25 },
   PRODOM: { label: '25% off', pct: 25 },
@@ -48,7 +48,7 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   // Group discount — 40% off, requires 3+ passes
   GROUP40:    { label: 'Group discount · 40% off', pct: 40, minQty: 3 },
   // Full comp
-  GPFINFINITE: { label: '100% off', pct: 100 },
+  GPFINFINITE: { label: '100% off', pct: 100, onlyTier: 'General' },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
@@ -402,6 +402,11 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
     if (!found) { setCodeErr('Invalid code. Please check and try again.'); setApplied(null); return }
     if (found.minQty && qty < found.minQty) {
       setCodeErr(`This code is valid for ${found.minQty}+ passes. Please increase your quantity.`)
+      setApplied(null)
+      return
+    }
+    if (found.onlyTier && tierName !== found.onlyTier) {
+      setCodeErr(`This code is only valid for the ${found.onlyTier} pass.`)
       setApplied(null)
       return
     }
