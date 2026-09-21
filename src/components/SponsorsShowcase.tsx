@@ -127,7 +127,7 @@ export default function SponsorsShowcase() {
             {[
               { label: 'Strategic partner', src: '/logos/kdem.webp',     alt: 'Karnataka Digital Economy Mission', whiteBg: false },
               { label: 'Gifting partner',   src: '/logos/lamhenow.webp', alt: 'Lamhenow',                         whiteBg: false },
-              { label: 'Academic partner',  src: '/logos/presidency-university.png', alt: 'Presidency University', whiteBg: true  },
+              { label: 'Academic partner',  src: '/logos/presidency-university.png', alt: 'Presidency University', whiteBg: false },
             ].map(({ label, src, alt, whiteBg }) => (
               <div key={alt} className="flex flex-col items-center gap-2">
                 <p className="font-mono text-[10px] uppercase tracking-[.18em] text-center" style={{ color: '#52506A' }}>{label}</p>
