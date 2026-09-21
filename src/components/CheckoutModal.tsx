@@ -359,7 +359,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
   const emptyMember = () => ({ firstName: '', lastName: '', email: '', phone: '', company: '', role: '', linkedin: '' })
   const [memberDetails, setMemberDetails] = useState<ReturnType<typeof emptyMember>[]>([])
   const [codeInput, setCodeInput] = useState('')
-  const [applied, setApplied] = useState<{ code: string; label: string; pct?: number; fixed?: number; minQty?: number } | null>(null)
+  const [applied, setApplied] = useState<{ code: string; label: string; pct?: number; fixed?: number; minQty?: number; onlyTier?: string } | null>(null)
   const [codeErr, setCodeErr] = useState('')
   const [consent, setConsent] = useState(false)
   const [paying, setPaying] = useState(false)
