@@ -48,7 +48,7 @@ const DISCOUNT_CODES: Record<string, { label: string; pct?: number; fixed?: numb
   // Group discount — 40% off, requires 3+ passes
   GROUP40:    { label: 'Group discount · 40% off', pct: 40, minQty: 3 },
   // Full comp
-  GPFVIP26: { label: '100% off', pct: 100 },
+  WKJX9M26: { label: '100% off', pct: 100 },
 }
 
 // ─── Load Razorpay script ─────────────────────────────────────────────────────
