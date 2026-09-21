@@ -97,7 +97,7 @@ const DAY1: Slot[] = [
 
   { start: '15:55', end: '16:10', sessions: [
     { type: 'showcase', venue: 'Toast Hall', title: 'The Voice Native Way of Building with AI',
-      speakers: [{ name: 'Rohan Kochhar', role: 'Growth & Partnerships Lead, Wispr Flow', photo: '/speaker-rohan.webp' }] },
+      speakers: [{ name: 'Rohan Kochhar', role: 'Growth & Partnerships Lead, Wispr Flow', photo: '/speaker-rohan.webp' }], lumaUrl: 'https://luma.com/cweuqphl' },
   ] },
 
   { start: '15:40', end: '16:15', sessions: [
@@ -217,7 +217,7 @@ const DAY2: Slot[] = [
 
   { start: '15:20', end: '15:35', sessions: [
     { type: 'expert', venue: 'Freshworks Hall', title: 'From Recommendations to Remediation',
-      speakers: [{ name: 'Vishy Puthukode', role: 'Director of Product Management, Freshworks', photo: '/speaker-vishy.webp' }] },
+      speakers: [{ name: 'Vishy Puthukode', role: 'Director of Product Management, Freshworks', photo: '/speaker-vishy.webp' }], lumaUrl: 'https://luma.com/q48sxmu9' },
   ] },
 
   { start: '15:20', end: '15:50', sessions: [
