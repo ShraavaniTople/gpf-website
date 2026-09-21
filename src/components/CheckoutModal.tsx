@@ -406,7 +406,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
       return
     }
     if (found.onlyTier && tierName !== found.onlyTier) {
-      setCodeErr(`This code is only valid for the ${found.onlyTier} pass.`)
+      setCodeErr(`This code is only applicable for the General Pass.`)
       setApplied(null)
       return
     }
@@ -420,7 +420,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
 
     // Re-validate discount code tier restriction at payment time
     if (applied?.onlyTier && tierName !== applied.onlyTier) {
-      setCodeErr(`This code is only valid for the ${applied.onlyTier} pass.`)
+      setCodeErr(`This code is only applicable for the General Pass.`)
       setApplied(null)
       setPaying(false)
       return
