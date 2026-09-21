@@ -122,17 +122,17 @@ export default function SponsorsShowcase() {
             </div>
           </div>
 
-          {/* Strategic + Gifting + Snacking partners — one row */}
+          {/* Strategic + Gifting + Academic partners — one row */}
           <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
             {[
-              { label: 'Strategic partner', src: '/logos/kdem.webp',                  alt: 'Karnataka Digital Economy Mission' },
-              { label: 'Gifting partner',   src: '/logos/lamhenow.webp',             alt: 'Lamhenow'                         },
-              { label: 'Academic partner',  src: '/logos/presidency-university.png', alt: 'Presidency University'            },
-            ].map(({ label, src, alt }) => (
+              { label: 'Strategic partner', src: '/logos/kdem.webp',     alt: 'Karnataka Digital Economy Mission', whiteBg: false },
+              { label: 'Gifting partner',   src: '/logos/lamhenow.webp', alt: 'Lamhenow',                         whiteBg: false },
+              { label: 'Academic partner',  src: '/logos/presidency-university.png', alt: 'Presidency University', whiteBg: true  },
+            ].map(({ label, src, alt, whiteBg }) => (
               <div key={alt} className="flex flex-col items-center gap-2">
                 <p className="font-mono text-[10px] uppercase tracking-[.18em] text-center" style={{ color: '#52506A' }}>{label}</p>
                 <div className="flex items-center justify-center rounded-2xl px-4 w-full"
-                  style={{ background: '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
+                  style={{ background: whiteBg ? '#FFFFFF' : '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
                   <img src={src} alt={alt}
                     style={{ display: 'block', width: '70%', height: 48, objectFit: 'contain' }} />
                 </div>
