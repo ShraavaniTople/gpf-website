@@ -475,6 +475,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (!to_email || !to_name || !pass_number) return res.status(400).json({ error: 'Missing required fields' })
 
+  // Server-side: GPFINFINITE is only valid for General pass
+  if (discount_code === 'GPFINFINITE' && pass_type !== 'General Pass') {
+    return res.status(400).json({ error: 'This code is only applicable for the General Pass.' })
+  }
+
   // Corporate invoice-only mode (no pass email, billed to company)
   if (invoice_only) {
     const fromAddress = process.env.RESEND_FROM_EMAIL ?? 'TGPF 2026 <tickets@thegreatproductfestival.com>'
