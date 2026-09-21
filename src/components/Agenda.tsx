@@ -27,9 +27,9 @@ const ST: Record<SType, { label: string; color: string; bg: string }> = {
 }
 
 const DAY1: Slot[] = [
-  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast' }] },
+  { start: '09:00', end: '10:00', sessions: [{ type: 'registration', title: 'Registration & Breakfast', venue: 'Freshworks Hall' }] },
 
-  { start: '10:00', end: '10:25', sessions: [{ type: 'opening', title: 'The Great Product Festival: Welcoming Infinite Builders',
+  { start: '10:00', end: '10:25', sessions: [{ type: 'opening', venue: 'Freshworks Hall', title: 'The Great Product Festival: Welcoming Infinite Builders',
       speakers: [{ name: 'Swati Awasthi', role: 'Founder, Women in Product India', photo: '/speaker-swati.webp' }], lumaUrl: 'https://luma.com/fg55tpa5' }] },
 
   { start: '10:30', end: '11:00', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'The New Rules of Building Products & Companies',
@@ -164,7 +164,7 @@ const DAY2: Slot[] = [
       speakers: [
         { name: 'Ekta Shah', role: 'Data Scientist, MSCI', photo: '/speaker-ekta.webp' },
       ], lumaUrl: 'https://luma.com/9rlo85os' },
-    { type: 'workshop', title: 'Vibe Code Your Product MVP with Google AI Studio',
+    { type: 'workshop', venue: 'Toast Workshop Room', title: 'Vibe Code Your Product MVP with Google AI Studio',
       speakers: [
         { name: 'Vijeta Pai', role: 'Cloud & AI Advisor, Lumitia', photo: '/speaker-vijeta.webp' },
       ], lumaUrl: 'https://luma.com/p20ecm65' },
