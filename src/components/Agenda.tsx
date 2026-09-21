@@ -95,10 +95,6 @@ const DAY1: Slot[] = [
       speakers: [{ name: 'Usha Rengaraju', role: 'AI Technologist, NVIDIA', photo: '/speaker-usha.webp' }], lumaUrl: 'https://luma.com/xuy6z1qr' },
   ] },
 
-  { start: '15:55', end: '16:10', sessions: [
-    { type: 'showcase', venue: 'Toast Hall', title: 'The Voice Native Way of Building with AI',
-      speakers: [{ name: 'Rohan Kochhar', role: 'Growth & Partnerships Lead, Wispr Flow', photo: '/speaker-rohan.webp' }], lumaUrl: 'https://luma.com/cweuqphl' },
-  ] },
 
   { start: '15:40', end: '16:15', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'Beyond E-Commerce: The Rise of Agentic Commerce',

@@ -71,7 +71,7 @@ const speakers: Speaker[] = [
   // Row 14 — last row
   { name: 'Shalini Dayanidhi', title: 'Investments, M Venture Partners', linkedin: 'https://www.linkedin.com/in/shalini-dayanidhi/', photo: '/speaker-shalini-d.webp', objectPos: '50% 15%' },
   { name: 'Vishy Puthukode', title: 'Director of Product Management, Freshworks', linkedin: 'https://www.linkedin.com/in/viswanathan-vishy-puthukode-4b133a37/', photo: '/speaker-vishy.webp', objectPos: '50% 15%' },
-  { name: 'Rohan Kochhar', title: 'Growth, Wispr Flow', linkedin: 'https://www.linkedin.com/in/rohan-kochhar-93721115b/', photo: '/speaker-rohan.webp', objectPos: '50% 15%' },
+
   { name: 'Devansh Ghatak', title: 'Co-founder & CTO, Simplismart', linkedin: 'https://www.linkedin.com/in/devanshghatak/', photo: '/speaker-devansh.webp', objectPos: '50% 15%' },
 ]
 
