@@ -80,9 +80,6 @@ const DAY1: Slot[] = [
         { name: 'Shivalik Sen', role: 'Head of Product, Rapido', photo: '/speaker-shivalik.webp' },
         { name: 'Dipika Jaikishan', role: 'VP Special Projects, Pronto', photo: '/speaker-dipika.webp' },
       ] },
-  ] },
-
-  { start: '14:50', end: '15:20', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'GEO: How AI search is rewriting martech',
       speakers: [
         { name: 'Ritika Chugh', role: 'Head of Product, Milestone', photo: '/speaker-ritika-new.webp' },
@@ -139,7 +136,7 @@ const DAY2: Slot[] = [
       ] },
   ] },
 
-  { start: '10:45', end: '11:30', sessions: [
+  { start: '10:45', end: '12:00', sessions: [
     { type: 'panel', venue: 'Freshworks Hall', title: 'The Next Interface is Voice',
       detail: 'Murf.ai · OneInbox · SuperBryn · Vobiz',
       speakers: [
@@ -149,9 +146,6 @@ const DAY2: Slot[] = [
         { name: 'Devansh Ghatak', role: 'Co-founder & CTO, Simplismart', photo: '/speaker-devansh.webp' },
         { name: 'Jagriti Shreya', role: 'COO, OneInbox · Moderator', photo: '/speaker-jagriti2.webp' },
       ] },
-  ] },
-
-  { start: '10:45', end: '12:00', sessions: [
     { type: 'panel', venue: 'Toast Hall', title: 'Global Capability Centres (GCCs) as Product Innovation Hubs',
       speakers: [
         { name: 'Sreya Sanyal', role: 'Product Lead, Ford · Moderator', photo: '/speaker-sreya.webp' },
@@ -172,9 +166,6 @@ const DAY2: Slot[] = [
   { start: '11:35', end: '12:10', sessions: [
     { type: 'expert', venue: 'Freshworks Hall', title: 'Physical AI: From Intelligence to the Real World',
       speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India', photo: '/speaker-anshuman.webp' }] },
-  ] },
-
-  { start: '11:40', end: '12:00', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'Karnataka Startup Policy 2025-30',
       speakers: [{ name: 'Omar Saud', role: 'Program Manager, Startups & Innovation, Karnataka Digital Economy Mission', photo: '/speaker-omar.jpg' }] },
   ] },
@@ -213,12 +204,9 @@ const DAY2: Slot[] = [
     { type: 'roundtable', venue: 'Toast Board Room', title: 'Leader/Founder Roundtable (Invite Only)', topic: 'Product, Distribution & Moats in the AI Era', lumaUrl: 'https://luma.com/fzpxkjpi' },
   ] },
 
-  { start: '15:20', end: '15:35', sessions: [
+  { start: '15:20', end: '15:50', sessions: [
     { type: 'expert', venue: 'Freshworks Hall', title: 'From Recommendations to Remediation',
       speakers: [{ name: 'Vishy Puthukode', role: 'Director of Product Management, Freshworks', photo: '/speaker-vishy.webp' }] },
-  ] },
-
-  { start: '15:20', end: '15:50', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'Designing Resilient AI for the Next Era of Commerce',
       speakers: [{ name: 'Dharma Varahappian', role: 'Product Leader, eBay', photo: '/speaker-dharma2.webp' }] },
   ] },
