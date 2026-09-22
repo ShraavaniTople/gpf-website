@@ -33,51 +33,41 @@ export default function Venue() {
           {/* Two-column layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-            {/* Left — map image */}
-            <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid #1C1A32' }}>
+            {/* Left — map image (constrained width) */}
+            <div className="rounded-2xl overflow-hidden mx-auto w-full" style={{ border: '1px solid #1C1A32', maxWidth: 340 }}>
               <img
                 src="/venue-map.png"
-                alt="Venue map showing walking route between Freshworks Building 32 and Toast Campus 20/20C"
+                alt="Walking route between Freshworks Building 32 and Toast Campus 20/20C"
                 className="w-full h-auto block"
               />
             </div>
 
             {/* Right — venue details */}
-            <div className="flex flex-col gap-8 lg:pt-2">
+            <div className="flex flex-col gap-6 lg:pt-2">
               <p className="text-base sm:text-lg leading-relaxed" style={{ color: '#B8B4D4' }}>
-                TGPF 2026 takes place across Freshworks and the Toast offices at RMZ Ecoworld, Bengaluru,
-                both within 2–3 mins of walking distance of each other.
+                TGPF 2026 is spread across two offices — Freshworks and Toast — both inside RMZ Ecoworld, Bengaluru. They're about a 2-minute walk from each other, so you can move between sessions without any hassle.
               </p>
 
               {/* Freshworks */}
               <div className="rounded-xl p-5" style={{ background: '#0A0817', border: '1px solid #1E1B35' }}>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: '#3B7FFF' }} />
-                  <p className="font-display font-bold text-base" style={{ color: '#F0EEF8' }}>Freshworks</p>
-                </div>
+                <p className="font-display font-bold text-base mb-2" style={{ color: '#F0EEF8' }}>Freshworks</p>
                 <p className="text-sm leading-relaxed" style={{ color: '#7C78A5' }}>
-                  Campus 32, 5th Floor, RMZ Ecoworld, Sarjapur – Marathahalli Outer Ring Road,
-                  Bhoganahalli Village, Varthur Hobli, Bengaluru, Karnataka – 560103, India.
+                  Campus 32, 5th Floor, RMZ Ecoworld, Sarjapur–Marathahalli Outer Ring Road, Bengaluru 560103
                 </p>
               </div>
 
               {/* Toast */}
               <div className="rounded-xl p-5" style={{ background: '#0A0817', border: '1px solid #1E1B35' }}>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: '#E5103A' }} />
-                  <p className="font-display font-bold text-base" style={{ color: '#F0EEF8' }}>Toast</p>
-                </div>
+                <p className="font-display font-bold text-base mb-2" style={{ color: '#F0EEF8' }}>Toast</p>
                 <p className="text-sm leading-relaxed" style={{ color: '#7C78A5' }}>
-                  5th Floor, Campus 20, 20C, RMZ Ecoworld Rd, Adarsh Palm Retreat Villas,
-                  Bellandur, Bengaluru, Karnataka 560103.
+                  5th Floor, Campus 20/20C, RMZ Ecoworld, Bellandur, Bengaluru 560103
                 </p>
               </div>
 
               {/* Parking note */}
               <div className="rounded-xl px-5 py-4" style={{ background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.25)' }}>
                 <p className="text-sm leading-relaxed" style={{ color: '#A78BFA' }}>
-                  Pass holders can park at either Freshworks or Toast and attend sessions across both venues.
-                  Please check the agenda for the venue of each session and use the map to navigate between locations.
+                  You can park at either building. Check each session's venue tag in the agenda and use the map to walk across.
                 </p>
               </div>
             </div>
