@@ -69,9 +69,8 @@ const DAY1: Slot[] = [
       speakers: [{ name: 'Deeksha Anand', role: 'PMM, Google', photo: '/speaker-deeksha.webp' }], lumaUrl: 'https://luma.com/skrne75e' },
     { type: 'workshop', venue: 'Toast Training Room', title: 'AI Evals for Product Teams',
       speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI', photo: '/speaker-tanay.webp' }], lumaUrl: 'https://luma.com/8zn9qd6x' },
+    { type: 'roundtable', venue: 'Freshworks Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)', topic: 'ROI on Intelligence', lumaUrl: 'https://luma.com/4zmk4w95' },
   ] },
-
-  { start: '14:15', end: '14:45', sessions: [{ type: 'roundtable', venue: 'Freshworks Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)', topic: 'ROI on Intelligence', lumaUrl: 'https://luma.com/4zmk4w95' }] },
 
   { start: '14:50', end: '15:35', sessions: [{ type: 'panel', venue: 'Freshworks Hall', title: 'Win Attention, Earn Habit: The Art of Consumer Product',
       speakers: [
