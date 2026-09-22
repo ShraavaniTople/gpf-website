@@ -49,7 +49,7 @@ const DAY1: Slot[] = [
         { name: 'Aditya Singh', role: 'VP, Product & India Site Head, Salesforce', photo: '/speaker-aditya.webp' },
       ] }] },
 
-  { start: '11:30', end: '12:10', sessions: [{ type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Agentic Product Ideation',
+  { start: '11:30', end: '12:45', sessions: [{ type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Agentic Product Ideation',
       speakers: [{ name: 'Adithi Sampath', role: 'VP of Product & Design, Stellantis', photo: '/speaker-adithi.jpg' }], lumaUrl: 'https://luma.com/oji1wt90' }] },
 
   { start: '12:15', end: '12:45', sessions: [
