@@ -125,17 +125,17 @@ export default function SponsorsShowcase() {
           {/* Strategic + Learning + Gifting + Academic partners — one row */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full" style={{ maxWidth: 1020 }}>
             {[
-              { label: 'Learning partner',  src: '/logos/future-minds-institute.png', alt: 'Future Minds Institute', whiteBg: false },
-              { label: 'Strategic partner', src: '/logos/kdem.webp',                  alt: 'Karnataka Digital Economy Mission', whiteBg: false },
-              { label: 'Gifting partner',   src: '/logos/lamhenow.webp',              alt: 'Lamhenow',              whiteBg: false },
-              { label: 'Academic partner',  src: '/logos/presidency-university.webp', alt: 'Presidency University', whiteBg: false },
-            ].map(({ label, src, alt, whiteBg }) => (
+              { label: 'Learning partner',  src: '/logos/future-minds-institute.png', alt: 'Future Minds Institute', whiteBg: false, imgW: '88%', imgH: 64 },
+              { label: 'Strategic partner', src: '/logos/kdem.webp',                  alt: 'Karnataka Digital Economy Mission', whiteBg: false, imgW: '70%', imgH: 48 },
+              { label: 'Gifting partner',   src: '/logos/lamhenow.webp',              alt: 'Lamhenow',              whiteBg: false, imgW: '70%', imgH: 48 },
+              { label: 'Academic partner',  src: '/logos/presidency-university.webp', alt: 'Presidency University', whiteBg: false, imgW: '70%', imgH: 48 },
+            ].map(({ label, src, alt, whiteBg, imgW, imgH }) => (
               <div key={alt} className="flex flex-col items-center gap-2">
                 <p className="font-mono text-[10px] uppercase tracking-[.18em] text-center" style={{ color: '#52506A' }}>{label}</p>
                 <div className="flex items-center justify-center rounded-2xl px-4 w-full"
                   style={{ background: whiteBg ? '#FFFFFF' : '#0E0C22', border: '1px solid #1C1A32', height: 80 }}>
                   <img src={src} alt={alt}
-                    style={{ display: 'block', width: '70%', height: 48, objectFit: 'contain' }} />
+                    style={{ display: 'block', width: imgW, height: imgH, objectFit: 'contain' }} />
                 </div>
               </div>
             ))}
