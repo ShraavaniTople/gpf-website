@@ -122,11 +122,12 @@ export default function SponsorsShowcase() {
             </div>
           </div>
 
-          {/* Strategic + Gifting + Academic partners — one row */}
-          <div className="grid grid-cols-3 gap-4 w-full" style={{ maxWidth: 760 }}>
+          {/* Strategic + Learning + Gifting + Academic partners — one row */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full" style={{ maxWidth: 1020 }}>
             {[
-              { label: 'Strategic partner', src: '/logos/kdem.webp',     alt: 'Karnataka Digital Economy Mission', whiteBg: false },
-              { label: 'Gifting partner',   src: '/logos/lamhenow.webp', alt: 'Lamhenow',                         whiteBg: false },
+              { label: 'Learning partner',  src: '/logos/future-minds-institute.png', alt: 'Future Minds Institute', whiteBg: true  },
+              { label: 'Strategic partner', src: '/logos/kdem.webp',                  alt: 'Karnataka Digital Economy Mission', whiteBg: false },
+              { label: 'Gifting partner',   src: '/logos/lamhenow.webp',              alt: 'Lamhenow',              whiteBg: false },
               { label: 'Academic partner',  src: '/logos/presidency-university.webp', alt: 'Presidency University', whiteBg: false },
             ].map(({ label, src, alt, whiteBg }) => (
               <div key={alt} className="flex flex-col items-center gap-2">

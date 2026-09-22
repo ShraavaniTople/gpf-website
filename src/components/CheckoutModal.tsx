@@ -511,16 +511,6 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
           </p>
         </div>
 
-        {/* Physical Ticket */}
-        <PhysicalTicket
-          name={fullName}
-          company={details.company}
-          tierName={tierName}
-          amount={finalPrice.toLocaleString('en-IN')}
-          paymentId={paymentId}
-          passNumber={pn}
-        />
-
         {/* Payment details row */}
         <div className="grid grid-cols-2 gap-3">
           <div className="rounded-xl px-4 py-3" style={{ background: '#080618', border: '1px solid #1C1A32' }}>
@@ -563,30 +553,7 @@ export default function CheckoutModal({ tierName, onClose }: Props) {
 
         {/* Actions */}
         <div className="flex gap-3">
-          <button
-            onClick={() => {
-              const pass = document.getElementById('gpf-pass')
-              if (!pass) return
-              const w = window.open('', '_blank', 'width=680,height=380')
-              if (!w) return
-              w.document.write(`<!DOCTYPE html><html><head><title>GPF 2026 Pass — ${fullName}</title>
-                <style>
-                  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
-                  * { margin: 0; padding: 0; box-sizing: border-box; }
-                  body { background: #F3F4F6; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 40px; }
-                  @page { size: A5 landscape; margin: 16px; }
-                </style>
-              </head><body>${pass.outerHTML}</body></html>`)
-              w.document.close()
-              w.focus()
-              setTimeout(() => { w.print() }, 600)
-            }}
-            className="btn-ghost flex items-center justify-center gap-2 flex-1"
-            style={{ padding: '12px', fontSize: 13 }}
-          >
-            <Download size={14} /> Save / Print Pass
-          </button>
-          <button onClick={onClose} className="btn-purple flex-1" style={{ padding: '12px', fontSize: 13 }}>
+          <button onClick={onClose} className="btn-purple w-full" style={{ padding: '12px', fontSize: 13 }}>
             Done
           </button>
         </div>

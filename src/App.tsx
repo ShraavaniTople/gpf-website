@@ -9,6 +9,7 @@ import WhyAttend from './components/WhyAttend'
 import WhoInRoom from './components/WhoInRoom'
 import Hackathon from './components/Hackathon'
 import Agenda from './components/Agenda'
+import Venue from './components/Venue'
 import FloorMap from './components/FloorMap'
 import Speakers from './components/Speakers'
 import Passes from './components/Passes'
@@ -27,6 +28,7 @@ import SpeakersPage from './pages/SpeakersPage'
 import SponsorPage from './pages/SponsorPage'
 import FAQPage from './pages/FAQPage'
 import AdminSendPassesPage from './pages/AdminSendPassesPage'
+import AdminGPFInfinitePage from './pages/AdminGPFInfinitePage'
 import SharePage from './pages/SharePage'
 import SocialCardCTA from './components/SocialCardCTA'
 
@@ -75,6 +77,7 @@ function HomePage() {
         <WhoInRoom />
         <hr className="div-glow" />
         <Agenda />
+        <Venue />
         {/* <FloorMap /> */}
         <Hackathon />
         <Speakers onApply={() => setSpeakerModal(true)} onNominate={() => setNominateModal(true)} />
@@ -136,6 +139,7 @@ export default function App() {
       <Route path="/sponsor" element={<SponsorPage />} />
       <Route path="/faq" element={<FAQPage />} />
       <Route path="/admin/send-passes" element={<AdminSendPassesPage />} />
+      <Route path="/admin/gpfinfinite" element={<AdminGPFInfinitePage />} />
       <Route path="/share" element={<SharePage />} />
       <Route path="*" element={<HomePage />} />
     </Routes>

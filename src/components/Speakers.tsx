@@ -22,7 +22,6 @@ const speakers: Speaker[] = [
   // Row 4
   { name: 'Anuj Rathi', title: 'Founder & CEO, Profound.me', linkedin: 'https://www.linkedin.com/in/anujrathi1', photo: '/speaker-anuj.webp', objectPos: '50% 15%' },
   { name: 'Neha Bagaria', title: 'Founder & CEO, HerKey', linkedin: 'https://www.linkedin.com/in/nehabagariaherkey', photo: '/speaker-neha.webp', objectPos: '50% 15%' },
-  { name: 'Roopa Jayaraman', title: 'CPTO & India MD, Odessa', linkedin: 'https://www.linkedin.com/in/roopajayaraman/', photo: '/speaker-roopa.webp', objectPos: '50% 15%' },
   { name: 'Supriya Rao', title: 'India MD, ClearRoute', linkedin: 'https://www.linkedin.com/in/supriya-y-rao/', photo: '/speaker-supriya-new.webp', objectPos: '50% 20%' },
   // Row 5
   { name: 'Amrit Raj', title: 'CMO, Women in Product India', linkedin: 'https://www.linkedin.com/in/amritraj02/', photo: '/speaker-amrit.webp', objectPos: '50% 15%' },

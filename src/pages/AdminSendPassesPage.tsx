@@ -69,6 +69,24 @@ const generalMembers: { firstName: string; lastName: string; company: string; ro
   { firstName: 'Mudrika',            lastName: 'C',             company: 'Google',              role: 'Product Manager',                  email: 'mudrika@google.com',                sentOn: '2026-09-13' },
   { firstName: 'Reetika',            lastName: 'Choudhary',     company: 'Walmart Global Tech', role: 'Senior Manager Product Management',email: 'Reetika.Choudhary@walmart.com',     sentOn: '2026-09-13' },
   { firstName: 'Rakhi',              lastName: 'Sharma',        company: 'House of Manthan',    role: 'Creator and Founder',              email: 'rakhi.ptr@gmail.com',               sentOn: '2026-09-13' },
+  // Batch 4 - attendees, volunteers, speakers
+  { firstName: 'Anuradha',          lastName: 'Dwarakanath',   company: 'Lam Research',                              role: 'Sr Staff Technical Program Manager',  email: 'anukolar@gmail.com' },
+  { firstName: 'Mohammed',          lastName: 'Jaffar',        company: 'Reva University',                           role: 'Student',                             email: 'ugcet2401014@reva.edu.in' },
+  { firstName: 'Parth',             lastName: 'Mehta',         company: 'KrowdKraft',                                role: 'Student',                             email: 'parth.mehta2801@gmail.com' },
+  { firstName: 'Dhruvam',           lastName: 'Upadhyay',      company: 'KrowdKraft',                                role: 'Student',                             email: 'udhruvam@gmail.com' },
+  { firstName: 'Radhika Yuvraj',    lastName: 'Iyengar',       company: 'Women In Tech India',                       role: 'Country Director',                    email: 'radhika.yuvraj@women-in-tech.org', passType: 'VIP Pass' },
+  { firstName: 'Rajiv',             lastName: 'Gopal',         company: 'Women In Tech India',                       role: 'Logistics Lead',                      email: 'rajiv_iyengar@hotmail.com',        passType: 'VIP Pass' },
+  { firstName: 'Penchala',          lastName: 'Tharun',        company: 'Wanderfly',                                 role: 'Co-Founder and CEO',                  email: 'Penchalatharun@wanderfly.in',      passType: 'VIP Pass' },
+  { firstName: 'Kartheek',          lastName: 'Dama',          company: 'Accenture Solutions Pvt Ltd',               role: 'Advanced App Engineering Associate',  email: 'dama.kartheek@accenture.com' },
+  { firstName: 'Sandeep',           lastName: 'Balaji',        company: 'IncrementumX',                              role: 'CEO',                                 email: 'sandeep@incrementumx.com',         passType: 'VIP Pass' },
+  { firstName: 'Richa',             lastName: 'Bhandari',      company: 'Anitab.org India',                          role: 'Manager',                             email: 'richab.c@anitab.org' },
+  { firstName: 'Aparna',            lastName: 'Srinivasan',    company: 'Adobe Systems India Pvt Limited',           role: 'Account Executive',                   email: 'aparnas@adobe.com',                passType: 'Premium Pass' },
+  { firstName: 'Shobha Rani',       lastName: 'Basavaraj',     company: 'Adobe Systems India Pvt Ltd',               role: 'Group Manager - Americas Consulting', email: 'sbasavar@adobe.com' },
+  { firstName: 'Vikram',            lastName: 'Bodavula',      company: 'Microsoft India R&D Pvt Ltd',               role: 'Principal Lead Product Manager',      email: 'vikramb@microsoft.com' },
+  { firstName: 'Sai Sudha',         lastName: 'Shenoy',        company: 'Dell Technologies',                         role: 'Principal Product Manager',           email: 'Saisudha.shenoy@dell.com' },
+  { firstName: 'Pramod',            lastName: 'Muralimohan',   company: 'Mercedes-Benz Research and Development India', role: 'Lead Data Scientist',              email: 'pramod.muralimohan@mercedes-benz.com' },
+  { firstName: 'Ashwin',            lastName: 'Srinivasan',    company: 'MoEngage',                                  role: 'VP Product',                          email: 'ashwin.srinivasan@moengage.com',   passType: 'VIP Pass' },
+  { firstName: 'Chirag',            lastName: 'Shenoy',        company: 'PhonePe',                                   role: 'Engineering Manager',                 email: 'chirag.shenoy@phonepe.com' },
 ]
 
 const premiumMembers = [
@@ -91,8 +109,15 @@ function genVIPPassNumber(email: string) {
   return `GPF26-V-${hash.toString(16).toUpperCase().padStart(6, '0')}`
 }
 
+function genPremiumPassNumberFromEmail(email: string) {
+  const hash = [...email].reduce((acc, c) => (acc * 31 + c.charCodeAt(0)) & 0xFFFFFF, 0)
+  return `GPF26-P-${hash.toString(16).toUpperCase().padStart(6, '0')}`
+}
+
 function getPassNumber(m: typeof generalMembers[0]) {
-  return m.passType === 'VIP Pass' ? genVIPPassNumber(m.email) : genGeneralPassNumber(m.email)
+  if (m.passType === 'VIP Pass')     return genVIPPassNumber(m.email)
+  if (m.passType === 'Premium Pass') return genPremiumPassNumberFromEmail(m.email)
+  return genGeneralPassNumber(m.email)
 }
 
 function genPremiumPassNumber(paymentId: string) {
