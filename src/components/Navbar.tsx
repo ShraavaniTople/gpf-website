@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 const links = [
   { label: 'Why Attend',    id: 'why-attend' },
   { label: 'Agenda',        id: 'agenda' },
+  { label: 'Venue',         id: 'venue' },
   { label: 'Hackathon',     id: 'hackathon' },
   { label: 'Speakers',      id: 'speakers' },
   { label: 'Passes',        id: 'passes' },
