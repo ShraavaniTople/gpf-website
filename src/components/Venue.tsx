@@ -27,7 +27,7 @@ export default function Venue() {
           <p className="font-mono text-[11px] uppercase tracking-[.2em] mb-5" style={{ color: '#7C3AED' }}>Venue</p>
           <h2 className="font-display font-extrabold leading-none mb-12"
             style={{ fontSize: 'clamp(40px,6vw,80px)', letterSpacing: '-0.04em', color: '#F0EEF8' }}>
-            Getting Here
+            Moving Around
           </h2>
 
           {/* Two-column layout */}
