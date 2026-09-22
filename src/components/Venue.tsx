@@ -36,7 +36,7 @@ export default function Venue() {
             {/* Left — map image */}
             <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid #1C1A32' }}>
               <img
-                src="/venue-map.jpg"
+                src="/venue-map.png"
                 alt="Venue map showing walking route between Freshworks Building 32 and Toast Campus 20/20C"
                 className="w-full h-auto block"
               />
