@@ -154,12 +154,11 @@ const DAY2: Slot[] = [
       speakers: [{ name: 'Vijeta Pai', role: 'Cloud & AI Advisor, Lumitia', photo: '/speaker-vijeta.webp' }], lumaUrl: 'https://luma.com/p20ecm65' },
   ] },
 
-  { start: '11:35', end: '12:10', sessions: [
-    { type: 'expert', venue: 'Freshworks Hall', title: 'Physical AI: From Intelligence to the Real World',
-      speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India', photo: '/speaker-anshuman.webp' }] },
-    { type: 'expert', venue: 'Toast Hall', title: 'Karnataka Startup Policy 2025-30',
-      speakers: [{ name: 'Omar Saud', role: 'Program Manager, Startups & Innovation, Karnataka Digital Economy Mission', photo: '/speaker-omar.jpg' }] },
-  ] },
+  { start: '11:35', end: '12:10', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Physical AI: From Intelligence to the Real World',
+      speakers: [{ name: 'Anshuman Awasthi', role: 'SVP, Mercedes-Benz Research & Development India', photo: '/speaker-anshuman.webp' }] }] },
+
+  { start: '11:40', end: '12:05', sessions: [{ type: 'expert', venue: 'Toast Hall', title: 'Karnataka Startup Policy 2025-30',
+      speakers: [{ name: 'Omar Saud', role: 'Program Manager, Startups & Innovation, Karnataka Digital Economy Mission', photo: '/speaker-omar.jpg' }] }] },
 
   { start: '12:10', end: '12:25', sessions: [
     { type: 'expert', venue: 'Toast Hall', title: 'Rethinking Data Center Efficiency for AI',
