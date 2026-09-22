@@ -125,7 +125,7 @@ export default function SponsorsShowcase() {
           {/* Strategic + Learning + Gifting + Academic partners — one row */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full" style={{ maxWidth: 1020 }}>
             {[
-              { label: 'Learning partner',  src: '/logos/future-minds-institute.png', alt: 'Future Minds Institute', whiteBg: true  },
+              { label: 'Learning partner',  src: '/logos/future-minds-institute.png', alt: 'Future Minds Institute', whiteBg: false },
               { label: 'Strategic partner', src: '/logos/kdem.webp',                  alt: 'Karnataka Digital Economy Mission', whiteBg: false },
               { label: 'Gifting partner',   src: '/logos/lamhenow.webp',              alt: 'Lamhenow',              whiteBg: false },
               { label: 'Academic partner',  src: '/logos/presidency-university.webp', alt: 'Presidency University', whiteBg: false },
