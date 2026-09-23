@@ -17,9 +17,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // 1 ── Vercel KV (real-time sync across all volunteer devices)
   try {
     if (act === 'checkin') {
-      await kv.set(`ci:${email.toLowerCase()}`, { name, bucket, tier, pass_number, ts })
+      await kv.sadd('checkins', email.toLowerCase())
     } else if (act === 'undo') {
-      await kv.del(`ci:${email.toLowerCase()}`)
+      await kv.srem('checkins', email.toLowerCase())
     }
   } catch { /* KV not yet enabled — local state still saved */ }
 
