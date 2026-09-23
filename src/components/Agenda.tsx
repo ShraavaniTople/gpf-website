@@ -211,8 +211,6 @@ const DAY2: Slot[] = [
 
   { start: '16:30', end: '16:50', sessions: [{ type: 'closing', title: 'Closing Ceremony' }] },
 
-  { start: '17:00', end: '18:00', sessions: [{ type: 'closing', title: 'TGPF Unplugged: Closing Jam Session' }] },
-
 ]
 
 // ─── Filter config ────────────────────────────────────────────────────────────
