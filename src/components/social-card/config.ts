@@ -8,7 +8,7 @@ export const EVENT = {
   hashtag: '#TGPF2026',
 }
 
-export type RoleId = 'attendee' | 'speaker' | 'mentor' | 'judge' | 'sponsor' | 'community-partner' | 'organizer'
+export type RoleId = 'attendee' | 'speaker' | 'mentor' | 'judge' | 'sponsor' | 'community-partner' | 'organizer' | 'volunteer' | 'hackathon'
 
 export type DesignId = 'hero' | 'editorial' | 'festival'
 
@@ -101,6 +101,28 @@ export const ROLES: Role[] = [
     captions: [
       `Building ${EVENT.name} 2026 for India's product community — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
       `Part of the team bringing ${EVENT.name} 2026 to life! ${EVENT.dates} · RMZ Ecoworld, Bangalore. ${EVENT.hashtag}`,
+    ],
+  },
+  {
+    id: 'volunteer',
+    label: 'Volunteer',
+    chip: "I'M VOLUNTEERING",
+    hasPhoto: true,
+    lockedDesign: 'festival',
+    captions: [
+      `Volunteering at ${EVENT.name} 2026 — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
+      `Proud to volunteer at India's biggest product festival! ${EVENT.dates} · RMZ Ecoworld, Bangalore. ${EVENT.hashtag}`,
+    ],
+  },
+  {
+    id: 'hackathon',
+    label: 'Hackathon Participant',
+    chip: "I'M BUILDING",
+    hasPhoto: true,
+    lockedDesign: 'festival',
+    captions: [
+      `Competing at the ${EVENT.name} 2026 Hackathon — ${EVENT.dates}, ${EVENT.city}. ${EVENT.hashtag}`,
+      `Building something great at the ${EVENT.name} 2026 Hackathon! ${EVENT.dates} · Bangalore. ${EVENT.hashtag}`,
     ],
   },
 ]
