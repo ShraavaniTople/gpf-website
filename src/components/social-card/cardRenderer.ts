@@ -49,6 +49,8 @@ function getTheme(id: RoleId): T {
     sponsor:             { r: 29,  g: 78,  b: 216, hex: '#1D4ED8', light: '#93C5FD', bar: ['#1D4ED8', '#60A5FA', '#BFDBFE'] },
     'community-partner': { r: 6,   g: 95,  b: 70,  hex: '#065F46', light: '#6EE7B7', bar: ['#065F46', '#059669', '#D1FAE5'] },
     organizer:           { r: 190, g: 24,  b: 93,  hex: '#BE185D', light: '#F472B6', bar: ['#9D174D', '#EC4899', '#FDF2F8'] },
+    volunteer:           { r: 5,   g: 150, b: 105, hex: '#059669', light: '#6EE7B7', bar: ['#047857', '#059669', '#D1FAE5'] },
+    hackathon:           { r: 37,  g: 99,  b: 235, hex: '#2563EB', light: '#93C5FD', bar: ['#1D4ED8', '#3B82F6', '#BFDBFE'] },
   }
   return map[id]
 }
