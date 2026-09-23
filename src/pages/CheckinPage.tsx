@@ -251,6 +251,7 @@ const RAW: Attendee[] = [
   mk('Yugansh Aggarwal', 'yugansh20@gmail.com', 'Google', 'Senior Software Engineer', 'Premium'),
 
   // ── General ─────────────────────────────────────────────────────────────────
+  mk('Rakhi Vipat', 'rakhi.vipat@kyndrev.com', 'Kyndrev', 'Director', 'General'),
   mk('Aarati Mankar', 'aarati.mankar@gmail.com', 'TensorN', 'Founder', 'General'),
   mk('Aayesha Mishra', 'aayeshamishranitw@gmail.com', '', '', 'General'),
   mk('Aayushi Gupta', 'aayushi@superbryn.com', '', '', 'General'),
