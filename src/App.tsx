@@ -30,6 +30,7 @@ import FAQPage from './pages/FAQPage'
 import AdminSendPassesPage from './pages/AdminSendPassesPage'
 import AdminGPFInfinitePage from './pages/AdminGPFInfinitePage'
 import SharePage from './pages/SharePage'
+import CheckinPage from './pages/CheckinPage'
 import SocialCardCTA from './components/SocialCardCTA'
 
 const SECTION_IDS = ['why-attend','agenda','hackathon','speakers','passes','sponsors-showcase','community-partners','faq']
@@ -140,6 +141,7 @@ export default function App() {
       <Route path="/faq" element={<FAQPage />} />
       <Route path="/admin/send-passes" element={<AdminSendPassesPage />} />
       <Route path="/admin/gpfinfinite" element={<AdminGPFInfinitePage />} />
+      <Route path="/admin/checkin" element={<CheckinPage />} />
       <Route path="/share" element={<SharePage />} />
       <Route path="*" element={<HomePage />} />
     </Routes>

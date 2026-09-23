@@ -137,10 +137,13 @@ function buildCombinedHtml(p: {
           </td></tr>
         </table>
 
-        <!-- Check-in notice -->
-        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;margin-bottom:24px;">
-          <tr><td style="padding:14px 20px;font-size:13px;color:#92400E;line-height:1.6;">
-            <strong>A separate check-in ticket will be sent closer to the event.</strong> Please use that QR code for entry at the venue.
+        <!-- Check-in QR code -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:12px;margin-bottom:24px;text-align:center;">
+          <tr><td style="padding:20px 24px;">
+            <p style="margin:0 0 12px;font-family:monospace;font-size:10px;color:#D97706;letter-spacing:0.18em;text-transform:uppercase;">YOUR CHECK-IN QR CODE</p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${p.pass_number}&margin=10&color=1a0a40&bgcolor=F5F3FF" width="180" height="180" alt="Check-in QR Code" style="display:block;margin:0 auto 12px;border-radius:8px;" />
+            <p style="margin:0;font-family:monospace;font-size:12px;color:#5B21B6;font-weight:700;letter-spacing:0.06em;">${p.pass_number}</p>
+            <p style="margin:8px 0 0;font-size:12px;color:#6B7280;">Show this QR code at the venue entrance on <strong>25–26 Sept 2026</strong>.</p>
           </td></tr>
         </table>
 
