@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 
-const ACCESS_PASSWORD = 'TGPF@2026'
+const ACCESS_PASSWORD = '2526@WIPfest'
 const SESSION_KEY     = 'tgpf_checkin_auth'
 const STORAGE_KEY     = 'tgpf2026_checkins'
 
