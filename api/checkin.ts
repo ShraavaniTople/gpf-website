@@ -36,27 +36,29 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     } catch { /* non-fatal */ }
   }
 
-  // 2 ── Email backup via Resend (secondary record, fire-and-forget)
+  // 2 ── Email backup via Resend — awaited so it never gets dropped
   if (process.env.RESEND_API_KEY && act === 'checkin') {
     const bucketEmoji: Record<string, string> = {
       Speaker: '🎤', Hackathon: '💻', VIP: '⭐', Premium: '🎫', General: '✅',
     }
     const emoji = bucketEmoji[bucket] || '✅'
-    resend.emails.send({
-      from: 'TGPF Check-in <hello@womeninproductindia.com>',
-      to: NOTIFY_EMAIL,
-      subject: `${emoji} ${name} checked in — ${bucket || tier}`,
-      text: [
-        `TGPF 2026 Check-in Record`,
-        `─────────────────────────`,
-        `Name:        ${name}`,
-        `Email:       ${email}`,
-        `Bucket:      ${bucket || '—'}`,
-        `Tier:        ${tier || '—'}`,
-        `Pass Number: ${pass_number || '—'}`,
-        `Time:        ${ts}`,
-      ].join('\n'),
-    }).catch(() => { /* non-fatal */ })
+    try {
+      await resend.emails.send({
+        from: 'TGPF Check-in <hello@womeninproductindia.com>',
+        to: ['hello@womeninproductindia.com', 'shraavanitople@gmail.com'],
+        subject: `${emoji} ${name} checked in — ${bucket || tier}`,
+        text: [
+          `TGPF 2026 Check-in Record`,
+          `─────────────────────────`,
+          `Name:        ${name}`,
+          `Email:       ${email}`,
+          `Bucket:      ${bucket || '—'}`,
+          `Tier:        ${tier || '—'}`,
+          `Pass Number: ${pass_number || '—'}`,
+          `Time:        ${ts}`,
+        ].join('\n'),
+      })
+    } catch { /* Sheets already has the record — email is belt-and-suspenders */ }
   }
 
   return res.status(200).json({ ok: true })
