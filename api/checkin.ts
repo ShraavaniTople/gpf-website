@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { Resend } from 'resend'
+import { kv } from '@vercel/kv'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const NOTIFY_EMAIL = 'hello@womeninproductindia.com'
@@ -13,7 +14,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const ts = timestamp || new Date().toISOString()
   const act = action || 'checkin'
 
-  // 1 ── Google Sheets (primary record)
+  // 1 ── Vercel KV (real-time sync across all volunteer devices)
+  try {
+    if (act === 'checkin') {
+      await kv.set(`ci:${email.toLowerCase()}`, { name, bucket, tier, pass_number, ts })
+    } else if (act === 'undo') {
+      await kv.del(`ci:${email.toLowerCase()}`)
+    }
+  } catch { /* KV not yet enabled — local state still saved */ }
+
+  // 2 ── Google Sheets (primary record)
   const sheetsUrl = process.env.SHEETS_WEBHOOK
   if (sheetsUrl) {
     try {

@@ -655,6 +655,28 @@ export default function CheckinPage() {
 
   useEffect(() => { if (authed) inputRef.current?.focus() }, [authed])
 
+  // Poll server every 5 s — keeps all volunteer devices in sync
+  useEffect(() => {
+    if (!authed) return
+    function poll() {
+      fetch('/api/checkin-state')
+        .then(r => r.json())
+        .then(({ checkedIn }: { checkedIn: string[] }) => {
+          if (!Array.isArray(checkedIn) || checkedIn.length === 0) return
+          setCheckins(prev => {
+            const merged: Record<string, boolean> = { ...prev }
+            checkedIn.forEach(e => { merged[e.toLowerCase()] = true })
+            saveCheckins(merged)
+            return merged
+          })
+        })
+        .catch(() => { /* offline — keep local state */ })
+    }
+    poll() // immediate on mount
+    const id = setInterval(poll, 5000)
+    return () => clearInterval(id)
+  }, [authed])
+
   if (!authed) return <PasswordGate onAuth={() => setAuthed(true)} />
 
   function doCheckin(a: Attendee) {
