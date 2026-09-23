@@ -51,17 +51,35 @@ export default function Venue() {
               {/* Freshworks */}
               <div className="rounded-xl p-5" style={{ background: '#0A0817', border: '1px solid #1E1B35' }}>
                 <p className="font-display font-bold text-base mb-2" style={{ color: '#F0EEF8' }}>Freshworks</p>
-                <p className="text-sm leading-relaxed" style={{ color: '#7C78A5' }}>
+                <p className="text-sm leading-relaxed mb-3" style={{ color: '#7C78A5' }}>
                   Campus 32, 5th Floor, RMZ Ecoworld, Sarjapur–Marathahalli Outer Ring Road, Bengaluru 560103
                 </p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Freshworks+Campus+32+RMZ+Ecoworld+Sarjapur+Marathahalli+Ring+Road+Bengaluru"
+                  target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono"
+                  style={{ color: '#7C3AED' }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Open in Google Maps
+                </a>
               </div>
 
               {/* Toast */}
               <div className="rounded-xl p-5" style={{ background: '#0A0817', border: '1px solid #1E1B35' }}>
                 <p className="font-display font-bold text-base mb-2" style={{ color: '#F0EEF8' }}>Toast</p>
-                <p className="text-sm leading-relaxed" style={{ color: '#7C78A5' }}>
+                <p className="text-sm leading-relaxed mb-3" style={{ color: '#7C78A5' }}>
                   5th Floor, Campus 20/20C, RMZ Ecoworld, Bellandur, Bengaluru 560103
                 </p>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Toast+Campus+20+RMZ+Ecoworld+Bellandur+Bengaluru"
+                  target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-mono"
+                  style={{ color: '#7C3AED' }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Open in Google Maps
+                </a>
               </div>
 
               {/* Parking note */}
