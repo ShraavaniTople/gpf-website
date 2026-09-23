@@ -675,9 +675,25 @@ export default function CheckinPage() {
       const ci = checkins[a.email.toLowerCase()] ? 'YES' : 'NO'
       rows.push(`"${a.name}","${a.email}","${a.company}","${a.role}",${a.bucket},${a.tier},${pn},${ci}`)
     })
-    const blob = new Blob([rows.join('\n')], { type: 'text/csv' })
+    const csv = rows.join('\n')
+
+    // Download locally
+    const blob = new Blob([csv], { type: 'text/csv' })
     const url = URL.createObjectURL(blob)
     const el = document.createElement('a'); el.href = url; el.download = 'tgpf2026-checkins.csv'; el.click()
+
+    // Also email a copy as backup
+    const checkedInCount = ATTENDEES.filter(a => checkins[a.email.toLowerCase()]).length
+    fetch('/api/export-checkins', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        csv,
+        totalCheckedIn: checkedInCount,
+        totalAttendees: ATTENDEES.length,
+        timestamp: new Date().toISOString(),
+      }),
+    }).catch(() => { /* best-effort */ })
   }
 
   const filtered = useMemo(() => {
