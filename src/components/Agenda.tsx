@@ -6,7 +6,7 @@ type SType = 'registration' | 'opening' | 'keynote' | 'panel' | 'workshop'
            | 'showcase' | 'roundtable' | 'hackathon'
 
 type Speaker = { name: string; role: string; photo?: string }
-type Session = { type: SType; venue?: string; title: string; topic?: string; detail?: string; speakers?: Speaker[]; lumaUrl?: string }
+type Session = { type: SType; venue?: string; title: string; topic?: string; detail?: string; speakers?: Speaker[] }
 type Slot    = { start: string; end?: string; sessions: Session[]; milestone?: string }
 
 const ST: Record<SType, { label: string; color: string; bg: string }> = {
@@ -50,7 +50,7 @@ const DAY1: Slot[] = [
       ] }] },
 
   { start: '11:30', end: '12:45', sessions: [{ type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Agentic Product Ideation',
-      speakers: [{ name: 'Adithi Sampath', role: 'VP of Product & Design, Stellantis', photo: '/speaker-adithi.jpg' }], lumaUrl: 'https://luma.com/oji1wt90' }] },
+      speakers: [{ name: 'Adithi Sampath', role: 'VP of Product & Design, Stellantis', photo: '/speaker-adithi.jpg' }] }] },
 
   { start: '12:15', end: '12:45', sessions: [
     { type: 'showcase', venue: 'Freshworks Hall', title: 'Platform & Partner Showcase — Agent Studio, MCP & Partner Toolkits' },
@@ -66,10 +66,10 @@ const DAY1: Slot[] = [
 
   { start: '14:15', end: '14:45', sessions: [
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'GTM for Product Teams',
-      speakers: [{ name: 'Deeksha Anand', role: 'PMM, Google', photo: '/speaker-deeksha.webp' }], lumaUrl: 'https://luma.com/skrne75e' },
+      speakers: [{ name: 'Deeksha Anand', role: 'PMM, Google', photo: '/speaker-deeksha.webp' }] },
     { type: 'workshop', venue: 'Toast Training Room', title: 'AI Evals for Product Teams',
-      speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI', photo: '/speaker-tanay.webp' }], lumaUrl: 'https://luma.com/8zn9qd6x' },
-    { type: 'roundtable', venue: 'Freshworks Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)', topic: 'ROI on Intelligence', lumaUrl: 'https://luma.com/4zmk4w95' },
+      speakers: [{ name: 'Tanay Agrawal', role: 'Director of AI & Platform, KronosX AI', photo: '/speaker-tanay.webp' }] },
+    { type: 'roundtable', venue: 'Freshworks Boardroom', title: 'CXO Roundtable with Databricks (Invite Only)', topic: 'ROI on Intelligence' },
   ] },
 
   { start: '14:50', end: '15:35', sessions: [{ type: 'panel', venue: 'Freshworks Hall', title: 'Win Attention, Earn Habit: The Art of Consumer Product',
@@ -106,7 +106,7 @@ const DAY1: Slot[] = [
 
   { start: '17:00', end: '18:00', sessions: [{ type: 'networking', title: 'Festival Day 1 Close — Games & Engagement' }] },
 
-  { start: '18:30', end: '20:00', sessions: [{ type: 'networking', title: 'After Hours: Leadership Dinner (Invite Only)', lumaUrl: 'https://luma.com/66bp021d' }] },
+  { start: '18:30', end: '20:00', sessions: [{ type: 'networking', title: 'After Hours: Leadership Dinner (Invite Only)' }] },
 ]
 
 const DAY2: Slot[] = [
@@ -149,9 +149,9 @@ const DAY2: Slot[] = [
 
   { start: '10:45', end: '12:00', sessions: [
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Build Your First AI Employee',
-      speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI', photo: '/speaker-ekta.webp' }], lumaUrl: 'https://luma.com/9rlo85os' },
+      speakers: [{ name: 'Ekta Shah', role: 'Data Scientist, MSCI', photo: '/speaker-ekta.webp' }] },
     { type: 'workshop', venue: 'Toast Workshop Room', title: 'Vibe Code Your Product MVP with Google AI Studio',
-      speakers: [{ name: 'Vijeta Pai', role: 'Cloud & AI Advisor, Lumitia', photo: '/speaker-vijeta.webp' }], lumaUrl: 'https://luma.com/p20ecm65' },
+      speakers: [{ name: 'Vijeta Pai', role: 'Cloud & AI Advisor, Lumitia', photo: '/speaker-vijeta.webp' }] },
   ] },
 
   { start: '11:35', end: '12:10', sessions: [{ type: 'keynote', venue: 'Freshworks Hall', title: 'Physical AI: From Intelligence to the Real World',
@@ -169,9 +169,9 @@ const DAY2: Slot[] = [
 
   { start: '14:00', end: '15:15', sessions: [
     { type: 'workshop', venue: 'Freshworks Workshop Room', title: 'Fundraising + VC Lab',
-      speakers: [{ name: 'Subhadeep Mondal', role: 'Partner, Kalaari Capital', photo: '/speaker-subhadeep.webp' }], lumaUrl: 'https://luma.com/esxygov8' },
+      speakers: [{ name: 'Subhadeep Mondal', role: 'Partner, Kalaari Capital', photo: '/speaker-subhadeep.webp' }] },
     { type: 'workshop', venue: 'Toast Training Room', title: 'Figma to Code',
-      speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP', photo: '/speaker-kushagra.jpg' }], lumaUrl: 'https://luma.com/zu8spy1t' },
+      speakers: [{ name: 'Kushagra Swami', role: 'AI Product Designer, POP', photo: '/speaker-kushagra.jpg' }] },
   ] },
 
   { start: '14:35', end: '15:15', sessions: [
@@ -191,7 +191,7 @@ const DAY2: Slot[] = [
   ] },
 
   { start: '15:00', end: '16:00', sessions: [
-    { type: 'roundtable', venue: 'Toast Board Room', title: 'Leader/Founder Roundtable (Invite Only)', topic: 'Product, Distribution & Moats in the AI Era', lumaUrl: 'https://luma.com/fzpxkjpi' },
+    { type: 'roundtable', venue: 'Toast Board Room', title: 'Leader/Founder Roundtable (Invite Only)', topic: 'Product, Distribution & Moats in the AI Era' },
   ] },
 
   { start: '15:20', end: '15:35', sessions: [{ type: 'expert', venue: 'Freshworks Hall', title: 'From Recommendations to Remediation',
@@ -318,15 +318,6 @@ function SessionCard({ session }: { session: Session }) {
       )}
       {session.speakers && session.speakers.length > 0 && (
         <SpeakerList speakers={session.speakers} />
-      )}
-      {session.lumaUrl && (
-        <div className="mt-3 pt-3" style={{ borderTop: '1px solid #1C1A32' }}>
-          <a href={session.lumaUrl} target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest transition-opacity hover:opacity-70"
-            style={{ color: '#A78BFA' }}>
-            RSVP on Luma →
-          </a>
-        </div>
       )}
     </div>
   )
